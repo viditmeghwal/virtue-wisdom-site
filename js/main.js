@@ -92,3 +92,65 @@ if (contactForm) {
 // ---------- Year in footer ----------
 const yearEls = document.querySelectorAll('[data-year]');
 yearEls.forEach(el => el.textContent = new Date().getFullYear());
+
+// ---------- Films: lazy-load + auto-play videos when in view ----------
+// Videos use data-src (not src) so browsers don't download them at page load.
+// When a card or tile scrolls into view, we:
+//   1. Check if the MP4 exists (via HEAD request)
+//   2. If yes: swap data-src → src, load, play, remove placeholder style
+//   3. If no:  leave the placeholder in place (so the section still looks intentional)
+
+const filmMedia = document.querySelectorAll('.film-card__media, .film-tile__media');
+
+if (filmMedia.length && 'IntersectionObserver' in window) {
+  const loadedSet = new Set();
+
+  const activateVideo = (videoEl) => {
+    const source = videoEl.querySelector('source[data-src]');
+    if (!source) return;
+    const url = source.getAttribute('data-src');
+    if (loadedSet.has(url)) return;
+    loadedSet.add(url);
+
+    // HEAD-probe the file so we only activate real videos; missing files stay placeholders.
+    fetch(url, { method: 'HEAD' })
+      .then(r => {
+        if (!r.ok) throw new Error('not found');
+        source.setAttribute('src', url);
+        source.removeAttribute('data-src');
+        videoEl.load();
+        const card = videoEl.closest('.film-card, .film-tile');
+        if (card) card.classList.remove('film-card--placeholder', 'film-tile--placeholder');
+        videoEl.play().catch(() => { /* autoplay blocked — silent fail */ });
+        if (card && card.classList.contains('film-card')) card.classList.add('is-playing');
+      })
+      .catch(() => { /* leave as placeholder */ });
+  };
+
+  const videoIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        activateVideo(e.target);
+      } else {
+        // Pause when out of view to save CPU
+        try { e.target.pause(); } catch (err) {}
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '100px 0px' });
+
+  filmMedia.forEach(v => videoIO.observe(v));
+}
+
+// ---------- Hover-to-play for grid tiles (extra polish on desktop) ----------
+const filmTiles = document.querySelectorAll('.film-tile');
+filmTiles.forEach(tile => {
+  const video = tile.querySelector('.film-tile__media');
+  if (!video) return;
+  tile.addEventListener('mouseenter', () => {
+    const src = video.querySelector('source')?.getAttribute('src');
+    if (src) { video.currentTime = 0; video.play().catch(() => {}); }
+  });
+  tile.addEventListener('mouseleave', () => {
+    try { video.pause(); } catch (e) {}
+  });
+});
