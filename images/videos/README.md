@@ -1,44 +1,65 @@
-# Films — how to drop your videos in
+# Films — how to add your videos
 
-Place 6 video files here (one per category):
+The site supports **multiple videos per category** — drop them in here and the marquee/grid update automatically.
+
+## Folder structure
 
 ```
 images/videos/
-├── fb.mp4            ← Food & Beverage
-├── hospitality.mp4   ← Hospitality
-├── industrial.mp4    ← Industrial
-├── clothing.mp4      ← Clothing
-├── jewellery.mp4     ← Jewellery
-├── product.mp4       ← Product
+├── fb-1.mp4              ← Food & Bev video 1
+├── fb-2.mp4              ← Food & Bev video 2  (optional)
+├── fb-3.mp4              ← Food & Bev video 3  (optional)
+├── hospitality-1.mp4
+├── ...
+├── jewellery-1.mp4       ✓ uploaded (Reel 4)
+├── jewellery-2.mp4       ✓ uploaded (Reel 6)
+├── jewellery-3.mp4       ✓ uploaded (Reel 8)
 └── posters/
-    ├── fb.jpg
-    ├── hospitality.jpg
-    ├── industrial.jpg
-    ├── clothing.jpg
-    ├── jewellery.jpg
-    └── product.jpg
+    ├── jewellery-1.jpg   ✓ generated
+    ├── jewellery-2.jpg   ✓ generated
+    └── jewellery-3.jpg   ✓ generated
 ```
 
-## Video specs (for fast loading)
+## Categories wired into the site
 
-- **Format:** MP4, H.264 codec, AAC audio (even though they play muted)
-- **Orientation:** Portrait, 9:16 (ideal: 720×1280 or 1080×1920)
-- **Duration:** 3–8 seconds, seamless loop (first frame = last frame)
-- **Size:** under 1.5 MB each — use HandBrake's "Web → Gmail Large 3 Minutes 720p30" preset
-- **Audio:** can leave it in; playback is forced muted
+| Slug | Display name | Status |
+|------|-------------|--------|
+| `fb` | Food & Bev | placeholder |
+| `hospitality` | Hospitality | placeholder |
+| `industrial` | Industrial | placeholder |
+| `clothing` | Clothing | placeholder |
+| `jewellery` | Jewellery | **3 videos uploaded ✓** |
+| `product` | Product | placeholder |
 
-## Poster specs
+## Encoding settings used (jewellery batch)
 
-Each poster is the first (or hero) frame of the video, saved as JPG:
-- **Size:** 720×1280, JPG, quality 78, around 60–120 KB
-- These show instantly before the video loads
+```bash
+# Compress video — visually identical to source, ~6-8 MB per 20 sec clip
+ffmpeg -i input.mp4 \
+  -c:v libx264 -preset fast -crf 23 -pix_fmt yuv420p \
+  -movflags +faststart -an -y output.mp4
 
-## How it works
+# Generate poster from 2-sec mark, 720px wide
+ffmpeg -ss 2 -i video.mp4 -frames:v 1 -q:v 4 -vf scale=720:-2 -y poster.jpg
+```
 
-- On page load, NO videos are downloaded (they use `data-src`, not `src`)
-- As you scroll and a card enters the viewport, JS checks if the MP4 exists
-- If it does: the video swaps in, plays muted on loop
-- If the file isn't uploaded yet: the placeholder stays (shimmer + play icon)
-- Videos pause automatically when they scroll out of view (saves battery)
+## How videos load (lazy + safe)
 
-So you can ship the site with 0, 3, or 6 videos — it always looks intentional.
+1. Page loads with NO videos downloaded — sources use `data-src`, not `src`
+2. As cards scroll into view, JS HEAD-probes each MP4 to confirm it exists
+3. File found → swap in, play muted on loop, remove placeholder shimmer
+4. File missing → placeholder stays (looks intentional, not broken)
+5. Videos pause when scrolled out of view (saves battery)
+
+## Aspect ratios
+
+Each card has a `data-ratio` attribute controlling its size in the marquee:
+
+| Ratio | Card size | Use for |
+|-------|-----------|---------|
+| `9:16` | 260×460 | Vertical Reels (default — used for jewellery) |
+| `4:5` | 320×400 | Instagram portrait posts |
+| `1:1` | 380×380 | Square commercials |
+| `16:9` | 540×304 | Cinematic landscape ads |
+
+To change a card's ratio, edit `data-ratio="9:16"` on the card's `<div>` in `work.html` or `index.html`.
