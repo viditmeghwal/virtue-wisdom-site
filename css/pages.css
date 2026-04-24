@@ -1151,7 +1151,7 @@
   display: flex;
   gap: 32px;
   width: max-content;
-  animation: filmsSlide 58s linear infinite;
+  animation: filmsSlide 120s linear infinite;
   transform-style: preserve-3d;
   will-change: transform;
 }

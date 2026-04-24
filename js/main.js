@@ -112,19 +112,26 @@ if (filmMedia.length && 'IntersectionObserver' in window) {
     if (loadedSet.has(url)) return;
     loadedSet.add(url);
 
-    // HEAD-probe the file so we only activate real videos; missing files stay placeholders.
-    fetch(url, { method: 'HEAD' })
-      .then(r => {
-        if (!r.ok) throw new Error('not found');
-        source.setAttribute('src', url);
-        source.removeAttribute('data-src');
-        videoEl.load();
-        const card = videoEl.closest('.film-card, .film-tile');
-        if (card) card.classList.remove('film-card--placeholder', 'film-tile--placeholder');
-        videoEl.play().catch(() => { /* autoplay blocked — silent fail */ });
-        if (card && card.classList.contains('film-card')) card.classList.add('is-playing');
-      })
-      .catch(() => { /* leave as placeholder */ });
+    // If the video errors (file missing, codec issue), keep the placeholder visible.
+    videoEl.addEventListener('error', () => {
+      // Silent — the poster image stays visible underneath
+    }, { once: true });
+
+    // When the video has enough data to play, drop the placeholder shimmer
+    videoEl.addEventListener('loadeddata', () => {
+      const card = videoEl.closest('.film-card, .film-tile');
+      if (card) card.classList.remove('film-card--placeholder', 'film-tile--placeholder');
+      if (card && card.classList.contains('film-card')) card.classList.add('is-playing');
+    }, { once: true });
+
+    // Activate: swap data-src → src, load, play
+    source.setAttribute('src', url);
+    source.removeAttribute('data-src');
+    videoEl.load();
+    const playPromise = videoEl.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => { /* autoplay blocked or other — silent */ });
+    }
   };
 
   const videoIO = new IntersectionObserver((entries) => {
