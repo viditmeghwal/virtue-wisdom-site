@@ -1867,11 +1867,13 @@
   .featured-grid-2__row { grid-template-columns: 1fr; gap: 50px; }
 }
 
+
 /* ============================================
-   CLIENTS — Floating logo grid with drift + hover glow
+   CLIENTS — 3-Row Opposite-Direction Marquee
+   High-res transparent logos, auto-scroll, bidirectional
    ============================================ */
 
-.clients-grid {
+.logo-marquee {
   background: var(--ink);
   color: var(--paper);
   padding: 120px 0 140px;
@@ -1879,46 +1881,47 @@
   overflow: hidden;
 }
 
-.clients-grid::before {
+.logo-marquee::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(176,141,87,0.06) 0%, transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0,0,0,0.6) 100%),
+    radial-gradient(circle at 20% 40%, rgba(176,141,87,0.05) 0%, transparent 50%);
   pointer-events: none;
+  z-index: 1;
 }
 
-.clients-grid__head {
+.logo-marquee__head {
   max-width: var(--max);
-  margin: 0 auto 80px;
+  margin: 0 auto 90px;
   padding: 0 var(--pad);
   text-align: center;
   position: relative;
   z-index: 2;
 }
 
-.clients-grid__kicker {
+.logo-marquee__kicker {
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   display: inline-flex;
   align-items: center;
   gap: 16px;
 }
 
-.clients-grid__kicker::before,
-.clients-grid__kicker::after {
+.logo-marquee__kicker::before,
+.logo-marquee__kicker::after {
   content: '';
-  width: 32px;
+  width: 40px;
   height: 1px;
   background: var(--accent);
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
-.clients-grid__title {
+.logo-marquee__title {
   font-family: var(--f-display);
   font-weight: 400;
   font-size: clamp(36px, 5vw, 72px);
@@ -1926,136 +1929,131 @@
   letter-spacing: -0.02em;
 }
 
-.clients-grid__title em {
+.logo-marquee__title em {
   font-style: italic;
   font-weight: 300;
   color: var(--accent);
 }
 
-.clients-grid__count {
-  font-size: 13px;
-  color: rgba(255,255,255,0.5);
-  margin-top: 20px;
-  letter-spacing: 0.06em;
+.logo-marquee__sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 22px;
+  letter-spacing: 0.04em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
-/* Floating grid container */
-.clients-grid__field {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--pad);
+/* The three rows stack vertically */
+.logo-marquee__rows {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  /* Edge fade: logos fade in from left, fade out at right */
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
-.logo-tile {
-  aspect-ratio: 3 / 2;
+.logo-row {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Inner track holds duplicated logo groups — 50% width + 50% dupe = seamless loop */
+.logo-row__track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 64px;
+  padding-right: 64px;
+  will-change: transform;
+}
+
+/* Row 1: drift LEFT (standard forward scroll) */
+.logo-row--left .logo-row__track {
+  animation: marqueeLeft 52s linear infinite;
+}
+
+/* Row 2: drift RIGHT (reverse direction) */
+.logo-row--right .logo-row__track {
+  animation: marqueeRight 58s linear infinite;
+}
+
+/* Row 3: drift LEFT again, slower — creates depth */
+.logo-row--left-slow .logo-row__track {
+  animation: marqueeLeft 68s linear infinite;
+}
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Pause entire marquee on hover — lets viewer read logos */
+.logo-marquee__rows:hover .logo-row__track {
+  animation-play-state: paused;
+}
+
+/* Individual logo container — holds the <img> */
+.logo-item {
+  flex-shrink: 0;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 22px 26px;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 6px;
-  background: rgba(255,255,255,0.02);
-  position: relative;
-  transition: background 0.5s var(--ease), border-color 0.5s var(--ease), transform 0.5s var(--ease);
-  will-change: transform;
-  animation: logoDrift 14s ease-in-out infinite;
+  padding: 0 8px;
+  transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
+  opacity: 0.7;
 }
 
-/* Stagger 12 drift variants so no two logos move in sync */
-.logo-tile:nth-child(12n+1)  { animation-delay: -0.0s;  animation-duration: 14s; }
-.logo-tile:nth-child(12n+2)  { animation-delay: -1.2s;  animation-duration: 16s; }
-.logo-tile:nth-child(12n+3)  { animation-delay: -2.4s;  animation-duration: 13s; }
-.logo-tile:nth-child(12n+4)  { animation-delay: -3.6s;  animation-duration: 15s; }
-.logo-tile:nth-child(12n+5)  { animation-delay: -4.8s;  animation-duration: 17s; }
-.logo-tile:nth-child(12n+6)  { animation-delay: -6.0s;  animation-duration: 14s; }
-.logo-tile:nth-child(12n+7)  { animation-delay: -7.2s;  animation-duration: 18s; }
-.logo-tile:nth-child(12n+8)  { animation-delay: -8.4s;  animation-duration: 15s; }
-.logo-tile:nth-child(12n+9)  { animation-delay: -9.6s;  animation-duration: 13s; }
-.logo-tile:nth-child(12n+10) { animation-delay: -10.8s; animation-duration: 16s; }
-.logo-tile:nth-child(12n+11) { animation-delay: -12.0s; animation-duration: 14s; }
-.logo-tile:nth-child(12n+12) { animation-delay: -13.2s; animation-duration: 17s; }
-
-/* Alternating drift paths — odd tiles bob, even tiles sway */
-.logo-tile:nth-child(odd)  { animation-name: logoDriftA; }
-.logo-tile:nth-child(even) { animation-name: logoDriftB; }
-
-@keyframes logoDriftA {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25%      { transform: translate(2px, -6px) rotate(-0.3deg); }
-  50%      { transform: translate(-3px, -10px) rotate(0.2deg); }
-  75%      { transform: translate(-4px, -4px) rotate(0.4deg); }
-}
-
-@keyframes logoDriftB {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25%      { transform: translate(-4px, 5px) rotate(0.3deg); }
-  50%      { transform: translate(2px, 9px) rotate(-0.2deg); }
-  75%      { transform: translate(5px, 3px) rotate(-0.4deg); }
-}
-
-.logo-tile img {
-  max-width: 100%;
+.logo-item img {
   max-height: 100%;
+  max-width: 200px;
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: brightness(0.88) grayscale(12%);
-  opacity: 0.78;
-  transition: filter 0.5s var(--ease), opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  display: block;
+  /* White logos on dark bg — no filter needed, they already have authority */
+  transition: filter 0.4s var(--ease);
 }
 
-/* Hover: target tile glows, scales, brightens; other tiles dim */
-.clients-grid__field:hover .logo-tile img { opacity: 0.35; filter: brightness(0.7) grayscale(50%); }
-
-.logo-tile:hover {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(176,141,87,0.4);
-  transform: scale(1.06) !important;
-  animation-play-state: paused;
-  z-index: 3;
-  box-shadow:
-    0 0 0 1px rgba(176,141,87,0.15),
-    0 20px 48px rgba(176,141,87,0.18),
-    0 0 80px rgba(176,141,87,0.1);
+/* Gentle individual hover: logo brightens, scales slightly */
+.logo-item:hover {
+  opacity: 1;
+  transform: scale(1.08);
 }
 
-.logo-tile:hover img {
-  filter: brightness(1.15) grayscale(0%) !important;
-  opacity: 1 !important;
-  transform: scale(1.02);
+.logo-item:hover img {
+  filter: drop-shadow(0 0 24px rgba(176,141,87,0.25));
 }
 
-/* Gold halo pulse on hover */
-.logo-tile::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 6px;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(circle at center, rgba(176,141,87,0.18) 0%, transparent 70%);
-  transition: opacity 0.5s var(--ease);
-}
+/* Responsive heights for different row sizes */
+.logo-row--left .logo-item      { height: 68px; }
+.logo-row--right .logo-item     { height: 76px; }    /* middle row slightly taller for variety */
+.logo-row--left-slow .logo-item { height: 64px; }
 
-.logo-tile:hover::after { opacity: 1; }
-
-/* Honor reduced motion */
+/* Reduced motion: pause all marquees, show first group static */
 @media (prefers-reduced-motion: reduce) {
-  .logo-tile { animation: none !important; }
+  .logo-row__track { animation: none !important; }
 }
 
-@media (max-width: 1024px) {
-  .clients-grid__field { grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .logo-tile { padding: 18px 20px; }
-}
-
-@media (max-width: 620px) {
-  .clients-grid { padding: 80px 0 100px; }
-  .clients-grid__field { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .logo-tile { padding: 14px 16px; }
+/* Mobile tuning */
+@media (max-width: 760px) {
+  .logo-marquee { padding: 80px 0 100px; }
+  .logo-marquee__rows { gap: 18px; }
+  .logo-row__track { gap: 40px; padding-right: 40px; }
+  .logo-row--left .logo-item      { height: 48px; }
+  .logo-row--right .logo-item     { height: 54px; }
+  .logo-row--left-slow .logo-item { height: 46px; }
+  .logo-item img { max-width: 140px; }
 }
