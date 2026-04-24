@@ -103,47 +103,27 @@ yearEls.forEach(el => el.textContent = new Date().getFullYear());
 const filmMedia = document.querySelectorAll('.film-card__media, .film-tile__media');
 
 if (filmMedia.length && 'IntersectionObserver' in window) {
-  const loadedSet = new Set();
 
-  const activateVideo = (videoEl) => {
-    const source = videoEl.querySelector('source[data-src]');
-    if (!source) return;
-    const url = source.getAttribute('data-src');
-    if (loadedSet.has(url)) return;
-    loadedSet.add(url);
-
-    // If the video errors (file missing, codec issue), keep the placeholder visible.
-    videoEl.addEventListener('error', () => {
-      // Silent — the poster image stays visible underneath
-    }, { once: true });
-
-    // When the video has enough data to play, drop the placeholder shimmer
-    videoEl.addEventListener('loadeddata', () => {
-      const card = videoEl.closest('.film-card, .film-tile');
+  // When a video first loads data, remove the placeholder class so the shimmer stops
+  filmMedia.forEach(v => {
+    v.addEventListener('loadeddata', () => {
+      const card = v.closest('.film-card, .film-tile');
       if (card) card.classList.remove('film-card--placeholder', 'film-tile--placeholder');
       if (card && card.classList.contains('film-card')) card.classList.add('is-playing');
     }, { once: true });
-
-    // Activate: swap data-src → src, load, play
-    source.setAttribute('src', url);
-    source.removeAttribute('data-src');
-    videoEl.load();
-    const playPromise = videoEl.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => { /* autoplay blocked or other — silent */ });
-    }
-  };
+  });
 
   const videoIO = new IntersectionObserver((entries) => {
     entries.forEach(e => {
+      const v = e.target;
       if (e.isIntersecting) {
-        activateVideo(e.target);
+        const p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(() => { /* silent */ });
       } else {
-        // Pause when out of view to save CPU
-        try { e.target.pause(); } catch (err) {}
+        try { v.pause(); } catch (err) {}
       }
     });
-  }, { threshold: 0.15, rootMargin: '100px 0px' });
+  }, { threshold: 0.15, rootMargin: '200px 0px' });
 
   filmMedia.forEach(v => videoIO.observe(v));
 }

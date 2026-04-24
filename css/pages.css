@@ -1280,32 +1280,14 @@
   50% { background-position: 100% 100%; }
 }
 
-.film-card--placeholder .film-card__media,
-.film-card--placeholder .film-card__poster { display: none; }
+/* Placeholder shimmer no longer hides the video — the video's poster attribute
+   shows through, giving an instant first paint. Placeholder class is now purely
+   a subtle background tint that sits behind the poster. */
+.film-card--placeholder { background: #141414; }
 
-.film-card--placeholder::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 54px;
-  height: 54px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.film-card--placeholder .placeholder-icon {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-45%, -50%);
-  width: 0;
-  height: 0;
-  border-left: 14px solid rgba(255,255,255,0.55);
-  border-top: 9px solid transparent;
-  border-bottom: 9px solid transparent;
-  z-index: 3;
-}
+/* No play icon on marquee cards — posters are the hero */
+.film-card--placeholder::before { display: none; }
+.film-card--placeholder .placeholder-icon { display: none; }
 
 /* ---------- Category grid below marquee ---------- */
 
@@ -1470,8 +1452,7 @@
   animation: filmShimmer 6s ease-in-out infinite;
 }
 
-.film-tile--placeholder .film-tile__poster,
-.film-tile--placeholder .film-tile__media { display: none; }
+.film-tile--placeholder { background: #141414; }
 
 @media (max-width: 1024px) {
   .films__head { grid-template-columns: 1fr; gap: 20px; }
