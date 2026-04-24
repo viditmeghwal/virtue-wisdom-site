@@ -1558,3 +1558,330 @@
 }
 
 /* Reuse marquee + film-card styles from main films section. */
+
+/* ============================================
+   CINEMATIC HERO — particle field + sequenced reveal
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+
+.hero-cine {
+  position: relative;
+  min-height: 100vh;
+  background: #050505;
+  color: var(--paper);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Particle canvas fills the hero */
+.hero-cine__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Subtle gradient vignette over particles for depth */
+.hero-cine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.6) 90%),
+    radial-gradient(circle at 70% 30%, rgba(176,141,87,0.08) 0%, transparent 40%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Ambient grain */
+.hero-cine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-cine__inner {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  padding: 0 var(--pad);
+  max-width: 1600px;
+}
+
+.hero-cine__title {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(56px, 11vw, 184px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  margin-bottom: 40px;
+}
+
+.hero-cine__title .word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(20px);
+  transform: translateY(40px) scale(0.95);
+  animation: heroWordIn 1.4s cubic-bezier(0.2, 0.7, 0.1, 1) forwards;
+}
+
+.hero-cine__title .word--1 { animation-delay: 0.4s; }
+.hero-cine__title .word--2 { animation-delay: 0.9s; }
+.hero-cine__title .word--3 { animation-delay: 1.4s; font-style: italic; font-weight: 300; color: var(--accent); }
+.hero-cine__title .word--4 { animation-delay: 1.9s; }
+
+@keyframes heroWordIn {
+  0%   { opacity: 0; filter: blur(20px); transform: translateY(40px) scale(0.95); }
+  60%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+}
+
+/* Cinzel signature underneath, fades in last */
+.hero-cine__signature {
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: clamp(11px, 0.95vw, 14px);
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  opacity: 0;
+  animation: sigIn 2s 2.6s cubic-bezier(0.2, 0.7, 0.1, 1) forwards;
+}
+
+.hero-cine__signature::before,
+.hero-cine__signature::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+@keyframes sigIn {
+  to { opacity: 1; }
+}
+
+/* Subtle ambient ascender — a thin gold filament moving slowly */
+.hero-cine__filament {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to top, var(--accent), transparent);
+  z-index: 4;
+  opacity: 0;
+  animation: sigIn 2s 3.2s forwards;
+}
+
+/* Scroll cue */
+.hero-cine__scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: sigIn 2s 3.6s forwards;
+}
+
+.hero-cine__scroll::after {
+  content: '';
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,0.4);
+  animation: scrollPulse 2.4s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Bottom-left contextual block — fades in like the signature */
+.hero-cine__meta {
+  position: absolute;
+  bottom: 50px;
+  left: var(--pad);
+  z-index: 4;
+  max-width: 380px;
+  text-align: left;
+  opacity: 0;
+  animation: sigIn 2s 3.4s forwards;
+}
+
+.hero-cine__meta p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.6);
+}
+
+.hero-cine__meta-right {
+  position: absolute;
+  bottom: 50px;
+  right: var(--pad);
+  z-index: 4;
+  text-align: right;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  opacity: 0;
+  animation: sigIn 2s 3.4s forwards;
+}
+
+.hero-cine__meta-right strong {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--paper);
+  display: block;
+  margin-top: 6px;
+}
+
+@media (max-width: 760px) {
+  .hero-cine__meta, .hero-cine__meta-right { position: static; max-width: none; text-align: center; padding: 30px var(--pad) 0; }
+  .hero-cine__signature { font-size: 10px; letter-spacing: 0.4em; }
+  .hero-cine__signature::before,
+  .hero-cine__signature::after { width: 22px; }
+  .hero-cine__scroll { display: none; }
+}
+
+/* ============================================
+   FEATURED WORK 2-COLUMN — Chipper-style
+   ============================================ */
+
+.featured-grid-2 {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 80px var(--pad) 60px;
+}
+
+.featured-grid-2__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 70px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.featured-grid-2__head h2 {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.featured-grid-2__head h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+
+.featured-grid-2__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 48px;
+}
+
+.proj-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.5s var(--ease);
+}
+
+.proj-card:hover { transform: translateY(-6px); }
+
+.proj-card__media {
+  aspect-ratio: 16 / 11;
+  width: 100%;
+  overflow: hidden;
+  background: var(--paper-warm);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.proj-card__media img,
+.proj-card__media svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s var(--ease);
+}
+
+.proj-card:hover .proj-card__media img,
+.proj-card:hover .proj-card__media svg {
+  transform: scale(1.04);
+}
+
+.proj-card__title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.proj-card__title em {
+  font-style: italic;
+  font-weight: 300;
+  text-transform: none;
+}
+
+.proj-card__title .arrow {
+  font-family: var(--f-body);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.proj-card:hover .proj-card__title .arrow {
+  transform: translate(4px, -4px);
+  color: var(--accent);
+}
+
+.proj-card__tags {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+@media (max-width: 880px) {
+  .featured-grid-2__row { grid-template-columns: 1fr; gap: 50px; }
+}

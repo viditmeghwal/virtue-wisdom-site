@@ -11,7 +11,7 @@ if (nav) {
 
     // If the nav started dark (over hero) and we've scrolled past hero, flip to light
     if (nav.dataset.heroDark === 'true') {
-      const hero = document.querySelector('.hero');
+      const hero = document.querySelector('.hero-cine, .hero');
       if (hero) {
         const heroBottom = hero.offsetTop + hero.offsetHeight - 80;
         if (window.scrollY > heroBottom) {
@@ -161,3 +161,114 @@ filmTiles.forEach(tile => {
     try { video.pause(); } catch (e) {}
   });
 });
+
+// ---------- Cinematic hero particle field ----------
+(function() {
+  const canvas = document.getElementById('particles');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let width, height, particles = [];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function createParticles() {
+    particles = [];
+    // Fewer particles on mobile / small viewports
+    const count = Math.min(120, Math.max(40, Math.floor(width * height / 18000)));
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        // Size: mostly small, occasional larger ones
+        r: Math.random() < 0.85 ? Math.random() * 1.2 + 0.2 : Math.random() * 2.2 + 1.2,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.1 - 0.05, // slight upward drift
+        // Opacity pulses
+        baseOpacity: Math.random() * 0.5 + 0.15,
+        phase: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.008 + 0.004,
+        // Color variant: mostly white, occasional gold accent
+        gold: Math.random() < 0.15
+      });
+    }
+  }
+
+  let rafId;
+  function animate(t) {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges
+      if (p.x < -5) p.x = width + 5;
+      if (p.x > width + 5) p.x = -5;
+      if (p.y < -5) p.y = height + 5;
+      if (p.y > height + 5) p.y = -5;
+
+      // Pulse opacity
+      const opacity = p.baseOpacity + Math.sin(t * p.pulseSpeed + p.phase) * 0.2;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.gold
+        ? `rgba(176, 141, 87, ${Math.max(0, opacity)})`
+        : `rgba(255, 255, 255, ${Math.max(0, opacity)})`;
+      ctx.fill();
+    }
+
+    rafId = requestAnimationFrame(animate);
+  }
+
+  function init() {
+    resize();
+    createParticles();
+    if (!reduceMotion) {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(animate);
+    } else {
+      // Render once without motion for reduced-motion users
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.gold ? 'rgba(176,141,87,0.4)' : 'rgba(255,255,255,0.3)';
+        ctx.fill();
+      });
+    }
+  }
+
+  init();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(init, 150);
+  });
+
+  // Pause animation when hero is offscreen (saves CPU/battery)
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          if (!reduceMotion && !rafId) rafId = requestAnimationFrame(animate);
+        } else {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      });
+    }, { threshold: 0 });
+    io.observe(canvas);
+  }
+})();
