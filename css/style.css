@@ -58,37 +58,36 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 
 .rule { height: 1px; background: var(--line); width: 100%; }
 
-/* ---------- V&W Logo ---------- */
+/* ---------- V&W Logo (image-based) ---------- */
 
-.logo-mark {
+/* Nav logo — horizontal wordmark. Shows white on dark hero, black everywhere else. */
+.nav__logo { display: inline-flex; align-items: center; height: 28px; }
+
+.nav__logo img {
+  height: 22px;
+  width: auto;
+  display: block;
+  transition: opacity 0.25s var(--ease);
+}
+
+/* Default nav (light mode) shows the black wordmark */
+.nav__logo .logo-dark { display: block; }
+.nav__logo .logo-light { display: none; }
+
+/* When nav is in dark mode (over hero), swap to white wordmark */
+.nav.is-dark .nav__logo .logo-dark { display: none; }
+.nav.is-dark .nav__logo .logo-light { display: block; }
+
+/* Footer logo — V&W monogram, always white (footer is dark) */
+.footer__logo {
   display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
-  color: currentColor;
+  margin-bottom: 8px;
 }
 
-.logo-mark__main {
-  font-family: var(--f-display);
-  font-weight: 400;
-  font-size: 30px;
-  letter-spacing: -0.02em;
-  font-feature-settings: "liga" 1, "dlig" 1;
-}
-
-.logo-mark__main .amp {
-  font-style: italic;
-  font-weight: 300;
-  margin: 0 1px;
-}
-
-.logo-mark__sub {
-  font-family: var(--f-body);
-  font-size: 8px;
-  font-weight: 500;
-  letter-spacing: 0.32em;
-  margin-top: 4px;
-  opacity: 0.85;
+.footer__logo img {
+  height: 88px;
+  width: auto;
+  display: block;
 }
 
 /* ---------- Navigation ---------- */
