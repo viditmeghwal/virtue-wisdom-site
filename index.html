@@ -6,76 +6,7 @@
   <title>Virtue &amp; Wisdom — We create iconic brands</title>
   <meta name="description" content="Virtue & Wisdom is a brand building company driven by the pursuit of excellence. We create iconic brands through strategy, identity, marketing, and experience." />
   <link rel="stylesheet" href="css/style.css?v=films2" />
-  <link rel="stylesheet" href="css/pages.css?v=films2" />
-
-  <style>
-  /* ============================================================
-     HERO MOSAIC — full-bleed grid of work clips behind hero text
-     ============================================================ */
-  .hero-cine {
-    position: relative;
-    isolation: isolate;
-  }
-  .hero-mosaic {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .hero-mosaic__grid {
-    position: absolute;
-    inset: -2vh -1vw;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 6px;
-  }
-  .hero-mosaic__cell {
-    position: relative;
-    overflow: hidden;
-    background: #0a0a0a;
-  }
-  .hero-mosaic__cell video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(60%) brightness(0.45) contrast(1.1);
-  }
-  /* Dark wash on top of the mosaic so headline stays legible */
-  .hero-mosaic::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.85) 100%);
-    z-index: 2;
-    pointer-events: none;
-  }
-  /* Make sure existing hero contents sit above the mosaic */
-  .hero-cine__inner,
-  .hero-cine__meta,
-  .hero-cine__meta-right,
-  .hero-cine__filament,
-  .hero-cine__scroll,
-  .hero-cine__canvas {
-    position: relative;
-    z-index: 3;
-  }
-
-  @media (max-width: 760px) {
-    .hero-mosaic__grid {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 1fr);
-    }
-    .hero-mosaic__cell--hide-mobile { display: none; }
-  }
-  </style>
-
-
-  <style>
+  <link rel="stylesheet" href="css/pages.css?v=films2" />  <style>
   /* ============================================================
      OFF-CAMERA / Inside V&W — Behind the Scenes (3 phone columns)
      ============================================================ */
@@ -240,9 +171,59 @@
   .films__grid, .film-tile { pointer-events: auto; }
   .film-card video, .film-tile video,
   .film-card__media, .film-tile__media,
-  .bts__media, .hero-mosaic__media {
+  .bts__media {
     pointer-events: none;
   }
+  </style>
+
+
+  <style>
+  /* ============================================================
+     HERO GRADIENT — animated deep blue mesh blobs
+     ============================================================ */
+  .hero-cine {
+    position: relative;
+    isolation: isolate;
+    background: #050810;
+  }
+  .hero-cine::before,
+  .hero-cine::after {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.85;
+  }
+  .hero-cine::before {
+    background:
+      radial-gradient(circle at 20% 30%, #1e4f9c 0%, transparent 45%),
+      radial-gradient(circle at 75% 60%, #0b3270 0%, transparent 50%),
+      radial-gradient(circle at 50% 85%, #2a6dd9 0%, transparent 40%);
+    animation: hero-gradient-1 5s ease-in-out infinite alternate;
+  }
+  .hero-cine::after {
+    background:
+      radial-gradient(circle at 80% 20%, #143a7a 0%, transparent 50%),
+      radial-gradient(circle at 30% 70%, #0a2050 0%, transparent 45%),
+      radial-gradient(circle at 60% 40%, #3a82e6 0%, transparent 35%);
+    animation: hero-gradient-2 6s ease-in-out infinite alternate;
+    mix-blend-mode: screen;
+  }
+  @keyframes hero-gradient-1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(-3%, 4%) scale(1.08); }
+    100% { transform: translate(2%, -3%) scale(0.95); }
+  }
+  @keyframes hero-gradient-2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(4%, -3%) scale(1.05); }
+    100% { transform: translate(-2%, 3%) scale(1.1); }
+  }
+  /* Soft vignette over gradient to anchor text (especially edges) */
+  .hero-cine > * { position: relative; z-index: 2; }
+  .hero-cine__canvas { z-index: 1; opacity: 0.45; }
   </style>
 
 </head>
@@ -270,100 +251,6 @@
 
   <!-- HERO — Cinematic -->
   <section class="hero-cine">
-    <div class="hero-mosaic" aria-hidden="true">
-      <div class="hero-mosaic__grid">
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-3.jpg">
-          <source data-src="images/videos/hospitality-3.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-4.jpg">
-          <source data-src="images/videos/industrial-4.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-1.jpg">
-          <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-2.jpg">
-          <source data-src="images/videos/fb-2.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-5.jpg">
-          <source data-src="images/videos/hospitality-5.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
-          <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-5.jpg">
-          <source data-src="images/videos/industrial-5.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-7.jpg">
-          <source data-src="images/videos/hospitality-7.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-2.jpg">
-          <source data-src="images/videos/jewellery-2.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-1.jpg">
-          <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
-          <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-6.jpg">
-          <source data-src="images/videos/hospitality-6.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
-          <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-3.jpg">
-          <source data-src="images/videos/jewellery-3.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-1.jpg">
-          <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-5.jpg">
-          <source data-src="images/videos/clothing-5.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-3.jpg">
-          <source data-src="images/videos/fb-3.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
-        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-2.jpg">
-          <source data-src="images/videos/hospitality-2.mp4" type="video/mp4" />
-        </video>
-      </div>
-      </div>
-    </div>
     <canvas class="hero-cine__canvas" id="particles"></canvas>
 
     <div class="hero-cine__inner">
@@ -985,7 +872,7 @@
       if (p && p.catch) p.catch(function(){});
     };
     // 1) BTS section + hero mosaic: eager load
-    var eager = document.querySelectorAll('.bts__media, .hero-mosaic__media');
+    var eager = document.querySelectorAll('.bts__media');
     eager.forEach(function(v) {
       setSrc(v);
       safePlay(v);
