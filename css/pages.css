@@ -1746,72 +1746,113 @@
 }
 
 @media (max-width: 760px) {
-  /* Switch hero from full-screen centered to natural top-down flow */
+  /* Hero: vertical stacked, centered, always within viewport */
   .hero-cine {
-    min-height: auto;
-    align-items: flex-start;
-    padding: 100px 0 50px;
+    min-height: 100vh !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 100px 0 80px !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .hero-cine__inner {
-    text-align: left;
-    padding: 20px 22px 0;
-    width: 100%;
+    text-align: center !important;
+    padding: 0 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
   }
 
+  /* Title: center, contained, sized so all words fit on narrow screens */
   .hero-cine__title {
-    font-size: clamp(56px, 16vw, 96px);
-    line-height: 0.95;
-    margin-bottom: 24px;
+    font-size: clamp(48px, 13vw, 72px) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 28px !important;
+    text-align: center !important;
+    width: 100% !important;
+    word-wrap: break-word !important;
   }
 
-  /* Stop the 3-column squeeze — each word its own line on narrow screens */
-  .hero-cine__title .word { display: block; margin-bottom: -8px; }
+  /* Each word inline — natural flow, the title wraps as a normal paragraph */
+  .hero-cine__title .word {
+    display: inline !important;
+    margin: 0 !important;
+  }
 
-  /* Bottom-left meta becomes a normal paragraph under the title */
+  /* Add space between words (since they're inline, we need word-spacing) */
+  .hero-cine__title .word + .word::before {
+    content: ' ';
+  }
+
+  /* Description paragraph - small, centered, tight */
   .hero-cine__meta {
-    position: static;
-    max-width: 100%;
-    padding: 0 22px;
-    margin-top: 32px;
-    text-align: left;
+    position: static !important;
+    max-width: 320px !important;
+    margin: 0 auto 28px !important;
+    padding: 0 !important;
+    text-align: center !important;
+    bottom: auto !important;
+    left: auto !important;
   }
 
-  .hero-cine__meta p { font-size: 14px; line-height: 1.6; }
+  .hero-cine__meta p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    color: rgba(255,255,255,0.6) !important;
+  }
 
-  /* Trusted-by block stacks after the copy */
+  /* Trusted by + 200 brands - inline, centered, below the description */
   .hero-cine__meta-right {
-    position: static;
-    text-align: left;
-    padding: 0 22px;
-    margin-top: 28px;
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
+    position: static !important;
+    text-align: center !important;
+    padding: 0 !important;
+    margin: 0 auto 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+
+  .hero-cine__meta-right span {
+    font-size: 10px !important;
+    letter-spacing: 0.32em !important;
   }
 
   .hero-cine__meta-right strong {
-    margin-top: 0;
-    font-size: 22px;
+    margin-top: 0 !important;
+    font-size: 24px !important;
+    font-family: var(--f-display) !important;
   }
 
-  /* Signature stays centered, smaller */
+  /* Virtue & Wisdom signature - centered with thin gold rules */
   .hero-cine__signature {
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    margin-top: 18px;
-    justify-content: flex-start;
+    font-size: 10px !important;
+    letter-spacing: 0.4em !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+    display: inline-flex !important;
   }
 
   .hero-cine__signature::before,
-  .hero-cine__signature::after { width: 22px; }
+  .hero-cine__signature::after {
+    width: 22px !important;
+  }
 
-  .hero-cine__scroll { display: none; }
-  .hero-cine__filament { display: none; }
+  /* Hide scroll cue and filament on mobile */
+  .hero-cine__scroll { display: none !important; }
+  .hero-cine__filament { display: none !important; }
 }
 
-@media (max-width: 520px) {
-  .hero-cine__title { font-size: clamp(52px, 15vw, 80px); }
+@media (max-width: 420px) {
+  .hero-cine__title { font-size: clamp(42px, 12vw, 56px) !important; }
+  .hero-cine__meta { max-width: 280px !important; }
 }
 
 /* ============================================
