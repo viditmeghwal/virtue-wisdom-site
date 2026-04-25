@@ -7,6 +7,184 @@
   <meta name="description" content="Virtue & Wisdom is a brand building company driven by the pursuit of excellence. We create iconic brands through strategy, identity, marketing, and experience." />
   <link rel="stylesheet" href="css/style.css?v=films2" />
   <link rel="stylesheet" href="css/pages.css?v=films2" />
+
+  <style>
+  /* ============================================================
+     OFF-CAMERA / Inside V&W — Behind the Scenes section
+     ============================================================ */
+  .bts {
+    background: #0b0b0b;
+    color: #f3ece1;
+    padding: 140px 6vw 160px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bts::before {
+    /* subtle warm grain texture */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 30% 20%, rgba(180, 140, 80, 0.06), transparent 60%),
+                      radial-gradient(circle at 80% 70%, rgba(180, 140, 80, 0.04), transparent 55%);
+    pointer-events: none;
+  }
+  .bts__inner { position: relative; max-width: 1480px; margin: 0 auto; }
+
+  .bts__head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 60px;
+    margin-bottom: 80px;
+  }
+  .bts__kicker {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #c9b785;
+    margin-bottom: 24px;
+    border-top: 1px solid rgba(201, 183, 133, 0.4);
+    padding-top: 14px;
+    width: fit-content;
+  }
+  .bts__title {
+    font-family: 'Times New Roman', 'Playfair Display', Georgia, serif;
+    font-size: clamp(48px, 8vw, 132px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .bts__title em {
+    font-style: italic;
+    color: #c9b785;
+  }
+  .bts__copy {
+    max-width: 360px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(243, 236, 225, 0.7);
+    margin: 0;
+  }
+  .bts__copy strong {
+    font-weight: 500;
+    color: #f3ece1;
+    font-style: italic;
+  }
+
+  /* HERO landscape feature */
+  .bts__hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    margin-bottom: 28px;
+    border: 1px solid rgba(201, 183, 133, 0.18);
+  }
+  .bts__hero video,
+  .bts__hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.04);
+  }
+  .bts__hero-tag {
+    position: absolute;
+    bottom: 28px;
+    left: 28px;
+    z-index: 2;
+    background: rgba(11, 11, 11, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #f3ece1;
+    padding: 12px 20px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: 1px solid rgba(201, 183, 133, 0.3);
+  }
+  .bts__hero-tag em { font-style: italic; color: #c9b785; }
+
+  /* Mosaic grid for the 10 portrait clips */
+  .bts__mosaic {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(220px, auto);
+    gap: 14px;
+  }
+  .bts__cell {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+    aspect-ratio: 9 / 16;
+    border: 1px solid rgba(201, 183, 133, 0.12);
+    transition: border-color 0.4s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .bts__cell:hover {
+    border-color: rgba(201, 183, 133, 0.5);
+    transform: translateY(-4px);
+  }
+  .bts__cell video,
+  .bts__cell img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bts__cell--tall { grid-row: span 2; aspect-ratio: 9 / 32; }
+  .bts__cell-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    background: rgba(11, 11, 11, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 7px 12px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #f3ece1;
+  }
+  .bts__cell-tag em { color: #c9b785; font-style: italic; }
+  .bts__index {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    z-index: 2;
+    font-family: 'Times New Roman', Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(243, 236, 225, 0.6);
+  }
+
+  /* Mobile / tablet */
+  @media (max-width: 900px) {
+    .bts { padding: 100px 5vw 110px; }
+    .bts__head {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 50px;
+    }
+    .bts__copy { max-width: 100%; }
+    .bts__mosaic {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(260px, auto);
+      gap: 10px;
+    }
+    .bts__cell--tall { grid-row: auto; aspect-ratio: 9 / 16; }
+    .bts__hero-tag { bottom: 16px; left: 16px; padding: 10px 14px; font-size: 11px; }
+  }
+  @media (max-width: 480px) {
+    .bts__title { font-size: 14vw; }
+    .bts__mosaic { grid-template-columns: 1fr 1fr; gap: 8px; }
+  }
+  </style>
+
 </head>
 <body>
 
@@ -382,6 +560,111 @@
     </div>
   </section>
 
+
+  <!-- OFF-CAMERA — Behind the Scenes / Inside V&W -->
+  <section class="bts" id="off-camera">
+    <div class="bts__inner">
+
+      <header class="bts__head">
+        <div>
+          <span class="bts__kicker">Off-Camera</span>
+          <h2 class="bts__title">Inside <em>V&amp;W.</em></h2>
+        </div>
+        <p class="bts__copy">
+          Long days, late nights, and the occasional dance break.
+          The making of iconic brands isn&rsquo;t always glamorous &mdash;
+          but it&rsquo;s <strong>always honest.</strong>
+        </p>
+      </header>
+
+      <!-- Hero landscape feature -->
+      <div class="bts__hero">
+        <span class="bts__hero-tag">Behind <em>the scenes</em> &middot; V&amp;W</span>
+        <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-11.jpg">
+          <source data-src="images/videos/bts/bts-11.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- Mosaic of portrait clips -->
+      <div class="bts__mosaic">
+
+        <div class="bts__cell bts__cell--tall">
+          <span class="bts__cell-tag">On set &middot; <em>Couture</em></span>
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-10.jpg">
+            <source data-src="images/videos/bts/bts-10.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">01</span>
+        </div>
+
+        <div class="bts__cell">
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-1.jpg">
+            <source data-src="images/videos/bts/bts-1.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">02</span>
+        </div>
+
+        <div class="bts__cell">
+          <span class="bts__cell-tag">Shoot day &middot; <em>Auric</em></span>
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-7.jpg">
+            <source data-src="images/videos/bts/bts-7.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">03</span>
+        </div>
+
+        <div class="bts__cell">
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-2.jpg">
+            <source data-src="images/videos/bts/bts-2.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">04</span>
+        </div>
+
+        <div class="bts__cell">
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-3.jpg">
+            <source data-src="images/videos/bts/bts-3.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">05</span>
+        </div>
+
+        <div class="bts__cell">
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-4.jpg">
+            <source data-src="images/videos/bts/bts-4.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">06</span>
+        </div>
+
+        <div class="bts__cell">
+          <span class="bts__cell-tag">Behind <em>the shoot</em></span>
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-9.jpg">
+            <source data-src="images/videos/bts/bts-9.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">07</span>
+        </div>
+
+        <div class="bts__cell">
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-5.jpg">
+            <source data-src="images/videos/bts/bts-5.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">08</span>
+        </div>
+
+        <div class="bts__cell">
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-6.jpg">
+            <source data-src="images/videos/bts/bts-6.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">09</span>
+        </div>
+
+        <div class="bts__cell">
+          <video class="bts__media" muted loop playsinline preload="none" poster="images/videos/bts/bts-8.jpg">
+            <source data-src="images/videos/bts/bts-8.mp4" type="video/mp4" />
+          </video>
+          <span class="bts__index">10</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- FEATURED WORK — 2-per-row image cards -->
   <section class="featured-grid-2">
     <div class="featured-grid-2__head">
@@ -506,7 +789,7 @@
   // Lazy video playback - fixes scroll-hang from many simultaneous autoplay videos.
   (function() {
     if (!('IntersectionObserver' in window)) return;
-    var videos = document.querySelectorAll('.film-card__media, .film-tile__media');
+    var videos = document.querySelectorAll('.film-card__media, .film-tile__media, .bts__media');
     var loadVideo = function(video) {
       if (video.dataset.loaded) return;
       var source = video.querySelector('source[data-src]');
