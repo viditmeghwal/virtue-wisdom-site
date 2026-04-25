@@ -306,3 +306,136 @@ filmTiles.forEach(tile => {
   // Close if user taps a link (navigates away anyway, but prevents flash)
   drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
 })();
+
+// ---------- Films marquee: user interaction (drag, swipe, arrows) ----------
+(function() {
+  const stages = document.querySelectorAll('.films__stage');
+  if (!stages.length) return;
+
+  stages.forEach(stage => {
+    const track = stage.querySelector('.films__track');
+    if (!track) return;
+
+    // Inject nav arrows + hint
+    const prev = document.createElement('button');
+    prev.className = 'films__nav films__nav--prev';
+    prev.setAttribute('aria-label', 'Previous films');
+    prev.type = 'button';
+    const next = document.createElement('button');
+    next.className = 'films__nav films__nav--next';
+    next.setAttribute('aria-label', 'Next films');
+    next.type = 'button';
+    const hint = document.createElement('div');
+    hint.className = 'films__hint';
+    hint.textContent = 'Drag · Swipe';
+    stage.appendChild(prev);
+    stage.appendChild(next);
+    stage.appendChild(hint);
+
+    // Switch to interactive mode (cancel CSS animation, enable scroll)
+    let interactive = false;
+    function activate() {
+      if (interactive) return;
+      interactive = true;
+
+      // Read the current animation translateX so we can preserve scroll position
+      const cs = getComputedStyle(track);
+      const matrix = new DOMMatrixReadOnly(cs.transform);
+      const currentX = matrix.m41 || 0;
+
+      // Stop animation, reset transform, set scrollLeft to match where the animation was
+      track.style.animation = 'none';
+      track.style.transform = 'none';
+      stage.classList.add('is-interactive');
+      stage.scrollLeft = -currentX;
+
+      updateArrowState();
+    }
+
+    // ---- Pointer drag to scroll ----
+    let isDown = false, startX = 0, scrollStart = 0, hasMoved = false;
+
+    stage.addEventListener('pointerdown', (e) => {
+      activate();
+      isDown = true;
+      hasMoved = false;
+      startX = e.pageX;
+      scrollStart = stage.scrollLeft;
+      stage.classList.add('is-dragging');
+      // Prevent text/image selection while dragging
+      stage.setPointerCapture(e.pointerId);
+    });
+
+    stage.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 4) hasMoved = true;
+      stage.scrollLeft = scrollStart - dx;
+    });
+
+    function endDrag(e) {
+      if (!isDown) return;
+      isDown = false;
+      stage.classList.remove('is-dragging');
+      try { stage.releasePointerCapture(e.pointerId); } catch (err) {}
+      updateArrowState();
+    }
+
+    stage.addEventListener('pointerup', endDrag);
+    stage.addEventListener('pointercancel', endDrag);
+    stage.addEventListener('pointerleave', endDrag);
+
+    // Prevent click-through after a drag (so accidental drags don't trigger card interactions)
+    stage.addEventListener('click', (e) => {
+      if (hasMoved) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    }, true);
+
+    // ---- Wheel scroll: convert vertical wheel to horizontal scroll inside the stage ----
+    stage.addEventListener('wheel', (e) => {
+      if (!interactive) return;
+      // If the user is actually scrolling vertically (with intent), don't hijack
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && Math.abs(e.deltaY) < 30) return;
+      // Otherwise, route any horizontal-ish wheel to scrollLeft
+      if (Math.abs(e.deltaX) > 0 || Math.abs(e.deltaY) > 0) {
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        stage.scrollLeft += delta;
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // ---- Arrow buttons ----
+    function arrowScroll(dir) {
+      activate();
+      const card = stage.querySelector('.film-card');
+      const cardWidth = card ? card.offsetWidth + 32 : 320; // 32 = gap
+      stage.scrollBy({ left: dir * cardWidth * 1.5, behavior: 'smooth' });
+      setTimeout(updateArrowState, 350);
+    }
+
+    prev.addEventListener('click', () => arrowScroll(-1));
+    next.addEventListener('click', () => arrowScroll(1));
+
+    // Update arrow disabled state at edges
+    function updateArrowState() {
+      const max = stage.scrollWidth - stage.clientWidth;
+      prev.setAttribute('aria-disabled', stage.scrollLeft <= 2 ? 'true' : 'false');
+      next.setAttribute('aria-disabled', stage.scrollLeft >= max - 2 ? 'true' : 'false');
+    }
+
+    stage.addEventListener('scroll', () => {
+      // Throttle a bit
+      clearTimeout(stage._scrollTimer);
+      stage._scrollTimer = setTimeout(updateArrowState, 80);
+    });
+
+    // ---- Keyboard support ----
+    stage.setAttribute('tabindex', '0');
+    stage.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); arrowScroll(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); arrowScroll(1); }
+    });
+  });
+})();

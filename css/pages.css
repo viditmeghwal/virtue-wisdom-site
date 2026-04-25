@@ -2203,3 +2203,147 @@
   /* Any generic H1/H2 that snuck in with a large font */
   h1, h2 { word-break: break-word; }
 }
+
+/* ============================================
+   FILMS — User-scrollable interaction layer
+   Drag, swipe, arrow buttons. Auto-scroll pauses on user interaction.
+   ============================================ */
+
+/* When user takes control, the .films__stage gets .is-interactive
+   - turn off CSS animation
+   - allow native overflow scrolling for touch swipe
+   - track becomes a flex row that scrolls naturally */
+.films__stage.is-interactive {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  cursor: grab;
+}
+
+.films__stage.is-interactive::-webkit-scrollbar { display: none; } /* Safari/Chrome */
+
+.films__stage.is-interactive.is-dragging { cursor: grabbing; }
+
+.films__stage.is-interactive .films__track {
+  animation: none !important;
+  width: max-content;
+}
+
+.films__stage.is-interactive .film-card {
+  scroll-snap-align: center;
+}
+
+/* Navigation arrows */
+.films__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(15, 15, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--paper);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Arrows fade in when stage is hovered or has been interacted with */
+.films__stage:hover .films__nav,
+.films__stage.is-interactive .films__nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.films__nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.films__nav:hover::before {
+  border-color: var(--ink);
+}
+
+.films__nav--prev { left: 16px; }
+.films__nav--next { right: 16px; }
+
+/* Arrow chevron drawn with CSS borders */
+.films__nav::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-top: 1.5px solid var(--paper);
+  border-right: 1.5px solid var(--paper);
+  display: block;
+  transition: border-color 0.3s var(--ease);
+}
+
+.films__nav--prev::before {
+  transform: rotate(-135deg) translate(-2px, -2px);
+}
+
+.films__nav--next::before {
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+
+/* Disable arrow when at edge */
+.films__nav[aria-disabled="true"] {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Mobile tweaks */
+@media (max-width: 760px) {
+  .films__stage:hover .films__nav { opacity: 0; pointer-events: none; }
+  .films__stage.is-interactive .films__nav { opacity: 1; pointer-events: auto; }
+  .films__nav { width: 44px; height: 44px; }
+  .films__nav--prev { left: 8px; }
+  .films__nav--next { right: 8px; }
+  .films__nav::before { width: 8px; height: 8px; }
+}
+
+/* Subtle hint that the marquee is interactive — small "drag" indicator on first load */
+.films__hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+  animation: filmsHintPulse 3s ease-in-out infinite;
+}
+
+.films__hint::before,
+.films__hint::after {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+}
+
+.films__stage.is-interactive .films__hint { opacity: 0; }
+
+@keyframes filmsHintPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.85; }
+}
