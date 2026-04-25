@@ -49,40 +49,26 @@
   .film-tile--active .film-tile__play { opacity: 0; }
   </style>
 
-
   <style>
-  /* iOS / mobile crash mitigation
-     On small screens, reduce the video load to prevent Safari memory crashes */
-  @media (max-width: 900px) {
-    /* Replace videos with their poster images on mobile.
-       The video element stays in DOM but we hide the inner video and
-       show only the background-image of the card */
-    .film-card video,
-    .film-tile video {
+  /* Light mobile optimization — keep videos playing, just reduce DOM weight.
+     Hide the duplicated marquee set on mobile (it exists for desktop seamless loop). */
+  @media (max-width: 700px) {
+    /* Films marquee: original 24 cards + 24 duplicate = 48. Hide duplicates. */
+    .films .films__track > *:nth-child(n+25),
+    .films-teaser .films__track > *:nth-child(n+11) {
       display: none !important;
     }
-    .film-card,
-    .film-tile {
-      background-size: cover;
-      background-position: center;
-    }
-    /* Force films marquee to a simpler, lighter layout on mobile.
-       Don't try to render the duplicated set animation. */
-    .films-teaser .films__track,
-    .films .films__track {
-      animation: none !important;
-    }
-    /* Optional: hide the duplicated half so the DOM is lighter */
-    .films-teaser .films__track > *:nth-child(n+9),
-    .films .films__track > *:nth-child(n+25) {
+    /* BTS columns: each strip has 4 unique + 4 duplicate. Hide duplicates. */
+    .bts__col--1 .bts__strip > .bts__clip:nth-child(n+5),
+    .bts__col--2 .bts__strip > .bts__clip:nth-child(n+5),
+    .bts__col--3 .bts__strip > .bts__clip:nth-child(n+4) {
       display: none !important;
     }
-    /* BTS section also gets lighter on mobile */
-    .bts__col video {
-      /* Keep one video visible per phone column instead of all 8 */
-    }
-    .bts__strip > .bts__clip:nth-child(n+3) {
-      display: none !important;
+    /* Marquee animation may not loop seamlessly with half the cards;
+       slow it way down so the wrap is less obvious */
+    .films .films__track,
+    .films-teaser .films__track {
+      animation-duration: 60s !important;
     }
   }
   </style>
@@ -853,31 +839,5 @@
     });
   })();
   </script>
-
-  <script>
-  // On mobile, set the card's background-image to its poster so the layout
-  // still shows visuals after we hide the <video> elements.
-  (function() {
-    if (window.innerWidth > 900) return;
-    var cards = document.querySelectorAll('.film-card, .film-tile');
-    cards.forEach(function(card) {
-      var poster = card.dataset.poster;
-      var video = card.querySelector('video');
-      var posterPath = '';
-      if (poster) {
-        posterPath = 'images/videos/posters/' + poster;
-      } else if (video && video.poster) {
-        posterPath = video.poster;
-      } else {
-        var img = card.querySelector('img');
-        if (img && img.src) posterPath = img.src;
-      }
-      if (posterPath) {
-        card.style.backgroundImage = 'url(' + posterPath + ')';
-      }
-    });
-  })();
-  </script>
-
 </body>
 </html>
