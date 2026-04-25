@@ -5,16 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Virtue &amp; Wisdom — We create iconic brands</title>
   <meta name="description" content="Virtue & Wisdom is a brand building company driven by the pursuit of excellence. We create iconic brands through strategy, identity, marketing, and experience." />
-  <link rel="stylesheet" href="css/style.css?v=films2" />
-  <link rel="stylesheet" href="css/pages.css?v=films2" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
 </head>
 <body>
 
   <!-- NAV (dark on hero) -->
   <header class="nav is-dark" data-hero-dark="true">
     <a href="index.html" class="nav__logo">
-      <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue & Wisdom" />
-      <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue & Wisdom" />
+      <span class="logo-mark">
+        <span class="logo-mark__main">V <span class="amp">&amp;</span> W</span>
+        <span class="logo-mark__sub">VIRTUE &amp; WISDOM</span>
+      </span>
     </a>
     <nav>
       <ul class="nav__links">
@@ -30,229 +32,54 @@
     <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </header>
 
-  <!-- HERO — Cinematic -->
-  <section class="hero-cine">
-    <canvas class="hero-cine__canvas" id="particles"></canvas>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__marquee-top">
+      <span>
+        Building iconic brands since inception &nbsp;·&nbsp;
+        Trusted by 200+ brands &nbsp;·&nbsp;
+        Branding · Brand Marketing · Experience Orchestration &nbsp;·&nbsp;
+        Building iconic brands since inception &nbsp;·&nbsp;
+        Trusted by 200+ brands &nbsp;·&nbsp;
+        Branding · Brand Marketing · Experience Orchestration &nbsp;·&nbsp;
+      </span>
+    </div>
 
-    <div class="hero-cine__inner">
-      <h1 class="hero-cine__title">
-        <span class="word word--1">We</span>
-        <span class="word word--2">create</span>
-        <span class="word word--3">iconic</span>
-        <span class="word word--4">brands.</span>
+    <div class="hero__inner">
+      <h1 class="hero__headline">
+        We create <em>iconic</em><br />
+        <span class="line-2">brands.</span>
       </h1>
-      <div class="hero-cine__signature">Virtue &amp; Wisdom</div>
     </div>
 
-    <div class="hero-cine__meta">
-      <p>A brand building company driven by the pursuit of excellence &mdash; working with founders, CEOs, and executive teams to unlock their brand's untapped potential.</p>
+    <div class="hero__bottom">
+      <p class="hero__lede reveal">
+        Virtue &amp; Wisdom is a brand building company driven by the pursuit
+        of excellence. We collaborate with visionary companies, transforming
+        their brands into beacons of inspiration and impact — working
+        hand-in-hand with founders, CEOs, and executive teams to unlock
+        their brand's untapped potential.
+      </p>
+      <div class="hero__meta reveal reveal--delay-1">
+        <span>Trusted by</span>
+        <strong>200+ brands</strong>
+        <span style="margin-top: 20px;">Udaipur · Worldwide</span>
+      </div>
     </div>
 
-    <div class="hero-cine__meta-right">
-      <span>Trusted by</span>
-      <strong>200+ brands</strong>
-    </div>
-
-    <div class="hero-cine__filament"></div>
-    <div class="hero-cine__scroll">Scroll</div>
+    <div class="hero__scroll">Scroll to explore</div>
   </section>
 
-  <!-- FILMS TEASER (homepage compact) -->
-  <section class="films-teaser">
-    <div class="films-teaser__head">
-      <div>
-        <span class="films-teaser__sub">Films &amp; Motion</span>
-        <h2>Brands in <em>motion.</em></h2>
-      </div>
-      <a href="work.html#films" class="btn">View all films <span class="btn__arrow">→</span></a>
-    </div>
-
-    <div class="films__stage">
-      <div class="films__track">
-        <!-- One representative card per category. Loop duplicated below. -->
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/fb-1.jpg">
-            <source src="images/videos/fb-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/hospitality-1.jpg">
-            <source src="images/videos/hospitality-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/industrial-2.jpg">
-            <source src="images/videos/industrial-2.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/clothing-1.jpg">
-            <source src="images/videos/clothing-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/jewellery-1.jpg">
-            <source src="images/videos/jewellery-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>05</em> Jewellery</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/product.jpg">
-            <source src="images/videos/product.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>06</em> Product</div>
-        </div>
-
-        <!-- Duplicated set for seamless infinite loop -->
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/fb-1.jpg">
-            <source src="images/videos/fb-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/hospitality-1.jpg">
-            <source src="images/videos/hospitality-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/industrial-2.jpg">
-            <source src="images/videos/industrial-2.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/clothing-1.jpg">
-            <source src="images/videos/clothing-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/jewellery-1.jpg">
-            <source src="images/videos/jewellery-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>05</em> Jewellery</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop autoplay playsinline preload="metadata" poster="images/videos/posters/product.jpg">
-            <source src="images/videos/product.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>06</em> Product</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLIENTS — 3-Row Opposite-Direction Auto-Scrolling Marquee -->
-  <section class="logo-marquee">
-    <div class="logo-marquee__head">
-      <span class="logo-marquee__kicker">Trusted by</span>
-      <h2 class="logo-marquee__title">A few <em>friends</em> we've built with.</h2>
-      <p class="logo-marquee__sub">Over 200 brands across luxury, hospitality, fashion, real estate &amp; more.</p>
-    </div>
-
-    <div class="logo-marquee__rows">
-    <div class="logo-row logo-row--left">
-      <div class="logo-row__track">
-        <div class="logo-item"><img src="images/logos/20.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/15.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/11.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/25.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/28.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/7.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/6.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/13.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/12.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/16.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/10.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/20.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/15.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/11.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/25.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/28.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/7.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/6.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/13.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/12.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/16.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/10.png" alt="" loading="lazy" /></div>
-      </div>
-    </div>
-    <div class="logo-row logo-row--right">
-      <div class="logo-row__track">
-        <div class="logo-item"><img src="images/logos/27.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/31.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/23.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/17.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/29.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/2.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/14.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/19.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/3.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/18.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/27.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/31.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/23.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/17.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/29.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/2.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/14.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/19.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/3.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/18.png" alt="" loading="lazy" /></div>
-      </div>
-    </div>
-    <div class="logo-row logo-row--left-slow">
-      <div class="logo-row__track">
-        <div class="logo-item"><img src="images/logos/22.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/30.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/5.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/26.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/8.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/9.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/24.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/1.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/4.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/21.png" alt="Client logo" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/22.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/30.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/5.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/26.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/8.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/9.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/24.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/1.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/4.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/21.png" alt="" loading="lazy" /></div>
-      </div>
-    </div>
+  <!-- CLIENTS STRIP -->
+  <section class="clients">
+    <div class="clients__label">Some of our industry friends</div>
+    <div class="clients__track">
+      <span>
+        Nexus Malls &nbsp;·&nbsp; <i>GoodDot</i> &nbsp;·&nbsp; Sasstain &nbsp;·&nbsp; TiE Udaipur &nbsp;·&nbsp; <i>Auric Jewels</i> &nbsp;·&nbsp; House of Sikarwar &nbsp;·&nbsp; Sparsh Women Hospital &nbsp;·&nbsp; <i>Malta Bistro</i> &nbsp;·&nbsp; 4Bigha &nbsp;·&nbsp; UWC &nbsp;·&nbsp; <i>Beesi</i> &nbsp;·&nbsp; Green Lab &nbsp;·&nbsp; Paytm Insider &nbsp;·&nbsp; Honda &nbsp;·&nbsp; <i>Selene Couture</i> &nbsp;·&nbsp;
+      </span>
+      <span>
+        Nexus Malls &nbsp;·&nbsp; <i>GoodDot</i> &nbsp;·&nbsp; Sasstain &nbsp;·&nbsp; TiE Udaipur &nbsp;·&nbsp; <i>Auric Jewels</i> &nbsp;·&nbsp; House of Sikarwar &nbsp;·&nbsp; Sparsh Women Hospital &nbsp;·&nbsp; <i>Malta Bistro</i> &nbsp;·&nbsp; 4Bigha &nbsp;·&nbsp; UWC &nbsp;·&nbsp; <i>Beesi</i> &nbsp;·&nbsp; Green Lab &nbsp;·&nbsp; Paytm Insider &nbsp;·&nbsp; Honda &nbsp;·&nbsp; <i>Selene Couture</i> &nbsp;·&nbsp;
+      </span>
     </div>
   </section>
 
@@ -302,86 +129,72 @@
     </div>
   </section>
 
-  <!-- FEATURED WORK — 2-per-row image cards -->
-  <section class="featured-grid-2">
-    <div class="featured-grid-2__head">
-      <h2 class="reveal">Selected <em>work</em>.</h2>
+  <!-- FEATURED WORK -->
+  <section class="featured">
+    <div class="featured__head">
+      <h2 class="reveal">Selected <em>work</em></h2>
       <a href="work.html" class="btn btn--ghost reveal reveal--delay-1">
-        View all projects <span class="btn__arrow">&rarr;</span>
+        View all projects <span class="btn__arrow">→</span>
       </a>
     </div>
 
-    <div class="featured-grid-2__row">
-
-      <a href="work.html" class="proj-card reveal">
-        <div class="proj-card__media">
-          <svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <rect width="800" height="550" fill="#2b2724"/>
-            <text x="400" y="300" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="88" font-weight="400" letter-spacing="12" fill="#e8e3d8">SASSTAIN</text>
-            <text x="400" y="355" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" letter-spacing="6" fill="#b08d57">LUXURY · VEGAN</text>
+    <div class="featured__grid">
+      <a href="work.html" class="project featured__card reveal">
+        <div class="project__media">
+          <svg class="project__canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="300" fill="#2b2724"/>
+            <text x="200" y="170" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="48" font-weight="400" letter-spacing="6" fill="#e8e3d8">SASSTAIN</text>
+            <text x="200" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" letter-spacing="4" fill="#b08d57">LUXURY · VEGAN</text>
           </svg>
+          <span class="project__badge">Branding</span>
         </div>
-        <h3 class="proj-card__title">SASSTAIN <span class="arrow">&rarr;</span></h3>
-        <p class="proj-card__tags">Brand Strategy, Visual Identity, Digital Presence, Art Direction, Mood Boards, Brand Guidelines.</p>
+        <div class="project__footer">
+          <h3 class="project__name">Sasstain<span class="project__arrow">↗</span></h3>
+          <span class="project__tag">Luxury Vegan</span>
+        </div>
       </a>
 
-      <a href="work.html" class="proj-card reveal reveal--delay-1">
-        <div class="proj-card__media">
-          <svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <a href="work.html" class="project featured__card reveal reveal--delay-1">
+        <div class="project__media">
+          <svg class="project__canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="mg" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#1a1a1a"/>
                 <stop offset="100%" stop-color="#3a2a1a"/>
               </linearGradient>
             </defs>
-            <rect width="800" height="550" fill="url(#mg)"/>
-            <text x="400" y="280" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="130" font-style="italic" font-weight="400" fill="#f5f1e8">Malta</text>
-            <text x="400" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" letter-spacing="6" fill="#d4a76a">OPEN BAR · BISTRO · CAFE</text>
+            <rect width="400" height="300" fill="url(#mg)"/>
+            <text x="200" y="140" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="60" font-style="italic" font-weight="400" fill="#f5f1e8">Malta</text>
+            <text x="200" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="4" fill="#d4a76a">OPEN BAR · BISTRO · CAFE</text>
           </svg>
+          <span class="project__badge">Branding &amp; Marketing</span>
         </div>
-        <h3 class="proj-card__title"><em>Malta</em> Bistro <span class="arrow">&rarr;</span></h3>
-        <p class="proj-card__tags">Social Media, Video Production, Photography, Ads Management, Brand Look &amp; Feel, Cinematography.</p>
+        <div class="project__footer">
+          <h3 class="project__name">Malta Bistro<span class="project__arrow">↗</span></h3>
+          <span class="project__tag">Hospitality</span>
+        </div>
       </a>
 
-      <a href="work.html" class="proj-card reveal">
-        <div class="proj-card__media">
-          <svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <rect width="800" height="550" fill="#0a0a0a"/>
-            <g stroke="#b08d57" stroke-width="1" fill="none" opacity="0.55">
-              <circle cx="400" cy="275" r="70"/>
-              <circle cx="400" cy="275" r="125"/>
-              <circle cx="400" cy="275" r="180"/>
+      <a href="work.html" class="project featured__card reveal reveal--delay-2">
+        <div class="project__media">
+          <svg class="project__canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="300" fill="#0a0a0a"/>
+            <g stroke="#b08d57" stroke-width="0.8" fill="none" opacity="0.5">
+              <circle cx="200" cy="150" r="40"/>
+              <circle cx="200" cy="150" r="70"/>
+              <circle cx="200" cy="150" r="100"/>
             </g>
-            <text x="400" y="285" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="56" font-style="italic" font-weight="400" fill="#f5f1e8">Auric Jewels</text>
+            <text x="200" y="158" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="32" font-style="italic" font-weight="400" fill="#f5f1e8">Auric Jewels</text>
           </svg>
+          <span class="project__badge">Branding</span>
         </div>
-        <h3 class="proj-card__title">AURIC <em>Jewels</em> <span class="arrow">&rarr;</span></h3>
-        <p class="proj-card__tags">Brand Bible &amp; Guidelines, Visual Design, Mood Board &amp; Photography, Digital Presence, Stationery.</p>
-      </a>
-
-      <a href="work.html" class="proj-card reveal reveal--delay-1">
-        <div class="proj-card__media">
-          <svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <rect width="800" height="550" fill="#f5f1e8"/>
-            <g stroke="#2b2724" stroke-width="0.5" fill="none" opacity="0.25">
-              <pattern id="bp" width="28" height="28" patternUnits="userSpaceOnUse">
-                <circle cx="14" cy="14" r="4"/>
-                <path d="M0,14 L28,14 M14,0 L14,28"/>
-              </pattern>
-              <rect width="800" height="550" fill="url(#bp)"/>
-            </g>
-            <text x="400" y="250" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="44" font-weight="500" letter-spacing="8" fill="#2b2724">HOUSE OF</text>
-            <text x="400" y="330" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="92" font-style="italic" font-weight="400" fill="#2b2724">Sikarwar</text>
-          </svg>
+        <div class="project__footer">
+          <h3 class="project__name">Auric Jewels<span class="project__arrow">↗</span></h3>
+          <span class="project__tag">Luxury Product</span>
         </div>
-        <h3 class="proj-card__title">HOUSE OF <em>Sikarwar</em> <span class="arrow">&rarr;</span></h3>
-        <p class="proj-card__tags">Brand Strategy, Brand Guide, Visual Design, Social Media, Cinematography, Ads Management.</p>
       </a>
-
     </div>
   </section>
-
-
 
   <!-- SEGMENTS -->
   <section class="segments">
@@ -408,8 +221,11 @@
 
       <div class="footer__grid">
         <div class="footer__col">
-          <div class="footer__logo">
-            <img src="images/brand/vw-mark-white.png" alt="Virtue & Wisdom" />
+          <div class="footer__sig">
+            <span class="logo-mark">
+              <span class="logo-mark__main">V <span class="amp">&amp;</span> W</span>
+              <span class="logo-mark__sub">VIRTUE &amp; WISDOM</span>
+            </span>
           </div>
           <p class="footer__desc" style="margin-top: 20px;">
             A brand building company driven by the pursuit of excellence.
@@ -454,6 +270,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=films2"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
