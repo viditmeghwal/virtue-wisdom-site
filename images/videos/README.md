@@ -26,7 +26,7 @@ images/videos/
 |------|-------------|--------|
 | `fb` | Food & Bev | placeholder |
 | `hospitality` | Hospitality | placeholder |
-| `industrial` | Industrial | placeholder |
+| `industrial` | Industrial | **2 videos uploaded ✓** (5 slots wired: industrial-1…5) |
 | `clothing` | Clothing | placeholder |
 | `jewellery` | Jewellery | **3 videos uploaded ✓** |
 | `product` | Product | placeholder |
