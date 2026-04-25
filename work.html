@@ -7,6 +7,27 @@
   <meta name="description" content="A glimpse into our iconic work. Selected branding and marketing projects from Virtue & Wisdom across luxury, hospitality, fashion, real estate, and more." />
   <link rel="stylesheet" href="css/style.css?v=films2" />
   <link rel="stylesheet" href="css/pages.css?v=films2" />
+
+  <style>
+  /* Scroll-trap fix for films marquee — let page scroll pass through */
+  .films__stage,
+  .films-teaser .films__stage {
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+  .films__track,
+  .film-card,
+  .film-tile {
+    touch-action: pan-y;
+  }
+  .film-card video,
+  .film-tile video,
+  .film-card__media,
+  .film-tile__media {
+    pointer-events: none;
+  }
+  </style>
+
 </head>
 <body>
 
