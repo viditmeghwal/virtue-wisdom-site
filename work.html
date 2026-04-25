@@ -9,21 +9,33 @@
   <link rel="stylesheet" href="css/pages.css?v=films2" />
 
   <style>
-  /* Scroll-trap fix for films marquee — let page scroll pass through */
-  .films__stage,
-  .films-teaser .films__stage {
+  /* Scroll-trap fix for films marquee — let page scroll pass through.
+     Strategy: make the entire marquee track non-interactive to pointer events,
+     so wheel/touchpad events are never absorbed by it. */
+  .films,
+  .films-teaser,
+  .films__stage {
     overscroll-behavior: contain;
     touch-action: pan-y;
   }
-  .films__track,
-  .film-card,
-  .film-tile {
+  /* The .films__track is the moving element; making it pointer-events: none
+     means nothing inside (cards, videos) can capture scroll wheel events.
+     This is safe because the cards aren't clickable in the marquee context. */
+  .films__track {
+    pointer-events: none;
     touch-action: pan-y;
   }
+  /* Re-enable pointer events on the category tiles (they ARE clickable) */
+  .films__grid,
+  .film-tile {
+    pointer-events: auto;
+  }
+  /* Videos themselves never capture pointer events */
   .film-card video,
   .film-tile video,
   .film-card__media,
-  .film-tile__media {
+  .film-tile__media,
+  .bts__media {
     pointer-events: none;
   }
   </style>
@@ -708,11 +720,11 @@
 
   <script src="js/main.js?v=films2"></script>
   <script>
-  // Lazy video playback - fixes scroll-hang from many simultaneous autoplay videos.
+  // Lazy video playback for marquees + eager play for BTS section
   (function() {
     if (!('IntersectionObserver' in window)) return;
-    var videos = document.querySelectorAll('.film-card__media, .film-tile__media');
-    var loadVideo = function(video) {
+
+    var setSrc = function(video) {
       if (video.dataset.loaded) return;
       var source = video.querySelector('source[data-src]');
       if (source && !source.src) {
@@ -721,19 +733,35 @@
       }
       video.dataset.loaded = '1';
     };
+
+    var safePlay = function(v) {
+      var p = v.play();
+      if (p && p.catch) p.catch(function(){});
+    };
+
+    // 1) BTS section: load and play immediately, never pause
+    var btsVideos = document.querySelectorAll('.bts__media');
+    btsVideos.forEach(function(v) {
+      setSrc(v);
+      // Try to play immediately, plus retry once metadata loads
+      safePlay(v);
+      v.addEventListener('loadeddata', function() { safePlay(v); });
+    });
+
+    // 2) Films marquee: lazy load + play/pause based on viewport
+    var marqueeVideos = document.querySelectorAll('.film-card__media, .film-tile__media');
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         var v = entry.target;
         if (entry.isIntersecting) {
-          loadVideo(v);
-          var p = v.play();
-          if (p && p.catch) p.catch(function(){});
+          setSrc(v);
+          safePlay(v);
         } else {
           if (!v.paused) v.pause();
         }
       });
-    }, { rootMargin: '200px 0px', threshold: 0.01 });
-    videos.forEach(function(v) { io.observe(v); });
+    }, { rootMargin: '300px 0px', threshold: 0.01 });
+    marqueeVideos.forEach(function(v) { io.observe(v); });
   })();
   </script>
 </body>
