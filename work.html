@@ -764,5 +764,27 @@
     marqueeVideos.forEach(function(v) { io.observe(v); });
   })();
   </script>
+  <script>
+  // Wheel forwarder — ensures macOS trackpad scroll works over the films marquee.
+  // Some macOS browsers (Safari/Chrome) capture wheel events into compositor
+  // layers when an element is mid-CSS-animation; this script forwards them
+  // explicitly to the window scroll position.
+  (function() {
+    var marquees = document.querySelectorAll('.films__stage, .films-teaser .films__stage, .films');
+    marquees.forEach(function(el) {
+      el.addEventListener('wheel', function(e) {
+        // Forward the wheel delta to the page scroll
+        window.scrollBy({
+          top: e.deltaY,
+          left: 0,
+          behavior: 'auto'
+        });
+        // Prevent the default which sometimes traps the gesture
+        e.preventDefault();
+      }, { passive: false });
+    });
+  })();
+  </script>
+
 </body>
 </html>
