@@ -1746,11 +1746,72 @@
 }
 
 @media (max-width: 760px) {
-  .hero-cine__meta, .hero-cine__meta-right { position: static; max-width: none; text-align: center; padding: 30px var(--pad) 0; }
-  .hero-cine__signature { font-size: 10px; letter-spacing: 0.4em; }
+  /* Switch hero from full-screen centered to natural top-down flow */
+  .hero-cine {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 100px 0 50px;
+  }
+
+  .hero-cine__inner {
+    text-align: left;
+    padding: 20px 22px 0;
+    width: 100%;
+  }
+
+  .hero-cine__title {
+    font-size: clamp(56px, 16vw, 96px);
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+
+  /* Stop the 3-column squeeze — each word its own line on narrow screens */
+  .hero-cine__title .word { display: block; margin-bottom: -8px; }
+
+  /* Bottom-left meta becomes a normal paragraph under the title */
+  .hero-cine__meta {
+    position: static;
+    max-width: 100%;
+    padding: 0 22px;
+    margin-top: 32px;
+    text-align: left;
+  }
+
+  .hero-cine__meta p { font-size: 14px; line-height: 1.6; }
+
+  /* Trusted-by block stacks after the copy */
+  .hero-cine__meta-right {
+    position: static;
+    text-align: left;
+    padding: 0 22px;
+    margin-top: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .hero-cine__meta-right strong {
+    margin-top: 0;
+    font-size: 22px;
+  }
+
+  /* Signature stays centered, smaller */
+  .hero-cine__signature {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    margin-top: 18px;
+    justify-content: flex-start;
+  }
+
   .hero-cine__signature::before,
   .hero-cine__signature::after { width: 22px; }
+
   .hero-cine__scroll { display: none; }
+  .hero-cine__filament { display: none; }
+}
+
+@media (max-width: 520px) {
+  .hero-cine__title { font-size: clamp(52px, 15vw, 80px); }
 }
 
 /* ============================================
@@ -2049,11 +2110,55 @@
 
 /* Mobile tuning */
 @media (max-width: 760px) {
-  .logo-marquee { padding: 80px 0 100px; }
-  .logo-marquee__rows { gap: 18px; }
-  .logo-row__track { gap: 40px; padding-right: 40px; }
-  .logo-row--left .logo-item      { height: 48px; }
-  .logo-row--right .logo-item     { height: 54px; }
-  .logo-row--left-slow .logo-item { height: 46px; }
-  .logo-item img { max-width: 140px; }
+  .logo-marquee { padding: 70px 0 80px; }
+  .logo-marquee__head { margin-bottom: 50px; padding: 0 22px; }
+  .logo-marquee__title { font-size: clamp(32px, 8vw, 52px); }
+  .logo-marquee__sub { font-size: 13px; margin-top: 16px; }
+  .logo-marquee__rows { gap: 16px; }
+  .logo-row__track { gap: 34px; padding-right: 34px; }
+  .logo-row--left .logo-item      { height: 40px; }
+  .logo-row--right .logo-item     { height: 46px; }
+  .logo-row--left-slow .logo-item { height: 38px; }
+  .logo-item { padding: 0 4px; }
+  .logo-item img { max-width: 110px; }
+}
+
+@media (max-width: 520px) {
+  .logo-row__track { gap: 26px; padding-right: 26px; }
+  .logo-row--left .logo-item      { height: 34px; }
+  .logo-row--right .logo-item     { height: 40px; }
+  .logo-row--left-slow .logo-item { height: 32px; }
+  .logo-item img { max-width: 90px; }
+}
+
+/* ============================================
+   MOBILE SAFETY — prevent oversized serif overflow
+   ============================================ */
+
+@media (max-width: 760px) {
+  /* Clamp all large display headings to viewport */
+  .featured-grid-2__head h2 { font-size: clamp(40px, 10vw, 64px) !important; }
+  .proj-card__title { font-size: clamp(22px, 6vw, 32px) !important; }
+  .proj-card__media svg text { font-size: 72px; }
+
+  /* Work / about / services page titles */
+  .page-hero h1, .page-hero__title { font-size: clamp(44px, 11vw, 72px) !important; line-height: 1 !important; }
+
+  /* Case study svg titles that clip - set overflow hidden on parent */
+  .project__media, .proj-card__media { overflow: hidden; }
+
+  /* Method / virtue code section */
+  .method__title { font-size: clamp(32px, 8vw, 52px) !important; }
+
+  /* Segment tiles */
+  .segments h2 { font-size: clamp(32px, 8vw, 48px) !important; }
+
+  /* Films section headers */
+  .films-teaser__title, .films-hero__title { font-size: clamp(40px, 10vw, 64px) !important; }
+
+  /* Browse by category */
+  .films__grid-head h3 { font-size: clamp(28px, 7vw, 44px) !important; }
+
+  /* Any generic H1/H2 that snuck in with a large font */
+  h1, h2 { word-break: break-word; }
 }

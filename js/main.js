@@ -252,3 +252,57 @@ filmTiles.forEach(tile => {
     io.observe(canvas);
   }
 })();
+
+// ---------- Mobile nav drawer ----------
+(function() {
+  const burger = document.querySelector('.nav__burger');
+  if (!burger) return;
+
+  // Create drawer + overlay dynamically so we don't need to edit every HTML file
+  const drawer = document.createElement('div');
+  drawer.className = 'nav__drawer';
+  drawer.setAttribute('role', 'dialog');
+  drawer.setAttribute('aria-modal', 'true');
+  drawer.setAttribute('aria-label', 'Site navigation');
+  drawer.innerHTML = `
+    <button class="nav__drawer-close" aria-label="Close menu">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="services.html">Capabilities</a>
+    <a href="visuals.html">Visuals</a>
+    <a href="about.html">Studio</a>
+    <a href="contact.html">Contact</a>
+    <div class="nav__drawer-cta"><a href="contact.html">Start a project &nbsp;→</a></div>
+  `;
+  const overlay = document.createElement('div');
+  overlay.className = 'nav__drawer-overlay';
+  document.body.appendChild(overlay);
+  document.body.appendChild(drawer);
+
+  // Mark active page
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  drawer.querySelectorAll('a[href]').forEach(a => {
+    if (a.getAttribute('href') === path) a.classList.add('active');
+  });
+
+  const open = () => {
+    drawer.classList.add('is-open');
+    overlay.classList.add('is-open');
+    document.body.classList.add('nav-open');
+  };
+  const close = () => {
+    drawer.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('nav-open');
+  };
+
+  burger.addEventListener('click', open);
+  overlay.addEventListener('click', close);
+  drawer.querySelector('.nav__drawer-close').addEventListener('click', close);
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) close();
+  });
+  // Close if user taps a link (navigates away anyway, but prevents flash)
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+})();
