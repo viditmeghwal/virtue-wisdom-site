@@ -217,6 +217,35 @@
   .hero-cine__scroll { z-index: 2; }
   </style>
 
+  <style>
+  /* Films marquee scroll-fix v3 — make the entire marquee + its descendants
+     transparent to pointer events. Native browser scroll then handles wheel
+     events normally. Re-enable pointer events only on the category tiles
+     (which need to be clickable). */
+  .films-teaser .films__stage,
+  .films-teaser .films__track,
+  .films-teaser .film-card,
+  .films-teaser .film-card * {
+    pointer-events: none !important;
+  }
+  .films .films__stage,
+  .films .films__track,
+  .films .film-card,
+  .films .film-card * {
+    pointer-events: none !important;
+  }
+  /* Re-enable on category tiles (they need clicks) */
+  .films__grid,
+  .films__grid *,
+  .film-tile,
+  .film-tile * {
+    pointer-events: auto !important;
+  }
+  /* BTS section — videos themselves shouldn't capture clicks/scroll */
+  .bts__media { pointer-events: none; }
+  /* Allow BTS column hover to pause animation */
+  .bts__col { pointer-events: auto; }
+  </style>
 </head>
 <body>
 
@@ -955,22 +984,6 @@
         activateTile(tile);
       });
       tile.style.cursor = 'pointer';
-    });
-  })();
-
-  // ============================================================
-  // macOS trackpad wheel forwarder for films marquee
-  // ============================================================
-  (function() {
-    var marquees = document.querySelectorAll('.films__stage, .films-teaser .films__stage, .films');
-    marquees.forEach(function(el) {
-      el.addEventListener('wheel', function(e) {
-        var deltaY = e.deltaY;
-        if (e.deltaMode === 1) deltaY *= 16;
-        else if (e.deltaMode === 2) deltaY *= window.innerHeight;
-        window.scrollBy(0, deltaY * 3);
-        e.preventDefault();
-      }, { passive: false });
     });
   })();
   </script>
