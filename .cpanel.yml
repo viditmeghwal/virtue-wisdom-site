@@ -1,0 +1,17 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/bhdsehrg/public_html/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp work.html $DEPLOYPATH
+    - /bin/cp about.html $DEPLOYPATH
+    - /bin/cp contact.html $DEPLOYPATH
+    - /bin/cp services.html $DEPLOYPATH
+    - /bin/cp -f visuals.html $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp -f case-auric.html $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp -f case-sasstain.html $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp -f case-ameyaa.html $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp -f case-greenlab.html $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp -Ru css $DEPLOYPATH
+    - /bin/cp -Ru js $DEPLOYPATH
+    - /bin/cp -Ru images $DEPLOYPATH 2>/dev/null || true
