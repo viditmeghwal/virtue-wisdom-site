@@ -9,35 +9,32 @@
   <link rel="stylesheet" href="css/pages.css?v=films2" />
 
   <style>
-  /* Scroll-trap fix for films marquee — let page scroll pass through.
-     Strategy: make the entire marquee track non-interactive to pointer events,
-     so wheel/touchpad events are never absorbed by it. */
-  .films,
-  .films-teaser,
-  .films__stage {
+  /* Films marquee scroll-fix */
+  .films, .films-teaser, .films__stage {
     overscroll-behavior: contain;
     touch-action: pan-y;
   }
-  /* The .films__track is the moving element; making it pointer-events: none
-     means nothing inside (cards, videos) can capture scroll wheel events.
-     This is safe because the cards aren't clickable in the marquee context. */
   .films__track {
     pointer-events: none;
     touch-action: pan-y;
   }
-  /* Re-enable pointer events on the category tiles (they ARE clickable) */
-  .films__grid,
-  .film-tile {
-    pointer-events: auto;
-  }
-  /* Videos themselves never capture pointer events */
-  .film-card video,
-  .film-tile video,
-  .film-card__media,
-  .film-tile__media,
-  .bts__media {
+  .films__grid, .film-tile { pointer-events: auto; }
+  .film-card video, .film-tile video,
+  .film-card__media, .film-tile__media,
+  .bts__media, .hero-mosaic__media {
     pointer-events: none;
   }
+  </style>
+
+
+  <style>
+  .film-tile { cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .film-tile:hover { transform: translateY(-4px); }
+  .film-tile--active {
+    box-shadow: 0 0 0 2px #c9b785, 0 12px 40px -10px rgba(201, 183, 133, 0.4);
+    transform: translateY(-4px);
+  }
+  .film-tile--active .film-tile__play { opacity: 0; }
   </style>
 
 </head>
@@ -120,11 +117,27 @@
     <!-- 3D MARQUEE of phone-frame clips -->
     <div class="films__stage">
       <div class="films__track">
-        <!-- Mixed order: same 22 cards, no two same-category adjacent -->
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-4.mp4" data-poster="hospitality-4.jpg">
+        <!-- Mixed order, no Product -->
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-7.mp4" data-poster="hospitality-7.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-4.jpg">
-            <source data-src="images/videos/hospitality-4.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-7.jpg">
+            <source data-src="images/videos/hospitality-7.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-6.mp4" data-poster="industrial-6.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
+            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="hospitality-2.mp4" data-poster="hospitality-2.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-2.jpg">
+            <source data-src="images/videos/hospitality-2.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
         </div>
@@ -137,36 +150,28 @@
           <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-1.mp4" data-poster="clothing-1.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
+            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-1.mp4" data-poster="industrial-1.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-1.jpg">
+            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-2.mp4" data-poster="clothing-2.jpg">
           <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-2.jpg">
             <source data-src="images/videos/clothing-2.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-7.mp4" data-poster="hospitality-7.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-7.jpg">
-            <source data-src="images/videos/hospitality-7.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="product.mp4" data-poster="product.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/product.jpg">
-            <source data-src="images/videos/product.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>06</em> Product</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-6.mp4" data-poster="industrial-6.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
-            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-1.mp4" data-poster="jewellery-1.jpg">
@@ -177,18 +182,50 @@
           <div class="film-card__label"><em>05</em> Jewellery</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-2.mp4" data-poster="industrial-2.jpg">
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-5.mp4" data-poster="hospitality-5.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-2.jpg">
-            <source data-src="images/videos/industrial-2.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-5.jpg">
+            <source data-src="images/videos/hospitality-5.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-2.mp4" data-poster="fb-2.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-2.jpg">
+            <source data-src="images/videos/fb-2.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
+        </div>
+
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-6.mp4" data-poster="hospitality-6.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-6.jpg">
+            <source data-src="images/videos/hospitality-6.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-1.mp4" data-poster="fb-1.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-1.jpg">
+            <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-5.mp4" data-poster="industrial-5.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-5.jpg">
+            <source data-src="images/videos/industrial-5.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="hospitality-2.mp4" data-poster="hospitality-2.jpg">
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-3.mp4" data-poster="hospitality-3.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-2.jpg">
-            <source data-src="images/videos/hospitality-2.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-3.jpg">
+            <source data-src="images/videos/hospitality-3.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
         </div>
@@ -217,20 +254,36 @@
           <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
 
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-6.mp4" data-poster="hospitality-6.jpg">
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-3.mp4" data-poster="jewellery-3.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-6.jpg">
-            <source data-src="images/videos/hospitality-6.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-3.jpg">
+            <source data-src="images/videos/jewellery-3.mp4" type="video/mp4" />
           </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
+          <div class="film-card__label"><em>05</em> Jewellery</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-5.mp4" data-poster="industrial-5.jpg">
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-3.mp4" data-poster="clothing-3.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-5.jpg">
-            <source data-src="images/videos/industrial-5.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
+            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-2.mp4" data-poster="industrial-2.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-2.jpg">
+            <source data-src="images/videos/industrial-2.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-4.mp4" data-poster="hospitality-4.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-4.jpg">
+            <source data-src="images/videos/hospitality-4.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
         </div>
 
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-2.mp4" data-poster="jewellery-2.jpg">
@@ -249,83 +302,35 @@
           <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-2.mp4" data-poster="fb-2.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-2.jpg">
-            <source data-src="images/videos/fb-2.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
-        </div>
-
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-3.mp4" data-poster="hospitality-3.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-3.jpg">
-            <source data-src="images/videos/hospitality-3.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-3.mp4" data-poster="clothing-3.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
-            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-5.mp4" data-poster="hospitality-5.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-5.jpg">
-            <source data-src="images/videos/hospitality-5.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-1.mp4" data-poster="clothing-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
-            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-1.mp4" data-poster="industrial-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-1.jpg">
-            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="hospitality-1.mp4" data-poster="hospitality-1.jpg">
           <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-1.jpg">
             <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-1.mp4" data-poster="fb-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-1.jpg">
-            <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-3.mp4" data-poster="jewellery-3.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-3.jpg">
-            <source data-src="images/videos/jewellery-3.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>05</em> Jewellery</div>
         </div>
 
         <!-- Duplicate set for seamless loop -->
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-4.mp4" data-poster="hospitality-4.jpg">
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-7.mp4" data-poster="hospitality-7.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-4.jpg">
-            <source data-src="images/videos/hospitality-4.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-7.jpg">
+            <source data-src="images/videos/hospitality-7.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-6.mp4" data-poster="industrial-6.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
+            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="hospitality-2.mp4" data-poster="hospitality-2.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-2.jpg">
+            <source data-src="images/videos/hospitality-2.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
         </div>
@@ -338,36 +343,28 @@
           <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-1.mp4" data-poster="clothing-1.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
+            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-1.mp4" data-poster="industrial-1.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-1.jpg">
+            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-2.mp4" data-poster="clothing-2.jpg">
           <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-2.jpg">
             <source data-src="images/videos/clothing-2.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-7.mp4" data-poster="hospitality-7.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-7.jpg">
-            <source data-src="images/videos/hospitality-7.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="product.mp4" data-poster="product.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/product.jpg">
-            <source data-src="images/videos/product.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>06</em> Product</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-6.mp4" data-poster="industrial-6.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
-            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-1.mp4" data-poster="jewellery-1.jpg">
@@ -378,18 +375,50 @@
           <div class="film-card__label"><em>05</em> Jewellery</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-2.mp4" data-poster="industrial-2.jpg">
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-5.mp4" data-poster="hospitality-5.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-2.jpg">
-            <source data-src="images/videos/industrial-2.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-5.jpg">
+            <source data-src="images/videos/hospitality-5.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-2.mp4" data-poster="fb-2.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-2.jpg">
+            <source data-src="images/videos/fb-2.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
+        </div>
+
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-6.mp4" data-poster="hospitality-6.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-6.jpg">
+            <source data-src="images/videos/hospitality-6.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-1.mp4" data-poster="fb-1.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-1.jpg">
+            <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-5.mp4" data-poster="industrial-5.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-5.jpg">
+            <source data-src="images/videos/industrial-5.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="hospitality-2.mp4" data-poster="hospitality-2.jpg">
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-3.mp4" data-poster="hospitality-3.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-2.jpg">
-            <source data-src="images/videos/hospitality-2.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-3.jpg">
+            <source data-src="images/videos/hospitality-3.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
         </div>
@@ -418,20 +447,36 @@
           <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
 
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-6.mp4" data-poster="hospitality-6.jpg">
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-3.mp4" data-poster="jewellery-3.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-6.jpg">
-            <source data-src="images/videos/hospitality-6.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-3.jpg">
+            <source data-src="images/videos/jewellery-3.mp4" type="video/mp4" />
           </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
+          <div class="film-card__label"><em>05</em> Jewellery</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-5.mp4" data-poster="industrial-5.jpg">
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-3.mp4" data-poster="clothing-3.jpg">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-5.jpg">
-            <source data-src="images/videos/industrial-5.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
+            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-2.mp4" data-poster="industrial-2.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-2.jpg">
+            <source data-src="images/videos/industrial-2.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-4.mp4" data-poster="hospitality-4.jpg">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-4.jpg">
+            <source data-src="images/videos/hospitality-4.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>02</em> Hospitality</div>
         </div>
 
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-2.mp4" data-poster="jewellery-2.jpg">
@@ -450,76 +495,12 @@
           <div class="film-card__label"><em>03</em> Industrial</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-2.mp4" data-poster="fb-2.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-2.jpg">
-            <source data-src="images/videos/fb-2.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
-        </div>
-
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-3.mp4" data-poster="hospitality-3.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-3.jpg">
-            <source data-src="images/videos/hospitality-3.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-3.mp4" data-poster="clothing-3.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
-            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="16:9" class="film-card film-card--placeholder" data-video="hospitality-5.mp4" data-poster="hospitality-5.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-5.jpg">
-            <source data-src="images/videos/hospitality-5.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-1.mp4" data-poster="clothing-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
-            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-1.mp4" data-poster="industrial-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-1.jpg">
-            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="hospitality-1.mp4" data-poster="hospitality-1.jpg">
           <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-1.jpg">
             <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="fb-1.mp4" data-poster="fb-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-1.jpg">
-            <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>01</em> Food &amp; Bev</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="jewellery-3.mp4" data-poster="jewellery-3.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-3.jpg">
-            <source data-src="images/videos/jewellery-3.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>05</em> Jewellery</div>
         </div>
       </div>
     </div>
@@ -533,79 +514,67 @@
 
       <div class="films__grid">
 
-        <div class="film-tile film-tile--placeholder" data-video="fb-1.mp4" data-count="3">
+        <div class="film-tile film-tile--placeholder" data-video="fb-1.mp4" data-count="3" data-category="fb">
           <img class="film-tile__poster" src="images/videos/posters/fb-1.jpg" alt="Food &amp; Beverage films" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop autoplay playsinline preload="none">
+          <video class="film-tile__media" muted loop playsinline preload="none">
             <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
           </video>
           <span class="film-tile__play"></span>
           <div class="film-tile__label">
             <span class="name">Food &amp; <em>Bev</em></span>
-            <span class="count">01 / 06</span>
+            <span class="count">01 / 05</span>
           </div>
         </div>
 
-        <div class="film-tile film-tile--placeholder" data-video="hospitality-1.mp4" data-count="2">
+        <div class="film-tile film-tile--placeholder" data-video="hospitality-1.mp4" data-count="7" data-category="hospitality">
           <img class="film-tile__poster" src="images/videos/posters/hospitality-1.jpg" alt="Hospitality films" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop autoplay playsinline preload="none">
+          <video class="film-tile__media" muted loop playsinline preload="none">
             <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
           </video>
           <span class="film-tile__play"></span>
           <div class="film-tile__label">
             <span class="name"><em>Hospitality</em></span>
-            <span class="count">02 / 06</span>
+            <span class="count">02 / 05</span>
           </div>
         </div>
 
-        <div class="film-tile film-tile--placeholder" data-video="industrial-1.mp4" data-count="6">
+        <div class="film-tile film-tile--placeholder" data-video="industrial-1.mp4" data-count="6" data-category="industrial">
           <img class="film-tile__poster" src="images/videos/posters/industrial-1.jpg" alt="Industrial films" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop autoplay playsinline preload="none">
+          <video class="film-tile__media" muted loop playsinline preload="none">
             <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
           </video>
           <span class="film-tile__play"></span>
           <div class="film-tile__label">
             <span class="name">Industrial</span>
-            <span class="count">03 / 06</span>
+            <span class="count">03 / 05</span>
           </div>
         </div>
 
-        <div class="film-tile film-tile--placeholder" data-video="clothing-1.mp4" data-count="5">
+        <div class="film-tile film-tile--placeholder" data-video="clothing-1.mp4" data-count="5" data-category="clothing">
           <img class="film-tile__poster" src="images/videos/posters/clothing-1.jpg" alt="Clothing films" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop autoplay playsinline preload="none">
+          <video class="film-tile__media" muted loop playsinline preload="none">
             <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
           </video>
           <span class="film-tile__play"></span>
           <div class="film-tile__label">
             <span class="name"><em>Clothing</em></span>
-            <span class="count">04 / 06</span>
+            <span class="count">04 / 05</span>
           </div>
         </div>
 
-        <div class="film-tile film-tile--placeholder" data-video="jewellery-1.mp4" data-count="3">
+        <div class="film-tile film-tile--placeholder" data-video="jewellery-1.mp4" data-count="3" data-category="jewellery">
           <img class="film-tile__poster" src="images/videos/posters/jewellery-1.jpg" alt="Jewellery films" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop autoplay playsinline preload="none">
+          <video class="film-tile__media" muted loop playsinline preload="none">
             <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
           </video>
           <span class="film-tile__play"></span>
           <div class="film-tile__label">
             <span class="name">Jewellery</span>
-            <span class="count">05 / 06</span>
+            <span class="count">05 / 05</span>
           </div>
         </div>
 
-        <div class="film-tile film-tile--placeholder" data-video="product.mp4">
-          <img class="film-tile__poster" src="images/videos/posters/product.jpg" alt="Product films" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop autoplay playsinline preload="none">
-            <source data-src="images/videos/product.mp4" type="video/mp4" />
-          </video>
-          <span class="film-tile__play"></span>
-          <div class="film-tile__label">
-            <span class="name"><em>Product</em></span>
-            <span class="count">06 / 06</span>
-          </div>
-        </div>
-
-      </div>
+            </div>
     </div>
   </section>
 
@@ -720,10 +689,11 @@
 
   <script src="js/main.js?v=films2"></script>
   <script>
-  // Lazy video playback for marquees + eager play for BTS section
+  // ============================================================
+  // Combined JS: lazy-play + BTS eager + category cycler + wheel fix
+  // ============================================================
   (function() {
     if (!('IntersectionObserver' in window)) return;
-
     var setSrc = function(video) {
       if (video.dataset.loaded) return;
       var source = video.querySelector('source[data-src]');
@@ -733,40 +703,109 @@
       }
       video.dataset.loaded = '1';
     };
-
     var safePlay = function(v) {
       var p = v.play();
       if (p && p.catch) p.catch(function(){});
     };
-
-    // 1) BTS section: load and play immediately, never pause
-    var btsVideos = document.querySelectorAll('.bts__media');
-    btsVideos.forEach(function(v) {
+    // 1) BTS section + hero mosaic: eager load
+    var eager = document.querySelectorAll('.bts__media, .hero-mosaic__media');
+    eager.forEach(function(v) {
       setSrc(v);
-      // Try to play immediately, plus retry once metadata loads
       safePlay(v);
       v.addEventListener('loadeddata', function() { safePlay(v); });
     });
-
-    // 2) Films marquee: lazy load + play/pause based on viewport
-    var marqueeVideos = document.querySelectorAll('.film-card__media, .film-tile__media');
+    // 2) Films marquee: lazy load
+    var marqueeVideos = document.querySelectorAll('.film-card__media');
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         var v = entry.target;
-        if (entry.isIntersecting) {
-          setSrc(v);
-          safePlay(v);
-        } else {
-          if (!v.paused) v.pause();
-        }
+        if (entry.isIntersecting) { setSrc(v); safePlay(v); }
+        else if (!v.paused) v.pause();
       });
     }, { rootMargin: '300px 0px', threshold: 0.01 });
     marqueeVideos.forEach(function(v) { io.observe(v); });
   })();
-  </script>
-  <script>
-  // Wheel forwarder for macOS trackpad over films marquee.
-  // Multiplies deltaY to approximate native trackpad acceleration.
+
+  // ============================================================
+  // Browse-by-Category click handler: cycle videos within tile
+  // ============================================================
+  (function() {
+    // category -> array of video filenames in order
+    var categoryClips = {
+      'fb':          ['fb-1.mp4', 'fb-2.mp4', 'fb-3.mp4'],
+      'hospitality': ['hospitality-1.mp4', 'hospitality-2.mp4', 'hospitality-3.mp4', 'hospitality-4.mp4', 'hospitality-5.mp4', 'hospitality-6.mp4', 'hospitality-7.mp4'],
+      'industrial':  ['industrial-1.mp4', 'industrial-2.mp4', 'industrial-3.mp4', 'industrial-4.mp4', 'industrial-5.mp4', 'industrial-6.mp4'],
+      'clothing':    ['clothing-1.mp4', 'clothing-2.mp4', 'clothing-3.mp4', 'clothing-4.mp4', 'clothing-5.mp4'],
+      'jewellery':   ['jewellery-1.mp4', 'jewellery-2.mp4', 'jewellery-3.mp4']
+    };
+    var activeTile = null;
+    var activeQueue = null;
+    var activeIndex = 0;
+    var endedHandler = null;
+
+    function playNextInQueue(tile, video) {
+      activeIndex = (activeIndex + 1) % activeQueue.length;
+      var next = activeQueue[activeIndex];
+      var source = video.querySelector('source');
+      if (source) {
+        source.src = 'images/videos/' + next;
+        video.removeAttribute('loop');
+        video.load();
+        var p = video.play();
+        if (p && p.catch) p.catch(function(){});
+      }
+    }
+
+    function activateTile(tile) {
+      var category = tile.dataset.category;
+      if (!category || !categoryClips[category]) return;
+      // Reset previous tile if any
+      if (activeTile && activeTile !== tile) {
+        var prevVideo = activeTile.querySelector('video');
+        if (prevVideo) {
+          if (endedHandler) prevVideo.removeEventListener('ended', endedHandler);
+          prevVideo.setAttribute('loop', '');
+          var prevSource = prevVideo.querySelector('source');
+          if (prevSource) {
+            prevSource.src = 'images/videos/' + activeTile.dataset.video;
+            prevVideo.load();
+            prevVideo.play().catch(function(){});
+          }
+        }
+        activeTile.classList.remove('film-tile--active');
+      }
+      activeTile = tile;
+      activeQueue = categoryClips[category];
+      activeIndex = 0;
+      tile.classList.add('film-tile--active');
+      var video = tile.querySelector('video');
+      if (!video) return;
+      var source = video.querySelector('source');
+      if (source) {
+        source.src = 'images/videos/' + activeQueue[0];
+        video.removeAttribute('loop');
+        video.load();
+        video.play().catch(function(){});
+      }
+      // On end of each clip, advance the queue
+      endedHandler = function() {
+        playNextInQueue(tile, video);
+      };
+      video.addEventListener('ended', endedHandler);
+    }
+
+    document.querySelectorAll('.film-tile[data-category]').forEach(function(tile) {
+      tile.addEventListener('click', function(e) {
+        e.preventDefault();
+        activateTile(tile);
+      });
+      tile.style.cursor = 'pointer';
+    });
+  })();
+
+  // ============================================================
+  // macOS trackpad wheel forwarder for films marquee
+  // ============================================================
   (function() {
     var marquees = document.querySelectorAll('.films__stage, .films-teaser .films__stage, .films');
     marquees.forEach(function(el) {
@@ -774,14 +813,12 @@
         var deltaY = e.deltaY;
         if (e.deltaMode === 1) deltaY *= 16;
         else if (e.deltaMode === 2) deltaY *= window.innerHeight;
-        // Scale up to match native scroll speed.
-        // macOS trackpad sends small per-event deltas that the browser
-        // normally accelerates; we apply a 3x multiplier to compensate.
         window.scrollBy(0, deltaY * 3);
         e.preventDefault();
       }, { passive: false });
     });
   })();
   </script>
+
 </body>
 </html>
