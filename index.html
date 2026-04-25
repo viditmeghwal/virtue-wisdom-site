@@ -176,54 +176,45 @@
   }
   </style>
 
-
   <style>
   /* ============================================================
-     HERO GRADIENT — animated deep blue mesh blobs
+     HERO GRADIENT — slow drifting deep navy mesh
+     Non-invasive: only affects the section background, never children
      ============================================================ */
   .hero-cine {
+    background-color: #02050c;
     position: relative;
-    isolation: isolate;
-    background: #050810;
   }
-  .hero-cine::before,
-  .hero-cine::after {
+  /* Gradient layer rendered as background-image on the section itself,
+     plus a single ::before for the second layer. Avoids touching child layout. */
+  .hero-cine::before {
     content: '';
     position: absolute;
-    inset: -20%;
+    inset: 0;
     z-index: 0;
     pointer-events: none;
-    filter: blur(80px);
-    opacity: 0.85;
-  }
-  .hero-cine::before {
     background:
-      radial-gradient(circle at 20% 30%, #1e4f9c 0%, transparent 45%),
-      radial-gradient(circle at 75% 60%, #0b3270 0%, transparent 50%),
-      radial-gradient(circle at 50% 85%, #2a6dd9 0%, transparent 40%);
-    animation: hero-gradient-1 5s ease-in-out infinite alternate;
+      radial-gradient(ellipse 60% 50% at 25% 35%, #0a1f44 0%, transparent 55%),
+      radial-gradient(ellipse 55% 45% at 75% 65%, #051738 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 55% 85%, #0d2856 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 80% 20%, #061a3d 0%, transparent 55%);
+    filter: blur(60px);
+    opacity: 0.9;
+    animation: hero-gradient-drift 14s ease-in-out infinite alternate;
   }
-  .hero-cine::after {
-    background:
-      radial-gradient(circle at 80% 20%, #143a7a 0%, transparent 50%),
-      radial-gradient(circle at 30% 70%, #0a2050 0%, transparent 45%),
-      radial-gradient(circle at 60% 40%, #3a82e6 0%, transparent 35%);
-    animation: hero-gradient-2 6s ease-in-out infinite alternate;
-    mix-blend-mode: screen;
-  }
-  @keyframes hero-gradient-1 {
+  @keyframes hero-gradient-drift {
     0%   { transform: translate(0, 0) scale(1); }
-    50%  { transform: translate(-3%, 4%) scale(1.08); }
-    100% { transform: translate(2%, -3%) scale(0.95); }
+    50%  { transform: translate(-2%, 3%) scale(1.06); }
+    100% { transform: translate(2%, -2%) scale(0.97); }
   }
-  @keyframes hero-gradient-2 {
-    0%   { transform: translate(0, 0) scale(1); }
-    50%  { transform: translate(4%, -3%) scale(1.05); }
-    100% { transform: translate(-2%, 3%) scale(1.1); }
-  }
-  /* Soft vignette over gradient to anchor text (especially edges) */
-  .hero-cine > * { position: relative; z-index: 2; }
-  .hero-cine__canvas { z-index: 1; opacity: 0.45; }
+  /* Make sure existing absolute-positioned children render above the gradient.
+     Use z-index 1+ on the canvas/inner/meta but DO NOT alter their position. */
+  .hero-cine__canvas { z-index: 1; opacity: 0.4; }
+  .hero-cine__inner,
+  .hero-cine__meta,
+  .hero-cine__meta-right,
+  .hero-cine__filament,
+  .hero-cine__scroll { z-index: 2; }
   </style>
 
 </head>
