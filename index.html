@@ -10,8 +10,74 @@
 
   <style>
   /* ============================================================
-     OFF-CAMERA / Inside V&W — Behind the Scenes section (v2)
-     Two-column: editorial text left, 3 vertical phone columns right
+     HERO MOSAIC — full-bleed grid of work clips behind hero text
+     ============================================================ */
+  .hero-cine {
+    position: relative;
+    isolation: isolate;
+  }
+  .hero-mosaic {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-mosaic__grid {
+    position: absolute;
+    inset: -2vh -1vw;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .hero-mosaic__cell {
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+  .hero-mosaic__cell video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(60%) brightness(0.45) contrast(1.1);
+  }
+  /* Dark wash on top of the mosaic so headline stays legible */
+  .hero-mosaic::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.85) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+  /* Make sure existing hero contents sit above the mosaic */
+  .hero-cine__inner,
+  .hero-cine__meta,
+  .hero-cine__meta-right,
+  .hero-cine__filament,
+  .hero-cine__scroll,
+  .hero-cine__canvas {
+    position: relative;
+    z-index: 3;
+  }
+
+  @media (max-width: 760px) {
+    .hero-mosaic__grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .hero-mosaic__cell--hide-mobile { display: none; }
+  }
+  </style>
+
+
+  <style>
+  /* ============================================================
+     OFF-CAMERA / Inside V&W — Behind the Scenes (3 phone columns)
      ============================================================ */
   .bts {
     background: #0a0a0a;
@@ -38,10 +104,7 @@
     gap: 80px;
     align-items: center;
   }
-
-  /* LEFT — editorial copy */
   .bts__copy-col { max-width: 560px; }
-
   .bts__kicker {
     display: inline-block;
     font-size: 11px;
@@ -62,7 +125,6 @@
     margin: 0 0 36px 0;
   }
   .bts__title em { font-style: italic; color: #c9b785; }
-
   .bts__lede {
     font-size: 16px;
     line-height: 1.65;
@@ -70,12 +132,7 @@
     margin: 0 0 36px 0;
     max-width: 480px;
   }
-  .bts__lede strong {
-    font-weight: 500;
-    color: #f3ece1;
-    font-style: italic;
-  }
-
+  .bts__lede strong { font-weight: 500; color: #f3ece1; font-style: italic; }
   .bts__rule {
     display: block;
     width: 60px;
@@ -83,7 +140,6 @@
     background: rgba(201, 183, 133, 0.5);
     margin: 36px 0 28px 0;
   }
-
   .bts__sub {
     font-family: 'Times New Roman', Georgia, serif;
     font-style: italic;
@@ -100,8 +156,6 @@
     margin: 0;
     max-width: 440px;
   }
-
-  /* RIGHT — three phone-frame video columns */
   .bts__phones {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -109,8 +163,7 @@
     height: 620px;
     position: relative;
   }
-  .bts__phones::before,
-  .bts__phones::after {
+  .bts__phones::before, .bts__phones::after {
     content: '';
     position: absolute;
     left: 0;
@@ -119,53 +172,26 @@
     z-index: 4;
     pointer-events: none;
   }
-  .bts__phones::before {
-    top: 0;
-    background: linear-gradient(to bottom, #0a0a0a 5%, transparent 100%);
-  }
-  .bts__phones::after {
-    bottom: 0;
-    background: linear-gradient(to top, #0a0a0a 5%, transparent 100%);
-  }
-
+  .bts__phones::before { top: 0; background: linear-gradient(to bottom, #0a0a0a 5%, transparent 100%); }
+  .bts__phones::after  { bottom: 0; background: linear-gradient(to top, #0a0a0a 5%, transparent 100%); }
   .bts__col {
     position: relative;
     overflow: hidden;
     border-radius: 22px;
     background: #1a1a1a;
-    box-shadow:
-      inset 0 0 0 1px rgba(201, 183, 133, 0.18),
-      0 12px 40px -10px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 0 0 1px rgba(201, 183, 133, 0.18), 0 12px 40px -10px rgba(0, 0, 0, 0.6);
   }
-
   .bts__strip {
     display: flex;
     flex-direction: column;
     gap: 14px;
     padding: 14px 0;
     will-change: transform;
-    /* will set animation per column for stagger */
   }
-  .bts__col--1 .bts__strip { animation: bts-scroll-1 38s linear infinite; }
-  .bts__col--2 .bts__strip { animation: bts-scroll-2 44s linear infinite; }
-  .bts__col--3 .bts__strip { animation: bts-scroll-3 41s linear infinite; }
-
-  /* Each column scrolls a different distance based on its content count.
-     Strip contains 2 copies of the clips for seamless looping; we translate
-     up by 50% (half of doubled content) and reset. */
-  @keyframes bts-scroll-1 {
-    from { transform: translateY(0); }
-    to   { transform: translateY(-50%); }
-  }
-  @keyframes bts-scroll-2 {
-    from { transform: translateY(0); }
-    to   { transform: translateY(-50%); }
-  }
-  @keyframes bts-scroll-3 {
-    from { transform: translateY(0); }
-    to   { transform: translateY(-50%); }
-  }
-
+  .bts__col--1 .bts__strip { animation: bts-scroll 38s linear infinite; }
+  .bts__col--2 .bts__strip { animation: bts-scroll 44s linear infinite; }
+  .bts__col--3 .bts__strip { animation: bts-scroll 41s linear infinite; }
+  @keyframes bts-scroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
   .bts__clip {
     position: relative;
     width: 100%;
@@ -174,8 +200,7 @@
     border-radius: 14px;
     flex-shrink: 0;
   }
-  .bts__clip video,
-  .bts__clip img {
+  .bts__clip video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -184,66 +209,38 @@
     filter: grayscale(100%) contrast(1.05);
     pointer-events: none;
   }
-
-  /* Pause on hover - feels intentional */
   .bts__col:hover .bts__strip { animation-play-state: paused; }
-
-  /* MOBILE / TABLET */
   @media (max-width: 980px) {
     .bts { padding: 100px 5vw 110px; }
-    .bts__inner {
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
+    .bts__inner { grid-template-columns: 1fr; gap: 50px; }
     .bts__phones { height: 480px; gap: 12px; }
     .bts__copy-col { max-width: 100%; }
   }
   @media (max-width: 640px) {
-    .bts__phones {
-      grid-template-columns: repeat(3, 1fr);
-      height: 380px;
-      gap: 8px;
-    }
+    .bts__phones { grid-template-columns: repeat(3, 1fr); height: 380px; gap: 8px; }
     .bts__title { font-size: 13vw; }
   }
   @media (max-width: 420px) {
-    .bts__phones {
-      grid-template-columns: repeat(2, 1fr);
-      height: 480px;
-    }
+    .bts__phones { grid-template-columns: repeat(2, 1fr); height: 480px; }
     .bts__col--3 { display: none; }
   }
   </style>
 
 
   <style>
-  /* Scroll-trap fix for films marquee — let page scroll pass through.
-     Strategy: make the entire marquee track non-interactive to pointer events,
-     so wheel/touchpad events are never absorbed by it. */
-  .films,
-  .films-teaser,
-  .films__stage {
+  /* Films marquee scroll-fix */
+  .films, .films-teaser, .films__stage {
     overscroll-behavior: contain;
     touch-action: pan-y;
   }
-  /* The .films__track is the moving element; making it pointer-events: none
-     means nothing inside (cards, videos) can capture scroll wheel events.
-     This is safe because the cards aren't clickable in the marquee context. */
   .films__track {
     pointer-events: none;
     touch-action: pan-y;
   }
-  /* Re-enable pointer events on the category tiles (they ARE clickable) */
-  .films__grid,
-  .film-tile {
-    pointer-events: auto;
-  }
-  /* Videos themselves never capture pointer events */
-  .film-card video,
-  .film-tile video,
-  .film-card__media,
-  .film-tile__media,
-  .bts__media {
+  .films__grid, .film-tile { pointer-events: auto; }
+  .film-card video, .film-tile video,
+  .film-card__media, .film-tile__media,
+  .bts__media, .hero-mosaic__media {
     pointer-events: none;
   }
   </style>
@@ -273,6 +270,100 @@
 
   <!-- HERO — Cinematic -->
   <section class="hero-cine">
+    <div class="hero-mosaic" aria-hidden="true">
+      <div class="hero-mosaic__grid">
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-3.jpg">
+          <source data-src="images/videos/hospitality-3.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-4.jpg">
+          <source data-src="images/videos/industrial-4.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-1.jpg">
+          <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-2.jpg">
+          <source data-src="images/videos/fb-2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-5.jpg">
+          <source data-src="images/videos/hospitality-5.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
+          <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-5.jpg">
+          <source data-src="images/videos/industrial-5.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-7.jpg">
+          <source data-src="images/videos/hospitality-7.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-2.jpg">
+          <source data-src="images/videos/jewellery-2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-1.jpg">
+          <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
+          <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-6.jpg">
+          <source data-src="images/videos/hospitality-6.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
+          <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-3.jpg">
+          <source data-src="images/videos/jewellery-3.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-1.jpg">
+          <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-5.jpg">
+          <source data-src="images/videos/clothing-5.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/fb-3.jpg">
+          <source data-src="images/videos/fb-3.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-mosaic__cell hero-mosaic__cell--hide-mobile">
+        <video class="hero-mosaic__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-2.jpg">
+          <source data-src="images/videos/hospitality-2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      </div>
+    </div>
     <canvas class="hero-cine__canvas" id="particles"></canvas>
 
     <div class="hero-cine__inner">
@@ -310,47 +401,7 @@
 
     <div class="films__stage">
       <div class="films__track">
-        <!-- 8 cards: all 6 categories + 2 industrial extras, mixed order -->
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
-            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-1.jpg">
-            <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>05</em> Jewellery</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
-            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-4.jpg">
-            <source data-src="images/videos/clothing-4.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-4.jpg">
-            <source data-src="images/videos/industrial-4.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
+        <!-- Mixed order, no Product, no two same-category adjacent -->
         <div data-ratio="9:16" class="film-card film-card--placeholder">
           <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-5.jpg">
@@ -369,16 +420,8 @@
 
         <div data-ratio="9:16" class="film-card film-card--placeholder">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/product.jpg">
-            <source data-src="images/videos/product.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>06</em> Product</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
-            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
+            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
@@ -393,55 +436,55 @@
 
         <div data-ratio="9:16" class="film-card film-card--placeholder">
           <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
+            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-4.jpg">
+            <source data-src="images/videos/industrial-4.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-1.jpg">
+            <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>05</em> Jewellery</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-1.jpg">
             <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
+            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-4.jpg">
+            <source data-src="images/videos/clothing-4.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
 
         <!-- Duplicated set for seamless infinite loop -->
         <div data-ratio="9:16" class="film-card film-card--placeholder">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
-            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-1.jpg">
-            <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>05</em> Jewellery</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
-            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-4.jpg">
-            <source data-src="images/videos/clothing-4.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>04</em> Clothing</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-4.jpg">
-            <source data-src="images/videos/industrial-4.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-5.jpg">
             <source data-src="images/videos/clothing-5.mp4" type="video/mp4" />
           </video>
@@ -458,16 +501,8 @@
 
         <div data-ratio="9:16" class="film-card film-card--placeholder">
           <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/product.jpg">
-            <source data-src="images/videos/product.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>06</em> Product</div>
-        </div>
-
-        <div data-ratio="9:16" class="film-card film-card--placeholder">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
-            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-1.jpg">
+            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
@@ -482,10 +517,50 @@
 
         <div data-ratio="9:16" class="film-card film-card--placeholder">
           <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-3.jpg">
+            <source data-src="images/videos/clothing-3.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-4.jpg">
+            <source data-src="images/videos/industrial-4.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/jewellery-1.jpg">
+            <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>05</em> Jewellery</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/hospitality-1.jpg">
             <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
           </video>
           <div class="film-card__label"><em>02</em> Hospitality</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-6.jpg">
+            <source data-src="images/videos/industrial-6.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>03</em> Industrial</div>
+        </div>
+
+        <div data-ratio="9:16" class="film-card film-card--placeholder">
+          <span class="placeholder-icon"></span>
+          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-4.jpg">
+            <source data-src="images/videos/clothing-4.mp4" type="video/mp4" />
+          </video>
+          <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
       </div>
     </div>
@@ -627,19 +702,15 @@
   <!-- OFF-CAMERA — Inside V&W (Behind the Scenes) -->
   <section class="bts" id="off-camera">
     <div class="bts__inner">
-
       <div class="bts__copy-col">
         <span class="bts__kicker">Off-Camera</span>
         <h2 class="bts__title">Inside <em>V&amp;W.</em></h2>
-
         <p class="bts__lede">
           Long days, late nights, and the occasional dance break.
           The making of iconic brands isn&rsquo;t always glamorous &mdash;
           but it&rsquo;s <strong>always honest.</strong>
         </p>
-
         <span class="bts__rule"></span>
-
         <h3 class="bts__sub">The <em>unseen</em> craft.</h3>
         <p class="bts__note">
           From mood boards taped to studio walls to the eighteenth take of a single
@@ -647,7 +718,6 @@
           inevitable. This is some of it.
         </p>
       </div>
-
       <div class="bts__phones">
         <div class="bts__col bts__col--1">
           <div class="bts__strip">
@@ -772,7 +842,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -897,10 +966,11 @@
 
   <script src="js/main.js?v=films2"></script>
   <script>
-  // Lazy video playback for marquees + eager play for BTS section
+  // ============================================================
+  // Combined JS: lazy-play + BTS eager + category cycler + wheel fix
+  // ============================================================
   (function() {
     if (!('IntersectionObserver' in window)) return;
-
     var setSrc = function(video) {
       if (video.dataset.loaded) return;
       var source = video.querySelector('source[data-src]');
@@ -910,40 +980,109 @@
       }
       video.dataset.loaded = '1';
     };
-
     var safePlay = function(v) {
       var p = v.play();
       if (p && p.catch) p.catch(function(){});
     };
-
-    // 1) BTS section: load and play immediately, never pause
-    var btsVideos = document.querySelectorAll('.bts__media');
-    btsVideos.forEach(function(v) {
+    // 1) BTS section + hero mosaic: eager load
+    var eager = document.querySelectorAll('.bts__media, .hero-mosaic__media');
+    eager.forEach(function(v) {
       setSrc(v);
-      // Try to play immediately, plus retry once metadata loads
       safePlay(v);
       v.addEventListener('loadeddata', function() { safePlay(v); });
     });
-
-    // 2) Films marquee: lazy load + play/pause based on viewport
-    var marqueeVideos = document.querySelectorAll('.film-card__media, .film-tile__media');
+    // 2) Films marquee: lazy load
+    var marqueeVideos = document.querySelectorAll('.film-card__media');
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         var v = entry.target;
-        if (entry.isIntersecting) {
-          setSrc(v);
-          safePlay(v);
-        } else {
-          if (!v.paused) v.pause();
-        }
+        if (entry.isIntersecting) { setSrc(v); safePlay(v); }
+        else if (!v.paused) v.pause();
       });
     }, { rootMargin: '300px 0px', threshold: 0.01 });
     marqueeVideos.forEach(function(v) { io.observe(v); });
   })();
-  </script>
-  <script>
-  // Wheel forwarder for macOS trackpad over films marquee.
-  // Multiplies deltaY to approximate native trackpad acceleration.
+
+  // ============================================================
+  // Browse-by-Category click handler: cycle videos within tile
+  // ============================================================
+  (function() {
+    // category -> array of video filenames in order
+    var categoryClips = {
+      'fb':          ['fb-1.mp4', 'fb-2.mp4', 'fb-3.mp4'],
+      'hospitality': ['hospitality-1.mp4', 'hospitality-2.mp4', 'hospitality-3.mp4', 'hospitality-4.mp4', 'hospitality-5.mp4', 'hospitality-6.mp4', 'hospitality-7.mp4'],
+      'industrial':  ['industrial-1.mp4', 'industrial-2.mp4', 'industrial-3.mp4', 'industrial-4.mp4', 'industrial-5.mp4', 'industrial-6.mp4'],
+      'clothing':    ['clothing-1.mp4', 'clothing-2.mp4', 'clothing-3.mp4', 'clothing-4.mp4', 'clothing-5.mp4'],
+      'jewellery':   ['jewellery-1.mp4', 'jewellery-2.mp4', 'jewellery-3.mp4']
+    };
+    var activeTile = null;
+    var activeQueue = null;
+    var activeIndex = 0;
+    var endedHandler = null;
+
+    function playNextInQueue(tile, video) {
+      activeIndex = (activeIndex + 1) % activeQueue.length;
+      var next = activeQueue[activeIndex];
+      var source = video.querySelector('source');
+      if (source) {
+        source.src = 'images/videos/' + next;
+        video.removeAttribute('loop');
+        video.load();
+        var p = video.play();
+        if (p && p.catch) p.catch(function(){});
+      }
+    }
+
+    function activateTile(tile) {
+      var category = tile.dataset.category;
+      if (!category || !categoryClips[category]) return;
+      // Reset previous tile if any
+      if (activeTile && activeTile !== tile) {
+        var prevVideo = activeTile.querySelector('video');
+        if (prevVideo) {
+          if (endedHandler) prevVideo.removeEventListener('ended', endedHandler);
+          prevVideo.setAttribute('loop', '');
+          var prevSource = prevVideo.querySelector('source');
+          if (prevSource) {
+            prevSource.src = 'images/videos/' + activeTile.dataset.video;
+            prevVideo.load();
+            prevVideo.play().catch(function(){});
+          }
+        }
+        activeTile.classList.remove('film-tile--active');
+      }
+      activeTile = tile;
+      activeQueue = categoryClips[category];
+      activeIndex = 0;
+      tile.classList.add('film-tile--active');
+      var video = tile.querySelector('video');
+      if (!video) return;
+      var source = video.querySelector('source');
+      if (source) {
+        source.src = 'images/videos/' + activeQueue[0];
+        video.removeAttribute('loop');
+        video.load();
+        video.play().catch(function(){});
+      }
+      // On end of each clip, advance the queue
+      endedHandler = function() {
+        playNextInQueue(tile, video);
+      };
+      video.addEventListener('ended', endedHandler);
+    }
+
+    document.querySelectorAll('.film-tile[data-category]').forEach(function(tile) {
+      tile.addEventListener('click', function(e) {
+        e.preventDefault();
+        activateTile(tile);
+      });
+      tile.style.cursor = 'pointer';
+    });
+  })();
+
+  // ============================================================
+  // macOS trackpad wheel forwarder for films marquee
+  // ============================================================
   (function() {
     var marquees = document.querySelectorAll('.films__stage, .films-teaser .films__stage, .films');
     marquees.forEach(function(el) {
@@ -951,14 +1090,12 @@
         var deltaY = e.deltaY;
         if (e.deltaMode === 1) deltaY *= 16;
         else if (e.deltaMode === 2) deltaY *= window.innerHeight;
-        // Scale up to match native scroll speed.
-        // macOS trackpad sends small per-event deltas that the browser
-        // normally accelerates; we apply a 3x multiplier to compensate.
         window.scrollBy(0, deltaY * 3);
         e.preventDefault();
       }, { passive: false });
     });
   })();
   </script>
+
 </body>
 </html>
