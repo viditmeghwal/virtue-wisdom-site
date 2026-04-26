@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journal — Virtue &amp; Wisdom</title>
-<meta name="description" content="Notes on brand strategy, design, and the work that builds iconic brands. By Virtue & Wisdom.">
+<title>The Hospitality Brand Playbook — Virtue &amp; Wisdom</title>
+<meta name="description" content="How the best hotel brands engineer the moments guests can't help but post about — and what that does for bookings. A playbook for hospitality brand owners.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,27 +14,29 @@
   :root {
     --bg: #0a0a0a;
     --bg-2: #131313;
-    --ink: #f3ece1;
-    --ink-dim: #a39a8b;
+    --paper: #f3ece1;
+    --ink-on-paper: #1a1a1a;
+    --ink-dim: #555;
     --gold: #c9b785;
-    --line: rgba(243, 236, 225, 0.12);
+    --line-light: rgba(26, 26, 26, 0.12);
+    --line-dark: rgba(243, 236, 225, 0.12);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--bg);
-    color: var(--ink);
+    background: var(--paper);
+    color: var(--ink-on-paper);
     font-family: 'Archivo', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
   img, svg { display: block; max-width: 100%; }
 
-  /* ---------- nav ---------- */
+  /* ---------- nav (light variant for paper bg) ---------- */
   .nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -43,17 +45,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background 0.5s ease, padding 0.4s ease, border-color 0.5s ease;
+    transition: background 0.5s, padding 0.4s, border-color 0.5s;
     border-bottom: 1px solid transparent;
   }
   .nav.scrolled {
-    background: rgba(10, 10, 10, 0.85);
+    background: rgba(243, 236, 225, 0.92);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     padding: 16px 48px;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-light);
   }
-  .nav__logo img { height: 22px; width: auto; }
+  .nav__logo img {
+    height: 22px;
+    width: auto;
+    filter: invert(1);
+  }
   .nav__links {
     display: flex;
     gap: 32px;
@@ -63,32 +69,32 @@
     text-transform: uppercase;
   }
   .nav__links a {
-    color: var(--ink);
+    color: var(--ink-on-paper);
     opacity: 0.82;
     padding: 6px 0;
     position: relative;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.25s;
   }
-  .nav__links a:hover { opacity: 1; }
-  .nav__links a.active { opacity: 1; }
+  .nav__links a:hover, .nav__links a.active { opacity: 1; }
   .nav__links a.active::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 0;
-    height: 1px; background: var(--ink);
+    height: 1px; background: var(--ink-on-paper);
   }
   .nav__cta {
     font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     padding: 11px 22px;
-    border: 1px solid var(--ink);
-    color: var(--ink);
+    border: 1px solid var(--ink-on-paper);
+    color: var(--ink-on-paper);
     background: transparent;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
     cursor: pointer;
   }
-  .nav__cta:hover { background: var(--ink); color: var(--bg); }
-
-  /* mobile burger */
+  .nav__cta:hover {
+    background: var(--ink-on-paper);
+    color: var(--paper);
+  }
   .nav__burger {
     display: none;
     width: 32px; height: 22px;
@@ -98,7 +104,7 @@
   }
   .nav__burger span {
     display: block; position: absolute; left: 0;
-    width: 100%; height: 1.5px; background: var(--ink);
+    width: 100%; height: 1.5px; background: var(--ink-on-paper);
     transition: transform 0.4s, opacity 0.3s, top 0.4s, bottom 0.4s;
   }
   .nav__burger span:nth-child(1) { top: 4px; }
@@ -107,10 +113,9 @@
   .nav__burger.is-open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
   .nav__burger.is-open span:nth-child(2) { opacity: 0; }
   .nav__burger.is-open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
-
   .mobile-drawer {
     position: fixed; inset: 0;
-    background: var(--bg);
+    background: var(--paper);
     z-index: 99;
     display: flex;
     flex-direction: column;
@@ -120,20 +125,15 @@
     transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
     pointer-events: none;
   }
-  .mobile-drawer.is-open {
-    transform: translateY(0);
-    pointer-events: auto;
-  }
+  .mobile-drawer.is-open { transform: translateY(0); pointer-events: auto; }
   .mobile-drawer ul { list-style: none; text-align: center; width: 100%; }
-  .mobile-drawer li { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .mobile-drawer li { padding: 18px 0; border-bottom: 1px solid var(--line-light); }
   .mobile-drawer li:last-child { border-bottom: 0; }
   .mobile-drawer a {
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px; font-weight: 300; opacity: 0.85;
   }
-  .mobile-drawer a.active { opacity: 1; }
-  .mobile-drawer a em { font-style: italic; color: var(--gold); }
-
+  .mobile-drawer a em { font-style: italic; color: #8a7140; }
   @media (max-width: 920px) {
     .nav { padding: 18px 20px; }
     .nav.scrolled { padding: 14px 20px; }
@@ -143,252 +143,306 @@
   }
   body.menu-open { overflow: hidden; }
 
-  /* ---------- hero ---------- */
-  .blog-hero {
-    padding: 200px 6vw 100px;
+  /* ---------- ARTICLE STRUCTURE ---------- */
+  .article-meta {
+    max-width: 760px;
+    margin: 160px auto 60px;
+    padding: 0 6vw;
     text-align: center;
-    border-bottom: 1px solid var(--line);
   }
-  .blog-hero__kicker {
+  .article-meta__category {
     font-size: 11px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--ink-dim);
+    color: #8a7140;
     margin-bottom: 36px;
     display: inline-block;
     padding-top: 14px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--line-light);
     min-width: 120px;
   }
-  .blog-hero h1 {
+  .article-meta h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(56px, 9vw, 144px);
+    font-size: clamp(36px, 6vw, 72px);
     font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-    margin-bottom: 32px;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    margin-bottom: 36px;
+    color: var(--ink-on-paper);
   }
-  .blog-hero h1 em {
+  .article-meta h1 em {
     font-style: italic;
-    color: var(--gold);
+    color: #8a7140;
   }
-  .blog-hero p {
-    font-size: 17px;
-    line-height: 1.7;
-    max-width: 620px;
-    margin: 0 auto;
-    color: var(--ink-dim);
+  .article-meta__deck {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+  .article-meta__byline {
+    display: inline-flex;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .article-meta__byline .sep { opacity: 0.5; }
+
+  /* hero banner (full-bleed) */
+  .article-hero {
+    width: 100%;
+    margin-bottom: 100px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-hero img,
+  .article-hero svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  /* ---------- featured post ---------- */
-  .blog-featured {
-    max-width: 1400px;
+  /* article body — long-form prose */
+  .article-body {
+    max-width: 720px;
     margin: 0 auto;
-    padding: 120px 6vw;
-    border-bottom: 1px solid var(--line);
+    padding: 0 6vw 100px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #1f1f1f;
+    font-weight: 400;
   }
-  .blog-featured__label {
+  .article-body p {
+    margin-bottom: 28px;
+  }
+  .article-body p.lede::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4em;
+    font-weight: 300;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 14px 0 0;
+    color: #8a7140;
+  }
+  .article-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-top: 80px;
+    margin-bottom: 32px;
+    letter-spacing: -0.005em;
+  }
+  .article-body h2 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 400;
+    margin-top: 60px;
+    margin-bottom: 24px;
+    color: #1f1f1f;
+  }
+  .article-body strong {
+    font-weight: 500;
+    color: var(--ink-on-paper);
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-style: italic;
+    line-height: 1.3;
+    margin: 60px 0;
+    padding: 0 0 0 32px;
+    border-left: 2px solid #8a7140;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body ul, .article-body ol {
+    margin: 0 0 28px 24px;
+    padding-left: 16px;
+  }
+  .article-body li {
+    margin-bottom: 12px;
+    line-height: 1.65;
+  }
+  .article-body a {
+    color: #8a7140;
+    text-decoration: underline;
+    text-decoration-color: rgba(138, 113, 64, 0.4);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.3s;
+  }
+  .article-body a:hover {
+    text-decoration-color: #8a7140;
+  }
+  .article-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--line-light);
+    margin: 60px 0;
+  }
+
+  /* inline figures — break out of the column for visual breathing */
+  .article-figure {
+    margin: 60px -10vw;
+  }
+  .article-figure__media {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-figure__media img,
+  .article-figure__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article-figure__caption {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  @media (max-width: 880px) {
+    .article-figure { margin: 40px -6vw; }
+  }
+
+  /* pull quote */
+  .article-pull {
+    margin: 80px -10vw;
+    padding: 60px 6vw;
+    background: var(--bg);
+    color: var(--paper);
+    text-align: center;
+  }
+  .article-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-style: italic;
+    line-height: 1.25;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+    color: var(--paper);
+  }
+  .article-pull p em { color: var(--gold); font-style: normal; }
+  @media (max-width: 880px) {
+    .article-pull { margin: 60px -6vw; }
+  }
+
+  /* CTA card at the end */
+  .article-cta {
+    max-width: 720px;
+    margin: 60px auto 0;
+    padding: 60px 6vw;
+    text-align: center;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-cta__label {
     font-size: 11px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 40px;
+    color: #8a7140;
+    margin-bottom: 24px;
     display: inline-block;
   }
-  .blog-featured__card {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    align-items: center;
-    transition: opacity 0.3s ease;
-  }
-  .blog-featured__card:hover { opacity: 0.92; }
-  .blog-featured__media {
-    aspect-ratio: 16/10;
-    overflow: hidden;
-    background: var(--bg-2);
-  }
-  .blog-featured__media img,
-  .blog-featured__media svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .blog-featured__card:hover .blog-featured__media img,
-  .blog-featured__card:hover .blog-featured__media svg {
-    transform: scale(1.04);
-  }
-  .blog-featured__meta {
-    display: flex;
-    gap: 18px;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    margin-bottom: 28px;
-  }
-  .blog-featured__meta span { display: inline-block; }
-  .blog-featured__sep { opacity: 0.5; }
-  .blog-featured h2 {
+  .article-cta h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 4.5vw, 60px);
-    line-height: 1.05;
+    font-size: clamp(32px, 4vw, 48px);
     font-weight: 300;
-    margin-bottom: 28px;
-  }
-  .blog-featured h2 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .blog-featured__excerpt {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--ink-dim);
+    line-height: 1.1;
     margin-bottom: 32px;
-    max-width: 560px;
   }
-  .blog-featured__read {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-    letter-spacing: 0.22em;
+  .article-cta h2 em { font-style: italic; color: #8a7140; }
+  .article-cta__btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--ink-on-paper);
+    color: var(--paper);
+    font-size: 11px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--ink);
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--gold);
+    transition: all 0.3s;
   }
-  .blog-featured__read::after {
-    content: '→';
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .blog-featured__card:hover .blog-featured__read::after { transform: translateX(6px); }
+  .article-cta__btn:hover { background: #8a7140; }
 
-  @media (max-width: 880px) {
-    .blog-featured__card {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-  }
-
-  /* ---------- grid ---------- */
-  .blog-grid {
+  /* related posts */
+  .article-related {
     max-width: 1400px;
     margin: 0 auto;
     padding: 100px 6vw;
+    border-top: 1px solid var(--line-light);
   }
-  .blog-grid__head {
-    margin-bottom: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-  .blog-grid__head h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 300;
-    line-height: 1.05;
-    max-width: 600px;
-  }
-  .blog-grid__head h3 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .blog-grid__filter {
-    display: flex;
-    gap: 18px;
+  .article-related__label {
     font-size: 11px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--ink-dim);
+    color: #8a7140;
+    margin-bottom: 50px;
+    display: inline-block;
   }
-  .blog-grid__filter span { padding: 6px 0; cursor: pointer; transition: color 0.3s ease; }
-  .blog-grid__filter span:hover, .blog-grid__filter span.active {
-    color: var(--ink);
-  }
-  .blog-grid__items {
+  .article-related__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 80px 60px;
+    gap: 60px;
   }
   @media (max-width: 880px) {
-    .blog-grid__items { grid-template-columns: 1fr; gap: 60px; }
-    .blog-grid__head { flex-direction: column; align-items: start; }
+    .article-related__grid { grid-template-columns: 1fr; gap: 50px; }
   }
-
-  .post-card {
+  .related-card {
     display: block;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s;
   }
-  .post-card:hover { opacity: 0.92; }
-  .post-card__media {
-    aspect-ratio: 4/3;
+  .related-card:hover { opacity: 0.92; }
+  .related-card__media {
+    aspect-ratio: 16/10;
     overflow: hidden;
-    background: var(--bg-2);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+    background: var(--bg);
   }
-  .post-card__media svg,
-  .post-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .related-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
     transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .post-card:hover .post-card__media svg,
-  .post-card:hover .post-card__media img {
-    transform: scale(1.04);
-  }
-  .post-card__meta {
+  .related-card:hover .related-card__media img { transform: scale(1.04); }
+  .related-card__meta {
     display: flex;
-    gap: 14px;
+    gap: 12px;
     font-size: 10.5px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink-dim);
-    margin-bottom: 20px;
+    color: #888;
+    margin-bottom: 16px;
   }
-  .post-card__meta .sep { opacity: 0.5; }
-  .post-card h4 {
+  .related-card__meta .sep { opacity: 0.5; }
+  .related-card h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(24px, 2.6vw, 34px);
-    line-height: 1.15;
+    font-size: clamp(22px, 2.6vw, 30px);
     font-weight: 300;
-    margin-bottom: 18px;
-    transition: color 0.3s ease;
+    line-height: 1.15;
   }
-  .post-card h4 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .post-card__excerpt {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--ink-dim);
-    margin-bottom: 22px;
-  }
-  .post-card__read {
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink);
-    border-bottom: 1px solid var(--gold);
-    padding-bottom: 4px;
-    display: inline-block;
-  }
+  .related-card h3 em { font-style: italic; color: #8a7140; }
 
-  /* ---------- footer ---------- */
+  /* footer (dark) */
   .blog-footer {
-    border-top: 1px solid var(--line);
-    padding: 100px 6vw 60px;
     background: var(--bg);
+    color: var(--paper);
+    padding: 100px 6vw 60px;
   }
-  .blog-footer__inner {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+  .blog-footer__inner { max-width: 1400px; margin: 0 auto; }
   .blog-footer__lede {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(36px, 5vw, 64px);
@@ -396,23 +450,21 @@
     line-height: 1.05;
     margin-bottom: 60px;
     max-width: 900px;
+    color: var(--paper);
   }
-  .blog-footer__lede em {
-    font-style: italic;
-    color: var(--gold);
-  }
+  .blog-footer__lede em { font-style: italic; color: var(--gold); }
   .blog-footer__grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 60px;
     padding-top: 60px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--line-dark);
   }
   .blog-footer__col h5 {
     font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--ink-dim);
+    color: rgba(243, 236, 225, 0.6);
     margin-bottom: 24px;
     font-weight: 400;
   }
@@ -420,7 +472,7 @@
   .blog-footer__col li { margin-bottom: 12px; }
   .blog-footer__col a {
     font-size: 14px;
-    color: var(--ink);
+    color: var(--paper);
     opacity: 0.82;
     transition: opacity 0.3s;
   }
@@ -429,31 +481,29 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     margin-bottom: 16px;
+    color: var(--paper);
   }
   .blog-footer__desc {
     font-size: 14px;
     line-height: 1.7;
-    color: var(--ink-dim);
+    color: rgba(243, 236, 225, 0.6);
     max-width: 320px;
   }
   .blog-footer__base {
     margin-top: 60px;
     padding-top: 30px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--line-dark);
     display: flex;
     justify-content: space-between;
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink-dim);
+    color: rgba(243, 236, 225, 0.6);
   }
   @media (max-width: 880px) {
     .blog-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     .blog-footer__base { flex-direction: column; gap: 12px; }
   }
-
-  /* hover transition default */
-  .post-card, .blog-featured__card { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -478,7 +528,6 @@
   </div>
 </header>
 
-<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobileDrawer">
   <ul>
     <li><a href="index.html">Home</a></li>
@@ -491,145 +540,157 @@
   </ul>
 </div>
 
-<!-- HERO -->
-<section class="blog-hero">
-  <span class="blog-hero__kicker">Journal</span>
-  <h1>Notes on <em>building</em><br>iconic brands.</h1>
-  <p>Writing about brand strategy, design, and the work that turns a name into something people remember. From the studio at Virtue &amp; Wisdom.</p>
-</section>
-
-<!-- FEATURED POST -->
-<section class="blog-featured">
-  <span class="blog-featured__label">— Featured</span>
-  <a href="blog-resort-fade.html" class="blog-featured__card">
-    <div class="blog-featured__media">
-      <img src="images/blog/banner-resort-fade.svg" alt="Mountain silhouettes against a rising gold sun" />
-    </div>
-    <div class="blog-featured__copy">
-      <div class="blog-featured__meta">
-        <span>Brand Strategy</span>
-        <span class="blog-featured__sep">/</span>
-        <span>Hospitality</span>
-        <span class="blog-featured__sep">/</span>
-        <span>9 min read</span>
-      </div>
-      <h2>Why most resort brands <em>fade into the mountain</em>.</h2>
-      <p class="blog-featured__excerpt">Most luxury resorts share the same playbook — and the same look. The ones guests remember have done something different. A field guide for owners building places worth coming back to.</p>
-      <span class="blog-featured__read">Read the article</span>
-    </div>
-  </a>
-</section>
-
-<!-- GRID -->
-<section class="blog-grid">
-  <div class="blog-grid__head">
-    <h3>More from the <em>journal.</em></h3>
-    <div class="blog-grid__filter">
-      <span class="active">All</span>
-      <span>Strategy</span>
-      <span>Social</span>
-      <span>Photography</span>
-    </div>
+<!-- ARTICLE META -->
+<section class="article-meta">
+  <span class="article-meta__category">Brand Strategy · Hospitality</span>
+  <h1>The hospitality brand<br><em>playbook.</em></h1>
+  <p class="article-meta__deck">Turning a stay into a story. How the best hotel brands engineer the moments guests can't help but post about — and what that does for bookings.</p>
+  <div class="article-meta__byline">
+    <span>By Virtue &amp; Wisdom</span>
+    <span class="sep">·</span>
+    <span>8 min read</span>
   </div>
+</section>
 
-  <div class="blog-grid__items">
+<!-- HERO BANNER -->
+<div class="article-hero">
+  <img src="images/blog/banner-hospitality-playbook.svg" alt="Vertical paper layers with a gold thread weaving through them" />
+</div>
 
-    <a href="blog-hospitality-playbook.html" class="post-card">
-      <div class="post-card__media">
-        <img src="images/blog/banner-hospitality-playbook.svg" alt="Vertical paper layers with a gold thread weaving through" />
+<!-- ARTICLE BODY -->
+<article class="article-body">
+  <p class="lede">A guest checks in. They're tired from the airport. The lobby smells faintly of cardamom. Behind reception, a small wooden cabinet holds twelve ceramic cups. The receptionist offers them a tea — not from a menu, but the one the staff are drinking at this exact moment. Cinnamon, this evening. They sit on a low chair while the room is being prepared. The tea arrives with a single biscuit on a saucer. The receptionist mentions, casually, that this tea is also served at sunrise on the terrace, if they'd like to come up.</p>
+
+  <p>That's ninety seconds. The guest hasn't seen their room yet. But that ninety seconds will be in the first message they send back home tonight. <em>"This place is amazing — they did this thing when we walked in."</em></p>
+
+  <p>This is what the best hospitality brands engineer. Not lobbies. Moments. And the moments aren't accidents — they're the result of a playbook the property has thought through and rehearsed.</p>
+
+  <h2>A stay is a sequence, not a stack</h2>
+
+  <p>Most hotels think of themselves as a stack of features: rooms, restaurant, spa, bar, pool, rooftop. Marketing reflects this — a homepage that lists the amenities and shows nice photographs of each one. A booking is treated as an event that happens once, at the start.</p>
+
+  <p>The brands that build memory think of a stay as a <em>sequence</em>. The guest is on a timeline that starts before they arrive and ends after they've left. Each segment of that timeline has its own job. Each one is an opportunity to either reinforce the brand or fade into anonymity.</p>
+
+  <p>The playbook below is what we use with hotel and resort clients to map this sequence — and to find the three or four points on the timeline where the brand is actually going to live.</p>
+
+  <h2>The three pillars: arrival, stay, farewell</h2>
+
+  <p>The sequence has three pillars, and most properties spend almost all their attention on the middle one.</p>
+  </article>
+
+<!-- INLINE FIGURE -->
+<figure class="article-figure">
+  <div class="article-figure__media">
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <rect width="1600" height="900" fill="#0a0a0a"/>
+      <!-- Three pillars: arrival, ritual, departure -->
+      <g transform="translate(280, 250)">
+        <rect x="0" y="0" width="180" height="400" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.85"/>
+        <line x1="0" y1="80" x2="180" y2="80" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <text x="90" y="60" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785">Arrival</text>
+        <text x="90" y="220" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#c9b785" opacity="0.6">First 10</text>
+        <text x="90" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#c9b785" opacity="0.6">minutes</text>
+      </g>
+      <g transform="translate(710, 250)">
+        <rect x="0" y="0" width="180" height="400" fill="#c9b785" opacity="0.5"/>
+        <line x1="0" y1="80" x2="180" y2="80" stroke="#c9b785" stroke-width="0.5" opacity="0.6"/>
+        <text x="90" y="60" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#0a0a0a">Stay</text>
+        <text x="90" y="220" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#0a0a0a" opacity="0.7">Daily</text>
+        <text x="90" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#0a0a0a" opacity="0.7">rituals</text>
+      </g>
+      <g transform="translate(1140, 250)">
+        <rect x="0" y="0" width="180" height="400" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.85"/>
+        <line x1="0" y1="80" x2="180" y2="80" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <text x="90" y="60" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785">Farewell</text>
+        <text x="90" y="220" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#c9b785" opacity="0.6">Last</text>
+        <text x="90" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#c9b785" opacity="0.6">touch</text>
+      </g>
+    </svg>
+  </div>
+  <figcaption class="article-figure__caption">Most properties optimise the middle pillar. The brand lives in the bookends.</figcaption>
+</figure>
+
+<article class="article-body">
+  <h3>Arrival — the first ten minutes</h3>
+
+  <p>Everything before the first ten minutes is logistics. Everything after is shaped by them. This is the highest-leverage time in a guest's entire stay, and most properties spend it doing paperwork.</p>
+
+  <p>The brands that build memory turn the first ten minutes into a small ritual. A drink. A scent. A handwritten note. A specific phrase, repeated by every staff member. None of these things are expensive — they cost in attention, not budget. And they're what gets photographed and posted before the room photos do.</p>
+
+  <h3>Stay — daily rituals</h3>
+
+  <p>This is where most properties live. It's also where most of them blur together. The room is nice. The breakfast is good. The pool is fine. The spa exists.</p>
+
+  <p>The properties that stand out have <em>daily rituals</em> — small things that happen at the same time every day, in the same way, that guests come to anticipate. The five o'clock terrace tea. The pre-dinner walk with the chef through the herb garden. The staff playing a particular song at sunset. These rituals are what makes a stay rhythmic instead of transactional. They're also what guests describe to their friends.</p>
+
+  <h3>Farewell — the last touch</h3>
+
+  <p>The end of the stay is where memory crystallises. Most properties end on a logistical note: a check-out, a bill, a "have a safe flight." That's the impression that gets carried home.</p>
+
+  <p>The brands that build referrals end on something else. A small parcel waiting at reception with the guest's name. A specific staff member coming out to say goodbye by name. A photograph from the stay, printed and tucked into the bill. The check-out itself takes the same five minutes — but the texture of those five minutes is different.</p>
+  </article>
+
+<!-- PULL QUOTE -->
+<div class="article-pull">
+  <p>Most hotels treat a stay as a <em>stack of features.</em> The ones guests remember treat it as a sequence.</p>
+</div>
+
+<article class="article-body">
+  <h2>The playbook in practice</h2>
+
+  <p>When we sit down with a hotel or resort owner, the conversation isn't about logo colours or website copy. It's about mapping their guest sequence and finding the three or four points where the brand is going to live.</p>
+
+  <p>The questions:</p>
+
+  <ul>
+    <li><strong>What is the smallest moment we want to own?</strong> The ninety-second arrival ritual. The five-minute farewell. Something specific enough that a returning guest would notice if it stopped happening.</li>
+    <li><strong>What is the daily rhythm?</strong> One or two anchor moments that happen at the same time every day, that staff and guests both come to expect. This is what turns a stay into a story.</li>
+    <li><strong>What's the language?</strong> Not in marketing copy — in the operations themselves. What do we call the suites, the meals, the moments? If staff use a consistent vocabulary, the brand becomes felt instead of pasted on.</li>
+    <li><strong>What's the artefact the guest takes home?</strong> Not the receipt. The thing the guest still has on their fridge or in their wallet six months later. The smallest, cheapest, most specific keepsake possible.</li>
+  </ul>
+
+  <p>None of this can be designed in isolation by an agency. It has to come from the actual operating reality of the property. A brand agency's job is to help excavate it, sharpen it, and make every touchpoint — visual, verbal, physical — line up with it.</p>
+
+  <h2>The bookings follow</h2>
+
+  <p>The reason this matters commercially: a hotel that owns its arrival, its rituals, and its farewell gets <em>told to friends.</em> And in hospitality, word of mouth does the work that no ad budget can. A stay that becomes a story spreads through trip-planning conversations months and years after the guest has left. That's the brand doing the marketing on your behalf.</p>
+
+  <p>The hotels that haven't done this work are competing on price, location, and OTA visibility. The ones that have are competing on a memory.</p>
+  </article>
+
+<!-- CTA -->
+<section class="article-cta">
+  <span class="article-cta__label">— Building a hotel or resort brand?</span>
+  <h2>We help hospitality owners design the<br>moments guests <em>actually remember.</em></h2>
+  <a href="contact.html" class="article-cta__btn">Start a Conversation →</a>
+</section>
+
+<!-- RELATED -->
+<section class="article-related">
+  <span class="article-related__label">— Continue Reading</span>
+  <div class="article-related__grid">
+    <a href="blog-resort-fade.html" class="related-card">
+      <div class="related-card__media">
+        <img src="images/blog/banner-resort-fade.svg" alt="Mountain silhouettes against a rising gold sun" />
       </div>
-      <div class="post-card__meta">
+      <div class="related-card__meta">
         <span>Brand Strategy</span>
         <span class="sep">/</span>
         <span>Hospitality</span>
-        <span class="sep">/</span>
-        <span>8 min</span>
       </div>
-      <h4>The hospitality brand <em>playbook</em>.</h4>
-      <p class="post-card__excerpt">Turning a stay into a story. How the best hotel brands engineer the moments guests can't help but post about — and what that does for bookings.</p>
-      <span class="post-card__read">Read →</span>
+      <h3>Why most resort brands <em>fade into the mountain.</em></h3>
     </a>
-
-    <a href="blog-cafe-instagram.html" class="post-card">
-      <div class="post-card__media">
-        <img src="images/blog/banner-cafe-instagram.svg" alt="3x3 instagram grid with three squares highlighted in gold" />
+    <a href="blog-fnb-shoot.html" class="related-card">
+      <div class="related-card__media">
+        <img src="images/blog/banner-fnb-shoot.svg" alt="Camera aperture iris" />
       </div>
-      <div class="post-card__meta">
-        <span>Social Media</span>
-        <span class="sep">/</span>
-        <span>F&amp;B</span>
-        <span class="sep">/</span>
-        <span>7 min</span>
-      </div>
-      <h4>The 3-post rule <em>for cafés.</em></h4>
-      <p class="post-card__excerpt">Most café Instagrams are 90% latte art. Here's a content split that actually fills tables — and what to post in each of the three buckets.</p>
-      <span class="post-card__read">Read →</span>
-    </a>
-
-    <a href="blog-cafe-reels.html" class="post-card">
-      <div class="post-card__media">
-        <img src="images/blog/banner-cafe-reels.svg" alt="Four ascending audio bars representing reel beats" />
-      </div>
-      <div class="post-card__meta">
-        <span>Social Media</span>
-        <span class="sep">/</span>
-        <span>F&amp;B</span>
-        <span class="sep">/</span>
-        <span>6 min</span>
-      </div>
-      <h4>Why your café's reels <em>aren't working</em>.</h4>
-      <p class="post-card__excerpt">A 4-beat structure for café reels that pull people through to the end — and the one mistake that kills retention in the first second and a half.</p>
-      <span class="post-card__read">Read →</span>
-    </a>
-
-    <a href="blog-fnb-shoot.html" class="post-card">
-      <div class="post-card__media">
-        <img src="images/blog/banner-fnb-shoot.svg" alt="Camera aperture iris on a rule-of-thirds grid" />
-      </div>
-      <div class="post-card__meta">
+      <div class="related-card__meta">
         <span>Photography</span>
         <span class="sep">/</span>
         <span>F&amp;B</span>
-        <span class="sep">/</span>
-        <span>8 min</span>
       </div>
-      <h4>How a café <em>photoshoot</em> pays for itself.</h4>
-      <p class="post-card__excerpt">A shot list, a shoot day, and a 90-day distribution plan. The math behind why most cafés are leaving money on the table by skipping it.</p>
-      <span class="post-card__read">Read →</span>
+      <h3>How a café <em>photoshoot</em> pays for itself.</h3>
     </a>
-
-    <a href="blog-clothing-brand.html" class="post-card">
-      <div class="post-card__media">
-        <img src="images/blog/banner-clothing-brand.svg" alt="Minimal clothing hangtag with V&amp;W signature" />
-      </div>
-      <div class="post-card__meta">
-        <span>Brand Strategy</span>
-        <span class="sep">/</span>
-        <span>Fashion</span>
-        <span class="sep">/</span>
-        <span>9 min</span>
-      </div>
-      <h4>Beyond the logo: building a <em>clothing brand</em> people actually wear.</h4>
-      <p class="post-card__excerpt">A lookbook isn't a brand. A drop isn't a strategy. What separates a clothing label that lasts from one that disappears after the second collection.</p>
-      <span class="post-card__read">Read →</span>
-    </a>
-
-    <a href="blog-marble-brand.html" class="post-card">
-      <div class="post-card__media">
-        <img src="images/blog/banner-marble-brand.svg" alt="Flowing marble veins with gold cracks" />
-      </div>
-      <div class="post-card__meta">
-        <span>Brand Strategy</span>
-        <span class="sep">/</span>
-        <span>Materials</span>
-        <span class="sep">/</span>
-        <span>8 min</span>
-      </div>
-      <h4>Selling stone as <em>story</em>.</h4>
-      <p class="post-card__excerpt">Marble is a commodity until you make it a name. How to position a stone brand against ten identical competitors quoting the same ₹/sqft on WhatsApp.</p>
-      <span class="post-card__read">Read →</span>
-    </a>
-
   </div>
 </section>
 
@@ -680,16 +741,13 @@
 </footer>
 
 <script>
-  // nav scrolled state
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 30) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   });
-  // year
   var yearEl = document.querySelector('[data-year]');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-  // mobile burger
   var burger = document.getElementById('navBurger');
   var drawer = document.getElementById('mobileDrawer');
   if (burger && drawer) {
@@ -704,13 +762,6 @@
         burger.classList.remove('is-open');
         document.body.classList.remove('menu-open');
       });
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
-        drawer.classList.remove('is-open');
-        burger.classList.remove('is-open');
-        document.body.classList.remove('menu-open');
-      }
     });
   }
 </script>
