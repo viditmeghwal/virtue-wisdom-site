@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dune Udaipur — GTA Night Case Study | Virtue &amp; Wisdom</title>
+  <meta name="description" content="Brand campaign, design system, photography and event direction for Dune Udaipur's GTA-inspired Miami Night — one of the biggest solo cafe parties in the city. By Virtue & Wisdom." />
+  <link rel="stylesheet" href="css/style.css?v=films2" />
+  <link rel="stylesheet" href="css/pages.css?v=films2" />
+  <style>
+    /* Page-scoped accents — keeps cs-* base styles, layers Dune palette on top */
+    :root {
+      --dune-ink:    #0a0a0a;
+      --dune-paper:  #f3ece1;
+      --dune-neon:   #ff7a3d;     /* GTA orange */
+      --dune-magenta:#ec3a8c;     /* Vice city magenta */
+      --dune-amber:  #f7a51a;     /* poster yellow */
+    }
+    .cs-hero__title em,
+    .cs-section em,
+    .cs-brief__body em { color: var(--dune-magenta); font-style: italic; }
+
+    /* Constrain image sizes so spreads stay editorial */
+    .cs-fullbleed {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+    }
+    .cs-fullbleed img {
+      width: 100%;
+      max-height: 620px;
+      object-fit: cover;
+      display: block;
+    }
+    .cs-hero__media img {
+      max-height: 640px;
+      object-fit: cover;
+    }
+    .cs-row2 .cs-tile img {
+      max-height: 560px;
+      object-fit: cover;
+    }
+
+    /* Two-image editorial row with copy column (reused from Nira) */
+    .cs-inuse {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .cs-inuse__copy { padding-right: 12px; }
+    .cs-inuse__title {
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.1;
+      font-weight: 400;
+      margin: 14px 0 22px;
+    }
+    .cs-inuse__title em { font-style: italic; color: var(--dune-magenta); }
+    .cs-inuse__body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #333;
+      margin: 0;
+    }
+    .cs-inuse__body em { font-style: italic; color: var(--dune-magenta); font-weight: 500; }
+    .cs-inuse__images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .cs-inuse__images img {
+      width: 100%;
+      max-height: 540px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 880px) {
+      .cs-inuse {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .cs-inuse__copy { padding-right: 0; }
+    }
+    @media (max-width: 560px) {
+      .cs-inuse__images { grid-template-columns: 1fr; }
+    }
+
+    /* Poster-wall: 4-up grid showing the campaign poster system */
+    .cs-poster-wall {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .cs-poster-wall img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 880px) {
+      .cs-poster-wall { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Vertical photo strip — 3-up for portrait event shots */
+    .cs-strip-3 {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .cs-strip-3 img {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 760px) {
+      .cs-strip-3 { grid-template-columns: 1fr 1fr; }
+      .cs-strip-3 img:nth-child(3) { grid-column: span 2; aspect-ratio: 16/9; }
+    }
+
+    /* Recap video block */
+    .cs-recap {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+    }
+    .cs-recap__head {
+      margin-bottom: 28px;
+    }
+    .cs-recap__head h2 {
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.05;
+      font-weight: 400;
+      margin: 14px 0 18px;
+    }
+    .cs-recap__head h2 em { font-style: italic; color: var(--dune-magenta); }
+    .cs-recap__head p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #333;
+      max-width: 720px;
+      margin: 0;
+    }
+    .cs-recap__videos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .cs-recap__videos video {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+    @media (max-width: 760px) {
+      .cs-recap__videos { grid-template-columns: 1fr; }
+    }
+
+    /* Outcome stat row */
+    .cs-outcome {
+      background: var(--dune-ink);
+      color: var(--dune-paper);
+      padding: 100px 6vw;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    .cs-outcome__label {
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--dune-amber);
+      margin-bottom: 28px;
+      display: inline-block;
+      border-top: 1px solid rgba(247, 165, 26, 0.4);
+      padding-top: 14px;
+    }
+    .cs-outcome__title {
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: clamp(40px, 6vw, 84px);
+      line-height: 1;
+      max-width: 980px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+    }
+    .cs-outcome__title em { font-style: italic; color: var(--dune-amber); }
+    .cs-outcome__body {
+      font-size: 17px;
+      line-height: 1.65;
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(243, 236, 225, 0.78);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="index.html" class="nav__logo">
+      <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue & Wisdom" />
+      <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue & Wisdom" />
+    </a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="visuals.html">Visuals</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="contact.html" class="nav__cta">Start a project</a>
+    <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="cs-hero__copy">
+      <span class="cs-hero__eyebrow">Case Study · Nightlife &amp; Hospitality</span>
+      <h1 class="cs-hero__title">Dune <em>GTA</em>.</h1>
+      <p class="cs-hero__lede">
+        We turned a Sunday cafe night in Udaipur into a citywide cultural moment.
+        A full-stack campaign &mdash; concept, design, photography, decor and direction
+        &mdash; built on one bold question: <em>what if your party felt like a GTA cutscene?</em>
+      </p>
+    </div>
+    <div class="cs-hero__media">
+      <img src="images/case-studies/poster-miami-photo.jpg" alt="Dune Udaipur — The Miami Night campaign poster, GTA-style cast on a vintage car" />
+    </div>
+  </section>
+
+  <!-- META -->
+  <section class="cs-meta">
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Client</span>
+      <span class="cs-meta__value">Dune Udaipur</span>
+    </div>
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Sector</span>
+      <span class="cs-meta__value">Nightlife &amp; Hospitality</span>
+    </div>
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Scope</span>
+      <span class="cs-meta__value">Concept, Pre-buzz Campaign, Poster System, Photography, Decor &amp; Production, Bar Menu, Event Direction</span>
+    </div>
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Outcome</span>
+      <span class="cs-meta__value">One of the <em>biggest solo cafe parties</em> the city has thrown.</span>
+    </div>
+  </section>
+
+  <!-- THE BRIEF -->
+  <section class="cs-section">
+    <div class="cs-brief">
+      <span class="cs-brief__label">The Brief</span>
+      <div>
+        <p class="cs-brief__body">
+          Dune is a cafe in Udaipur with one of the city&rsquo;s loudest nightlife
+          followings &mdash; but one cafe alone doesn&rsquo;t throw the kind of party that
+          becomes a story. The brief was to take a <em>regular party night</em> and
+          engineer it into something the whole city would talk about for months.
+        </p>
+        <p class="cs-brief__detail">
+          No external festival promoter, no big-name headliner from Mumbai. Just a
+          single venue, a homegrown line-up, and a campaign that had to do all the
+          heavy lifting. The challenge wasn&rsquo;t the music or the drinks &mdash; it was
+          getting people to <em>care</em> before the doors even opened.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE CONCEPT — image + story side by side -->
+  <section class="cs-inuse">
+    <div class="cs-inuse__copy">
+      <span class="cs-brief__label">The Concept</span>
+      <h3 class="cs-inuse__title">Make the night feel like a <em>cutscene</em>.</h3>
+      <p class="cs-inuse__body">
+        We landed on a single idea: lean fully into <em>Grand Theft Auto: Vice City.</em>
+        Neon palms, retro typography, Miami sunsets, character-driven posters,
+        cinematic group shots on a vintage car. A whole world built around one party.
+      </p>
+      <p class="cs-inuse__body" style="margin-top: 16px;">
+        Every touchpoint &mdash; teaser, artist drops, bar menu, decor &mdash; pulled from
+        the same visual vocabulary. By the time we opened the doors, the event had
+        already become a <em>story people wanted to be inside.</em>
+      </p>
+    </div>
+    <div class="cs-inuse__images">
+      <img src="images/case-studies/poster-teaser-announce.jpg" alt="GTA Udaipur — Announcing Soon teaser poster" />
+      <img src="images/case-studies/poster-miami-event.jpg" alt="The Miami Night — illustrated GTA-style retro poster" />
+    </div>
+  </section>
+
+  <!-- THE CAMPAIGN — poster wall -->
+  <section class="cs-section">
+    <div class="cs-brief">
+      <span class="cs-brief__label">The Campaign</span>
+      <div>
+        <p class="cs-brief__body">
+          We rolled the campaign out in waves. First a <em>Announcing Soon</em> teaser
+          to plant the visual language. Then individual artist posters &mdash; each DJ
+          shot like a GTA loading screen with their own bio &mdash; dropped one by one
+          across two weeks.
+        </p>
+        <p class="cs-brief__detail">
+          The structure created its own discovery rhythm. People started waiting for
+          the next reveal. Comments on each drop hit numbers Dune had never seen before.
+          By the time the main event poster landed, the audience was already inside the world.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTER WALL — 4-up grid of artist posters -->
+  <section class="cs-poster-wall">
+    <img src="images/case-studies/poster-saranshvi.jpg" alt="Saranshvi DJ poster — GTA-style with bookshelf backdrop" />
+    <img src="images/case-studies/poster-nakshatra.jpg" alt="Nakshatra DJ poster — leaning on a vintage convertible" />
+    <img src="images/case-studies/poster-somdev.jpg" alt="Somdev DJ poster — leather car seat with cash, GTA aesthetic" />
+    <img src="images/case-studies/poster-shivdutt-punit.jpg" alt="Shivdutt &amp; Punit DJ duo poster — on a vintage car" />
+  </section>
+
+  <!-- THE PHOTOSHOOT -->
+  <section class="cs-section">
+    <div class="cs-brief">
+      <span class="cs-brief__label">The Photoshoot</span>
+      <div>
+        <p class="cs-brief__body">
+          The campaign hinged on the cast portraits. We treated the photoshoot like
+          a <em>video game cover</em> &mdash; one location, one classic American
+          convertible, six characters, GTA lighting. Outfits chosen to feel like
+          Vice City NPCs. Every frame designed to drop straight into a poster.
+        </p>
+        <p class="cs-brief__detail">
+          What sets a campaign apart isn&rsquo;t any single image &mdash; it&rsquo;s how the
+          system <em>holds together</em> when stacked side by side. A photoshoot
+          where every artist looks like they belong in the same universe.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO-IMAGE PHOTOSHOOT ROW -->
+  <div class="cs-row2">
+    <div class="cs-tile"><img src="images/case-studies/poster-miami-event.jpg" alt="The Miami Night main event poster — illustrated retro car" /></div>
+    <div class="cs-tile"><img src="images/case-studies/poster-miami-photo.jpg" alt="The Miami Night cast photo poster — six on a vintage car" /></div>
+  </div>
+
+  <!-- THE NIGHT — event photography -->
+  <section class="cs-section">
+    <div class="cs-brief">
+      <span class="cs-brief__label">The Night</span>
+      <div>
+        <p class="cs-brief__body">
+          On the night, the GTA world we&rsquo;d built online walked into the venue.
+          The U4RIA neon triangle motif lit the back wall. Decor pulled from
+          Miami palms, candy-striped flooring, retro bar signage. The bar menu
+          designed in the same campaign language. Every detail a continuation of the poster.
+        </p>
+        <p class="cs-brief__detail">
+          What landed was <em>recognition</em> &mdash; people walked in and felt
+          like they&rsquo;d stepped into the campaign they&rsquo;d been watching
+          unfold for two weeks. That&rsquo;s the moment a party becomes a memory.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT TRIPTYCH — 3 vertical event shots -->
+  <section class="cs-strip-3">
+    <img src="images/case-studies/event-triptych-october.jpg" alt="Dune Udaipur October 4 — three-frame moment from the night" />
+    <img src="images/case-studies/u4ria-neon-triangle.jpg" alt="U4RIA neon triangle motif — the venue centerpiece" />
+    <img src="images/case-studies/somdev-nakshatra-deck.jpg" alt="Somdev &amp; Nakshatra at the deck during the after-party" />
+  </section>
+
+  <!-- TWO-IMAGE CANDID ROW -->
+  <div class="cs-row2">
+    <div class="cs-tile"><img src="images/case-studies/dune-went-crazy.jpg" alt="Dune went crazy — candid moment on the dancefloor" /></div>
+    <div class="cs-tile"><img src="images/case-studies/crowd-blue-light.jpg" alt="Crowd in deep blue light at Dune Udaipur" /></div>
+  </div>
+
+  <!-- BLACK-AND-WHITE EDITORIAL — full-bleed -->
+  <section class="cs-fullbleed">
+    <img src="images/case-studies/bw-october-afters.jpg" alt="The Afters — editorial black-and-white moment from October 4 at Dune Udaipur" />
+  </section>
+
+  <!-- RECAP VIDEOS -->
+  <section class="cs-recap">
+    <div class="cs-recap__head">
+      <span class="cs-brief__label">Recap</span>
+      <h2>The night, in <em>motion</em>.</h2>
+      <p>
+        Photos tell half the story. The other half is what the room actually
+        sounded and felt like &mdash; the moment the bass dropped, the moment
+        the crowd realised they were inside something special.
+      </p>
+    </div>
+    <div class="cs-recap__videos">
+      <video controls playsinline preload="metadata" poster="images/case-studies/recap-short-poster.jpg">
+        <source src="images/case-studies/recap-short.mp4" type="video/mp4" />
+      </video>
+      <video controls playsinline preload="metadata" poster="images/case-studies/recap-long-poster.jpg">
+        <source src="images/case-studies/recap-long.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="cs-pull">
+    <p class="cs-pull__text">
+      "By the time we opened the doors, the event had already become a story
+      people wanted to be inside."
+    </p>
+    <p class="cs-pull__attr">&mdash; Campaign Notes &middot; Dune GTA Night</p>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="cs-outcome">
+    <span class="cs-outcome__label">Outcome</span>
+    <h2 class="cs-outcome__title">
+      One of the <em>biggest solo cafe parties</em> the city has thrown.
+    </h2>
+    <p class="cs-outcome__body">
+      No festival promoter. No imported headliner. Just a single venue, a homegrown
+      line-up, and a campaign that did the heavy lifting. The kind of result that
+      proves a brand world &mdash; built right &mdash; can outwork a marketing budget.
+    </p>
+  </section>
+
+  <!-- NEXT -->
+  <section class="cs-next">
+    <span class="cs-next__label">Next Project</span>
+    <a href="case-nira.html" class="cs-next__link">Nira</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__mark">D</div>
+    <div class="wrap">
+      <h2 class="footer__lede">
+        Like what you see? Let's make <em>yours</em> next.
+      </h2>
+
+      <div class="footer__grid">
+        <div class="footer__col">
+          <div class="footer__logo">
+            <img src="images/brand/vw-mark-white.png" alt="Virtue & Wisdom" />
+          </div>
+          <p class="footer__desc" style="margin-top: 20px;">
+            A brand building company driven by the pursuit of excellence.
+            We create iconic brands.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Capabilities</a></li>
+            <li><a href="visuals.html">Visuals</a></li>
+            <li><a href="about.html">Studio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Behance</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:we@virtuewisdom.com">we@virtuewisdom.com</a></li>
+            <li><a href="tel:+918209921261">+91 8209921261</a></li>
+            <li><a href="tel:+918107799857">+91 8107799857</a></li>
+            <li><a href="https://www.virtuewisdom.com">www.virtuewisdom.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__base">
+        <span>© <span data-year>2026</span> Virtue &amp; Wisdom. All rights reserved.</span>
+        <span>We create iconic brands.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=films2"></script>
+</body>
+</html>
