@@ -1279,6 +1279,31 @@
       tile.style.cursor = 'pointer';
     });
   })();
+
+  // ============================================================
+  // Films marquee wheel forwarder — fixes macOS trackpad scroll trap
+  // The CSS pointer-events: none doesn't always work because <video>
+  // elements can capture native gesture events on Webkit. This JS
+  // intercepts wheel events on the marquee section and forwards them
+  // to window scroll explicitly.
+  // ============================================================
+  (function() {
+    var sections = document.querySelectorAll('.films-teaser, .films');
+    if (!sections.length) return;
+    sections.forEach(function(section) {
+      section.addEventListener('wheel', function(e) {
+        // Only forward if there's vertical intent
+        if (Math.abs(e.deltaY) > 0) {
+          e.preventDefault();
+          window.scrollBy({
+            top: e.deltaY,
+            left: 0,
+            behavior: 'auto'
+          });
+        }
+      }, { passive: false });
+    });
+  })();
   </script>
 
   <!-- WhatsApp Chat Panel (V&W) -->
