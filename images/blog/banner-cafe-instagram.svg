@@ -1,0 +1,20 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- 3x3 instagram-style grid centered -->
+  <g transform="translate(560, 150)">
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="160" height="160" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <rect x="170" y="0" width="160" height="160" fill="#c9b785" opacity="0.85"/>
+    <rect x="340" y="0" width="160" height="160" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <!-- Row 2 -->
+    <rect x="0" y="170" width="160" height="160" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <rect x="170" y="170" width="160" height="160" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <rect x="340" y="170" width="160" height="160" fill="#c9b785" opacity="0.85"/>
+    <!-- Row 3 -->
+    <rect x="0" y="340" width="160" height="160" fill="#c9b785" opacity="0.85"/>
+    <rect x="170" y="340" width="160" height="160" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    <rect x="340" y="340" width="160" height="160" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+  </g>
+  <!-- Caption mark -->
+  <text x="800" y="780" text-anchor="middle" font-family="Times New Roman, Georgia, serif" font-size="24" font-style="italic" fill="#c9b785" opacity="0.6">three out of nine</text>
+</svg>

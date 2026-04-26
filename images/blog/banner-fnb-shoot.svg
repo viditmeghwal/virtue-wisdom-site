@@ -1,0 +1,25 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Aperture iris -->
+  <g transform="translate(800, 450)">
+    <circle r="280" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    <circle r="220" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.55"/>
+    <circle r="160" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
+    <circle r="100" fill="none" stroke="#c9b785" stroke-width="1.5" opacity="0.85"/>
+    <circle r="50" fill="#c9b785" opacity="0.6"/>
+    <!-- Aperture blades — 6 lines at 60deg -->
+    <line x1="-280" y1="0" x2="-50" y2="0" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    <line x1="280" y1="0" x2="50" y2="0" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    <line x1="-140" y1="-242" x2="-25" y2="-43" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    <line x1="140" y1="242" x2="25" y2="43" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    <line x1="-140" y1="242" x2="-25" y2="43" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    <line x1="140" y1="-242" x2="25" y2="-43" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+  </g>
+  <!-- Focal point markers, rule of thirds corners -->
+  <g stroke="#c9b785" stroke-width="0.5" opacity="0.3">
+    <line x1="533" y1="0" x2="533" y2="900"/>
+    <line x1="1067" y1="0" x2="1067" y2="900"/>
+    <line x1="0" y1="300" x2="1600" y2="300"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+  </g>
+</svg>
