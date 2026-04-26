@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Brand Strategy Tool — Build Your Brand in 20 Minutes | Virtue &amp; Wisdom</title>
+
+  <!-- ===== SEO META ===== -->
+  <meta name="description" content="The same nine-step brand strategy framework V&amp;W uses with founders — now as a guided tool. Get to a one-page brand strategy in twenty minutes. ₹2,000 (≈$25) one-time.">
+  <meta name="keywords" content="brand strategy tool, brand strategy framework, online brand builder, brand purpose generator, brand positioning tool India">
+  <meta name="author" content="Virtue & Wisdom">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://virtuewisdom.com/tool.html">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="The Brand Strategy Tool — Virtue &amp; Wisdom">
+  <meta property="og:description" content="The V&amp;W nine-step brand strategy framework as a guided tool. A one-page brand strategy in twenty minutes. ₹2,000 (≈$25) one-time.">
+  <meta property="og:url" content="https://virtuewisdom.com/tool.html">
+  <meta property="og:image" content="https://virtuewisdom.com/images/og/og-tool.jpg">
+  <meta property="og:site_name" content="Virtue & Wisdom">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Brand Strategy Tool — Virtue &amp; Wisdom">
+  <meta name="twitter:description" content="The V&amp;W nine-step brand strategy framework as a guided tool. ₹2,000 (≈$25) one-time.">
+  <meta name="twitter:image" content="https://virtuewisdom.com/images/og/og-tool.jpg">
+
+  <!-- ===== JSON-LD ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "The V&W Brand Strategy Tool",
+    "description": "A guided nine-step brand strategy framework that produces a one-page brand strategy.",
+    "brand": { "@type": "Brand", "name": "Virtue & Wisdom" },
+    "offers": {
+      "@type": "Offer",
+      "price": "2000.00",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "url": "https://virtuewisdom.com/tool.html"
+    }
+  }
+  </script>
+
+  <!-- ===== GOOGLE ANALYTICS 4 ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YE7G0BY9TC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YE7G0BY9TC');
+  </script>
+
+  <link rel="stylesheet" href="css/style.css?v=films3" />
+  <link rel="stylesheet" href="css/pages.css?v=films3" />
+
+  <!--
+    Page-specific styles. Following the BEM naming from pages.css.
+    All tokens (colors, type, spacing) come from style.css :root.
+    Only adding classes prefixed `tool__*` and `tool-*`.
+  -->
+  <style>
+    /* ============================================
+       TOOL LANDING PAGE
+       ============================================ */
+
+    /* HERO */
+    .tool-hero {
+      padding: 200px var(--pad) 100px;
+      max-width: var(--max);
+      margin: 0 auto;
+      position: relative;
+    }
+    .tool-hero__crumbs {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      opacity: 0.7;
+      margin-bottom: 36px;
+    }
+    .tool-hero__crumbs a { color: inherit; }
+    .tool-hero__crumbs a:hover { color: var(--accent); }
+
+    .tool-hero h1 {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(48px, 8.5vw, 128px);
+      line-height: 1;
+      letter-spacing: -0.025em;
+      max-width: 18ch;
+      margin-bottom: 48px;
+    }
+    .tool-hero h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    .tool-hero__lede {
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 720px;
+      margin-bottom: 56px;
+    }
+
+    .tool-hero__actions {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .tool-hero__price-note {
+      font-size: 13px;
+      color: var(--ink-soft);
+      opacity: 0.7;
+      font-family: var(--f-display);
+      font-style: italic;
+    }
+    .tool-hero__price-note em { color: var(--accent); }
+
+    /* CASE STUDY (transformation animation) */
+    .tool-transform {
+      padding: 100px var(--pad);
+      background: var(--paper-warm);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .tool-transform__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .tool-transform__head {
+      margin-bottom: 80px;
+      max-width: 900px;
+    }
+    .tool-transform__head h2 {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 80px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-top: 24px;
+    }
+    .tool-transform__head h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    .tool-transform__canvas {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .tool-transform__side {
+      aspect-ratio: 4 / 5;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tool-transform__label {
+      position: absolute;
+      top: 24px; left: 36px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      opacity: 0.6;
+    }
+
+    /* Messy founder notes */
+    .tool-transform__notes {
+      position: absolute;
+      inset: 0;
+      padding: 70px 36px 36px;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.4;
+      color: rgba(10, 10, 10, 0.45);
+    }
+    .tool-transform__notes .scribble {
+      position: absolute;
+      opacity: 0;
+      animation: tool-scribble 8s infinite;
+    }
+    .tool-transform__notes .scribble.s1 { top: 18%; left: 12%; --rot: -3deg; animation-delay: 0s; }
+    .tool-transform__notes .scribble.s2 { top: 30%; left: 48%; --rot: 2deg; animation-delay: 0.6s; }
+    .tool-transform__notes .scribble.s3 { top: 46%; left: 8%; --rot: -1deg; animation-delay: 1.2s; font-size: 13px; }
+    .tool-transform__notes .scribble.s4 { top: 60%; left: 42%; --rot: 4deg; animation-delay: 1.8s; }
+    .tool-transform__notes .scribble.s5 { top: 76%; left: 14%; --rot: -2deg; animation-delay: 2.4s; font-size: 13px; }
+    .tool-transform__notes .scribble.s6 { top: 86%; left: 52%; --rot: 1deg; animation-delay: 3.0s; font-size: 14px; }
+
+    @keyframes tool-scribble {
+      0%, 45% { opacity: 0; transform: translateY(8px) rotate(var(--rot, 0deg)); }
+      50%, 88% { opacity: 0.85; transform: translateY(0) rotate(var(--rot, 0deg)); }
+      94%, 100% { opacity: 0; }
+    }
+
+    /* Arrow */
+    .tool-transform__arrow {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 28px;
+      color: var(--accent);
+    }
+
+    /* Clean strategy mockup */
+    .tool-transform__clean {
+      position: absolute;
+      inset: 0;
+      padding: 56px 36px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      opacity: 0;
+      animation: tool-clean-in 8s infinite;
+    }
+    @keyframes tool-clean-in {
+      0%, 50% { opacity: 0; }
+      62%, 92% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .tool-transform__clean .row {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+    .tool-transform__clean .row-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      opacity: 0.65;
+      margin-bottom: 6px;
+    }
+    .tool-transform__clean .row-value {
+      font-family: var(--f-display);
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+    .tool-transform__clean .row-value em { font-style: italic; color: var(--accent); }
+    .tool-transform__clean .footer-bit {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--ink-soft);
+      opacity: 0.7;
+    }
+    .tool-transform__clean .footer-bit em { color: var(--accent); }
+
+    .tool-transform__caption {
+      margin-top: 64px;
+      max-width: 720px;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    /* METHODOLOGY (3 acts) */
+    .tool-method {
+      padding: 120px var(--pad);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .tool-method__head {
+      margin-bottom: 80px;
+    }
+    .tool-method__head h2 {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(40px, 6vw, 96px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-top: 24px;
+    }
+    .tool-method__head h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    .tool-method__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 60px;
+    }
+    .tool-method__step {
+      padding-top: 32px;
+      border-top: 1px solid var(--line-strong);
+    }
+    .tool-method__step .num {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .tool-method__step h3 {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .tool-method__step h3 em { font-style: italic; color: var(--accent); }
+    .tool-method__step p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .tool-method__step .step-count {
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      opacity: 0.55;
+    }
+
+    /* WHAT'S INSIDE — 9 steps */
+    .tool-inside {
+      padding: 120px var(--pad);
+      max-width: var(--max);
+      margin: 0 auto;
+      background: var(--paper-warm);
+    }
+    .tool-inside__inner { max-width: 900px; margin: 0 auto; }
+    .tool-inside__head { margin-bottom: 60px; }
+    .tool-inside__head h2 {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(40px, 6vw, 96px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-top: 24px;
+    }
+    .tool-inside__head h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    .tool-inside__list {
+      border-top: 1px solid var(--line-strong);
+    }
+    .tool-inside__item {
+      display: grid;
+      grid-template-columns: 80px 1fr 2fr;
+      gap: 40px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .tool-inside__item .num {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    .tool-inside__item .name {
+      font-family: var(--f-display);
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+    .tool-inside__item .name em { font-style: italic; color: var(--accent); }
+    .tool-inside__item .desc {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .tool-inside__item.is-locked { opacity: 0.45; }
+
+    .tool-inside__lock {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 32px 0;
+      padding: 24px 0;
+      border-top: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line-strong);
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--ink-soft);
+    }
+    .tool-inside__lock svg { flex-shrink: 0; color: var(--accent); }
+    .tool-inside__lock em { color: var(--accent); }
+
+    /* PRICING */
+    .tool-pricing {
+      padding: 120px var(--pad);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .tool-pricing__head {
+      margin-bottom: 80px;
+      max-width: 900px;
+    }
+    .tool-pricing__head h2 {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(40px, 6vw, 96px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-top: 24px;
+    }
+    .tool-pricing__head h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    .tool-pricing__card {
+      max-width: 560px;
+      margin: 0 auto;
+      border: 1px solid var(--line-strong);
+      padding: 64px 56px;
+      background: var(--paper);
+      text-align: left;
+    }
+    .tool-pricing__card .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin: 32px 0 8px;
+    }
+    .tool-pricing__card .price {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: 96px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .tool-pricing__card .price-usd {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--accent);
+    }
+    .tool-pricing__card .price-sub {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--ink-soft);
+      margin-bottom: 40px;
+    }
+    .tool-pricing__card ul {
+      list-style: none;
+      margin: 0 0 40px;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+    .tool-pricing__card ul li {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      line-height: 1.5;
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+    }
+    .tool-pricing__card ul li::before {
+      content: "—";
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .tool-pricing__card .btn {
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .tool-pricing__card .fine-print {
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-soft);
+      opacity: 0.7;
+    }
+
+    /* FAQ */
+    .tool-faq {
+      padding: 120px var(--pad);
+      max-width: var(--max);
+      margin: 0 auto;
+      background: var(--paper-warm);
+    }
+    .tool-faq__inner { max-width: 1100px; margin: 0 auto; }
+    .tool-faq__head { margin-bottom: 60px; }
+    .tool-faq__head h2 {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(40px, 6vw, 96px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-top: 24px;
+    }
+    .tool-faq__head h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+    .tool-faq__list { border-top: 1px solid var(--line-strong); }
+    .tool-faq__item {
+      padding: 36px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 60px;
+      align-items: baseline;
+    }
+    .tool-faq__item .q {
+      font-family: var(--f-display);
+      font-size: clamp(22px, 2vw, 28px);
+      line-height: 1.15;
+      letter-spacing: -0.005em;
+    }
+    .tool-faq__item .q em { font-style: italic; color: var(--accent); }
+    .tool-faq__item .a {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 880px) {
+      .tool-hero { padding-top: 120px; padding-bottom: 60px; }
+      .tool-transform__canvas { grid-template-columns: 1fr; gap: 24px; }
+      .tool-transform__arrow { transform: rotate(90deg); justify-self: center; }
+      .tool-method__grid { grid-template-columns: 1fr; gap: 40px; }
+      .tool-inside__item { grid-template-columns: 40px 1fr; }
+      .tool-inside__item .desc { grid-column: 1 / -1; padding-left: 40px; }
+      .tool-faq__item { grid-template-columns: 1fr; gap: 16px; }
+      .tool-pricing__card { padding: 48px 32px; }
+      .tool-pricing__card .price { font-size: 72px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="index.html" class="nav__logo">
+      <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue &amp; Wisdom — brand strategy tool" />
+      <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom — brand strategy tool" />
+    </a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="visuals.html">Visuals</a></li>
+        <li><a href="blog.html">Journal</a></li>
+        <li><a href="sectors.html">Sectors</a></li>
+        <li><a href="tool.html" class="active">The Tool</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="tool/index.html" class="nav__cta">Begin →</a>
+    <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <p class="tool-hero__crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; The Brand Strategy Tool</p>
+    <h1>A brand <em>strategy</em>, written in <em>twenty</em> minutes.</h1>
+    <p class="tool-hero__lede">
+      The same nine-step framework we use with founders inside the studio — now a guided tool. You'll leave with a one-page strategy that names what your brand stands for, who it's for, and how it should sound. Not a quiz. Not a template. A working document.
+    </p>
+    <div class="tool-hero__actions">
+      <a href="tool/index.html" class="btn btn--ink">Begin the framework <span class="btn__arrow">→</span></a>
+      <a href="#how" class="btn btn--ghost">See how it works <span class="btn__arrow">→</span></a>
+      <span class="tool-hero__price-note">First six steps free · Final report unlocks at <em>₹2,000</em></span>
+    </div>
+  </section>
+
+  <!-- TRANSFORMATION CASE STUDY -->
+  <section class="tool-transform" id="how">
+    <div class="tool-transform__inner">
+      <div class="tool-transform__head">
+        <span class="eyebrow">Before · After</span>
+        <h2>From scattered <em>thinking</em> to a one-page <em>strategy</em>.</h2>
+      </div>
+
+      <div class="tool-transform__canvas">
+
+        <!-- LEFT: messy -->
+        <div class="tool-transform__side">
+          <div class="tool-transform__label">Day 1 · Founder's notes</div>
+          <div class="tool-transform__notes">
+            <div class="scribble s1">we want to feel premium…?</div>
+            <div class="scribble s2">audience is everyone really</div>
+            <div class="scribble s3">competitors: ¯\_(ツ)_/¯</div>
+            <div class="scribble s4">tone: "professional but fun"</div>
+            <div class="scribble s5">tagline ideas — 14 drafts</div>
+            <div class="scribble s6">why are we even doing this</div>
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div class="tool-transform__arrow">→</div>
+
+        <!-- RIGHT: clean -->
+        <div class="tool-transform__side">
+          <div class="tool-transform__label">Day 1 · One-page strategy</div>
+          <div class="tool-transform__clean">
+            <div class="row">
+              <div class="row-label">Purpose</div>
+              <div class="row-value">To make <em>marble buying</em> human, so that families build homes they're proud to host in.</div>
+            </div>
+            <div class="row">
+              <div class="row-label">Audience</div>
+              <div class="row-value">First-home buyers, 28–40, premium tier, design-led.</div>
+            </div>
+            <div class="row">
+              <div class="row-label">Positioning</div>
+              <div class="row-value">The <em>only</em> marble brand that meets you where you live, not at the quarry.</div>
+            </div>
+            <div class="row">
+              <div class="row-label">Personality</div>
+              <div class="row-value">70% Caregiver · 30% Sage</div>
+            </div>
+            <div class="row">
+              <div class="row-label">Tagline</div>
+              <div class="row-value">Stone, <em>at home</em>.</div>
+            </div>
+            <div class="footer-bit">
+              <span>One-page strategy</span>
+              <span><em>V&amp;W</em></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="tool-transform__caption">
+        The illustration above is generated from a real flow inside the tool. Inputs on the left, the synthesised strategy on the right. Twenty minutes between them.
+      </p>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section class="tool-method">
+    <div class="tool-method__head">
+      <span class="eyebrow">Methodology</span>
+      <h2>Three <em>acts</em>. Nine <em>steps</em>. One <em>strategy</em>.</h2>
+    </div>
+
+    <div class="tool-method__grid">
+      <div class="tool-method__step">
+        <div class="num">— 01 / Brand Core</div>
+        <h3>Why you <em>exist</em></h3>
+        <p>Purpose, vision, values. The conviction that holds everything else together. The foundation everything else is built on.</p>
+        <div class="step-count">Three steps</div>
+      </div>
+      <div class="tool-method__step">
+        <div class="num">— 02 / Brand Positioning</div>
+        <h3>Where you <em>stand</em></h3>
+        <p>Audience, market, awareness goals. Where you sit in the customer's mind, and how you'll get there.</p>
+        <div class="step-count">Three steps</div>
+      </div>
+      <div class="tool-method__step">
+        <div class="num">— 03 / Brand Persona</div>
+        <h3>How you <em>sound</em></h3>
+        <p>Personality, voice, tagline. The character that shows up in every line of copy and every image.</p>
+        <div class="step-count">Three steps</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INSIDE -->
+  <section class="tool-inside">
+    <div class="tool-inside__inner">
+      <div class="tool-inside__head">
+        <span class="eyebrow">The framework</span>
+        <h2>The <em>nine steps</em>, in order.</h2>
+      </div>
+
+      <div class="tool-inside__list">
+        <div class="tool-inside__item">
+          <span class="num">— 01</span>
+          <span class="name">Brand <em>purpose</em></span>
+          <span class="desc">Why you do what you do — beyond making money. We use the contribution-and-impact formula.</span>
+        </div>
+        <div class="tool-inside__item">
+          <span class="num">— 02</span>
+          <span class="name">Brand <em>vision</em></span>
+          <span class="desc">Where you're going. Now, five years, ten years, fifteen.</span>
+        </div>
+        <div class="tool-inside__item">
+          <span class="num">— 03</span>
+          <span class="name">Brand <em>values</em></span>
+          <span class="desc">The principles that decide how you behave when nobody's watching.</span>
+        </div>
+        <div class="tool-inside__item">
+          <span class="num">— 04</span>
+          <span class="name">Target <em>audience</em></span>
+          <span class="desc">Goals, problems, impact, desires. The customer sketch you'll build everything around.</span>
+        </div>
+        <div class="tool-inside__item">
+          <span class="num">— 05</span>
+          <span class="name">Market <em>analysis</em></span>
+          <span class="desc">The two extremes you choose to stand for. Where the gap is. Why anyone should care.</span>
+        </div>
+        <div class="tool-inside__item">
+          <span class="num">— 06</span>
+          <span class="name">Awareness <em>goals</em></span>
+          <span class="desc">Which channels are worth the cost — and which to skip. Plotted against impact and difficulty.</span>
+        </div>
+      </div>
+
+      <div class="tool-inside__lock">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span>The next three steps — personality, voice, tagline — and the synthesised one-page strategy unlock with the report. <em>₹2,000 (≈$25)</em>.</span>
+      </div>
+
+      <div class="tool-inside__list">
+        <div class="tool-inside__item is-locked">
+          <span class="num">— 07</span>
+          <span class="name">Brand <em>personality</em></span>
+          <span class="desc">The archetypal mix. 70% one, 30% another. The rules of attitude that follow from it.</span>
+        </div>
+        <div class="tool-inside__item is-locked">
+          <span class="num">— 08</span>
+          <span class="name">Brand <em>voice</em></span>
+          <span class="desc">Where you sit on humour, formality, respect, enthusiasm. The "we are X but not Y" formulas.</span>
+        </div>
+        <div class="tool-inside__item is-locked">
+          <span class="num">— 09</span>
+          <span class="name">Brand <em>tagline</em></span>
+          <span class="desc">Imperative, descriptive, superlative, provocative, specific. We help you find the one that fits.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="tool-pricing" id="pricing">
+    <div class="tool-pricing__head">
+      <span class="eyebrow">What it costs</span>
+      <h2>Less than the fourth <em>coffee</em> you'll order writing it.</h2>
+    </div>
+
+    <div class="tool-pricing__card">
+      <span class="eyebrow">The full report</span>
+      <div class="price-row">
+        <div class="price">₹2,000</div>
+        <div class="price-usd"><em>≈ $25</em></div>
+      </div>
+      <div class="price-sub">One-time. <em>No subscription.</em></div>
+      <ul>
+        <li>The full nine-step framework, completed</li>
+        <li>One-page brand strategy as a PDF</li>
+        <li>An editable dashboard you can return to</li>
+        <li>Synthesised purpose, vision, positioning &amp; tagline</li>
+        <li>Personality &amp; voice profile, locked in</li>
+      </ul>
+      <a href="tool/index.html" class="btn btn--ink">Begin the framework <span class="btn__arrow">→</span></a>
+      <p class="fine-print">First six steps are free. Pay only when you're ready for the report.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="tool-faq">
+    <div class="tool-faq__inner">
+      <div class="tool-faq__head">
+        <span class="eyebrow">Honest answers</span>
+        <h2>Things people <em>ask</em>.</h2>
+      </div>
+
+      <div class="tool-faq__list">
+        <div class="tool-faq__item">
+          <div class="q">Will this <em>replace</em> hiring a brand agency?</div>
+          <div class="a">No — and we wouldn't pretend it does. What it replaces is the six weeks of confusion before you brief one. You'll arrive at any agency, including ours, knowing what you actually want.</div>
+        </div>
+        <div class="tool-faq__item">
+          <div class="q">What if I get <em>stuck</em> halfway?</div>
+          <div class="a">Save and come back. Your inputs persist. The framework is designed to be done in one sitting, but it doesn't have to be.</div>
+        </div>
+        <div class="tool-faq__item">
+          <div class="q">Why <em>₹2,000</em>?</div>
+          <div class="a">Cheap enough that a founder can decide alone. Expensive enough that we keep the tool useful instead of farming emails. The report takes us nothing to generate — the framework took us six years to refine.</div>
+        </div>
+        <div class="tool-faq__item">
+          <div class="q">How does <em>payment</em> work?</div>
+          <div class="a">PhonePe Payment Gateway — secure checkout with UPI (PhonePe, Google Pay, Paytm, BHIM), credit and debit cards, or netbanking. Receipts are emailed automatically.</div>
+        </div>
+        <div class="tool-faq__item">
+          <div class="q">Can my <em>team</em> use it together?</div>
+          <div class="a">Yes. Many founders run the first six steps as a workshop with co-founders or early hires, then unlock the report once everyone's aligned. Disagreement before the paywall is the most useful kind.</div>
+        </div>
+        <div class="tool-faq__item">
+          <div class="q">What if I want to <em>edit</em> later?</div>
+          <div class="a">The dashboard stays editable. Your strategy will move; the document should move with it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__mark">T</div>
+    <div class="wrap">
+      <h2 class="footer__lede">
+        Begin <em>now</em>. Pay only if it's <em>useful</em>.
+      </h2>
+
+      <div class="footer__grid">
+        <div class="footer__col">
+          <div class="footer__logo">
+            <img src="images/brand/vw-mark-white.png" alt="Virtue &amp; Wisdom — brand strategy tool" />
+          </div>
+          <p class="footer__desc" style="margin-top: 20px;">
+            A brand building company driven by the pursuit of excellence. We create iconic brands.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Capabilities</a></li>
+            <li><a href="visuals.html">Visuals</a></li>
+            <li><a href="blog.html">Journal</a></li>
+            <li><a href="sectors.html">Sectors</a></li>
+            <li><a href="tool.html">The Tool</a></li>
+            <li><a href="about.html">Studio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Sectors</h4>
+          <ul>
+            <li><a href="brand-building-for-marble-companies.html">Marble companies</a></li>
+            <li><a href="brand-building-for-resorts-and-hotels.html">Resorts &amp; hotels</a></li>
+            <li><a href="brand-building-for-cafes.html">Cafés &amp; restaurants</a></li>
+            <li><a href="brand-building-for-jewellery-brands.html">Jewellery brands</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Behance</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:we@virtuewisdom.com">we@virtuewisdom.com</a></li>
+            <li><a href="tel:+918209921261">+91 8209921261</a></li>
+            <li><a href="https://maps.google.com/?q=207,Akruti+Complex,Saheliyon+Ki+Bari+Road,Udaipur" target="_blank" rel="noopener">Visit our studio →</a></li>
+            <li><a href="https://www.virtuewisdom.com">www.virtuewisdom.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__base">
+        <span>© <span data-year>2026</span> Virtue &amp; Wisdom. All rights reserved.</span>
+        <span>We create iconic brands.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=films3"></script>
+</body>
+</html>
