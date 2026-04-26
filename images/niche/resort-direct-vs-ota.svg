@@ -1,0 +1,35 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Direct booking versus OTA channel comparison diagram — illustrating how a strong resort brand shifts revenue from third-party booking platforms to higher-margin direct bookings">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+
+  <text x="800" y="120" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="28" fill="#c9b785">Where the booking comes from</text>
+
+  <!-- Left bar: OTA-heavy -->
+  <text x="400" y="220" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="20" fill="#c9b785" opacity="0.7">Without a brand</text>
+  <rect x="280" y="260" width="240" height="380" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.5"/>
+  <!-- OTA fills 75% -->
+  <rect x="282" y="262" width="236" height="280" fill="#c9b785" opacity="0.18"/>
+  <text x="400" y="410" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.7">OTA / 3rd PARTY</text>
+  <text x="400" y="600" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.5">DIRECT</text>
+  <text x="400" y="690" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="13" fill="#c9b785" opacity="0.5">High commission, low margin</text>
+
+  <!-- Right bar: brand-led -->
+  <text x="1200" y="220" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="20" fill="#c9b785">With a brand</text>
+  <rect x="1080" y="260" width="240" height="380" fill="none" stroke="#c9b785" stroke-width="1.2" opacity="0.85"/>
+  <!-- Direct fills 65% -->
+  <rect x="1082" y="262" width="236" height="138" fill="#c9b785" opacity="0.18"/>
+  <rect x="1082" y="402" width="236" height="240" fill="#c9b785" opacity="0.45"/>
+  <text x="1200" y="335" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.6">OTA / 3rd PARTY</text>
+  <text x="1200" y="530" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785">DIRECT</text>
+  <text x="1200" y="690" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="13" fill="#c9b785" opacity="0.7">Low commission, full margin</text>
+
+  <!-- Arrow between -->
+  <path d="M 540 450 L 1060 450" stroke="#c9b785" stroke-width="0.8" opacity="0.6" marker-end="url(#arrowhead)" stroke-dasharray="4 4"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 8 5 L 0 10 z" fill="#c9b785" opacity="0.6"/>
+    </marker>
+  </defs>
+  <text x="800" y="430" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="16" fill="#c9b785" opacity="0.65">brand shift</text>
+
+  <text x="800" y="820" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="15" fill="#c9b785" opacity="0.5">A brand earns the right to be searched directly. That's where margin lives.</text>
+</svg>
