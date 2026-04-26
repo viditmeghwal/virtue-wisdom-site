@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Trust pyramid for jewellery brands — provenance, craft, and story stacked as the layers that build buyer confidence and command premium pricing">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  
+  <text x="800" y="130" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="28" fill="#c9b785">The trust pyramid</text>
+  <text x="800" y="170" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" letter-spacing="3" fill="#c9b785" opacity="0.55">WHY BUYERS PAY YOUR PRICE</text>
+
+  <!-- Pyramid layers -->
+  <g stroke="#c9b785" fill="none">
+    <!-- Bottom: Provenance (widest) -->
+    <polygon points="320,680 1280,680 1180,560 420,560" stroke-width="1" opacity="0.45"/>
+    <!-- Middle: Craft -->
+    <polygon points="420,560 1180,560 1080,440 520,440" stroke-width="1.2" opacity="0.65"/>
+    <!-- Top: Story -->
+    <polygon points="520,440 1080,440 1000,320 600,320" stroke-width="1.5" opacity="0.9"/>
+  </g>
+  <!-- Labels -->
+  <text x="800" y="630" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.7">provenance — where it came from</text>
+  <text x="800" y="510" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.85">craft — how it was made</text>
+  <text x="800" y="385" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785">story — why it matters</text>
+
+  <text x="800" y="780" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="15" fill="#c9b785" opacity="0.55">Each layer earns the right to charge more. Skip any one and the brand becomes a discount fight.</text>
+</svg>
