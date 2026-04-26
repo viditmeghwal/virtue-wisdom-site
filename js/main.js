@@ -269,6 +269,7 @@ filmTiles.forEach(tile => {
     <a href="index.html">Home</a>
     <a href="work.html">Work</a>
     <a href="services.html">Capabilities</a>
+    <a href="sectors.html">Sectors</a>
     <a href="visuals.html">Visuals</a>
     <a href="blog.html">Journal</a>
     <a href="about.html">Studio</a>
