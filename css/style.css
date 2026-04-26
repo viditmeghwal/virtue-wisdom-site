@@ -127,7 +127,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 
 .nav__links {
   display: flex;
-  gap: 36px;
+  gap: 28px;
   list-style: none;
   font-size: 12px;
   font-weight: 500;
@@ -293,8 +293,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 32px;
   padding-top: 60px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
