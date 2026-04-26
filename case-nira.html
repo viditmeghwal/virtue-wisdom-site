@@ -69,6 +69,54 @@
       max-height: 560px;
       object-fit: cover;
     }
+    /* Two-image editorial row with copy column */
+    .cs-inuse {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .cs-inuse__copy { padding-right: 12px; }
+    .cs-inuse__title {
+      font-family: 'Times New Roman', Georgia, serif;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.1;
+      font-weight: 400;
+      margin: 14px 0 22px;
+      color: var(--nira-sage);
+    }
+    .cs-inuse__title em { font-style: italic; color: var(--nira-mauve); }
+    .cs-inuse__body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #333;
+      margin: 0;
+    }
+    .cs-inuse__body em { font-style: italic; color: var(--nira-mauve); font-weight: 500; }
+    .cs-inuse__images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .cs-inuse__images img {
+      width: 100%;
+      max-height: 540px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 880px) {
+      .cs-inuse {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .cs-inuse__copy { padding-right: 0; }
+    }
+    @media (max-width: 560px) {
+      .cs-inuse__images { grid-template-columns: 1fr; }
+    }
     /* Two-image packaging row — cap heights */
     .cs-row2 .cs-tile img {
       max-height: 560px;
@@ -238,9 +286,22 @@
     </div>
   </section>
 
-  <!-- PALETTE IN USE — full-bleed -->
-  <section class="cs-fullbleed">
-    <img src="images/case-studies/palette-grid.jpg" alt="Nira colour system — primary and secondary palette swatches with hex codes" />
+  <!-- IN USE — editorial two-image row with copy column -->
+  <section class="cs-inuse">
+    <div class="cs-inuse__copy">
+      <span class="cs-brief__label">In Use</span>
+      <h3 class="cs-inuse__title">Skincare for skin that already <em>knows</em>.</h3>
+      <p class="cs-inuse__body">
+        Nira works the moment it touches the skin &mdash; and the system around
+        it does the same. Editorial portraiture, plant-led texture, packaging
+        you want to leave on the counter. The whole world feels like the
+        brand promise <em>made physical.</em>
+      </p>
+    </div>
+    <div class="cs-inuse__images">
+      <img src="images/case-studies/lifestyle-triptych.jpg" alt="Nira lifestyle triptych — palm fronds, the dropper bottle, and an editorial portrait" />
+      <img src="images/case-studies/reveal-portrait.jpg" alt="Nira — Reveal your inner confidence; portrait of a woman cleansing her face on sage green background" />
+    </div>
   </section>
 
   <!-- THE PATTERN -->
