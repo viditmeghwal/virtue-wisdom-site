@@ -3,138 +3,429 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How a café photoshoot pays for itself in 90 days — Virtue &amp; Wisdom</title>
-<meta name="description" content="A shot list, a shoot day, and a 90-day distribution plan. The math behind why most cafés are leaving money on the table by skipping a real F&B shoot.">
+<title>How a Café Photoshoot Pays for Itself in 90 Days — Virtue &amp; Wisdom</title>
+<meta name="description" content="A shot list, a shoot day, and a 90-day distribution plan. The math behind why most cafés are leaving money on the table by skipping the photoshoot.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root { --bg:#0a0a0a; --bg-2:#131313; --paper:#f3ece1; --ink-on-paper:#1a1a1a; --ink-dim:#555; --gold:#c9b785; --line-light:rgba(26,26,26,0.12); --line-dark:rgba(243,236,225,0.12); }
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
-body { background:var(--paper); color:var(--ink-on-paper); font-family:'Archivo',sans-serif; font-weight:300; overflow-x:hidden; line-height:1.65; -webkit-font-smoothing:antialiased; }
-a { color:inherit; text-decoration:none; }
-img,svg { display:block; max-width:100%; }
-.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:22px 48px; display:flex; justify-content:space-between; align-items:center; transition:background 0.5s,padding 0.4s,border-color 0.5s; border-bottom:1px solid transparent; }
-.nav.scrolled { background:rgba(243,236,225,0.92); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); padding:16px 48px; border-bottom:1px solid var(--line-light); }
-.nav__logo img { height:22px; width:auto; filter:invert(1); }
-.nav__links { display:flex; gap:32px; list-style:none; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; }
-.nav__links a { color:var(--ink-on-paper); opacity:0.82; padding:6px 0; position:relative; transition:opacity 0.25s; }
-.nav__links a:hover, .nav__links a.active { opacity:1; }
-.nav__links a.active::after { content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--ink-on-paper); }
-.nav__cta { font-size:11px; letter-spacing:0.28em; text-transform:uppercase; padding:11px 22px; border:1px solid var(--ink-on-paper); color:var(--ink-on-paper); background:transparent; transition:all 0.3s; cursor:pointer; }
-.nav__cta:hover { background:var(--ink-on-paper); color:var(--paper); }
-.nav__burger { display:none; width:32px; height:22px; background:transparent; border:0; cursor:pointer; position:relative; margin-left:12px; }
-.nav__burger span { display:block; position:absolute; left:0; width:100%; height:1.5px; background:var(--ink-on-paper); transition:transform 0.4s,opacity 0.3s,top 0.4s,bottom 0.4s; }
-.nav__burger span:nth-child(1) { top:4px; } .nav__burger span:nth-child(2) { top:50%; transform:translateY(-50%); } .nav__burger span:nth-child(3) { bottom:4px; }
-.nav__burger.is-open span:nth-child(1) { top:50%; transform:translateY(-50%) rotate(45deg); } .nav__burger.is-open span:nth-child(2) { opacity:0; } .nav__burger.is-open span:nth-child(3) { bottom:50%; transform:translateY(50%) rotate(-45deg); }
-.mobile-drawer { position:fixed; inset:0; background:var(--paper); z-index:99; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 32px 60px; transform:translateY(-100%); transition:transform 0.5s cubic-bezier(0.7,0,0.3,1); pointer-events:none; }
-.mobile-drawer.is-open { transform:translateY(0); pointer-events:auto; }
-.mobile-drawer ul { list-style:none; text-align:center; width:100%; }
-.mobile-drawer li { padding:18px 0; border-bottom:1px solid var(--line-light); }
-.mobile-drawer li:last-child { border-bottom:0; }
-.mobile-drawer a { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; opacity:0.85; }
-.mobile-drawer a em { font-style:italic; color:#8a7140; }
-@media (max-width:920px) { .nav { padding:18px 20px; } .nav.scrolled { padding:14px 20px; } .nav__links { display:none; } .nav__cta { display:none; } .nav__burger { display:block; } }
-body.menu-open { overflow:hidden; }
-.article-meta { max-width:760px; margin:160px auto 60px; padding:0 6vw; text-align:center; }
-.article-meta__category { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:36px; display:inline-block; padding-top:14px; border-top:1px solid var(--line-light); min-width:120px; }
-.article-meta h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,6vw,72px); font-weight:300; line-height:1.05; letter-spacing:-0.005em; margin-bottom:36px; color:var(--ink-on-paper); }
-.article-meta h1 em { font-style:italic; color:#8a7140; }
-.article-meta__deck { font-size:19px; line-height:1.6; color:#444; max-width:600px; margin:0 auto 40px; font-weight:300; }
-.article-meta__byline { display:inline-flex; gap:16px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:#888; }
-.article-meta__byline .sep { opacity:0.5; }
-.article-hero { width:100%; margin-bottom:100px; aspect-ratio:16/9; overflow:hidden; background:var(--bg); }
-.article-hero img, .article-hero svg { width:100%; height:100%; object-fit:cover; }
-.article-body { max-width:720px; margin:0 auto; padding:0 6vw 100px; font-size:18px; line-height:1.7; color:#1f1f1f; font-weight:400; }
-.article-body p { margin-bottom:28px; }
-.article-body p.lede::first-letter { font-family:'Cormorant Garamond',serif; font-size:4em; font-weight:300; float:left; line-height:0.85; margin:6px 14px 0 0; color:#8a7140; }
-.article-body h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.6vw,42px); font-weight:300; line-height:1.15; margin-top:80px; margin-bottom:32px; letter-spacing:-0.005em; }
-.article-body h2 em { font-style:italic; color:#8a7140; }
-.article-body h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.6vw,30px); font-weight:400; margin-top:60px; margin-bottom:24px; color:#1f1f1f; }
-.article-body strong { font-weight:500; color:var(--ink-on-paper); }
-.article-body em { font-style:italic; }
-.article-body blockquote { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3vw,34px); font-style:italic; line-height:1.3; margin:60px 0; padding:0 0 0 32px; border-left:2px solid #8a7140; color:#1f1f1f; font-weight:400; }
-.article-body ul, .article-body ol { margin:0 0 28px 24px; padding-left:16px; }
-.article-body li { margin-bottom:12px; line-height:1.65; }
-.article-body a { color:#8a7140; text-decoration:underline; text-decoration-color:rgba(138,113,64,0.4); text-underline-offset:4px; }
-.article-figure { margin:60px -10vw; }
-.article-figure__media { aspect-ratio:16/9; overflow:hidden; background:var(--bg); }
-.article-figure__media img, .article-figure__media svg { width:100%; height:100%; object-fit:cover; }
-.article-figure__caption { margin-top:18px; font-size:13px; color:#888; text-align:center; font-style:italic; font-family:'Cormorant Garamond',serif; }
-@media (max-width:880px) { .article-figure { margin:40px -6vw; } }
-.article-pull { margin:80px -10vw; padding:60px 6vw; background:var(--bg); color:var(--paper); text-align:center; }
-.article-pull p { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,4vw,44px); font-style:italic; line-height:1.25; max-width:800px; margin:0 auto; font-weight:300; color:var(--paper); }
-.article-pull p em { color:var(--gold); font-style:normal; }
-@media (max-width:880px) { .article-pull { margin:60px -6vw; } }
-.article-cta { max-width:720px; margin:60px auto 0; padding:60px 6vw; text-align:center; border-top:1px solid var(--line-light); }
-.article-cta__label { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:24px; display:inline-block; }
-.article-cta h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4vw,48px); font-weight:300; line-height:1.1; margin-bottom:32px; }
-.article-cta h2 em { font-style:italic; color:#8a7140; }
-.article-cta__btn { display:inline-block; padding:16px 40px; background:var(--ink-on-paper); color:var(--paper); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; transition:all 0.3s; }
-.article-cta__btn:hover { background:#8a7140; }
-.article-related { max-width:1400px; margin:0 auto; padding:100px 6vw; border-top:1px solid var(--line-light); }
-.article-related__label { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:50px; display:inline-block; }
-.article-related__grid { display:grid; grid-template-columns:repeat(2,1fr); gap:60px; }
-@media (max-width:880px) { .article-related__grid { grid-template-columns:1fr; gap:50px; } }
-.related-card { display:block; transition:opacity 0.3s; }
-.related-card:hover { opacity:0.92; }
-.related-card__media { aspect-ratio:16/10; overflow:hidden; margin-bottom:24px; background:var(--bg); }
-.related-card__media img { width:100%; height:100%; object-fit:cover; transition:transform 0.8s cubic-bezier(0.2,0.8,0.2,1); }
-.related-card:hover .related-card__media img { transform:scale(1.04); }
-.related-card__meta { display:flex; gap:12px; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#888; margin-bottom:16px; }
-.related-card__meta .sep { opacity:0.5; }
-.related-card h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.6vw,30px); font-weight:300; line-height:1.15; }
-.related-card h3 em { font-style:italic; color:#8a7140; }
-.blog-footer { background:var(--bg); color:var(--paper); padding:100px 6vw 60px; }
-.blog-footer__inner { max-width:1400px; margin:0 auto; }
-.blog-footer__lede { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,64px); font-weight:300; line-height:1.05; margin-bottom:60px; max-width:900px; color:var(--paper); }
-.blog-footer__lede em { font-style:italic; color:var(--gold); }
-.blog-footer__grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; padding-top:60px; border-top:1px solid var(--line-dark); }
-.blog-footer__col h5 { font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:rgba(243,236,225,0.6); margin-bottom:24px; font-weight:400; }
-.blog-footer__col ul { list-style:none; }
-.blog-footer__col li { margin-bottom:12px; }
-.blog-footer__col a { font-size:14px; color:var(--paper); opacity:0.82; transition:opacity 0.3s; }
-.blog-footer__col a:hover { opacity:1; }
-.blog-footer__brand { font-family:'Cormorant Garamond',serif; font-size:18px; margin-bottom:16px; color:var(--paper); }
-.blog-footer__desc { font-size:14px; line-height:1.7; color:rgba(243,236,225,0.6); max-width:320px; }
-.blog-footer__base { margin-top:60px; padding-top:30px; border-top:1px solid var(--line-dark); display:flex; justify-content:space-between; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(243,236,225,0.6); }
-@media (max-width:880px) { .blog-footer__grid { grid-template-columns:1fr 1fr; gap:40px; } .blog-footer__base { flex-direction:column; gap:12px; } }
+<link rel="stylesheet" href="css/style.css?v=films2">
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #131313;
+    --paper: #f3ece1;
+    --ink-on-paper: #1a1a1a;
+    --ink-dim: #555;
+    --gold: #c9b785;
+    --line-light: rgba(26, 26, 26, 0.12);
+    --line-dark: rgba(243, 236, 225, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink-on-paper);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  /* nav styles inherited from css/style.css */
+
+  /* ---------- ARTICLE STRUCTURE ---------- */
+  .article-meta {
+    max-width: 760px;
+    margin: 160px auto 60px;
+    padding: 0 6vw;
+    text-align: center;
+  }
+  .article-meta__category {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 36px;
+    display: inline-block;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-light);
+    min-width: 120px;
+  }
+  .article-meta h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    margin-bottom: 36px;
+    color: var(--ink-on-paper);
+  }
+  .article-meta h1 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-meta__deck {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+  .article-meta__byline {
+    display: inline-flex;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .article-meta__byline .sep { opacity: 0.5; }
+
+  /* hero banner (full-bleed) */
+  .article-hero {
+    width: 100%;
+    margin-bottom: 100px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-hero img,
+  .article-hero svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* article body — long-form prose */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 6vw 100px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body p {
+    margin-bottom: 28px;
+  }
+  .article-body p.lede::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4em;
+    font-weight: 300;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 14px 0 0;
+    color: #8a7140;
+  }
+  .article-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-top: 80px;
+    margin-bottom: 32px;
+    letter-spacing: -0.005em;
+  }
+  .article-body h2 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 400;
+    margin-top: 60px;
+    margin-bottom: 24px;
+    color: #1f1f1f;
+  }
+  .article-body strong {
+    font-weight: 500;
+    color: var(--ink-on-paper);
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-style: italic;
+    line-height: 1.3;
+    margin: 60px 0;
+    padding: 0 0 0 32px;
+    border-left: 2px solid #8a7140;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body ul, .article-body ol {
+    margin: 0 0 28px 24px;
+    padding-left: 16px;
+  }
+  .article-body li {
+    margin-bottom: 12px;
+    line-height: 1.65;
+  }
+  .article-body a {
+    color: #8a7140;
+    text-decoration: underline;
+    text-decoration-color: rgba(138, 113, 64, 0.4);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.3s;
+  }
+  .article-body a:hover {
+    text-decoration-color: #8a7140;
+  }
+  .article-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--line-light);
+    margin: 60px 0;
+  }
+
+  /* inline figures — break out of the column for visual breathing */
+  .article-figure {
+    margin: 60px -10vw;
+  }
+  .article-figure__media {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-figure__media img,
+  .article-figure__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article-figure__caption {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  @media (max-width: 880px) {
+    .article-figure { margin: 40px -6vw; }
+  }
+
+  /* pull quote */
+  .article-pull {
+    margin: 80px -10vw;
+    padding: 60px 6vw;
+    background: var(--bg);
+    color: var(--paper);
+    text-align: center;
+  }
+  .article-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-style: italic;
+    line-height: 1.25;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+    color: var(--paper);
+  }
+  .article-pull p em { color: var(--gold); font-style: normal; }
+  @media (max-width: 880px) {
+    .article-pull { margin: 60px -6vw; }
+  }
+
+  /* CTA card at the end */
+  .article-cta {
+    max-width: 720px;
+    margin: 60px auto 0;
+    padding: 60px 6vw;
+    text-align: center;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-cta__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 24px;
+    display: inline-block;
+  }
+  .article-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .article-cta h2 em { font-style: italic; color: #8a7140; }
+  .article-cta__btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--ink-on-paper);
+    color: var(--paper);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .article-cta__btn:hover { background: #8a7140; }
+
+  /* related posts */
+  .article-related {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 6vw;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-related__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 50px;
+    display: inline-block;
+  }
+  .article-related__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+  }
+  @media (max-width: 880px) {
+    .article-related__grid { grid-template-columns: 1fr; gap: 50px; }
+  }
+  .related-card {
+    display: block;
+    transition: opacity 0.3s;
+  }
+  .related-card:hover { opacity: 0.92; }
+  .related-card__media {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: var(--bg);
+  }
+  .related-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .related-card:hover .related-card__media img { transform: scale(1.04); }
+  .related-card__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+  .related-card__meta .sep { opacity: 0.5; }
+  .related-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 300;
+    line-height: 1.15;
+  }
+  .related-card h3 em { font-style: italic; color: #8a7140; }
+
+  /* footer (dark) */
+  .blog-footer {
+    background: var(--bg);
+    color: var(--paper);
+    padding: 100px 6vw 60px;
+  }
+  .blog-footer__inner { max-width: 1400px; margin: 0 auto; }
+  .blog-footer__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 60px;
+    max-width: 900px;
+    color: var(--paper);
+  }
+  .blog-footer__lede em { font-style: italic; color: var(--gold); }
+  .blog-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line-dark);
+  }
+  .blog-footer__col h5 {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .blog-footer__col ul { list-style: none; }
+  .blog-footer__col li { margin-bottom: 12px; }
+  .blog-footer__col a {
+    font-size: 14px;
+    color: var(--paper);
+    opacity: 0.82;
+    transition: opacity 0.3s;
+  }
+  .blog-footer__col a:hover { opacity: 1; }
+  .blog-footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--paper);
+  }
+  .blog-footer__desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(243, 236, 225, 0.6);
+    max-width: 320px;
+  }
+  .blog-footer__base {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line-dark);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+  }
+  @media (max-width: 880px) {
+    .blog-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .blog-footer__base { flex-direction: column; gap: 12px; }
+  }
 </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <a href="index.html" class="nav__logo"><img src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom"></a>
-  <ul class="nav__links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="services.html">Capabilities</a></li>
-    <li><a href="visuals.html">Visuals</a></li>
-    <li><a href="blog.html" class="active">Journal</a></li>
-    <li><a href="about.html">Studio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <a href="contact.html" class="nav__cta">Start a Project</a>
-    <button class="nav__burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
-  </div>
+<!-- NAV -->
+<header class="nav">
+  <a href="index.html" class="nav__logo">
+    <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue &amp; Wisdom" />
+    <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom" />
+  </a>
+  <nav>
+    <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="visuals.html">Visuals</a></li>
+        <li><a href="blog.html">Journal</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="contact.html" class="nav__cta">Start a project</a>
+  <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
-<div class="mobile-drawer" id="mobileDrawer">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="services.html">Capabilities</a></li>
-    <li><a href="visuals.html">Visuals</a></li>
-    <li><a href="blog.html" class="active"><em>Journal</em></a></li>
-    <li><a href="about.html">Studio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</div>
-
+<!-- ARTICLE META -->
 <section class="article-meta">
   <span class="article-meta__category">Photography · F&amp;B</span>
   <h1>How a café <em>photoshoot</em><br>pays for itself.</h1>
@@ -146,148 +437,231 @@ body.menu-open { overflow:hidden; }
   </div>
 </section>
 
+<!-- HERO BANNER -->
 <div class="article-hero">
   <img src="images/blog/banner-fnb-shoot.svg" alt="Camera aperture iris on a rule-of-thirds grid" />
 </div>
 
-
+<!-- ARTICLE BODY -->
 <article class="article-body">
+  <p class="lede">A small café in Udaipur. Forty covers. Open for a year. The owner has been posting photos shot on his phone — natural light, decent compositions, but generic. Followers have crept up to about three thousand. Bookings on quiet weekdays are unpredictable.</p>
 
-<p class="lede">A good F&amp;B photoshoot is one of the strangest line items in a café's annual spend. It costs anywhere from sixty thousand to four lakh rupees. It happens on a single day. And in most cafés, the photos generated that day quietly fund the next ninety days of marketing without anyone realising it. Most owners think of a shoot as an expense. It's actually one of the highest-ROI investments a café can make — and like all high-ROI things, almost everyone underestimates what it can do.</p>
+  <p>He pushes back on a proper food photoshoot for six months. Too expensive. The phone photos are fine. The food sells itself. Eventually he books a half-day shoot. A photographer, a stylist, four hours, twenty-five hero shots covering the menu and the room.</p>
 
-<p>Here's the math, the shot list, and the 90-day plan that most cafés are leaving on the table.</p>
+  <p>Three months later: weekday bookings are up roughly 40%. Followers have crossed 8,000. He gets two PR pickups he didn't ask for. The shoot has paid for itself five times over.</p>
 
-<h2>Why the math works</h2>
+  <p>This isn't a magic story. It's what happens when a café finally has a stock of <em>professional, on-brand visual content</em> to actually run their marketing on. The math is honestly not complicated.</p>
 
-<p>A typical café needs roughly 120 pieces of social content over a quarter — call it 90 feed posts and 30 reels, give or take. Most cafés produce this content in tiny, frantic batches: a few iPhone shots taken between orders, a borrowed reel from a regular, a hurried product photo when the chef has a free hour.</p>
+  <h2>Why phone photos cap your growth</h2>
 
-<p>The cost of those tiny batches is not zero. It's spread across hundreds of moments where someone is taking pictures instead of running the floor. Worst of all, the output is inconsistent — half the feed looks great, half looks like it was shot on a phone in bad light, and the brand never feels coherent.</p>
+  <p>A phone photo of a great-looking dish, taken on a sunny afternoon, can be very good. The problem is consistency. A café needs to post 3–5 times a week. Phone photography is sometimes good, sometimes mediocre — and the mediocre photos are the ones that drag the whole feed down.</p>
 
-<p>A well-run shoot day produces enough material for a full quarter at one consistent quality. <em>Eight hours of focused production replaces ninety days of frantic catch-up.</em> When you cost it like that — total annual spend on shoots versus annual hours saved across the team — the photoshoot stops looking expensive. It starts looking like leverage.</p>
+  <p>Instagram and Google both reward consistency. A feed that's 80% strong shots and 20% weak ones performs worse than a feed that's 60% strong with no weak ones at all. The weak shots train the algorithm to deprioritise you. They train your potential customers to think your café is "fine" instead of memorable.</p>
 
-<h2>The shot list a serious café should produce</h2>
+  <p>A professional shoot does one thing the phone can't: it gives you a stockpile of consistently strong assets that you can dose out over months.</p>
 
-<p>The point of a shoot day is not to take pretty pictures. It's to come out with a content bank that fills every job your social and marketing will need to do for the next quarter. The shot list should be planned with that in mind, not improvised on the day.</p>
+  <h2>The 90-day plan</h2>
 
-<h3>Hero shots — 8 to 12 frames</h3>
+  <p>The way most cafés think about a shoot: it's a one-day thing, you get the photos, you post a few of them, then you're back to phones. That's how the shoot fails to pay back.</p>
 
-<p>One frame per signature item, one per category. These are your homepage, your menu cards, your Google listing, your premium ads. Heavily styled, considered backgrounds, the best version of each dish. These do the heaviest brand work and they need the most attention on shoot day.</p>
+  <p>The way it should work: a 4-hour shoot produces enough content for 90 days of distribution, used strategically.</p>
+  </article>
 
-<h3>Lifestyle shots — 15 to 25 frames</h3>
-
-<p>People in the space. A friend group at a corner table. Hands holding a coffee. A regular reading by the window. These are the photos that turn the café from a product into a place — the ones that make scrollers think "I want to be there" instead of "that looks tasty." Most cafés skip these because they're awkward to set up. They're also the highest-converting shots in the bank.</p>
-
-<h3>Process shots — 10 to 15 frames</h3>
-
-<p>How the food is made. The pour, the plating, the chef's hands at work. These feed your reels for months. A single pull of a four-second pour clip can become eight different reels with different hooks. Process content is also where craft credibility is built — it's the bucket that proves you actually know what you're doing.</p>
-
-<h3>Detail shots — 10 to 15 frames</h3>
-
-<p>The corner of the menu card, the spine of a book on the shelf, the texture of the wood, the worn edge of a chair. Detail shots are what make a brand's photography look <em>directed</em> instead of just shot. They're filler in the best sense — they hold the feed together between hero shots.</p>
-
-<h3>Vertical reel cutaways — 30+ short clips</h3>
-
-<p>Don't leave the day with only stills. Plan deliberate vertical 9:16 video clips: a pour, a stir, a slice, a sprinkle, a steam. Each four to six seconds. These are the building blocks of a quarter's worth of reels. A well-prepared shoot day will produce thirty to fifty of these without breaking a sweat.</p>
-
-</article>
-
+<!-- INLINE FIGURE -->
 <figure class="article-figure">
   <div class="article-figure__media">
-    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
       <rect width="1600" height="900" fill="#0a0a0a"/>
-      <g stroke="#c9b785" stroke-width="0.5" opacity="0.3" fill="none">
-        <line x1="533" y1="200" x2="533" y2="700"/>
-        <line x1="1067" y1="200" x2="1067" y2="700"/>
-        <line x1="200" y1="367" x2="1400" y2="367"/>
-        <line x1="200" y1="533" x2="1400" y2="533"/>
-        <rect x="200" y="200" width="1200" height="500"/>
-      </g>
-      <text x="280" y="250" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">HERO</text>
-      <text x="613" y="250" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">LIFESTYLE</text>
-      <text x="1147" y="250" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">PROCESS</text>
-      <text x="280" y="417" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">DETAIL</text>
-      <text x="613" y="417" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">DETAIL</text>
-      <text x="1147" y="417" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">REELS</text>
-      <text x="280" y="583" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">REELS</text>
-      <text x="613" y="583" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">REELS</text>
-      <text x="1147" y="583" font-family="Archivo,sans-serif" font-size="11" fill="#c9b785" opacity="0.7" letter-spacing="2">REELS</text>
+      <text x="800" y="160" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="26" fill="#c9b785" opacity="0.7">90 days, planned</text>
+      <rect x="400" y="220" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="480" y="220" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="560" y="220" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="640" y="220" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="720" y="220" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="800" y="220" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="880" y="220" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="960" y="220" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1040" y="220" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1120" y="220" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="400" y="270" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="480" y="270" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="560" y="270" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="640" y="270" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="720" y="270" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="800" y="270" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="880" y="270" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="960" y="270" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1040" y="270" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="1120" y="270" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="400" y="320" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="480" y="320" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="560" y="320" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="640" y="320" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="720" y="320" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="800" y="320" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="880" y="320" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="960" y="320" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="1040" y="320" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1120" y="320" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="400" y="370" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="480" y="370" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="560" y="370" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="640" y="370" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="720" y="370" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="800" y="370" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="880" y="370" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="960" y="370" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1040" y="370" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1120" y="370" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="400" y="420" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="480" y="420" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="560" y="420" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="640" y="420" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="720" y="420" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="800" y="420" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="880" y="420" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="960" y="420" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1040" y="420" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="1120" y="420" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="400" y="470" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="480" y="470" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="560" y="470" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="640" y="470" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="720" y="470" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="800" y="470" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="880" y="470" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="960" y="470" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="1040" y="470" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1120" y="470" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="400" y="520" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="480" y="520" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="560" y="520" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="640" y="520" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="720" y="520" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="800" y="520" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="880" y="520" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="960" y="520" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1040" y="520" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1120" y="520" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="400" y="570" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="480" y="570" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="560" y="570" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="640" y="570" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="720" y="570" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="800" y="570" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="880" y="570" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="960" y="570" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1040" y="570" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="1120" y="570" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="400" y="620" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="480" y="620" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="560" y="620" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="640" y="620" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="720" y="620" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="800" y="620" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="880" y="620" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="960" y="620" width="60" height="35" fill="#c9b785" opacity="0.55"/>
+      <rect x="1040" y="620" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <rect x="1120" y="620" width="60" height="35" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
     </svg>
   </div>
-  <figcaption class="article-figure__caption">A shoot day grid. Each cell becomes weeks of content.</figcaption>
+  <figcaption class="article-figure__caption">30 hero posts spread across 90 days. Every third day, something professional drops.</figcaption>
 </figure>
 
 <article class="article-body">
+  <h3>The shot list</h3>
 
-<h2>The 90-day distribution plan</h2>
+  <p>A useful 4-hour café shoot produces roughly 25–30 final hero shots. Not 200. The shot list matters more than the volume:</p>
 
-<p>The shoot is half the work. The other half is having a plan for what to do with the photos so they actually pay back. Without a plan, even great photos sit in a Google Drive folder and quietly never get used.</p>
+  <ul>
+    <li><strong>8–10 hero dishes</strong> — your best-selling items, photographed well enough to sell on their own</li>
+    <li><strong>4–5 drinks</strong> — including the signatures you want associated with you</li>
+    <li><strong>3–4 room shots</strong> — interior atmosphere at different times of day, no people or with people</li>
+    <li><strong>3–4 detail shots</strong> — the hands of the barista, a single coffee bean, the texture of the bread</li>
+    <li><strong>2–3 lifestyle</strong> — a guest at a window seat, mid-conversation, mid-bite — the kind of shot that suggests a Sunday morning</li>
+  </ul>
 
-<p>The simple version that works:</p>
+  <p>This is enough to run a full 90 days of social plus website plus menu plus PR plus delivery platform listings. The trick is treating it as a <em>library</em> instead of a single drop.</p>
 
-<ul>
-  <li><strong>Weeks 1–2:</strong> hero shots first. The strongest frames go up immediately as feed posts and ads. New menu items, signature dishes, the big ones.</li>
-  <li><strong>Weeks 3–6:</strong> lifestyle and detail shots fill the feed. The brand starts feeling like a place, not just a product. Stories pulled from the same shoot run alongside the feed.</li>
-  <li><strong>Weeks 5–10:</strong> reels start dropping. The 30 vertical clips you shot are spread out as one to two reels a week, each cut differently with different hooks.</li>
-  <li><strong>Weeks 8–12:</strong> repurposing. The same photos rerun in carousels, in Google reviews, in newsletter banners, in printed menus. Good photos get used eight to twelve times each before they retire.</li>
-</ul>
+  <h3>The distribution</h3>
 
-<p>Run this for one quarter and the math becomes obvious — a shoot that cost ₹1.5 lakh produced something like 60+ pieces of finished content, none of which had to be shot in the panicked Tuesday-night-before-posting way that most cafés default to.</p>
+  <p>30 hero shots, posted at the rate of one every three days, is 90 days of strong content. Slot one professional shot in among your phone photos, your reels, your behind-the-scenes content. The professional shots become the <em>anchors</em> — the moments that lift the feed.</p>
 
-<h2>The shoot day itself</h2>
+  <p>This is also the volume you need for the auxiliary uses most cafés never get to:</p>
 
-<p>Three things separate a shoot that pays for itself from one that doesn't.</p>
+  <ul>
+    <li>The new menu, with proper photos beside each section</li>
+    <li>Updated Google Business profile, where photos drive almost all of the discovery clicks</li>
+    <li>Zomato / Swiggy / Doordash listings — the platforms reward listings with strong imagery</li>
+    <li>A press kit you can email to the next food blogger who DMs you</li>
+    <li>A website hero, an about page, a careers page</li>
+  </ul>
+  </article>
 
-<h3>A pre-shoot brief that's actually written down</h3>
-
-<p>Not a Pinterest board. A document with the shot list, references, prop list, food list, and time plan. The owner, the photographer, the chef, the stylist all see the same brief before the day starts. Most failed shoots fail at this step — the photographer arrives with their interpretation, the chef with theirs, and four hours disappear into "I thought you wanted…"</p>
-
-<h3>A separate stylist or art director on the day</h3>
-
-<p>Even a competent photographer struggles when they're framing, lighting, and styling all at once. A second person whose job is purely to make the food look right and arrange the props frees the photographer to do their job. On a high-stakes shoot, this single addition is what raises the average shot from "fine" to "frame this."</p>
-
-<h3>Continuous review, not end-of-day review</h3>
-
-<p>The photos go up on a tethered laptop or a tablet. Owner and team look at them as they're being shot, not after the photographer has left. Catch the misframed plate at frame 5, not at frame 50. Most reshoots happen because nobody noticed something was off until that night.</p>
-
-</article>
-
+<!-- PULL QUOTE -->
 <div class="article-pull">
-  <p>A shoot day produces in eight hours what would otherwise be <em>ninety days</em> of frantic catch-up.</p>
+  <p>A photoshoot isn't a one-day thing. It's a <em>90-day asset.</em></p>
 </div>
 
 <article class="article-body">
+  <h2>The math (the part that wakes owners up)</h2>
 
-<h2>The hidden ROI</h2>
+  <p>Let's do this in concrete numbers. A 4-hour café shoot in a tier-2 Indian city costs ₹25,000–60,000 depending on photographer, styling, and post-production. Call it ₹40,000 for the example.</p>
 
-<p>Here's the part most cafés never realise: the highest return on a shoot doesn't show up in the photos themselves. It shows up in the operational discipline that having a content bank produces. When you have ninety days of pre-planned posts in a folder, you stop scrambling. You start running campaigns instead of putting out fires. You launch new items with planned imagery. Your feed becomes recognisable. Your reels become consistent.</p>
+  <p>A 40-cover café averaging ₹600 per cover at 60% occupancy for lunch and dinner does roughly ₹14,400 a day, or ~₹4.3 lakh a month.</p>
 
-<p>The shoot pays for itself in the photos. The brand discipline that comes with it — the planning, the calendar, the consistent quality — is the bonus that compounds for years. That's the part nobody sees on the invoice.</p>
+  <p>A 10% lift in covers — which is well within what an upgraded social presence and Google profile delivers in 90 days — adds ₹43,000 a month. The shoot pays for itself in 28 days at a 10% lift, or 14 days at a 20% lift, which is what most cafés actually see.</p>
 
-</article>
+  <p>That's before you count the secondary effects: PR pickups, food blogger interest, delivery platform conversion, the fact that the café now <em>looks</em> like a place that's thought about itself.</p>
 
+  <h2>The mistake to avoid</h2>
 
+  <p>The common mistake when cafés finally book a shoot: treating it as a "menu shoot" — every dish photographed identically against a white background, like a stock supplier catalogue.</p>
+
+  <p>This produces photos that are technically correct and emotionally dead. They don't lift the feed. They don't carry the brand. They're just dish-on-table.</p>
+
+  <p>What you actually want is photos that <em>have a point of view.</em> A specific lighting direction. A specific styling rhythm — maybe always one element going off-frame. A specific colour palette running through the whole library. The shoot should have a brand on it, not just product.</p>
+
+  <p>This is why the photographer brief matters as much as the photographer. A great photographer with a vague brief produces beautiful but anonymous work. A decent photographer with a sharp brief produces work that <em>only your café could have shot.</em></p>
+  </article>
+
+<!-- CTA -->
 <section class="article-cta">
-  <span class="article-cta__label">— Planning a photoshoot?</span>
-  <h2>We art-direct F&amp;B shoots that<br>fund a <em>full quarter.</em></h2>
+  <span class="article-cta__label">— Need an F&amp;B shoot for your café?</span>
+  <h2>We shoot food and drinks that don't look<br>like everyone <em>else's.</em></h2>
   <a href="contact.html" class="article-cta__btn">Start a Conversation →</a>
 </section>
 
+<!-- RELATED -->
 <section class="article-related">
   <span class="article-related__label">— Continue Reading</span>
   <div class="article-related__grid">
     <a href="blog-cafe-instagram.html" class="related-card">
-      <div class="related-card__media"><img src="images/blog/banner-cafe-instagram.svg" alt="3x3 instagram-style grid with three squares highlighted in gold" /></div>
-      <div class="related-card__meta"><span>Social Media</span><span class="sep">/</span><span>F&amp;B</span></div>
+      <div class="related-card__media">
+        <img src="images/blog/banner-cafe-instagram.svg" alt="3x3 instagram grid" />
+      </div>
+      <div class="related-card__meta">
+        <span>Social Media</span>
+        <span class="sep">/</span>
+        <span>F&amp;B</span>
+      </div>
       <h3>The 3-post rule <em>for cafés.</em></h3>
     </a>
     <a href="blog-cafe-reels.html" class="related-card">
-      <div class="related-card__media"><img src="images/blog/banner-cafe-reels.svg" alt="Four ascending audio bars representing reel beats" /></div>
-      <div class="related-card__meta"><span>Social Media</span><span class="sep">/</span><span>F&amp;B</span></div>
+      <div class="related-card__media">
+        <img src="images/blog/banner-cafe-reels.svg" alt="Four ascending audio bars" />
+      </div>
+      <div class="related-card__meta">
+        <span>Social Media</span>
+        <span class="sep">/</span>
+        <span>F&amp;B</span>
+      </div>
       <h3>Why your café's reels <em>aren't working.</em></h3>
     </a>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="blog-footer">
   <div class="blog-footer__inner">
     <h2 class="blog-footer__lede">Like what you read? Let's make <em>yours</em> next.</h2>
@@ -311,8 +685,10 @@ body.menu-open { overflow:hidden; }
       <div class="blog-footer__col">
         <h5>Elsewhere</h5>
         <ul>
-          <li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Behance</a></li><li><a href="#">YouTube</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">YouTube</a></li>
         </ul>
       </div>
       <div class="blog-footer__col">
@@ -331,30 +707,7 @@ body.menu-open { overflow:hidden; }
   </div>
 </footer>
 
-<script>
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 30) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
-  });
-  var yearEl = document.querySelector('[data-year]');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-  var burger = document.getElementById('navBurger');
-  var drawer = document.getElementById('mobileDrawer');
-  if (burger && drawer) {
-    burger.addEventListener('click', function() {
-      var open = drawer.classList.toggle('is-open');
-      burger.classList.toggle('is-open', open);
-      document.body.classList.toggle('menu-open', open);
-    });
-    drawer.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        drawer.classList.remove('is-open');
-        burger.classList.remove('is-open');
-        document.body.classList.remove('menu-open');
-      });
-    });
-  }
-</script>
+<script src="js/main.js?v=films2"></script>
 
 
 

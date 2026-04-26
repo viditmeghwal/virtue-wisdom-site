@@ -3,141 +3,432 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beyond the logo: building a clothing brand people actually wear — Virtue &amp; Wisdom</title>
-<meta name="description" content="A lookbook isn't a brand. A drop isn't a strategy. The three layers underneath every clothing label that lasts — and how to build them.">
+<title>Beyond the Logo: Building a Clothing Brand People Wear — Virtue &amp; Wisdom</title>
+<meta name="description" content="A lookbook isn't a brand. A drop isn't a strategy. What separates a clothing label that lasts from one that disappears after the second collection.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root { --bg:#0a0a0a; --bg-2:#131313; --paper:#f3ece1; --ink-on-paper:#1a1a1a; --ink-dim:#555; --gold:#c9b785; --line-light:rgba(26,26,26,0.12); --line-dark:rgba(243,236,225,0.12); }
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
-body { background:var(--paper); color:var(--ink-on-paper); font-family:'Archivo',sans-serif; font-weight:300; overflow-x:hidden; line-height:1.65; -webkit-font-smoothing:antialiased; }
-a { color:inherit; text-decoration:none; }
-img,svg { display:block; max-width:100%; }
-.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:22px 48px; display:flex; justify-content:space-between; align-items:center; transition:background 0.5s,padding 0.4s,border-color 0.5s; border-bottom:1px solid transparent; }
-.nav.scrolled { background:rgba(243,236,225,0.92); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); padding:16px 48px; border-bottom:1px solid var(--line-light); }
-.nav__logo img { height:22px; width:auto; filter:invert(1); }
-.nav__links { display:flex; gap:32px; list-style:none; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; }
-.nav__links a { color:var(--ink-on-paper); opacity:0.82; padding:6px 0; position:relative; transition:opacity 0.25s; }
-.nav__links a:hover, .nav__links a.active { opacity:1; }
-.nav__links a.active::after { content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--ink-on-paper); }
-.nav__cta { font-size:11px; letter-spacing:0.28em; text-transform:uppercase; padding:11px 22px; border:1px solid var(--ink-on-paper); color:var(--ink-on-paper); background:transparent; transition:all 0.3s; cursor:pointer; }
-.nav__cta:hover { background:var(--ink-on-paper); color:var(--paper); }
-.nav__burger { display:none; width:32px; height:22px; background:transparent; border:0; cursor:pointer; position:relative; margin-left:12px; }
-.nav__burger span { display:block; position:absolute; left:0; width:100%; height:1.5px; background:var(--ink-on-paper); transition:transform 0.4s,opacity 0.3s,top 0.4s,bottom 0.4s; }
-.nav__burger span:nth-child(1) { top:4px; } .nav__burger span:nth-child(2) { top:50%; transform:translateY(-50%); } .nav__burger span:nth-child(3) { bottom:4px; }
-.nav__burger.is-open span:nth-child(1) { top:50%; transform:translateY(-50%) rotate(45deg); } .nav__burger.is-open span:nth-child(2) { opacity:0; } .nav__burger.is-open span:nth-child(3) { bottom:50%; transform:translateY(50%) rotate(-45deg); }
-.mobile-drawer { position:fixed; inset:0; background:var(--paper); z-index:99; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 32px 60px; transform:translateY(-100%); transition:transform 0.5s cubic-bezier(0.7,0,0.3,1); pointer-events:none; }
-.mobile-drawer.is-open { transform:translateY(0); pointer-events:auto; }
-.mobile-drawer ul { list-style:none; text-align:center; width:100%; }
-.mobile-drawer li { padding:18px 0; border-bottom:1px solid var(--line-light); }
-.mobile-drawer li:last-child { border-bottom:0; }
-.mobile-drawer a { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; opacity:0.85; }
-.mobile-drawer a em { font-style:italic; color:#8a7140; }
-@media (max-width:920px) { .nav { padding:18px 20px; } .nav.scrolled { padding:14px 20px; } .nav__links { display:none; } .nav__cta { display:none; } .nav__burger { display:block; } }
-body.menu-open { overflow:hidden; }
-.article-meta { max-width:760px; margin:160px auto 60px; padding:0 6vw; text-align:center; }
-.article-meta__category { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:36px; display:inline-block; padding-top:14px; border-top:1px solid var(--line-light); min-width:120px; }
-.article-meta h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,6vw,72px); font-weight:300; line-height:1.05; letter-spacing:-0.005em; margin-bottom:36px; color:var(--ink-on-paper); }
-.article-meta h1 em { font-style:italic; color:#8a7140; }
-.article-meta__deck { font-size:19px; line-height:1.6; color:#444; max-width:600px; margin:0 auto 40px; font-weight:300; }
-.article-meta__byline { display:inline-flex; gap:16px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:#888; }
-.article-meta__byline .sep { opacity:0.5; }
-.article-hero { width:100%; margin-bottom:100px; aspect-ratio:16/9; overflow:hidden; background:var(--bg); }
-.article-hero img, .article-hero svg { width:100%; height:100%; object-fit:cover; }
-.article-body { max-width:720px; margin:0 auto; padding:0 6vw 100px; font-size:18px; line-height:1.7; color:#1f1f1f; font-weight:400; }
-.article-body p { margin-bottom:28px; }
-.article-body p.lede::first-letter { font-family:'Cormorant Garamond',serif; font-size:4em; font-weight:300; float:left; line-height:0.85; margin:6px 14px 0 0; color:#8a7140; }
-.article-body h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.6vw,42px); font-weight:300; line-height:1.15; margin-top:80px; margin-bottom:32px; letter-spacing:-0.005em; }
-.article-body h2 em { font-style:italic; color:#8a7140; }
-.article-body h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.6vw,30px); font-weight:400; margin-top:60px; margin-bottom:24px; color:#1f1f1f; }
-.article-body strong { font-weight:500; color:var(--ink-on-paper); }
-.article-body em { font-style:italic; }
-.article-body blockquote { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3vw,34px); font-style:italic; line-height:1.3; margin:60px 0; padding:0 0 0 32px; border-left:2px solid #8a7140; color:#1f1f1f; font-weight:400; }
-.article-body ul, .article-body ol { margin:0 0 28px 24px; padding-left:16px; }
-.article-body li { margin-bottom:12px; line-height:1.65; }
-.article-body a { color:#8a7140; text-decoration:underline; text-decoration-color:rgba(138,113,64,0.4); text-underline-offset:4px; }
-.article-figure { margin:60px -10vw; }
-.article-figure__media { aspect-ratio:16/9; overflow:hidden; background:var(--bg); }
-.article-figure__media img, .article-figure__media svg { width:100%; height:100%; object-fit:cover; }
-.article-figure__caption { margin-top:18px; font-size:13px; color:#888; text-align:center; font-style:italic; font-family:'Cormorant Garamond',serif; }
-@media (max-width:880px) { .article-figure { margin:40px -6vw; } }
-.article-pull { margin:80px -10vw; padding:60px 6vw; background:var(--bg); color:var(--paper); text-align:center; }
-.article-pull p { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,4vw,44px); font-style:italic; line-height:1.25; max-width:800px; margin:0 auto; font-weight:300; color:var(--paper); }
-.article-pull p em { color:var(--gold); font-style:normal; }
-@media (max-width:880px) { .article-pull { margin:60px -6vw; } }
-.article-cta { max-width:720px; margin:60px auto 0; padding:60px 6vw; text-align:center; border-top:1px solid var(--line-light); }
-.article-cta__label { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:24px; display:inline-block; }
-.article-cta h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4vw,48px); font-weight:300; line-height:1.1; margin-bottom:32px; }
-.article-cta h2 em { font-style:italic; color:#8a7140; }
-.article-cta__btn { display:inline-block; padding:16px 40px; background:var(--ink-on-paper); color:var(--paper); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; transition:all 0.3s; }
-.article-cta__btn:hover { background:#8a7140; }
-.article-related { max-width:1400px; margin:0 auto; padding:100px 6vw; border-top:1px solid var(--line-light); }
-.article-related__label { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:50px; display:inline-block; }
-.article-related__grid { display:grid; grid-template-columns:repeat(2,1fr); gap:60px; }
-@media (max-width:880px) { .article-related__grid { grid-template-columns:1fr; gap:50px; } }
-.related-card { display:block; transition:opacity 0.3s; }
-.related-card:hover { opacity:0.92; }
-.related-card__media { aspect-ratio:16/10; overflow:hidden; margin-bottom:24px; background:var(--bg); }
-.related-card__media img { width:100%; height:100%; object-fit:cover; transition:transform 0.8s cubic-bezier(0.2,0.8,0.2,1); }
-.related-card:hover .related-card__media img { transform:scale(1.04); }
-.related-card__meta { display:flex; gap:12px; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#888; margin-bottom:16px; }
-.related-card__meta .sep { opacity:0.5; }
-.related-card h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.6vw,30px); font-weight:300; line-height:1.15; }
-.related-card h3 em { font-style:italic; color:#8a7140; }
-.blog-footer { background:var(--bg); color:var(--paper); padding:100px 6vw 60px; }
-.blog-footer__inner { max-width:1400px; margin:0 auto; }
-.blog-footer__lede { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,64px); font-weight:300; line-height:1.05; margin-bottom:60px; max-width:900px; color:var(--paper); }
-.blog-footer__lede em { font-style:italic; color:var(--gold); }
-.blog-footer__grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; padding-top:60px; border-top:1px solid var(--line-dark); }
-.blog-footer__col h5 { font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:rgba(243,236,225,0.6); margin-bottom:24px; font-weight:400; }
-.blog-footer__col ul { list-style:none; }
-.blog-footer__col li { margin-bottom:12px; }
-.blog-footer__col a { font-size:14px; color:var(--paper); opacity:0.82; transition:opacity 0.3s; }
-.blog-footer__col a:hover { opacity:1; }
-.blog-footer__brand { font-family:'Cormorant Garamond',serif; font-size:18px; margin-bottom:16px; color:var(--paper); }
-.blog-footer__desc { font-size:14px; line-height:1.7; color:rgba(243,236,225,0.6); max-width:320px; }
-.blog-footer__base { margin-top:60px; padding-top:30px; border-top:1px solid var(--line-dark); display:flex; justify-content:space-between; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(243,236,225,0.6); }
-@media (max-width:880px) { .blog-footer__grid { grid-template-columns:1fr 1fr; gap:40px; } .blog-footer__base { flex-direction:column; gap:12px; } }
+<link rel="stylesheet" href="css/style.css?v=films2">
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #131313;
+    --paper: #f3ece1;
+    --ink-on-paper: #1a1a1a;
+    --ink-dim: #555;
+    --gold: #c9b785;
+    --line-light: rgba(26, 26, 26, 0.12);
+    --line-dark: rgba(243, 236, 225, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink-on-paper);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  /* nav styles inherited from css/style.css */
+
+  /* ---------- ARTICLE STRUCTURE ---------- */
+  .article-meta {
+    max-width: 760px;
+    margin: 160px auto 60px;
+    padding: 0 6vw;
+    text-align: center;
+  }
+  .article-meta__category {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 36px;
+    display: inline-block;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-light);
+    min-width: 120px;
+  }
+  .article-meta h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    margin-bottom: 36px;
+    color: var(--ink-on-paper);
+  }
+  .article-meta h1 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-meta__deck {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+  .article-meta__byline {
+    display: inline-flex;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .article-meta__byline .sep { opacity: 0.5; }
+
+  /* hero banner (full-bleed) */
+  .article-hero {
+    width: 100%;
+    margin-bottom: 100px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-hero img,
+  .article-hero svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* article body — long-form prose */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 6vw 100px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body p {
+    margin-bottom: 28px;
+  }
+  .article-body p.lede::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4em;
+    font-weight: 300;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 14px 0 0;
+    color: #8a7140;
+  }
+  .article-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-top: 80px;
+    margin-bottom: 32px;
+    letter-spacing: -0.005em;
+  }
+  .article-body h2 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 400;
+    margin-top: 60px;
+    margin-bottom: 24px;
+    color: #1f1f1f;
+  }
+  .article-body strong {
+    font-weight: 500;
+    color: var(--ink-on-paper);
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-style: italic;
+    line-height: 1.3;
+    margin: 60px 0;
+    padding: 0 0 0 32px;
+    border-left: 2px solid #8a7140;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body ul, .article-body ol {
+    margin: 0 0 28px 24px;
+    padding-left: 16px;
+  }
+  .article-body li {
+    margin-bottom: 12px;
+    line-height: 1.65;
+  }
+  .article-body a {
+    color: #8a7140;
+    text-decoration: underline;
+    text-decoration-color: rgba(138, 113, 64, 0.4);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.3s;
+  }
+  .article-body a:hover {
+    text-decoration-color: #8a7140;
+  }
+  .article-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--line-light);
+    margin: 60px 0;
+  }
+
+  /* inline figures — break out of the column for visual breathing */
+  .article-figure {
+    margin: 60px -10vw;
+  }
+  .article-figure__media {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-figure__media img,
+  .article-figure__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article-figure__caption {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  @media (max-width: 880px) {
+    .article-figure { margin: 40px -6vw; }
+  }
+
+  /* pull quote */
+  .article-pull {
+    margin: 80px -10vw;
+    padding: 60px 6vw;
+    background: var(--bg);
+    color: var(--paper);
+    text-align: center;
+  }
+  .article-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-style: italic;
+    line-height: 1.25;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+    color: var(--paper);
+  }
+  .article-pull p em { color: var(--gold); font-style: normal; }
+  @media (max-width: 880px) {
+    .article-pull { margin: 60px -6vw; }
+  }
+
+  /* CTA card at the end */
+  .article-cta {
+    max-width: 720px;
+    margin: 60px auto 0;
+    padding: 60px 6vw;
+    text-align: center;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-cta__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 24px;
+    display: inline-block;
+  }
+  .article-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .article-cta h2 em { font-style: italic; color: #8a7140; }
+  .article-cta__btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--ink-on-paper);
+    color: var(--paper);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .article-cta__btn:hover { background: #8a7140; }
+
+  /* related posts */
+  .article-related {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 6vw;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-related__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 50px;
+    display: inline-block;
+  }
+  .article-related__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+  }
+  @media (max-width: 880px) {
+    .article-related__grid { grid-template-columns: 1fr; gap: 50px; }
+  }
+  .related-card {
+    display: block;
+    transition: opacity 0.3s;
+  }
+  .related-card:hover { opacity: 0.92; }
+  .related-card__media {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: var(--bg);
+  }
+  .related-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .related-card:hover .related-card__media img { transform: scale(1.04); }
+  .related-card__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+  .related-card__meta .sep { opacity: 0.5; }
+  .related-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 300;
+    line-height: 1.15;
+  }
+  .related-card h3 em { font-style: italic; color: #8a7140; }
+
+  /* footer (dark) */
+  .blog-footer {
+    background: var(--bg);
+    color: var(--paper);
+    padding: 100px 6vw 60px;
+  }
+  .blog-footer__inner { max-width: 1400px; margin: 0 auto; }
+  .blog-footer__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 60px;
+    max-width: 900px;
+    color: var(--paper);
+  }
+  .blog-footer__lede em { font-style: italic; color: var(--gold); }
+  .blog-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line-dark);
+  }
+  .blog-footer__col h5 {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .blog-footer__col ul { list-style: none; }
+  .blog-footer__col li { margin-bottom: 12px; }
+  .blog-footer__col a {
+    font-size: 14px;
+    color: var(--paper);
+    opacity: 0.82;
+    transition: opacity 0.3s;
+  }
+  .blog-footer__col a:hover { opacity: 1; }
+  .blog-footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--paper);
+  }
+  .blog-footer__desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(243, 236, 225, 0.6);
+    max-width: 320px;
+  }
+  .blog-footer__base {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line-dark);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+  }
+  @media (max-width: 880px) {
+    .blog-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .blog-footer__base { flex-direction: column; gap: 12px; }
+  }
 </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <a href="index.html" class="nav__logo"><img src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom"></a>
-  <ul class="nav__links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="services.html">Capabilities</a></li>
-    <li><a href="visuals.html">Visuals</a></li>
-    <li><a href="blog.html" class="active">Journal</a></li>
-    <li><a href="about.html">Studio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <a href="contact.html" class="nav__cta">Start a Project</a>
-    <button class="nav__burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
-  </div>
+<!-- NAV -->
+<header class="nav">
+  <a href="index.html" class="nav__logo">
+    <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue &amp; Wisdom" />
+    <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom" />
+  </a>
+  <nav>
+    <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="visuals.html">Visuals</a></li>
+        <li><a href="blog.html">Journal</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="contact.html" class="nav__cta">Start a project</a>
+  <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
-<div class="mobile-drawer" id="mobileDrawer">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="services.html">Capabilities</a></li>
-    <li><a href="visuals.html">Visuals</a></li>
-    <li><a href="blog.html" class="active"><em>Journal</em></a></li>
-    <li><a href="about.html">Studio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</div>
-
+<!-- ARTICLE META -->
 <section class="article-meta">
   <span class="article-meta__category">Brand Strategy · Fashion</span>
-  <h1>Beyond the logo: building a<br><em>clothing brand</em> people actually wear.</h1>
+  <h1>Beyond the logo: building a<br><em>clothing brand</em> people wear.</h1>
   <p class="article-meta__deck">A lookbook isn't a brand. A drop isn't a strategy. What separates a clothing label that lasts from one that disappears after the second collection.</p>
   <div class="article-meta__byline">
     <span>By Virtue &amp; Wisdom</span>
@@ -146,139 +437,166 @@ body.menu-open { overflow:hidden; }
   </div>
 </section>
 
+<!-- HERO BANNER -->
 <div class="article-hero">
-  <img src="images/blog/banner-clothing-brand.svg" alt="Minimal hangtag silhouette with V&amp;W signature in gold" />
+  <img src="images/blog/banner-clothing-brand.svg" alt="Minimal clothing hangtag with V&amp;W signature" />
 </div>
 
-
+<!-- ARTICLE BODY -->
 <article class="article-body">
+  <p class="lede">A founder spends six months developing a first collection. Twelve pieces. Good fabric, decent fits, a clean wordmark designed by a friend. The Instagram lookbook drops on a Tuesday. The first 200 followers buy maybe a fourth of the inventory in the first week. The next collection comes four months later. Sales are flatter. By collection three, the founder is asking why nobody seems to care.</p>
 
-<p class="lede">A clothing label gets its first three thousand followers, drops a collection, sells some pieces, and then quietly disappears within eighteen months. This story plays out so often it's basically a genre. The clothes were good. The photography was sharp. The launch reel hit. The owner did everything they were supposed to do. And the brand still didn't last. Why?</p>
+  <p>This is the most common shape of a clothing brand failure. Not bad product. Not bad design. Not even bad marketing in the obvious sense. The brand fails because it was never actually a <em>brand</em> — it was a series of drops with a logo on them.</p>
 
-<p>Because a logo, a lookbook, and a drop are not a brand. They're a wrapper. The brands that turn a single drop into a label people actually wear — a label customers buy from twice, three times, six times — are doing something underneath the wrapper that most new clothing brands never do. Here's what that something is, and how to start building it.</p>
+  <p>Here is the working hypothesis behind almost every clothing label that lasts: <strong>the clothes are the artefact, but the brand is the world they come from.</strong> The world has to exist independently of any single drop. If it doesn't, the brand has no momentum between collections, and momentum is the only thing that compounds in fashion.</p>
 
-<h2>The trap most new labels fall into</h2>
+  <h2>What a brand actually is in fashion</h2>
 
-<p>The standard playbook for launching a clothing brand looks something like: pick a category (oversized tees, streetwear basics, slow fashion, whatever), build a logo, shoot a lookbook, drop the first collection, run ads, hope it lands. If it does, drop another collection. If it doesn't, drop a different kind of collection.</p>
+  <p>For a piece of clothing, "brand" is not the logo on the tag. It's a question the buyer is answering when they pull the piece off the hanger: <em>who am I when I wear this?</em></p>
 
-<p>This is a product strategy, not a brand strategy. It treats the brand as a delivery mechanism for clothes, when actually the brand is the reason a customer prefers <em>your</em> oversized tee over the eight other functionally identical ones in their algorithm. Without a brand reason, you're back to competing on price and ad spend — a race the bigger players are always going to win.</p>
+  <p>The answer is built from a thousand small touchpoints — the campaign photography, the casting, the music in the videos, the language on the website, the people who get sent the pieces, the shows the brand attends, the fonts on the packaging, the shoot locations, the captions, the playlists, the writing, the artists the brand collaborates with, the regions of the city the brand is associated with.</p>
 
-<h2>What a clothing brand actually is</h2>
+  <p>A new clothing label that focuses 90% of its effort on the product and 10% on this surrounding world is going to feel <em>generic</em> no matter how good the cuts are. A label that flips that ratio — even with simpler product — is going to feel <em>specific</em>, and specific is what sells in a market where every category is over-supplied.</p>
 
-<p>A clothing brand is a <em>worldview</em> made wearable. Not a logo. Not an aesthetic. A specific take on how to dress, what to value, who to be. The clothes are the artifact. The worldview is the thing customers actually buy into.</p>
+  <h2>The hangtag question</h2>
 
-<p>Think of any clothing label that lasts. Cottweiler, Yeezy, Aimé Leon Dore, Jacquemus — different categories, different price points, but all of them have an answer to a question most new labels never even ask: <em>"What does someone who wears us believe about how to dress?"</em></p>
+  <p>Here's a thought experiment. Imagine the next person who buys one of your pieces. They cut the hangtag off. They Google the brand name. They find your Instagram, your website, maybe a couple of articles. They spend roughly four minutes there. Then they decide whether to follow, whether to mention the brand to a friend, whether to come back for the next collection.</p>
 
-<p>The answer doesn't have to be lofty. Aimé Leon Dore's worldview is roughly: "preppy New York heritage, but warm, casual, and lived-in." That's it. Five descriptors and the entire brand snaps into focus — the clothes, the photography, the music, the cafe in the flagship store. Without those five descriptors, a label is just clothes that exist.</p>
+  <p>Those four minutes are the brand. Not the product. The product is already in their hand. The four minutes decide whether they become a one-time customer or a follower for the next two years.</p>
 
-<h2>Three layers most new brands skip</h2>
+  <p>Most clothing labels are doing essentially nothing in those four minutes. The Instagram is mostly product flatlays. The website is mostly product. There's no point of view, no editorial, no <em>world</em> the customer can step into.</p>
+  </article>
 
-<h3>Layer 1 — the worldview</h3>
-
-<p>Before sketching the first piece, write down: who is the person wearing this, and what do they believe? Not their demographics. Their values. Are they performing or being? Are they dressing for work or against it? Do they want to stand out or to disappear into a tribe? Are they nostalgic for a time they didn't live in, or in love with the present?</p>
-
-<p>This sounds like an academic exercise. It's not — it's the foundation that decides everything else. The fabric weight. The cut. The way the lookbook is shot. The kind of model. The captions. The music in the launch reel. Without it, every decision is made in isolation and the brand never coheres.</p>
-
-<h3>Layer 2 — the visual world</h3>
-
-<p>Most labels build their visuals the wrong way around — they start with the clothes and try to figure out what photography matches. Reverse it. The visual world should be born from the worldview, then the photography rules, then the lookbooks. The clothes show up inside the visual world that's already been defined.</p>
-
-<p>The visual world isn't a moodboard. It's a set of rules: the kind of light you shoot in, the spaces you photograph against, the framing distance, the kind of skin and gesture you cast for, the colour treatment. When the rules are explicit, every drop looks like it belongs to the same brand. When they're not, every drop looks like it could be a different label.</p>
-
-<h3>Layer 3 — the verbal world</h3>
-
-<p>This is the layer that almost no new clothing brand bothers with — and it's a huge part of why they stay forgettable. <em>What does the brand sound like in writing?</em> The Instagram captions, the product descriptions, the thank-you cards in the package, the stories told on the launch day. If the voice is generic — clean, smart, a bit playful, like everyone else's — the brand has no character.</p>
-
-<p>The verbal world is where the brand stops being a logo and starts being a person. Pick a voice with edges. Be specific about what you'd never say. The labels with the most loyal customers are usually the ones whose Instagram captions sound like a particular human is writing them — opinionated, a little weird, recognisable.</p>
-
-</article>
-
+<!-- INLINE FIGURE -->
 <figure class="article-figure">
   <div class="article-figure__media">
-    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
       <rect width="1600" height="900" fill="#0a0a0a"/>
-      <g transform="translate(800,200)">
-        <rect x="-180" y="0" width="360" height="80" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.4"/>
-        <text x="0" y="50" text-anchor="middle" font-family="Times New Roman,serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.85">the clothes</text>
+      <g transform="translate(200, 280)">
+        <line x1="80" y1="0" x2="80" y2="280" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <rect x="0" y="100" width="160" height="240" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.5"/>
+        <text x="80" y="380" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="#c9b785" opacity="0.6">drop 1</text>
       </g>
-      <g transform="translate(800,330)">
-        <rect x="-220" y="0" width="440" height="80" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.55"/>
-        <text x="0" y="50" text-anchor="middle" font-family="Times New Roman,serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.85">the visual world</text>
+      <g transform="translate(420, 280)">
+        <line x1="80" y1="0" x2="80" y2="280" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <rect x="0" y="100" width="160" height="240" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.5"/>
+        <text x="80" y="380" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="#c9b785" opacity="0.6">drop 2</text>
       </g>
-      <g transform="translate(800,460)">
-        <rect x="-220" y="0" width="440" height="80" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
-        <text x="0" y="50" text-anchor="middle" font-family="Times New Roman,serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.85">the verbal world</text>
+      <g transform="translate(640, 280)">
+        <line x1="80" y1="0" x2="80" y2="280" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <rect x="0" y="100" width="160" height="240" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.5"/>
+        <text x="80" y="380" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="#c9b785" opacity="0.6">drop 3</text>
       </g>
-      <g transform="translate(800,590)">
-        <rect x="-260" y="0" width="520" height="80" fill="#c9b785" opacity="0.85"/>
-        <text x="0" y="50" text-anchor="middle" font-family="Times New Roman,serif" font-style="italic" font-size="22" fill="#0a0a0a">the worldview</text>
+      <g transform="translate(900, 230)">
+        <line x1="80" y1="0" x2="80" y2="50" stroke="#c9b785" stroke-width="0.5" opacity="0.7"/>
+        <rect x="0" y="50" width="160" height="380" fill="#c9b785" opacity="0.6"/>
+        <text x="80" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="20" fill="#0a0a0a">the story</text>
+        <text x="80" y="430" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="#c9b785" opacity="0.7">runs through all of it</text>
+      </g>
+      <g transform="translate(1180, 280)">
+        <line x1="80" y1="0" x2="80" y2="280" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <rect x="0" y="100" width="160" height="240" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.5"/>
+        <text x="80" y="380" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="#c9b785" opacity="0.6">drop 4</text>
       </g>
     </svg>
   </div>
-  <figcaption class="article-figure__caption">The clothes are the artifact. The worldview underneath is the brand.</figcaption>
+  <figcaption class="article-figure__caption">Drops come and go. The story is the spine that runs through all of them.</figcaption>
 </figure>
 
 <article class="article-body">
+  <h2>The pillars of a clothing brand world</h2>
 
-<h2>What a drop strategy actually looks like</h2>
+  <p>The work that has to happen in parallel to the actual product. None of these pillars are optional for a brand that wants to last beyond two or three drops.</p>
 
-<p>Once the three layers are in place, drop strategy becomes obvious. Each drop is a chapter inside the same world — a different angle on the same worldview, not a different brand each time. The customer who bought drop one wants drop two because it's the next part of a story they're already inside.</p>
+  <h3>1. A point of view, written down</h3>
 
-<p>The labels that fail at this treat each drop as a fresh start: new aesthetic, new vibe, new positioning. From the customer's perspective, this isn't variety — it's confusion. They liked drop one because it was about <em>X</em>. Drop two is suddenly about <em>Y</em>. They don't know who you are anymore. They unfollow.</p>
+  <p>Not a tagline. A point of view. What does the brand believe about getting dressed? About the city it's from? About the kind of person who wears it? About what's wrong with most clothing right now?</p>
 
-<p>The discipline is to make every drop recognisably the same brand even when the products themselves are different. New silhouette, same world. New season, same voice. New collection, same belief.</p>
+  <p>This document is internal — it doesn't need to be on the website verbatim. But everything externally facing should be downstream of it. If a campaign caption could have been written by any other label in the same category, the point of view isn't doing its work.</p>
 
-</article>
+  <h3>2. A cast</h3>
 
+  <p>The people seen in the brand's campaigns and content over time. A great clothing brand has a recognisable cast — three or four faces that recur, a kind of person the brand keeps coming back to. The cast isn't about being beautiful. It's about the brand's point of view being legible in faces.</p>
+
+  <p>This is why hiring random models for the next campaign is a mistake. The cast should be developed deliberately. They become part of the brand's recognisability.</p>
+
+  <h3>3. A visual signature</h3>
+
+  <p>Not the logo. The lighting. The lens choice. The styling rhythm. The colour grading. The locations. The way every shoot has an off-element — a pole, a wall, a piece of furniture — that recurs across campaigns.</p>
+
+  <p>A photographer with the right brief, used consistently, builds this. A different photographer every season destroys it. The visual signature is one of the only ways a young brand can punch above its weight.</p>
+
+  <h3>4. The other things on the page</h3>
+
+  <p>Books. Films. Songs. Artists. Cities. Dishes. The brand should be telling the customer what it likes — what it's adjacent to. This is what gives the four-minute Google session something to read. A brand without recommendations is a brand without taste, and in fashion, taste is the moat.</p>
+  </article>
+
+<!-- PULL QUOTE -->
 <div class="article-pull">
-  <p>A clothing brand is a <em>worldview</em> made wearable. The clothes are just the artifact.</p>
+  <p>The clothes are the artefact. The brand is the <em>world they come from.</em></p>
 </div>
 
 <article class="article-body">
+  <h2>What a year looks like for a brand that's doing this work</h2>
 
-<h2>The patient work most labels won't do</h2>
+  <p>A clothing brand at the early stage doesn't need a hundred touchpoints. It needs a small set, executed consistently. A reasonable year:</p>
 
-<p>Building a brand at this layer is slower than building a label. A label can be live in eight weeks. A brand takes a year. The worldview has to be excavated, the visual world has to be tested, the voice has to be developed across enough posts that customers can feel it. None of this is impatient work.</p>
+  <ul>
+    <li><strong>Two collection drops</strong> — properly campaigned, with full visual systems</li>
+    <li><strong>One editorial film</strong> — a 60–90 second piece that's about the brand's point of view, not about selling clothes</li>
+    <li><strong>One off-product moment</strong> — a zine, a playlist, a dinner, a capsule with another brand. Something that exists without product</li>
+    <li><strong>Twelve to fifteen pieces of editorial content</strong> — across the year, posted as Instagram carousels or stories: writing, references, conversations</li>
+    <li><strong>One PR placement</strong> — earned, in a publication that matches the brand's point of view, even if small</li>
+  </ul>
 
-<p>And this is precisely why most labels never do it. They go straight to the drop, see early traction, mistake the traction for a brand, and ride that energy until it runs out — usually around drop three or four. By then, there's nothing underneath the clothes to bring customers back.</p>
+  <p>This is a much smaller content load than what social media advice usually recommends. That's deliberate. A clothing brand doesn't need volume. It needs <em>signal</em>. Five strong moments in a year build a brand. Forty mediocre posts dilute one.</p>
 
-<p>The labels that last started slower. They figured out who they were before they figured out what to sell. They built a verbal voice before they built a website. They photographed in their visual world before they had a complete catalogue.</p>
+  <h2>The thing that compounds</h2>
 
-<p>It's not the clothes that turn a label into a brand. It's the depth underneath the clothes — and the discipline to do that work first, even when the temptation is to skip it and just go to market.</p>
+  <p>The reason this work matters is that it compounds. Every collection drops on top of an existing world. Every campaign reinforces the cast and the visual signature. Every piece of editorial content adds to the four-minute Google session.</p>
 
-<h2>One question to start with</h2>
+  <p>By year three, a brand that's been doing this work has a <em>library</em> — a stockpile of meaning that any new product can plug into. The drops get easier. The customer base is sticky. PR comes inbound. Collaborations get offered.</p>
 
-<p>If you're building a clothing brand right now, ignore the logo, the lookbook, the launch date, the drop calendar — for one week. Sit with this single question instead:</p>
+  <p>The brands that didn't do the work are still in the same place: making clothes, dropping collections, watching Instagram engagement decline, wondering why none of it is compounding. The clothes are fine. The brand was never built.</p>
+  </article>
 
-<blockquote>What does someone who wears us believe about how to dress that other people don't?</blockquote>
-
-<p>If you can answer that in two specific sentences, you have a brand. If you can't yet, you have a label. The next year of building should be about turning the second into the first.</p>
-
-</article>
-
-
+<!-- CTA -->
 <section class="article-cta">
   <span class="article-cta__label">— Building a clothing brand?</span>
-  <h2>We help fashion labels build the<br>three layers <em>underneath</em> the clothes.</h2>
+  <h2>We help fashion founders build the<br>world that holds their <em>clothes up.</em></h2>
   <a href="contact.html" class="article-cta__btn">Start a Conversation →</a>
 </section>
 
+<!-- RELATED -->
 <section class="article-related">
   <span class="article-related__label">— Continue Reading</span>
   <div class="article-related__grid">
-    <a href="blog-marble-brand.html" class="related-card">
-      <div class="related-card__media"><img src="images/blog/banner-marble-brand.svg" alt="Flowing marble veins with gold accents" /></div>
-      <div class="related-card__meta"><span>Brand Strategy</span><span class="sep">/</span><span>Materials</span></div>
-      <h3>Selling stone as <em>story.</em></h3>
-    </a>
     <a href="blog-resort-fade.html" class="related-card">
-      <div class="related-card__media"><img src="images/blog/banner-resort-fade.svg" alt="Mountain silhouettes against a rising gold sun" /></div>
-      <div class="related-card__meta"><span>Brand Strategy</span><span class="sep">/</span><span>Hospitality</span></div>
-      <h3>Why most resort brands <em>fade into the mountain.</em></h3>
+      <div class="related-card__media">
+        <img src="images/blog/banner-resort-fade.svg" alt="Mountain silhouettes" />
+      </div>
+      <div class="related-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Hospitality</span>
+      </div>
+      <h3>Why most resort brands <em>fade.</em></h3>
+    </a>
+    <a href="blog-marble-brand.html" class="related-card">
+      <div class="related-card__media">
+        <img src="images/blog/banner-marble-brand.svg" alt="Marble veins" />
+      </div>
+      <div class="related-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Materials</span>
+      </div>
+      <h3>Selling stone as <em>story.</em></h3>
     </a>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="blog-footer">
   <div class="blog-footer__inner">
     <h2 class="blog-footer__lede">Like what you read? Let's make <em>yours</em> next.</h2>
@@ -302,8 +620,10 @@ body.menu-open { overflow:hidden; }
       <div class="blog-footer__col">
         <h5>Elsewhere</h5>
         <ul>
-          <li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Behance</a></li><li><a href="#">YouTube</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">YouTube</a></li>
         </ul>
       </div>
       <div class="blog-footer__col">
@@ -322,30 +642,7 @@ body.menu-open { overflow:hidden; }
   </div>
 </footer>
 
-<script>
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 30) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
-  });
-  var yearEl = document.querySelector('[data-year]');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-  var burger = document.getElementById('navBurger');
-  var drawer = document.getElementById('mobileDrawer');
-  if (burger && drawer) {
-    burger.addEventListener('click', function() {
-      var open = drawer.classList.toggle('is-open');
-      burger.classList.toggle('is-open', open);
-      document.body.classList.toggle('menu-open', open);
-    });
-    drawer.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        drawer.classList.remove('is-open');
-        burger.classList.remove('is-open');
-        document.body.classList.remove('menu-open');
-      });
-    });
-  }
-</script>
+<script src="js/main.js?v=films2"></script>
 
 
 

@@ -3,142 +3,433 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Selling stone as story: marketing a marble brand in a commodity market — Virtue &amp; Wisdom</title>
-<meta name="description" content="Marble is a commodity until you make it a name. How to position a stone brand against ten identical competitors quoting the same ₹/sqft on WhatsApp.">
+<title>Selling Stone as Story: Marketing a Marble Brand — Virtue &amp; Wisdom</title>
+<meta name="description" content="Marble is a commodity until you make it a name. How to position a stone brand against ten identical competitors quoting the same rate per sqft on WhatsApp.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root { --bg:#0a0a0a; --bg-2:#131313; --paper:#f3ece1; --ink-on-paper:#1a1a1a; --ink-dim:#555; --gold:#c9b785; --line-light:rgba(26,26,26,0.12); --line-dark:rgba(243,236,225,0.12); }
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
-body { background:var(--paper); color:var(--ink-on-paper); font-family:'Archivo',sans-serif; font-weight:300; overflow-x:hidden; line-height:1.65; -webkit-font-smoothing:antialiased; }
-a { color:inherit; text-decoration:none; }
-img,svg { display:block; max-width:100%; }
-.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:22px 48px; display:flex; justify-content:space-between; align-items:center; transition:background 0.5s,padding 0.4s,border-color 0.5s; border-bottom:1px solid transparent; }
-.nav.scrolled { background:rgba(243,236,225,0.92); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); padding:16px 48px; border-bottom:1px solid var(--line-light); }
-.nav__logo img { height:22px; width:auto; filter:invert(1); }
-.nav__links { display:flex; gap:32px; list-style:none; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; }
-.nav__links a { color:var(--ink-on-paper); opacity:0.82; padding:6px 0; position:relative; transition:opacity 0.25s; }
-.nav__links a:hover, .nav__links a.active { opacity:1; }
-.nav__links a.active::after { content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--ink-on-paper); }
-.nav__cta { font-size:11px; letter-spacing:0.28em; text-transform:uppercase; padding:11px 22px; border:1px solid var(--ink-on-paper); color:var(--ink-on-paper); background:transparent; transition:all 0.3s; cursor:pointer; }
-.nav__cta:hover { background:var(--ink-on-paper); color:var(--paper); }
-.nav__burger { display:none; width:32px; height:22px; background:transparent; border:0; cursor:pointer; position:relative; margin-left:12px; }
-.nav__burger span { display:block; position:absolute; left:0; width:100%; height:1.5px; background:var(--ink-on-paper); transition:transform 0.4s,opacity 0.3s,top 0.4s,bottom 0.4s; }
-.nav__burger span:nth-child(1) { top:4px; } .nav__burger span:nth-child(2) { top:50%; transform:translateY(-50%); } .nav__burger span:nth-child(3) { bottom:4px; }
-.nav__burger.is-open span:nth-child(1) { top:50%; transform:translateY(-50%) rotate(45deg); } .nav__burger.is-open span:nth-child(2) { opacity:0; } .nav__burger.is-open span:nth-child(3) { bottom:50%; transform:translateY(50%) rotate(-45deg); }
-.mobile-drawer { position:fixed; inset:0; background:var(--paper); z-index:99; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 32px 60px; transform:translateY(-100%); transition:transform 0.5s cubic-bezier(0.7,0,0.3,1); pointer-events:none; }
-.mobile-drawer.is-open { transform:translateY(0); pointer-events:auto; }
-.mobile-drawer ul { list-style:none; text-align:center; width:100%; }
-.mobile-drawer li { padding:18px 0; border-bottom:1px solid var(--line-light); }
-.mobile-drawer li:last-child { border-bottom:0; }
-.mobile-drawer a { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; opacity:0.85; }
-.mobile-drawer a em { font-style:italic; color:#8a7140; }
-@media (max-width:920px) { .nav { padding:18px 20px; } .nav.scrolled { padding:14px 20px; } .nav__links { display:none; } .nav__cta { display:none; } .nav__burger { display:block; } }
-body.menu-open { overflow:hidden; }
-.article-meta { max-width:760px; margin:160px auto 60px; padding:0 6vw; text-align:center; }
-.article-meta__category { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:36px; display:inline-block; padding-top:14px; border-top:1px solid var(--line-light); min-width:120px; }
-.article-meta h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,6vw,72px); font-weight:300; line-height:1.05; letter-spacing:-0.005em; margin-bottom:36px; color:var(--ink-on-paper); }
-.article-meta h1 em { font-style:italic; color:#8a7140; }
-.article-meta__deck { font-size:19px; line-height:1.6; color:#444; max-width:600px; margin:0 auto 40px; font-weight:300; }
-.article-meta__byline { display:inline-flex; gap:16px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:#888; }
-.article-meta__byline .sep { opacity:0.5; }
-.article-hero { width:100%; margin-bottom:100px; aspect-ratio:16/9; overflow:hidden; background:var(--bg); }
-.article-hero img, .article-hero svg { width:100%; height:100%; object-fit:cover; }
-.article-body { max-width:720px; margin:0 auto; padding:0 6vw 100px; font-size:18px; line-height:1.7; color:#1f1f1f; font-weight:400; }
-.article-body p { margin-bottom:28px; }
-.article-body p.lede::first-letter { font-family:'Cormorant Garamond',serif; font-size:4em; font-weight:300; float:left; line-height:0.85; margin:6px 14px 0 0; color:#8a7140; }
-.article-body h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.6vw,42px); font-weight:300; line-height:1.15; margin-top:80px; margin-bottom:32px; letter-spacing:-0.005em; }
-.article-body h2 em { font-style:italic; color:#8a7140; }
-.article-body h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.6vw,30px); font-weight:400; margin-top:60px; margin-bottom:24px; color:#1f1f1f; }
-.article-body strong { font-weight:500; color:var(--ink-on-paper); }
-.article-body em { font-style:italic; }
-.article-body blockquote { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3vw,34px); font-style:italic; line-height:1.3; margin:60px 0; padding:0 0 0 32px; border-left:2px solid #8a7140; color:#1f1f1f; font-weight:400; }
-.article-body ul, .article-body ol { margin:0 0 28px 24px; padding-left:16px; }
-.article-body li { margin-bottom:12px; line-height:1.65; }
-.article-body a { color:#8a7140; text-decoration:underline; text-decoration-color:rgba(138,113,64,0.4); text-underline-offset:4px; }
-.article-figure { margin:60px -10vw; }
-.article-figure__media { aspect-ratio:16/9; overflow:hidden; background:var(--bg); }
-.article-figure__media img, .article-figure__media svg { width:100%; height:100%; object-fit:cover; }
-.article-figure__caption { margin-top:18px; font-size:13px; color:#888; text-align:center; font-style:italic; font-family:'Cormorant Garamond',serif; }
-@media (max-width:880px) { .article-figure { margin:40px -6vw; } }
-.article-pull { margin:80px -10vw; padding:60px 6vw; background:var(--bg); color:var(--paper); text-align:center; }
-.article-pull p { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,4vw,44px); font-style:italic; line-height:1.25; max-width:800px; margin:0 auto; font-weight:300; color:var(--paper); }
-.article-pull p em { color:var(--gold); font-style:normal; }
-@media (max-width:880px) { .article-pull { margin:60px -6vw; } }
-.article-cta { max-width:720px; margin:60px auto 0; padding:60px 6vw; text-align:center; border-top:1px solid var(--line-light); }
-.article-cta__label { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:24px; display:inline-block; }
-.article-cta h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,4vw,48px); font-weight:300; line-height:1.1; margin-bottom:32px; }
-.article-cta h2 em { font-style:italic; color:#8a7140; }
-.article-cta__btn { display:inline-block; padding:16px 40px; background:var(--ink-on-paper); color:var(--paper); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; transition:all 0.3s; }
-.article-cta__btn:hover { background:#8a7140; }
-.article-related { max-width:1400px; margin:0 auto; padding:100px 6vw; border-top:1px solid var(--line-light); }
-.article-related__label { font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a7140; margin-bottom:50px; display:inline-block; }
-.article-related__grid { display:grid; grid-template-columns:repeat(2,1fr); gap:60px; }
-@media (max-width:880px) { .article-related__grid { grid-template-columns:1fr; gap:50px; } }
-.related-card { display:block; transition:opacity 0.3s; }
-.related-card:hover { opacity:0.92; }
-.related-card__media { aspect-ratio:16/10; overflow:hidden; margin-bottom:24px; background:var(--bg); }
-.related-card__media img { width:100%; height:100%; object-fit:cover; transition:transform 0.8s cubic-bezier(0.2,0.8,0.2,1); }
-.related-card:hover .related-card__media img { transform:scale(1.04); }
-.related-card__meta { display:flex; gap:12px; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#888; margin-bottom:16px; }
-.related-card__meta .sep { opacity:0.5; }
-.related-card h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.6vw,30px); font-weight:300; line-height:1.15; }
-.related-card h3 em { font-style:italic; color:#8a7140; }
-.blog-footer { background:var(--bg); color:var(--paper); padding:100px 6vw 60px; }
-.blog-footer__inner { max-width:1400px; margin:0 auto; }
-.blog-footer__lede { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,64px); font-weight:300; line-height:1.05; margin-bottom:60px; max-width:900px; color:var(--paper); }
-.blog-footer__lede em { font-style:italic; color:var(--gold); }
-.blog-footer__grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; padding-top:60px; border-top:1px solid var(--line-dark); }
-.blog-footer__col h5 { font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:rgba(243,236,225,0.6); margin-bottom:24px; font-weight:400; }
-.blog-footer__col ul { list-style:none; }
-.blog-footer__col li { margin-bottom:12px; }
-.blog-footer__col a { font-size:14px; color:var(--paper); opacity:0.82; transition:opacity 0.3s; }
-.blog-footer__col a:hover { opacity:1; }
-.blog-footer__brand { font-family:'Cormorant Garamond',serif; font-size:18px; margin-bottom:16px; color:var(--paper); }
-.blog-footer__desc { font-size:14px; line-height:1.7; color:rgba(243,236,225,0.6); max-width:320px; }
-.blog-footer__base { margin-top:60px; padding-top:30px; border-top:1px solid var(--line-dark); display:flex; justify-content:space-between; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(243,236,225,0.6); }
-@media (max-width:880px) { .blog-footer__grid { grid-template-columns:1fr 1fr; gap:40px; } .blog-footer__base { flex-direction:column; gap:12px; } }
+<link rel="stylesheet" href="css/style.css?v=films2">
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #131313;
+    --paper: #f3ece1;
+    --ink-on-paper: #1a1a1a;
+    --ink-dim: #555;
+    --gold: #c9b785;
+    --line-light: rgba(26, 26, 26, 0.12);
+    --line-dark: rgba(243, 236, 225, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink-on-paper);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  /* nav styles inherited from css/style.css */
+
+  /* ---------- ARTICLE STRUCTURE ---------- */
+  .article-meta {
+    max-width: 760px;
+    margin: 160px auto 60px;
+    padding: 0 6vw;
+    text-align: center;
+  }
+  .article-meta__category {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 36px;
+    display: inline-block;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-light);
+    min-width: 120px;
+  }
+  .article-meta h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    margin-bottom: 36px;
+    color: var(--ink-on-paper);
+  }
+  .article-meta h1 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-meta__deck {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+  .article-meta__byline {
+    display: inline-flex;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .article-meta__byline .sep { opacity: 0.5; }
+
+  /* hero banner (full-bleed) */
+  .article-hero {
+    width: 100%;
+    margin-bottom: 100px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-hero img,
+  .article-hero svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* article body — long-form prose */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 6vw 100px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body p {
+    margin-bottom: 28px;
+  }
+  .article-body p.lede::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4em;
+    font-weight: 300;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 14px 0 0;
+    color: #8a7140;
+  }
+  .article-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-top: 80px;
+    margin-bottom: 32px;
+    letter-spacing: -0.005em;
+  }
+  .article-body h2 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 400;
+    margin-top: 60px;
+    margin-bottom: 24px;
+    color: #1f1f1f;
+  }
+  .article-body strong {
+    font-weight: 500;
+    color: var(--ink-on-paper);
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-style: italic;
+    line-height: 1.3;
+    margin: 60px 0;
+    padding: 0 0 0 32px;
+    border-left: 2px solid #8a7140;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body ul, .article-body ol {
+    margin: 0 0 28px 24px;
+    padding-left: 16px;
+  }
+  .article-body li {
+    margin-bottom: 12px;
+    line-height: 1.65;
+  }
+  .article-body a {
+    color: #8a7140;
+    text-decoration: underline;
+    text-decoration-color: rgba(138, 113, 64, 0.4);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.3s;
+  }
+  .article-body a:hover {
+    text-decoration-color: #8a7140;
+  }
+  .article-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--line-light);
+    margin: 60px 0;
+  }
+
+  /* inline figures — break out of the column for visual breathing */
+  .article-figure {
+    margin: 60px -10vw;
+  }
+  .article-figure__media {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-figure__media img,
+  .article-figure__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article-figure__caption {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  @media (max-width: 880px) {
+    .article-figure { margin: 40px -6vw; }
+  }
+
+  /* pull quote */
+  .article-pull {
+    margin: 80px -10vw;
+    padding: 60px 6vw;
+    background: var(--bg);
+    color: var(--paper);
+    text-align: center;
+  }
+  .article-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-style: italic;
+    line-height: 1.25;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+    color: var(--paper);
+  }
+  .article-pull p em { color: var(--gold); font-style: normal; }
+  @media (max-width: 880px) {
+    .article-pull { margin: 60px -6vw; }
+  }
+
+  /* CTA card at the end */
+  .article-cta {
+    max-width: 720px;
+    margin: 60px auto 0;
+    padding: 60px 6vw;
+    text-align: center;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-cta__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 24px;
+    display: inline-block;
+  }
+  .article-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .article-cta h2 em { font-style: italic; color: #8a7140; }
+  .article-cta__btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--ink-on-paper);
+    color: var(--paper);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .article-cta__btn:hover { background: #8a7140; }
+
+  /* related posts */
+  .article-related {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 6vw;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-related__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 50px;
+    display: inline-block;
+  }
+  .article-related__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+  }
+  @media (max-width: 880px) {
+    .article-related__grid { grid-template-columns: 1fr; gap: 50px; }
+  }
+  .related-card {
+    display: block;
+    transition: opacity 0.3s;
+  }
+  .related-card:hover { opacity: 0.92; }
+  .related-card__media {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: var(--bg);
+  }
+  .related-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .related-card:hover .related-card__media img { transform: scale(1.04); }
+  .related-card__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+  .related-card__meta .sep { opacity: 0.5; }
+  .related-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 300;
+    line-height: 1.15;
+  }
+  .related-card h3 em { font-style: italic; color: #8a7140; }
+
+  /* footer (dark) */
+  .blog-footer {
+    background: var(--bg);
+    color: var(--paper);
+    padding: 100px 6vw 60px;
+  }
+  .blog-footer__inner { max-width: 1400px; margin: 0 auto; }
+  .blog-footer__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 60px;
+    max-width: 900px;
+    color: var(--paper);
+  }
+  .blog-footer__lede em { font-style: italic; color: var(--gold); }
+  .blog-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line-dark);
+  }
+  .blog-footer__col h5 {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .blog-footer__col ul { list-style: none; }
+  .blog-footer__col li { margin-bottom: 12px; }
+  .blog-footer__col a {
+    font-size: 14px;
+    color: var(--paper);
+    opacity: 0.82;
+    transition: opacity 0.3s;
+  }
+  .blog-footer__col a:hover { opacity: 1; }
+  .blog-footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--paper);
+  }
+  .blog-footer__desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(243, 236, 225, 0.6);
+    max-width: 320px;
+  }
+  .blog-footer__base {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line-dark);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+  }
+  @media (max-width: 880px) {
+    .blog-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .blog-footer__base { flex-direction: column; gap: 12px; }
+  }
 </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <a href="index.html" class="nav__logo"><img src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom"></a>
-  <ul class="nav__links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="services.html">Capabilities</a></li>
-    <li><a href="visuals.html">Visuals</a></li>
-    <li><a href="blog.html" class="active">Journal</a></li>
-    <li><a href="about.html">Studio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <a href="contact.html" class="nav__cta">Start a Project</a>
-    <button class="nav__burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
-  </div>
+<!-- NAV -->
+<header class="nav">
+  <a href="index.html" class="nav__logo">
+    <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue &amp; Wisdom" />
+    <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom" />
+  </a>
+  <nav>
+    <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="visuals.html">Visuals</a></li>
+        <li><a href="blog.html">Journal</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="contact.html" class="nav__cta">Start a project</a>
+  <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
-<div class="mobile-drawer" id="mobileDrawer">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="services.html">Capabilities</a></li>
-    <li><a href="visuals.html">Visuals</a></li>
-    <li><a href="blog.html" class="active"><em>Journal</em></a></li>
-    <li><a href="about.html">Studio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</div>
-
+<!-- ARTICLE META -->
 <section class="article-meta">
   <span class="article-meta__category">Brand Strategy · Materials</span>
-  <h1>Selling stone as <em>story.</em></h1>
-  <p class="article-meta__deck">Marble is a commodity until you make it a name. How to position a stone brand against ten identical competitors quoting the same ₹/sqft on WhatsApp.</p>
+  <h1>Selling stone<br>as <em>story.</em></h1>
+  <p class="article-meta__deck">Marble is a commodity until you make it a name. How to position a stone brand against ten identical competitors quoting the same rate per sqft on WhatsApp.</p>
   <div class="article-meta__byline">
     <span>By Virtue &amp; Wisdom</span>
     <span class="sep">·</span>
@@ -146,132 +437,155 @@ body.menu-open { overflow:hidden; }
   </div>
 </section>
 
+<!-- HERO BANNER -->
 <div class="article-hero">
-  <img src="images/blog/banner-marble-brand.svg" alt="Flowing marble veins with gold cracks" />
+  <img src="images/blog/banner-marble-brand.svg" alt="Flowing marble veins with gold cracks running through" />
 </div>
 
-
+<!-- ARTICLE BODY -->
 <article class="article-body">
+  <p class="lede">An architect is putting together a finishes spec for a 4,000-square-foot home in Udaipur. They send the marble inquiry to five vendors over WhatsApp at 11:30 in the morning. By 4pm, all five have replied with quotes. The quotes are within 8% of each other. The marble is essentially the same. The decision now comes down to: who picks up the phone fastest, who can deliver this week, and which sample looked the cleanest in person.</p>
 
-<p class="lede">Walk through any tier-2 marble showroom in India on a weekday afternoon and the same scene plays out. A buyer with a builder, both on phones, both quoting prices into different ears. The owner stands behind the counter quoting his own price. A few minutes later they shake hands or they don't, and the buyer drives to the next showroom on the same road. From the buyer's perspective, this whole street is one big undifferentiated supplier — and the only knob that turns is rupees per square foot.</p>
+  <p>This is the entire shape of the marble market in India. It's a commodity transaction running on WhatsApp, and the price compression is brutal. Margins for the vendor in this game are thin and getting thinner. Anyone trying to scale a marble business by competing on this playing field is going to lose, and lose slowly.</p>
 
-<p>This is the trap of the commodity stone market. Marble is graded, classified, and priced by category — Italian Statuario, Indian Makrana, Onyx, granite, quartz — and once a buyer has settled on a category, the choice between vendors is essentially a price comparison. There's no brand in the equation, because there's nothing to be loyal to. Every supplier looks like every other one.</p>
+  <p>The marble brands that have managed to escape this dynamic — even at small scale — have done so by doing one specific thing: they've turned <em>a slab of stone into a name.</em> A name with a story, a provenance, an identity. The buyer isn't comparing five quotes anymore. They're asking, by name, for one.</p>
 
-<p>And yet, a small handful of marble brands have somehow stepped out of this race. They charge more, get specified by name into architectural projects, and have buyers who choose them before checking competitor prices. They've stopped selling stone. They've started selling a story. Here's how the move is actually made.</p>
+  <h2>The commodity trap</h2>
 
-<h2>Why marble brands stay invisible</h2>
+  <p>Marble in India is sold by category — Italian, Indian, Vietnamese, Spanish — and within category, mostly by colour and rate. A vendor offering "white Italian marble at ₹185/sqft" is, from the buyer's perspective, identical to four other vendors offering white Italian marble within ₹15 of that rate.</p>
 
-<p>Three things keep most stone businesses stuck in commodity mode:</p>
+  <p>The problem isn't that the marble is the same. It's that the <em>vendor has done nothing to differentiate themselves on anything except price.</em> No vendor name has built independent recognition. The vendor is interchangeable with the next vendor. The architect doesn't care which one delivers, as long as the slab matches the sample.</p>
 
-<h3>1. The category does the marketing</h3>
+  <p>This is the commodity trap. Once you're in it, the only competitive levers are price, speed, and inventory — all of which compress margins and require scale to be profitable.</p>
 
-<p>Marble buyers are usually shopping <em>category first</em> — "I need Italian for the master bath" — and then they go looking for any vendor who sells that category. The category is the proxy for everything: quality, prestige, taste. The vendor is just the place where the category transaction happens.</p>
+  <h2>What naming a stone does</h2>
 
-<p>This is fine when you're competing on convenience and price. It's a disaster when you're trying to build a brand, because the customer's loyalty is to <em>Italian Statuario</em>, not to <em>your</em> Italian Statuario.</p>
+  <p>Now imagine the same architect, on the same WhatsApp message, but with one difference. Vendor C's reply isn't "white Italian marble — ₹178/sqft." It's: "<em>Statuario Bianco</em>, from our Carrara consignment that arrived last month. Quoted at ₹240/sqft. Sample on the way."</p>
 
-<h3>2. The product looks the same in photos</h3>
+  <p>The architect now has a problem. The four other quotes are around ₹180. This one is ₹240 and has a name. Is it actually different? Is it worth showing the client at a higher rate?</p>
+  </article>
 
-<p>Most marble websites look like a stock library. Slab. Slab. Close-up of slab. Vein. Slab. Application photo of a hotel lobby with the same kind of slab anyone could quote. Visually, there's nothing the buyer can grab onto that says <em>this place</em> instead of <em>any place that sells this material</em>.</p>
-
-<h3>3. The voice is technical, not human</h3>
-
-<p>Look at the about page of ten marble vendors. They're nearly identical. <em>Established in [year]. We are a leading supplier of [list of categories]. Our state-of-the-art facility…</em> The voice is the voice of every B2B supplier in every commodity industry. There's no person behind the brand. No opinion. Nothing to follow.</p>
-
-</article>
-
+<!-- INLINE FIGURE -->
 <figure class="article-figure">
   <div class="article-figure__media">
-    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
       <rect width="1600" height="900" fill="#0a0a0a"/>
-      <path d="M 0 250 Q 400 180 800 270 T 1400 240 T 1600 290" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.55"/>
-      <path d="M 0 320 Q 350 410 700 330 T 1300 360 T 1600 330" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.35"/>
-      <path d="M 0 500 Q 400 430 800 510 T 1400 490 T 1600 520" fill="none" stroke="#c9b785" stroke-width="1.2" opacity="0.7"/>
-      <path d="M 0 580 Q 350 660 700 570 T 1300 600 T 1600 570" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.3"/>
-      <text x="800" y="780" text-anchor="middle" font-family="Times New Roman,serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.6">veins, not slabs</text>
+      <g transform="translate(120, 200)">
+        <rect x="0" y="0" width="280" height="80" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <text x="20" y="48" font-family="Archivo, sans-serif" font-size="14" fill="#c9b785" opacity="0.55">Vendor A — Rs.185/sqft</text>
+        <rect x="0" y="100" width="280" height="80" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <text x="20" y="148" font-family="Archivo, sans-serif" font-size="14" fill="#c9b785" opacity="0.55">Vendor B — Rs.180/sqft</text>
+        <rect x="0" y="200" width="280" height="80" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <text x="20" y="248" font-family="Archivo, sans-serif" font-size="14" fill="#c9b785" opacity="0.55">Vendor C — Rs.178/sqft</text>
+        <rect x="0" y="300" width="280" height="80" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <text x="20" y="348" font-family="Archivo, sans-serif" font-size="14" fill="#c9b785" opacity="0.55">Vendor D — Rs.175/sqft</text>
+        <rect x="0" y="400" width="280" height="80" fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+        <text x="20" y="448" font-family="Archivo, sans-serif" font-size="14" fill="#c9b785" opacity="0.55">Vendor E — Rs.170/sqft</text>
+      </g>
+      <line x1="450" y1="440" x2="700" y2="440" stroke="#c9b785" stroke-width="1" opacity="0.6"/>
+      <path d="M 690 432 L 700 440 L 690 448" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.6"/>
+      <g transform="translate(800, 200)">
+        <rect x="0" y="0" width="600" height="500" fill="#c9b785" opacity="0.55"/>
+        <text x="300" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="42" fill="#0a0a0a">Statuario Bianco</text>
+        <text x="300" y="290" text-anchor="middle" font-family="Times New Roman, serif" font-size="18" fill="#0a0a0a" opacity="0.7">a name. a story. a price.</text>
+      </g>
     </svg>
   </div>
-  <figcaption class="article-figure__caption">A category-first market dissolves vendors. A brand brings them back into focus.</figcaption>
+  <figcaption class="article-figure__caption">Five interchangeable quotes versus one named slab. The named one wins almost every time.</figcaption>
 </figure>
 
 <article class="article-body">
+  <p>The architect Googles "Statuario Bianco." They find a website. They see provenance — the quarry, the consignment, the boats, the way the slabs are graded. They see how it's been used in projects before. They see specifications, technical sheets, a CAD library. The price difference now reads as a <em>justified premium</em> instead of an outlier quote.</p>
 
-<h2>How the few who escape, escape</h2>
+  <p>The architect shows it to their client. The client asks where it's from. There is an answer to that question — a real one, with a story. The other vendors have no answer beyond "the warehouse in Kishangarh." Statuario Bianco gets specified.</p>
 
-<p>The marble brands that have built genuine pricing power have done four very specific things — and importantly, none of them required changing what they actually sell.</p>
+  <p>This is what naming and storying a stone does. It moves the conversation off price. It gives the architect something to <em>tell their client</em>. It justifies a margin that the unbranded vendors can't access.</p>
 
-<h3>1. They name their slabs</h3>
+  <h2>The four levers of a marble brand</h2>
 
-<p>The single biggest brand-building move in stone is to stop selling generic <em>"Italian Statuario"</em> and start selling <em>"Lago Cinque, our hand-selected Statuario from a single quarry in Carrara."</em> The material is the same. The buyer's experience is completely different. <em>Lago Cinque</em> is a name a buyer can remember, repeat to their architect, and ask for by name. <em>Italian Statuario</em> is a category that everyone sells.</p>
+  <h3>1. The names</h3>
 
-<p>This is exactly the move that wineries made decades ago — the difference between selling "red wine" and selling Château Margaux. The grape isn't proprietary. The name and the curation around it are.</p>
+  <p>A marble vendor has dozens of varieties moving through the warehouse at any time. Most of them are referred to internally by code, by quarry, or by colour. The first move of a brand is to <em>name them.</em> Not all of them — the top ten or fifteen, the slabs the vendor wants to be known for.</p>
 
-<h3>2. They photograph stone like portraiture</h3>
+  <p>Good names have a logic. <em>Calacatta Borghini.</em> <em>Cremo Tirreno.</em> Names that sound like they've always existed, that an architect can write into a spec sheet without feeling embarrassed.</p>
 
-<p>Generic marble photography shows a flat slab against a white wall. Brand-grade marble photography treats every slab as a one-off subject — close-up macro of a single vein, side-light at a particular angle, the same slab photographed in three different rooms across three different days. The shot says: <em>this stone is specific.</em> Not "we have stone." This stone, this particular block, this character. That's a story buyers can fall in love with.</p>
+  <h3>2. The provenance</h3>
 
-<h3>3. They build a verbal world that isn't B2B</h3>
+  <p>Where the slab comes from, on a real map. The quarry. The region. The geology. The history. This is content the customer can't verify but doesn't need to — the existence of the story is what does the work. Most stone vendors have this information sitting in a supplier email. They just need to surface it.</p>
 
-<p>The marble brand that travels has writing that sounds like a curator, not a supplier. Notes on a slab the way a sommelier writes notes on a wine. The geological story of the quarry. The history of a particular vein pattern. Why a certain grade is being phased out. Opinion-driven content about taste in interiors.</p>
+  <h3>3. The visual library</h3>
 
-<p>This is not "content marketing." It's the brand having a personality in writing. And it does something a price quote never can — it makes the buyer trust the seller's <em>taste</em>, which is what they're really paying for in the premium tier.</p>
+  <p>Most marble vendors' websites — when they have one — show slabs photographed against a warehouse wall under fluorescent light. The slabs look interchangeable.</p>
 
-<h3>4. They build relationships with the people who specify, not just the people who buy</h3>
+  <p>A brand photographs the slabs <em>like the material they are.</em> Detail shots of the veins. The slab in raking sunlight. The slab being installed. The slab as part of a finished room. The slab paired with brass, with oak, with linen. The library does what no rate sheet can: it lets the architect imagine the stone in their project.</p>
 
-<p>In stone, the actual decision-maker is rarely the homeowner — it's the architect or interior designer. The marble brands that win at the top of the market have figured out that selling to one homeowner is one transaction, while becoming the preferred name for ten architects is a hundred transactions. They build that relationship deliberately: studio visits, sample boxes, named introductions, project credits. The brand becomes a name that gets specified into bills of quantities, which is the highest form of marble marketing there is.</p>
+  <h3>4. The specification kit</h3>
 
-</article>
+  <p>A PDF with everything an architect needs in one place: dimensions, finishes, technical specs, care guide, application photos. CAD blocks if relevant. Pricing tiers. Lead time. The kit that lands when the architect asks for "more info" decides whether the slab gets specified or not. Most vendors send a verbal update on WhatsApp. A brand sends a 14-page document with a covering note.</p>
+  </article>
 
+<!-- PULL QUOTE -->
 <div class="article-pull">
-  <p>Marble is a commodity until you make it a <em>name.</em></p>
+  <p>Marble is a commodity until you give it a <em>name.</em> Then it stops being marble and starts being yours.</p>
 </div>
 
 <article class="article-body">
+  <h2>The category creation move</h2>
 
-<h2>What this looks like as a roadmap</h2>
+  <p>The most ambitious version of this play is to create an entire category of stone that's associated with the brand. Not just naming individual varieties — naming a <em>family</em> of stones, defined by something the brand decides matters.</p>
 
-<p>If you're a marble brand right now and the description above sounds like the road you'd want to be on, the order of moves is roughly:</p>
+  <p>For example: a vendor decides to specialise in stones with strong vertical veining, and brands the family as a single visual language. They photograph it consistently, name it consistently, market it as a defined design choice. Architects start asking for "the [brand] family" by name.</p>
 
-<ol>
-  <li><strong>Pick three to five signature stones to brand.</strong> Don't try to brand the whole inventory — pick the slabs that are genuinely worth the curation effort. Name them. Write notes for each. Build small "stories" around each one.</li>
-  <li><strong>Reshoot those stones the way a magazine would.</strong> Macro detail, environmental application, two or three angles per stone. Build a real visual library of the named pieces.</li>
-  <li><strong>Build a small editorial layer on top of the catalogue.</strong> A journal. A newsletter to the architect community. Three short articles a quarter taking a position on stone, taste, or design. This is the layer where the brand stops being a vendor.</li>
-  <li><strong>Create one specifier-grade output — a beautiful printed sample box or catalogue.</strong> Something an architect wants to keep on their shelf. This piece, more than any digital ad, is what shifts the brand into the premium consideration set.</li>
-  <li><strong>Start showing the people behind the stone.</strong> The owner. The quarry. The cutters. The relationships with Italy or Rajasthan. A B2B brand without faces is forgettable. A B2B brand with a recognisable person at the front is memorable.</li>
-</ol>
+  <p>This is how high-end material brands historically work in furniture and finishes. It's also where the highest margins sit. The brand is no longer competing inside the category — it owns a sub-category nobody else is in.</p>
 
-<h2>The hard part nobody mentions</h2>
+  <h2>The customer who pays for this</h2>
 
-<p>The hardest part of doing this for a marble business isn't the strategy. It's that the moment you start naming stones and writing about them, you're no longer competing on price — and the temptation to flinch back into commodity mode when a buyer asks for a discount will be enormous. Quarter-on-quarter, the easier move is always to negotiate the deal in front of you. The brand-building move is to hold the price and lose some of those deals while building toward the buyers who are paying for something else.</p>
+  <p>Not every marble customer wants this. The contractor doing a 600-sqft kitchen on a tight budget is going to take the lowest bid. That's fine. They're not the customer.</p>
 
-<p>The brands that make it through that period are the ones that didn't see it as a marketing exercise. They saw it as a long, deliberate repositioning — out of the commodity row on the highway, and into a quieter showroom where the conversation is about <em>taste</em>, not rupees per square foot.</p>
+  <p>The customer who pays for a branded marble is the architect, the interior designer, the high-end client. The buyer who is selecting marble as part of a $50,000 to $5,000,000 project, where the marble cost is a small fraction of the total budget but the visual impact is significant.</p>
 
-<p>The stone is the same. The story makes it different. And the story, eventually, makes the price irrelevant.</p>
+  <p>This buyer wants to specify with confidence. They want to tell their client a story. They want a vendor who shows up like a brand instead of a warehouse. They're not optimising on rate per sqft. They're optimising on the certainty that the slab will look like the spec.</p>
 
-</article>
+  <p>This buyer pays a 30–40% premium without blinking, on a regular basis, to vendors who have built a brand. The work to capture this segment is mostly invisible to the contractor market — and that's the point. A marble brand isn't trying to sell to everyone. It's trying to be the specified default for the customers who matter most.</p>
+  </article>
 
-
+<!-- CTA -->
 <section class="article-cta">
-  <span class="article-cta__label">— Building a marble brand?</span>
-  <h2>We help stone brands stop competing<br>on <em>price per square foot.</em></h2>
+  <span class="article-cta__label">— Building a stone or marble brand?</span>
+  <h2>We help materials brands turn slabs<br>into <em>specified names.</em></h2>
   <a href="contact.html" class="article-cta__btn">Start a Conversation →</a>
 </section>
 
+<!-- RELATED -->
 <section class="article-related">
   <span class="article-related__label">— Continue Reading</span>
   <div class="article-related__grid">
     <a href="blog-clothing-brand.html" class="related-card">
-      <div class="related-card__media"><img src="images/blog/banner-clothing-brand.svg" alt="Minimal hangtag silhouette with V&amp;W signature in gold" /></div>
-      <div class="related-card__meta"><span>Brand Strategy</span><span class="sep">/</span><span>Fashion</span></div>
+      <div class="related-card__media">
+        <img src="images/blog/banner-clothing-brand.svg" alt="Hangtag silhouette" />
+      </div>
+      <div class="related-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Fashion</span>
+      </div>
       <h3>Beyond the logo: building a <em>clothing brand.</em></h3>
     </a>
-    <a href="blog-hospitality-playbook.html" class="related-card">
-      <div class="related-card__media"><img src="images/blog/banner-hospitality-playbook.svg" alt="Vertical paper layers with a gold thread weaving through" /></div>
-      <div class="related-card__meta"><span>Brand Strategy</span><span class="sep">/</span><span>Hospitality</span></div>
-      <h3>The hospitality brand <em>playbook.</em></h3>
+    <a href="blog-resort-fade.html" class="related-card">
+      <div class="related-card__media">
+        <img src="images/blog/banner-resort-fade.svg" alt="Mountain silhouettes" />
+      </div>
+      <div class="related-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Hospitality</span>
+      </div>
+      <h3>Why most resort brands <em>fade.</em></h3>
     </a>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="blog-footer">
   <div class="blog-footer__inner">
     <h2 class="blog-footer__lede">Like what you read? Let's make <em>yours</em> next.</h2>
@@ -295,8 +609,10 @@ body.menu-open { overflow:hidden; }
       <div class="blog-footer__col">
         <h5>Elsewhere</h5>
         <ul>
-          <li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Behance</a></li><li><a href="#">YouTube</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">YouTube</a></li>
         </ul>
       </div>
       <div class="blog-footer__col">
@@ -315,30 +631,7 @@ body.menu-open { overflow:hidden; }
   </div>
 </footer>
 
-<script>
-  var nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 30) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
-  });
-  var yearEl = document.querySelector('[data-year]');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-  var burger = document.getElementById('navBurger');
-  var drawer = document.getElementById('mobileDrawer');
-  if (burger && drawer) {
-    burger.addEventListener('click', function() {
-      var open = drawer.classList.toggle('is-open');
-      burger.classList.toggle('is-open', open);
-      document.body.classList.toggle('menu-open', open);
-    });
-    drawer.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        drawer.classList.remove('is-open');
-        burger.classList.remove('is-open');
-        document.body.classList.remove('menu-open');
-      });
-    });
-  }
-</script>
+<script src="js/main.js?v=films2"></script>
 
 
 
