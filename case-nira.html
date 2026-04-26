@@ -47,8 +47,33 @@
     @media (max-width: 760px) {
       .cs-detail-row { grid-template-columns: 1fr; gap: 32px; }
     }
-    .cs-fullbleed { margin: 0 0 100px; }
-    .cs-fullbleed img { width: 100%; display: block; }
+    /* Constrain image sizes so spreads stay editorial, not poster-takeover */
+    .cs-fullbleed {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+    }
+    .cs-fullbleed img {
+      width: 100%;
+      max-height: 620px;
+      object-fit: cover;
+      display: block;
+    }
+    /* Hero media — cap to avoid full-screen takeover */
+    .cs-hero__media img {
+      max-height: 640px;
+      object-fit: cover;
+    }
+    /* Detail row image — cap height */
+    .cs-detail-row img {
+      max-height: 560px;
+      object-fit: cover;
+    }
+    /* Two-image packaging row — cap heights */
+    .cs-row2 .cs-tile img {
+      max-height: 560px;
+      object-fit: cover;
+    }
     .cs-row2-tight {
       max-width: 1400px;
       margin: 0 auto 100px;
@@ -95,7 +120,7 @@
       </p>
     </div>
     <div class="cs-hero__media">
-      <img src="images/case-studies/hero.jpg" alt="Nira — Reveal your inner confidence; logo and droplet wordmark on sage background" />
+      <img src="images/case-studies/logo-green.jpg" alt="Nira — droplet wordmark in cream against deep sage" />
     </div>
   </section>
 
@@ -157,11 +182,6 @@
     <img src="images/case-studies/logo-cream.jpg" alt="Nira wordmark on cream background — the dotless 'i' with a falling teardrop" />
   </section>
 
-  <!-- LOGO ON GREEN — full-bleed -->
-  <section class="cs-fullbleed">
-    <img src="images/case-studies/logo-green.jpg" alt="Nira wordmark in cream against deep sage" />
-  </section>
-
   <!-- COLOR PALETTE -->
   <section class="cs-palette">
     <div class="cs-palette__head">
@@ -218,9 +238,9 @@
     </div>
   </section>
 
-  <!-- HERO QUAD — full-bleed -->
+  <!-- PALETTE IN USE — full-bleed -->
   <section class="cs-fullbleed">
-    <img src="images/case-studies/quad-confidence.jpg" alt="Nira brand quad — Reveal your inner confidence headline, droplet wordmark, lifestyle and skincare star motif" />
+    <img src="images/case-studies/palette-grid.jpg" alt="Nira colour system — primary and secondary palette swatches with hex codes" />
   </section>
 
   <!-- THE PATTERN -->
