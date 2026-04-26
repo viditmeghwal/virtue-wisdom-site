@@ -3,645 +3,357 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nira — Case Study | Virtue & Wisdom</title>
-  <meta name="description" content="Nira — a skincare brand identity built around the meaning of light. By Virtue & Wisdom." />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" />
+  <title>Nira — Case Study | Virtue &amp; Wisdom</title>
+  <meta name="description" content="Brand identity, mark, packaging, and pattern system for Nira — a skincare brand whose name means light. By Virtue & Wisdom." />
+  <link rel="stylesheet" href="css/style.css?v=films2" />
+  <link rel="stylesheet" href="css/pages.css?v=films2" />
   <style>
-    /* ============================================================
-       NIRA case study — page-scoped styles only.
-       Designed to layer on top of style.css using its tokens
-       (italic serif emphasis via <em>, eyebrow uppercase, gold
-       accent #c9b785). Keeps site language consistent.
-       ============================================================ */
+    /* Page-scoped accents only — inherits all global cs-* / nav / footer styles */
     :root {
-      --nira-sage:   #3F493D;
-      --nira-mauve:  #7D5C4E;
-      --nira-cream:  #D7D1BE;
-      --nira-bone:   #E6E1D2;
-      --nira-moss:   #4B544A;
-      --nira-rose:   #E6CFB8;
-      --nira-ink:    #0a0a0a;
-      --nira-paper:  #f3ece1;
-      --nira-gold:   #c9b785;
+      --nira-sage:  #3F493D;
+      --nira-mauve: #7D5C4E;
+      --nira-cream: #D7D1BE;
+      --nira-bone:  #E6E1D2;
+      --nira-moss:  #4B544A;
     }
-
-    .case-nira { background: #fff; color: #1a1a1a; }
-    .case-nira em { font-style: italic; }
-
-    /* HEADING */
-    .case-head {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 140px 6vw 60px;
-    }
-    .case-head__eyebrow {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: #6c6c6c;
-      margin-bottom: 28px;
-      border-top: 1px solid #d4d4d4;
-      padding-top: 16px;
-      max-width: 280px;
-    }
-    .case-head__title {
-      font-family: 'Times New Roman', 'Playfair Display', Georgia, serif;
-      font-size: clamp(72px, 12vw, 200px);
-      line-height: 0.92;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      margin: 0 0 36px;
-      color: var(--nira-sage);
-    }
-    .case-head__title em { color: var(--nira-mauve); font-style: italic; }
-    .case-head__intro {
-      max-width: 720px;
-      font-size: clamp(18px, 1.6vw, 22px);
-      line-height: 1.5;
-      color: #333;
-      margin: 0 0 80px;
-      font-weight: 300;
-    }
-
-    /* HERO IMAGE */
-    .case-hero {
-      max-width: 1400px;
-      margin: 0 auto 80px;
-      padding: 0 6vw;
-    }
-    .case-hero img { width: 100%; display: block; }
-
-    /* META GRID */
-    .case-meta {
-      max-width: 1200px;
-      margin: 0 auto 100px;
-      padding: 0 6vw;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-      border-top: 1px solid #d4d4d4;
-      padding-top: 40px;
-    }
-    .case-meta dl { margin: 0; }
-    .case-meta dt {
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: #6c6c6c;
-      margin-bottom: 12px;
-    }
-    .case-meta dd {
-      font-size: 15px;
-      line-height: 1.5;
-      margin: 0;
-      color: #1a1a1a;
-    }
-    .case-meta dd em { font-style: italic; color: var(--nira-mauve); }
-    @media (max-width: 760px) {
-      .case-meta { grid-template-columns: 1fr 1fr; }
-    }
-
-    /* SECTION */
-    .case-section {
-      max-width: 1200px;
-      margin: 0 auto 100px;
-      padding: 0 6vw;
-    }
-    .case-section__eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--nira-mauve);
-      margin: 0 0 28px;
-      border-top: 1px solid var(--nira-mauve);
-      padding-top: 16px;
-      display: inline-block;
-      padding-right: 60px;
-    }
-    .case-section__title {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-size: clamp(40px, 5vw, 72px);
-      line-height: 1;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      margin: 0 0 36px;
-      color: var(--nira-sage);
-      max-width: 900px;
-    }
-    .case-section__title em { font-style: italic; color: var(--nira-mauve); }
-    .case-section__copy {
-      max-width: 720px;
-      font-size: 17px;
-      line-height: 1.65;
-      color: #333;
-      margin: 0 0 24px;
-    }
-    .case-section__copy em { font-style: italic; color: var(--nira-mauve); font-weight: 500; }
-
-    /* IMAGE PAIRS */
-    .case-pair {
-      max-width: 1400px;
-      margin: 0 auto 100px;
-      padding: 0 6vw;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-    .case-pair img { width: 100%; display: block; }
-    @media (max-width: 760px) { .case-pair { grid-template-columns: 1fr; } }
-
-    /* FULL-BLEED IMAGE */
-    .case-full {
-      margin: 0 0 100px;
-    }
-    .case-full img { width: 100%; display: block; }
-
-    /* COLOR PALETTE BLOCK */
-    .case-palette-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0;
-      margin: 40px 0 0;
-      max-width: 100%;
-    }
-    .swatch {
-      aspect-ratio: 4 / 5;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      color: #fff;
-      position: relative;
-    }
-    .swatch--light { color: #1a1a1a; }
-    .swatch__label {
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      opacity: 0.7;
-    }
-    .swatch__hex {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-style: italic;
-      font-size: 20px;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .swatch__role {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.55;
-      margin-top: 6px;
-    }
-    @media (max-width: 880px) { .case-palette-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    /* TYPOGRAPHY DISPLAY */
-    .case-type {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 48px;
-      max-width: 1200px;
-      margin: 60px auto 0;
-      padding: 0 6vw;
-      align-items: start;
-    }
-    .case-type__label {
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: #6c6c6c;
-      padding-top: 20px;
-      border-top: 1px solid #d4d4d4;
-    }
-    .case-type__sample { padding-top: 20px; border-top: 1px solid #d4d4d4; }
-    .case-type__sample-display {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-size: clamp(40px, 6vw, 84px);
-      line-height: 1;
-      color: var(--nira-sage);
-      letter-spacing: -0.01em;
-      margin: 0 0 12px;
-    }
-    .case-type__sample-display em { color: var(--nira-mauve); font-style: italic; }
-    .case-type__sample-sub {
-      font-family: 'Raleway', sans-serif;
-      font-size: 22px;
-      line-height: 1.4;
-      font-weight: 400;
-      color: #1a1a1a;
-      margin: 0 0 12px;
-    }
-    .case-type__sample-meta {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #6c6c6c;
-      margin-top: 14px;
-    }
-    @media (max-width: 760px) {
-      .case-type { grid-template-columns: 1fr; gap: 8px; }
-    }
-
-    /* QUOTE */
-    .case-quote {
-      max-width: 1000px;
-      margin: 60px auto 120px;
-      padding: 80px 6vw;
-      background: var(--nira-sage);
-      color: var(--nira-bone);
-      text-align: center;
-    }
-    .case-quote__text {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(24px, 3vw, 36px);
-      line-height: 1.4;
-      margin: 0 auto 28px;
-      max-width: 740px;
-    }
-    .case-quote__source {
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(231, 226, 210, 0.6);
-    }
-
-    /* NEXT PROJECT */
-    .case-next {
-      max-width: 1200px;
-      margin: 0 auto 80px;
-      padding: 60px 6vw;
-      border-top: 1px solid #d4d4d4;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    .case-next__label {
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: #6c6c6c;
-    }
-    .case-next__link {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-size: clamp(36px, 5vw, 56px);
-      color: var(--nira-sage);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-      transition: color 0.3s ease;
-    }
-    .case-next__link em { font-style: italic; color: var(--nira-mauve); }
-    .case-next__link:hover { color: var(--nira-mauve); }
-    .case-next__link .arrow {
-      display: inline-block;
-      margin-left: 12px;
-      transition: transform 0.3s ease;
-    }
-    .case-next__link:hover .arrow { transform: translateX(8px); }
-
-    /* CTA */
-    .case-cta {
-      background: var(--nira-ink);
-      color: var(--nira-paper);
-      padding: 140px 6vw;
-      text-align: center;
-    }
-    .case-cta__title {
-      font-family: 'Times New Roman', Georgia, serif;
-      font-size: clamp(48px, 7vw, 96px);
-      line-height: 1;
-      margin: 0 0 40px;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-    }
-    .case-cta__title em { color: var(--nira-gold); font-style: italic; }
-    .case-cta__btn {
-      display: inline-block;
-      padding: 18px 36px;
-      border: 1px solid var(--nira-gold);
-      color: var(--nira-paper);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .case-cta__btn:hover { background: var(--nira-gold); color: var(--nira-ink); }
-
-    /* DROP DETAIL ROW (logo callout) */
-    .case-detail-row {
-      max-width: 1200px;
-      margin: 0 auto 100px;
-      padding: 0 6vw;
+    .cs-hero__title em,
+    .cs-section em,
+    .cs-brief__body em { color: var(--nira-mauve); font-style: italic; }
+    .cs-detail-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: center;
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
     }
-    .case-detail-row__copy h3 {
+    .cs-detail-row__copy h3 {
       font-family: 'Times New Roman', Georgia, serif;
       font-size: clamp(32px, 3.6vw, 52px);
       line-height: 1.05;
       font-weight: 400;
-      margin: 0 0 24px;
+      margin: 14px 0 24px;
       color: var(--nira-sage);
     }
-    .case-detail-row__copy h3 em { font-style: italic; color: var(--nira-mauve); }
-    .case-detail-row__copy p {
+    .cs-detail-row__copy h3 em { font-style: italic; color: var(--nira-mauve); }
+    .cs-detail-row__copy p {
       font-size: 16px;
       line-height: 1.65;
-      color: #333;
-      margin: 0 0 20px;
+      margin: 0 0 16px;
     }
-    .case-detail-row__copy p em { font-style: italic; color: var(--nira-mauve); font-weight: 500; }
-    .case-detail-row img { width: 100%; display: block; }
+    .cs-detail-row__copy p em { font-style: italic; color: var(--nira-mauve); font-weight: 500; }
+    .cs-detail-row img { width: 100%; display: block; }
     @media (max-width: 760px) {
-      .case-detail-row { grid-template-columns: 1fr; gap: 32px; }
+      .cs-detail-row { grid-template-columns: 1fr; gap: 32px; }
     }
+    .cs-fullbleed { margin: 0 0 100px; }
+    .cs-fullbleed img { width: 100%; display: block; }
+    .cs-row2-tight {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 6vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .cs-row2-tight img { width: 100%; display: block; }
+    @media (max-width: 760px) { .cs-row2-tight { grid-template-columns: 1fr; } }
   </style>
 </head>
+<body>
 
-<body class="case-nira">
-
-  <!-- Global header (same as other pages) -->
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a href="index.html" class="site-header__brand">
-        <img src="images/brand/vw-wordmark-black.png" alt="Virtue &amp; Wisdom" class="site-header__brand-img site-header__brand-img--dark" />
-        <img src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom" class="site-header__brand-img site-header__brand-img--light" />
-      </a>
-      <nav class="site-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="services.html">Capabilities</a></li>
-          <li><a href="visuals.html">Visuals</a></li>
-          <li><a href="about.html">Studio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <a href="contact.html" class="site-header__cta">Start a project</a>
-    </div>
+  <!-- NAV -->
+  <header class="nav">
+    <a href="index.html" class="nav__logo">
+      <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue & Wisdom" />
+      <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue & Wisdom" />
+    </a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="visuals.html">Visuals</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="contact.html" class="nav__cta">Start a project</a>
+    <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </header>
 
-  <!-- TITLE -->
-  <section class="case-head">
-    <span class="case-head__eyebrow">Case Study · Skincare &amp; Beauty</span>
-    <h1 class="case-head__title">Nira<em>.</em></h1>
-    <p class="case-head__intro">
-      A skincare brand whose name means <em>light</em>. We built an identity
-      where every detail catches the eye like sunlight on dewy skin &mdash;
-      a brand confident enough to whisper.
-    </p>
-  </section>
-
   <!-- HERO -->
-  <section class="case-hero">
-    <img src="images/case-studies/hero.jpg" alt="Nira — Reveal your inner confidence; logo and droplet wordmark on sage background" loading="eager" />
+  <section class="cs-hero">
+    <div class="cs-hero__copy">
+      <span class="cs-hero__eyebrow">Case Study · Skincare &amp; Beauty</span>
+      <h1 class="cs-hero__title">Nira<em>.</em></h1>
+      <p class="cs-hero__lede">
+        A skincare brand whose name means <em>light</em>. We built an
+        identity where every detail catches the eye like sunlight on
+        dewy skin — a brand confident enough to whisper.
+      </p>
+    </div>
+    <div class="cs-hero__media">
+      <img src="images/case-studies/hero.jpg" alt="Nira — Reveal your inner confidence; logo and droplet wordmark on sage background" />
+    </div>
   </section>
 
   <!-- META -->
-  <section class="case-meta">
-    <dl>
-      <dt>Client</dt>
-      <dd>Nira</dd>
-    </dl>
-    <dl>
-      <dt>Sector</dt>
-      <dd>Skincare &amp; Beauty</dd>
-    </dl>
-    <dl>
-      <dt>Scope</dt>
-      <dd>Identity, Mark, Pattern System, Packaging, Brand Manual</dd>
-    </dl>
-    <dl>
-      <dt>Tagline</dt>
-      <dd><em>Unveil Your Inner Light.</em></dd>
-    </dl>
+  <section class="cs-meta">
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Client</span>
+      <span class="cs-meta__value">Nira</span>
+    </div>
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Sector</span>
+      <span class="cs-meta__value">Skincare &amp; Beauty</span>
+    </div>
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Scope</span>
+      <span class="cs-meta__value">Identity, Mark, Pattern System, Packaging, Brand Manual</span>
+    </div>
+    <div class="cs-meta__item">
+      <span class="cs-meta__label">Tagline</span>
+      <span class="cs-meta__value">Unveil Your Inner Light</span>
+    </div>
   </section>
 
-  <!-- THE BRIEF -->
-  <section class="case-section">
-    <span class="case-section__eyebrow">The Brief</span>
-    <h2 class="case-section__title">A name that means <em>light</em>, in a category that screams.</h2>
-    <p class="case-section__copy">
-      Nira came to us with strong product science but no visual world. The skincare aisle is
-      crowded with bright pinks, clinical whites, and copy that sells anxiety. We pulled
-      hard in the opposite direction.
-    </p>
-    <p class="case-section__copy">
-      The name is Hebrew for <em>light</em> &mdash; or <em>shining</em>. So that became the brief:
-      build an identity that <em>glows quietly</em>, the way real, healthy skin does.
-      No screaming. No clinical sterility. Just a brand that says <em>"for skin that's already beautiful."</em>
-    </p>
+  <!-- BRIEF -->
+  <section class="cs-section">
+    <div class="cs-brief">
+      <span class="cs-brief__label">The Brief</span>
+      <div>
+        <p class="cs-brief__body">
+          Nira came to us with strong product science but no visual world. The
+          skincare aisle is crowded with bright pinks, clinical whites, and copy
+          that sells anxiety. We pulled hard in the opposite direction:
+          <em>the calmest brand on the shelf.</em>
+        </p>
+        <p class="cs-brief__detail">
+          The name is Hebrew for <em>light</em> — or <em>shining</em>. So that
+          became the brief: build an identity that <em>glows quietly,</em>
+          the way real, healthy skin does. No screaming. No clinical sterility.
+          Just a brand that says, <em>"for skin that's already beautiful."</em>
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- THE MARK — image + story side by side -->
-  <section class="case-detail-row">
-    <div class="case-detail-row__copy">
-      <span class="case-section__eyebrow">The Mark</span>
+  <!-- THE MARK — image + story -->
+  <section class="cs-detail-row">
+    <div class="cs-detail-row__copy">
+      <span class="cs-brief__label">The Mark</span>
       <h3>The dot becomes a <em>drop</em>.</h3>
       <p>
-        The wordmark hides the brand's secret. We removed the dot from the lowercase
-        <em>i</em> &mdash; and let it fall.
+        The wordmark hides the brand's secret. We removed the dot from the
+        lowercase <em>i</em> — and let it fall.
       </p>
       <p>
         A single drop of serum. A tear of dew. A moment of light made physical.
-        It&rsquo;s the kind of detail you don&rsquo;t notice at first &mdash; and then can&rsquo;t unsee.
+        It's the kind of detail you don't notice at first — and then can't unsee.
       </p>
     </div>
-    <img src="images/case-studies/logo-cream.jpg" alt="Nira wordmark on cream background — the dotless 'i' with a falling teardrop" loading="lazy" />
+    <img src="images/case-studies/logo-cream.jpg" alt="Nira wordmark on cream background — the dotless 'i' with a falling teardrop" />
   </section>
 
   <!-- LOGO ON GREEN — full-bleed -->
-  <section class="case-full">
-    <img src="images/case-studies/logo-green.jpg" alt="Nira wordmark in cream against deep sage" loading="lazy" />
+  <section class="cs-fullbleed">
+    <img src="images/case-studies/logo-green.jpg" alt="Nira wordmark in cream against deep sage" />
   </section>
 
-  <!-- COLOR SYSTEM -->
-  <section class="case-section">
-    <span class="case-section__eyebrow">Colour System</span>
-    <h2 class="case-section__title">Sage, mauve, and the colour of <em>skin</em>.</h2>
-    <p class="case-section__copy">
-      Two earthy primaries do the heavy work &mdash; a deep, grounded sage and a warm,
-      lived-in mauve. Cream and bone keep the system airy. No clinical white, no neon,
-      no compromises. The result feels grown-up and quietly feminine, like a brand that
-      doesn&rsquo;t need to introduce itself.
-    </p>
-  </section>
-
-  <!-- SWATCHES -->
-  <section style="max-width: 1400px; margin: 0 auto 100px; padding: 0 6vw;">
-    <div class="case-palette-grid">
-      <div class="swatch" style="background: #3F493D;">
-        <span class="swatch__label">Sage</span>
-        <span class="swatch__hex">#3F493D</span>
-        <span class="swatch__role">Primary · type &amp; lock-ups</span>
+  <!-- COLOR PALETTE -->
+  <section class="cs-palette">
+    <div class="cs-palette__head">
+      <span class="cs-brief__label">Colour System</span>
+      <h2 class="cs-palette__title">Sage, mauve &amp; the colour of <em>skin</em>.</h2>
+      <p class="cs-palette__intro">
+        Two earthy primaries do the heavy work — a deep, grounded sage and a
+        warm, lived-in mauve. Cream and bone keep the system airy. No clinical
+        white, no neon, no compromises. The result feels grown-up and quietly
+        feminine, like a brand that doesn't need to introduce itself.
+      </p>
+    </div>
+    <div class="cs-palette__grid cs-palette__grid--3">
+      <div class="cs-swatch">
+        <div class="cs-swatch__chip" style="background:#3F493D;"></div>
+        <div>
+          <div class="cs-swatch__name">Sage</div>
+          <div class="cs-swatch__hex">HEX · #3F493D</div>
+          <div class="cs-swatch__values">Primary · type &amp; lock-ups</div>
+        </div>
       </div>
-      <div class="swatch swatch--light" style="background: #D7D1BE;">
-        <span class="swatch__label">Bone</span>
-        <span class="swatch__hex">#D7D1BE</span>
-        <span class="swatch__role">Primary · backgrounds</span>
+      <div class="cs-swatch">
+        <div class="cs-swatch__chip" style="background:#D7D1BE; border-color: var(--line);"></div>
+        <div>
+          <div class="cs-swatch__name">Bone</div>
+          <div class="cs-swatch__hex">HEX · #D7D1BE</div>
+          <div class="cs-swatch__values">Primary · backgrounds</div>
+        </div>
       </div>
-      <div class="swatch" style="background: #7D5C4E;">
-        <span class="swatch__label">Mauve</span>
-        <span class="swatch__hex">#7D5C4E</span>
-        <span class="swatch__role">Secondary · accent</span>
+      <div class="cs-swatch">
+        <div class="cs-swatch__chip" style="background:#7D5C4E;"></div>
+        <div>
+          <div class="cs-swatch__name">Mauve</div>
+          <div class="cs-swatch__hex">HEX · #7D5C4E</div>
+          <div class="cs-swatch__values">Secondary · accent</div>
+        </div>
       </div>
-      <div class="swatch swatch--light" style="background: #E6E1D2;">
-        <span class="swatch__label">Cream</span>
-        <span class="swatch__hex">#E6E1D2</span>
-        <span class="swatch__role">Secondary · packaging</span>
+      <div class="cs-swatch">
+        <div class="cs-swatch__chip" style="background:#E6E1D2; border-color: var(--line);"></div>
+        <div>
+          <div class="cs-swatch__name">Cream</div>
+          <div class="cs-swatch__hex">HEX · #E6E1D2</div>
+          <div class="cs-swatch__values">Secondary · packaging</div>
+        </div>
       </div>
-      <div class="swatch" style="background: #4B544A;">
-        <span class="swatch__label">Moss</span>
-        <span class="swatch__hex">#4B544A</span>
-        <span class="swatch__role">Secondary · supporting</span>
+      <div class="cs-swatch">
+        <div class="cs-swatch__chip" style="background:#4B544A;"></div>
+        <div>
+          <div class="cs-swatch__name">Moss</div>
+          <div class="cs-swatch__hex">HEX · #4B544A</div>
+          <div class="cs-swatch__values">Secondary · supporting</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- HERO QUAD -->
-  <section class="case-full">
-    <img src="images/case-studies/quad-confidence.jpg" alt="Nira brand quad — Reveal your inner confidence headline, droplet wordmark, lifestyle and skincare star motif" loading="lazy" />
+  <!-- HERO QUAD — full-bleed -->
+  <section class="cs-fullbleed">
+    <img src="images/case-studies/quad-confidence.jpg" alt="Nira brand quad — Reveal your inner confidence headline, droplet wordmark, lifestyle and skincare star motif" />
   </section>
 
   <!-- THE PATTERN -->
-  <section class="case-section">
-    <span class="case-section__eyebrow">The Pattern</span>
-    <h2 class="case-section__title">Sunlight, <em>tessellated</em>.</h2>
-    <p class="case-section__copy">
-      A four-pointed star &mdash; sharp, weightless, repeated. It reads as sunlight
-      catching skin, or the glint a serum leaves behind. Used quietly: as packaging
-      texture, divider page, or a single mark sitting at the corner of a layout.
-    </p>
+  <section class="cs-section">
+    <div class="cs-brief">
+      <span class="cs-brief__label">The Pattern</span>
+      <div>
+        <p class="cs-brief__body">
+          A four-pointed star — sharp, weightless, repeated. It reads as
+          <em>sunlight catching skin,</em> or the glint a serum leaves behind.
+        </p>
+        <p class="cs-brief__detail">
+          Used quietly: as packaging texture, divider page, or a single mark
+          sitting at the corner of a layout. Always in service of the product,
+          never competing with it.
+        </p>
+      </div>
+    </div>
   </section>
-  <section class="case-full">
-    <img src="images/case-studies/pattern.jpg" alt="Nira pattern — four-pointed stars on warm mauve" loading="lazy" />
+
+  <!-- PATTERN — full-bleed -->
+  <section class="cs-fullbleed">
+    <img src="images/case-studies/pattern.jpg" alt="Nira pattern — four-pointed stars on warm mauve" />
   </section>
+
+  <!-- TWO-IMAGE PACKAGING ROW -->
+  <div class="cs-row2">
+    <div class="cs-tile"><img src="images/case-studies/revival-mask.jpg" alt="Nira Revival Mask — sage tube and box on cream backdrop" /></div>
+    <div class="cs-tile"><img src="images/case-studies/dawnlight-cleanser.jpg" alt="Nira Dawnlight Cleanser — mauve box and cream tube on dark backdrop" /></div>
+  </div>
 
   <!-- TYPOGRAPHY -->
-  <section class="case-section">
-    <span class="case-section__eyebrow">Typography</span>
-    <h2 class="case-section__title">A serif that <em>breathes</em>.</h2>
-    <p class="case-section__copy">
-      Display work uses a tall, gently-flared serif that echoes the wordmark&rsquo;s soft
-      forms. Body copy is set in a clean, low-contrast sans &mdash; quiet enough to let
-      the imagery do the work, confident enough to hold instructional copy on packaging.
+  <section class="cs-type">
+    <div class="cs-type__head">
+      <span class="cs-brief__label">Typography</span>
+      <h2 class="cs-type__title">A serif that <em>breathes</em>.</h2>
+    </div>
+    <div class="cs-type__list">
+      <div class="cs-type__row">
+        <span class="cs-type__role">Display</span>
+        <div class="cs-type__face">
+          <span class="cs-type__name">Serif Display · 84pt</span>
+          <span class="cs-type__sample" style="font-family: 'Times New Roman', Georgia, serif; font-size: clamp(40px, 6vw, 84px); line-height: 1; color: var(--nira-sage);">Reveal your <em style="font-style:italic; color: var(--nira-mauve);">inner</em> confidence.</span>
+        </div>
+      </div>
+      <div class="cs-type__row">
+        <span class="cs-type__role">Sub-headline</span>
+        <div class="cs-type__face">
+          <span class="cs-type__name">Raleway · Medium · 22pt</span>
+          <span class="cs-type__sample cs-type__sample--sans" style="font-weight: 500; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.4;">Skincare that lets you glow without shouting.</span>
+        </div>
+      </div>
+      <div class="cs-type__row">
+        <span class="cs-type__role">Body &amp; UI</span>
+        <div class="cs-type__face">
+          <span class="cs-type__name">Raleway · Regular · 14pt</span>
+          <span class="cs-type__sample cs-type__sample--sans" style="font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6;">For skin that's already beautiful. Crafted with botanical extracts, gentle science, and quiet confidence.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL -->
+  <section class="cs-pull">
+    <p class="cs-pull__text">
+      "The smallest mark on the page does the loudest work. A missing dot,
+      a falling drop — that's the brand."
     </p>
+    <p class="cs-pull__attr">— Identity Notes · Nira Brand Guidelines</p>
   </section>
 
-  <div class="case-type">
-    <span class="case-type__label">Display</span>
-    <div class="case-type__sample">
-      <p class="case-type__sample-display">Reveal your <em>inner</em> confidence.</p>
-      <p class="case-type__sample-meta">Serif Display · 84pt</p>
-    </div>
-  </div>
-  <div class="case-type">
-    <span class="case-type__label">Sub-headline</span>
-    <div class="case-type__sample">
-      <p class="case-type__sample-sub">Skincare that lets you glow without shouting.</p>
-      <p class="case-type__sample-meta">Raleway · Medium · 22pt</p>
-    </div>
-  </div>
-  <div class="case-type" style="margin-bottom: 100px;">
-    <span class="case-type__label">Body &amp; UI</span>
-    <div class="case-type__sample">
-      <p class="case-type__sample-sub" style="font-size: 15px; line-height: 1.6;">For skin that&rsquo;s already beautiful. Crafted with botanical extracts, gentle science, and quiet confidence.</p>
-      <p class="case-type__sample-meta">Raleway · Regular · 14pt</p>
-    </div>
-  </div>
-
-  <!-- PACKAGING — the hero deliverables -->
-  <section class="case-section">
-    <span class="case-section__eyebrow">Packaging</span>
-    <h2 class="case-section__title">A signature, on every <em>tube</em>.</h2>
-    <p class="case-section__copy">
-      The wordmark sits on each product like a hand-signed note. Boxes carry the
-      droplet pattern as a translucent silhouette &mdash; visible only in the right light.
-      Each SKU lives in its own colour: sage for restorative, mauve for daily care,
-      cream for treatment.
-    </p>
-  </section>
-  <section class="case-pair">
-    <img src="images/case-studies/revival-mask.jpg" alt="Nira Revival Mask — sage tube and box on cream backdrop" loading="lazy" />
-    <img src="images/case-studies/dawnlight-cleanser.jpg" alt="Nira Dawnlight Cleanser — mauve box and cream tube on dark backdrop" loading="lazy" />
+  <!-- NEXT -->
+  <section class="cs-next">
+    <span class="cs-next__label">Next Project</span>
+    <a href="case-greenlab.html" class="cs-next__link">Green Lab</a>
   </section>
 
-  <!-- QUOTE -->
-  <section class="case-quote">
-    <p class="case-quote__text">
-      &ldquo;The smallest mark on the page does the loudest work. A missing dot, a falling
-      drop &mdash; that&rsquo;s the brand.&rdquo;
-    </p>
-    <span class="case-quote__source">Identity Notes &middot; Nira Brand Guidelines</span>
-  </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__mark">N</div>
+    <div class="wrap">
+      <h2 class="footer__lede">
+        Like what you see? Let's make <em>yours</em> next.
+      </h2>
 
-  <!-- NEXT PROJECT -->
-  <section class="case-next">
-    <span class="case-next__label">Next Project</span>
-    <a href="case-greenlab.html" class="case-next__link">
-      Green <em>Lab</em><span class="arrow">&rarr;</span>
-    </a>
-  </section>
-
-  <!-- CTA -->
-  <section class="case-cta">
-    <h2 class="case-cta__title">Like what you see? Let&rsquo;s make <em>yours</em> next.</h2>
-    <a href="contact.html" class="case-cta__btn">Start a project</a>
-  </section>
-
-  <!-- Global footer reference (will inherit from style.css) -->
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="site-footer__brand">
-        <img src="images/brand/vw-mark-white.png" alt="Virtue &amp; Wisdom" />
-        <p>A brand building company driven by the pursuit of excellence. We create iconic brands.</p>
+      <div class="footer__grid">
+        <div class="footer__col">
+          <div class="footer__logo">
+            <img src="images/brand/vw-mark-white.png" alt="Virtue & Wisdom" />
+          </div>
+          <p class="footer__desc" style="margin-top: 20px;">
+            A brand building company driven by the pursuit of excellence.
+            We create iconic brands.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="services.html">Capabilities</a></li>
+            <li><a href="visuals.html">Visuals</a></li>
+            <li><a href="about.html">Studio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Behance</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:we@virtuewisdom.com">we@virtuewisdom.com</a></li>
+            <li><a href="tel:+918209921261">+91 8209921261</a></li>
+            <li><a href="tel:+918107799857">+91 8107799857</a></li>
+            <li><a href="https://www.virtuewisdom.com">www.virtuewisdom.com</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="site-footer__col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="services.html">Capabilities</a></li>
-          <li><a href="visuals.html">Visuals</a></li>
-          <li><a href="about.html">Studio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+
+      <div class="footer__base">
+        <span>© <span data-year>2026</span> Virtue &amp; Wisdom. All rights reserved.</span>
+        <span>We create iconic brands.</span>
       </div>
-      <div class="site-footer__col">
-        <h4>Elsewhere</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Behance</a></li>
-          <li><a href="#">YouTube</a></li>
-        </ul>
-      </div>
-      <div class="site-footer__col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:we@virtuewisdom.com">we@virtuewisdom.com</a></li>
-          <li><a href="tel:+918209921261">+91 8209921261</a></li>
-          <li><a href="tel:+918107799857">+91 8107799857</a></li>
-          <li><a href="https://www.virtuewisdom.com">www.virtuewisdom.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="site-footer__bottom">
-      <p>&copy; 2026 Virtue &amp; Wisdom. All rights reserved.</p>
-      <p><em>We create iconic brands.</em></p>
     </div>
   </footer>
 
+  <script src="js/main.js?v=films2"></script>
 </body>
 </html>
