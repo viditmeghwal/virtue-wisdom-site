@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal — Virtue &amp; Wisdom</title>
+<meta name="description" content="Notes on brand strategy, design, and the work that builds iconic brands. By Virtue & Wisdom.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #131313;
+    --ink: #f3ece1;
+    --ink-dim: #a39a8b;
+    --gold: #c9b785;
+    --line: rgba(243, 236, 225, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.5s ease, padding 0.4s ease, border-color 0.5s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    padding: 16px 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav__logo img { height: 22px; width: auto; }
+  .nav__links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .nav__links a {
+    color: var(--ink);
+    opacity: 0.82;
+    padding: 6px 0;
+    position: relative;
+    transition: opacity 0.25s ease;
+  }
+  .nav__links a:hover { opacity: 1; }
+  .nav__links a.active { opacity: 1; }
+  .nav__links a.active::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: var(--ink);
+  }
+  .nav__cta {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 11px 22px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .nav__cta:hover { background: var(--ink); color: var(--bg); }
+
+  /* mobile burger */
+  .nav__burger {
+    display: none;
+    width: 32px; height: 22px;
+    background: transparent; border: 0;
+    cursor: pointer; position: relative;
+    margin-left: 12px;
+  }
+  .nav__burger span {
+    display: block; position: absolute; left: 0;
+    width: 100%; height: 1.5px; background: var(--ink);
+    transition: transform 0.4s, opacity 0.3s, top 0.4s, bottom 0.4s;
+  }
+  .nav__burger span:nth-child(1) { top: 4px; }
+  .nav__burger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .nav__burger span:nth-child(3) { bottom: 4px; }
+  .nav__burger.is-open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .nav__burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__burger.is-open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+  .mobile-drawer {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 80px 32px 60px;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    pointer-events: none;
+  }
+  .mobile-drawer.is-open {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .mobile-drawer ul { list-style: none; text-align: center; width: 100%; }
+  .mobile-drawer li { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .mobile-drawer li:last-child { border-bottom: 0; }
+  .mobile-drawer a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300; opacity: 0.85;
+  }
+  .mobile-drawer a.active { opacity: 1; }
+  .mobile-drawer a em { font-style: italic; color: var(--gold); }
+
+  @media (max-width: 920px) {
+    .nav { padding: 18px 20px; }
+    .nav.scrolled { padding: 14px 20px; }
+    .nav__links { display: none; }
+    .nav__cta { display: none; }
+    .nav__burger { display: block; }
+  }
+  body.menu-open { overflow: hidden; }
+
+  /* ---------- hero ---------- */
+  .blog-hero {
+    padding: 200px 6vw 100px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .blog-hero__kicker {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 36px;
+    display: inline-block;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    min-width: 120px;
+  }
+  .blog-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 9vw, 144px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+  .blog-hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .blog-hero p {
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- featured post ---------- */
+  .blog-featured {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 6vw;
+    border-bottom: 1px solid var(--line);
+  }
+  .blog-featured__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    display: inline-block;
+  }
+  .blog-featured__card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+    transition: opacity 0.3s ease;
+  }
+  .blog-featured__card:hover { opacity: 0.92; }
+  .blog-featured__media {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .blog-featured__media img,
+  .blog-featured__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .blog-featured__card:hover .blog-featured__media img,
+  .blog-featured__card:hover .blog-featured__media svg {
+    transform: scale(1.04);
+  }
+  .blog-featured__meta {
+    display: flex;
+    gap: 18px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 28px;
+  }
+  .blog-featured__meta span { display: inline-block; }
+  .blog-featured__sep { opacity: 0.5; }
+  .blog-featured h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 60px);
+    line-height: 1.05;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+  .blog-featured h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .blog-featured__excerpt {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+  .blog-featured__read {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--gold);
+  }
+  .blog-featured__read::after {
+    content: '→';
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .blog-featured__card:hover .blog-featured__read::after { transform: translateX(6px); }
+
+  @media (max-width: 880px) {
+    .blog-featured__card {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  /* ---------- grid ---------- */
+  .blog-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 6vw;
+  }
+  .blog-grid__head {
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .blog-grid__head h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.05;
+    max-width: 600px;
+  }
+  .blog-grid__head h3 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .blog-grid__filter {
+    display: flex;
+    gap: 18px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .blog-grid__filter span { padding: 6px 0; cursor: pointer; transition: color 0.3s ease; }
+  .blog-grid__filter span:hover, .blog-grid__filter span.active {
+    color: var(--ink);
+  }
+  .blog-grid__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px 60px;
+  }
+  @media (max-width: 880px) {
+    .blog-grid__items { grid-template-columns: 1fr; gap: 60px; }
+    .blog-grid__head { flex-direction: column; align-items: start; }
+  }
+
+  .post-card {
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+  .post-card:hover { opacity: 0.92; }
+  .post-card__media {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--bg-2);
+    margin-bottom: 28px;
+  }
+  .post-card__media svg,
+  .post-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .post-card:hover .post-card__media svg,
+  .post-card:hover .post-card__media img {
+    transform: scale(1.04);
+  }
+  .post-card__meta {
+    display: flex;
+    gap: 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 20px;
+  }
+  .post-card__meta .sep { opacity: 0.5; }
+  .post-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 2.6vw, 34px);
+    line-height: 1.15;
+    font-weight: 300;
+    margin-bottom: 18px;
+    transition: color 0.3s ease;
+  }
+  .post-card h4 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .post-card__excerpt {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin-bottom: 22px;
+  }
+  .post-card__read {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 4px;
+    display: inline-block;
+  }
+
+  /* ---------- footer ---------- */
+  .blog-footer {
+    border-top: 1px solid var(--line);
+    padding: 100px 6vw 60px;
+    background: var(--bg);
+  }
+  .blog-footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .blog-footer__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 60px;
+    max-width: 900px;
+  }
+  .blog-footer__lede em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .blog-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line);
+  }
+  .blog-footer__col h5 {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .blog-footer__col ul { list-style: none; }
+  .blog-footer__col li { margin-bottom: 12px; }
+  .blog-footer__col a {
+    font-size: 14px;
+    color: var(--ink);
+    opacity: 0.82;
+    transition: opacity 0.3s;
+  }
+  .blog-footer__col a:hover { opacity: 1; }
+  .blog-footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .blog-footer__desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    max-width: 320px;
+  }
+  .blog-footer__base {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  @media (max-width: 880px) {
+    .blog-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .blog-footer__base { flex-direction: column; gap: 12px; }
+  }
+
+  /* hover transition default */
+  .post-card, .blog-featured__card { cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html" class="nav__logo"><img src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom"></a>
+  <ul class="nav__links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Capabilities</a></li>
+    <li><a href="visuals.html">Visuals</a></li>
+    <li><a href="blog.html" class="active">Journal</a></li>
+    <li><a href="about.html">Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <a href="contact.html" class="nav__cta">Start a Project</a>
+    <button class="nav__burger" id="navBurger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Capabilities</a></li>
+    <li><a href="visuals.html">Visuals</a></li>
+    <li><a href="blog.html" class="active"><em>Journal</em></a></li>
+    <li><a href="about.html">Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <span class="blog-hero__kicker">Journal</span>
+  <h1>Notes on <em>building</em><br>iconic brands.</h1>
+  <p>Writing about brand strategy, design, and the work that turns a name into something people remember. From the studio at Virtue &amp; Wisdom.</p>
+</section>
+
+<!-- FEATURED POST -->
+<section class="blog-featured">
+  <span class="blog-featured__label">— Featured</span>
+  <a href="blog-resort-fade.html" class="blog-featured__card">
+    <div class="blog-featured__media">
+      <img src="images/blog/banner-resort-fade.svg" alt="Mountain silhouettes against a rising gold sun" />
+    </div>
+    <div class="blog-featured__copy">
+      <div class="blog-featured__meta">
+        <span>Brand Strategy</span>
+        <span class="blog-featured__sep">/</span>
+        <span>Hospitality</span>
+        <span class="blog-featured__sep">/</span>
+        <span>9 min read</span>
+      </div>
+      <h2>Why most resort brands <em>fade into the mountain</em>.</h2>
+      <p class="blog-featured__excerpt">Most luxury resorts share the same playbook — and the same look. The ones guests remember have done something different. A field guide for owners building places worth coming back to.</p>
+      <span class="blog-featured__read">Read the article</span>
+    </div>
+  </a>
+</section>
+
+<!-- GRID -->
+<section class="blog-grid">
+  <div class="blog-grid__head">
+    <h3>More from the <em>journal.</em></h3>
+    <div class="blog-grid__filter">
+      <span class="active">All</span>
+      <span>Strategy</span>
+      <span>Social</span>
+      <span>Photography</span>
+    </div>
+  </div>
+
+  <div class="blog-grid__items">
+
+    <a href="blog-hospitality-playbook.html" class="post-card">
+      <div class="post-card__media">
+        <img src="images/blog/banner-hospitality-playbook.svg" alt="Vertical paper layers with a gold thread weaving through" />
+      </div>
+      <div class="post-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Hospitality</span>
+        <span class="sep">/</span>
+        <span>8 min</span>
+      </div>
+      <h4>The hospitality brand <em>playbook</em>.</h4>
+      <p class="post-card__excerpt">Turning a stay into a story. How the best hotel brands engineer the moments guests can't help but post about — and what that does for bookings.</p>
+      <span class="post-card__read">Read →</span>
+    </a>
+
+    <a href="blog-cafe-instagram.html" class="post-card">
+      <div class="post-card__media">
+        <img src="images/blog/banner-cafe-instagram.svg" alt="3x3 instagram grid with three squares highlighted in gold" />
+      </div>
+      <div class="post-card__meta">
+        <span>Social Media</span>
+        <span class="sep">/</span>
+        <span>F&amp;B</span>
+        <span class="sep">/</span>
+        <span>7 min</span>
+      </div>
+      <h4>The 3-post rule <em>for cafés.</em></h4>
+      <p class="post-card__excerpt">Most café Instagrams are 90% latte art. Here's a content split that actually fills tables — and what to post in each of the three buckets.</p>
+      <span class="post-card__read">Read →</span>
+    </a>
+
+    <a href="blog-cafe-reels.html" class="post-card">
+      <div class="post-card__media">
+        <img src="images/blog/banner-cafe-reels.svg" alt="Four ascending audio bars representing reel beats" />
+      </div>
+      <div class="post-card__meta">
+        <span>Social Media</span>
+        <span class="sep">/</span>
+        <span>F&amp;B</span>
+        <span class="sep">/</span>
+        <span>6 min</span>
+      </div>
+      <h4>Why your café's reels <em>aren't working</em>.</h4>
+      <p class="post-card__excerpt">A 4-beat structure for café reels that pull people through to the end — and the one mistake that kills retention in the first second and a half.</p>
+      <span class="post-card__read">Read →</span>
+    </a>
+
+    <a href="blog-fnb-shoot.html" class="post-card">
+      <div class="post-card__media">
+        <img src="images/blog/banner-fnb-shoot.svg" alt="Camera aperture iris on a rule-of-thirds grid" />
+      </div>
+      <div class="post-card__meta">
+        <span>Photography</span>
+        <span class="sep">/</span>
+        <span>F&amp;B</span>
+        <span class="sep">/</span>
+        <span>8 min</span>
+      </div>
+      <h4>How a café <em>photoshoot</em> pays for itself.</h4>
+      <p class="post-card__excerpt">A shot list, a shoot day, and a 90-day distribution plan. The math behind why most cafés are leaving money on the table by skipping it.</p>
+      <span class="post-card__read">Read →</span>
+    </a>
+
+    <a href="blog-clothing-brand.html" class="post-card">
+      <div class="post-card__media">
+        <img src="images/blog/banner-clothing-brand.svg" alt="Minimal clothing hangtag with V&amp;W signature" />
+      </div>
+      <div class="post-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Fashion</span>
+        <span class="sep">/</span>
+        <span>9 min</span>
+      </div>
+      <h4>Beyond the logo: building a <em>clothing brand</em> people actually wear.</h4>
+      <p class="post-card__excerpt">A lookbook isn't a brand. A drop isn't a strategy. What separates a clothing label that lasts from one that disappears after the second collection.</p>
+      <span class="post-card__read">Read →</span>
+    </a>
+
+    <a href="blog-marble-brand.html" class="post-card">
+      <div class="post-card__media">
+        <img src="images/blog/banner-marble-brand.svg" alt="Flowing marble veins with gold cracks" />
+      </div>
+      <div class="post-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Materials</span>
+        <span class="sep">/</span>
+        <span>8 min</span>
+      </div>
+      <h4>Selling stone as <em>story</em>.</h4>
+      <p class="post-card__excerpt">Marble is a commodity until you make it a name. How to position a stone brand against ten identical competitors quoting the same ₹/sqft on WhatsApp.</p>
+      <span class="post-card__read">Read →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="blog-footer">
+  <div class="blog-footer__inner">
+    <h2 class="blog-footer__lede">Like what you read? Let's make <em>yours</em> next.</h2>
+    <div class="blog-footer__grid">
+      <div class="blog-footer__col">
+        <div class="blog-footer__brand">Virtue &amp; Wisdom</div>
+        <p class="blog-footer__desc">A brand building company driven by the pursuit of excellence. We create iconic brands.</p>
+      </div>
+      <div class="blog-footer__col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="services.html">Capabilities</a></li>
+          <li><a href="visuals.html">Visuals</a></li>
+          <li><a href="blog.html">Journal</a></li>
+          <li><a href="about.html">Studio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="blog-footer__col">
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+      <div class="blog-footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:we@virtuewisdom.com">we@virtuewisdom.com</a></li>
+          <li><a href="tel:+918209921261">+91 8209921261</a></li>
+          <li><a href="tel:+918107799857">+91 8107799857</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="blog-footer__base">
+      <span>© <span data-year>2026</span> Virtue &amp; Wisdom. All rights reserved.</span>
+      <span>We create iconic brands.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav scrolled state
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+  // year
+  var yearEl = document.querySelector('[data-year]');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // mobile burger
+  var burger = document.getElementById('navBurger');
+  var drawer = document.getElementById('mobileDrawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', function() {
+      var open = drawer.classList.toggle('is-open');
+      burger.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+    });
+    drawer.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        drawer.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+        drawer.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

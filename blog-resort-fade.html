@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Most Resort Brands Fade Into the Mountain — Virtue &amp; Wisdom</title>
+<meta name="description" content="Most luxury resorts share the same playbook — and the same look. The ones guests remember have done something different. A field guide for resort and hotel owners.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #131313;
+    --paper: #f3ece1;
+    --ink-on-paper: #1a1a1a;
+    --ink-dim: #555;
+    --gold: #c9b785;
+    --line-light: rgba(26, 26, 26, 0.12);
+    --line-dark: rgba(243, 236, 225, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink-on-paper);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  /* ---------- nav (light variant for paper bg) ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.5s, padding 0.4s, border-color 0.5s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(243, 236, 225, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    padding: 16px 48px;
+    border-bottom: 1px solid var(--line-light);
+  }
+  .nav__logo img {
+    height: 22px;
+    width: auto;
+    filter: invert(1);
+  }
+  .nav__links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .nav__links a {
+    color: var(--ink-on-paper);
+    opacity: 0.82;
+    padding: 6px 0;
+    position: relative;
+    transition: opacity 0.25s;
+  }
+  .nav__links a:hover, .nav__links a.active { opacity: 1; }
+  .nav__links a.active::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: var(--ink-on-paper);
+  }
+  .nav__cta {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 11px 22px;
+    border: 1px solid var(--ink-on-paper);
+    color: var(--ink-on-paper);
+    background: transparent;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .nav__cta:hover {
+    background: var(--ink-on-paper);
+    color: var(--paper);
+  }
+  .nav__burger {
+    display: none;
+    width: 32px; height: 22px;
+    background: transparent; border: 0;
+    cursor: pointer; position: relative;
+    margin-left: 12px;
+  }
+  .nav__burger span {
+    display: block; position: absolute; left: 0;
+    width: 100%; height: 1.5px; background: var(--ink-on-paper);
+    transition: transform 0.4s, opacity 0.3s, top 0.4s, bottom 0.4s;
+  }
+  .nav__burger span:nth-child(1) { top: 4px; }
+  .nav__burger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .nav__burger span:nth-child(3) { bottom: 4px; }
+  .nav__burger.is-open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .nav__burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav__burger.is-open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+  .mobile-drawer {
+    position: fixed; inset: 0;
+    background: var(--paper);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 80px 32px 60px;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    pointer-events: none;
+  }
+  .mobile-drawer.is-open { transform: translateY(0); pointer-events: auto; }
+  .mobile-drawer ul { list-style: none; text-align: center; width: 100%; }
+  .mobile-drawer li { padding: 18px 0; border-bottom: 1px solid var(--line-light); }
+  .mobile-drawer li:last-child { border-bottom: 0; }
+  .mobile-drawer a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300; opacity: 0.85;
+  }
+  .mobile-drawer a em { font-style: italic; color: #8a7140; }
+  @media (max-width: 920px) {
+    .nav { padding: 18px 20px; }
+    .nav.scrolled { padding: 14px 20px; }
+    .nav__links { display: none; }
+    .nav__cta { display: none; }
+    .nav__burger { display: block; }
+  }
+  body.menu-open { overflow: hidden; }
+
+  /* ---------- ARTICLE STRUCTURE ---------- */
+  .article-meta {
+    max-width: 760px;
+    margin: 160px auto 60px;
+    padding: 0 6vw;
+    text-align: center;
+  }
+  .article-meta__category {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 36px;
+    display: inline-block;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-light);
+    min-width: 120px;
+  }
+  .article-meta h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    margin-bottom: 36px;
+    color: var(--ink-on-paper);
+  }
+  .article-meta h1 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-meta__deck {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+  .article-meta__byline {
+    display: inline-flex;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .article-meta__byline .sep { opacity: 0.5; }
+
+  /* hero banner (full-bleed) */
+  .article-hero {
+    width: 100%;
+    margin-bottom: 100px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-hero img,
+  .article-hero svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* article body — long-form prose */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 6vw 100px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body p {
+    margin-bottom: 28px;
+  }
+  .article-body p.lede::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4em;
+    font-weight: 300;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 14px 0 0;
+    color: #8a7140;
+  }
+  .article-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-top: 80px;
+    margin-bottom: 32px;
+    letter-spacing: -0.005em;
+  }
+  .article-body h2 em {
+    font-style: italic;
+    color: #8a7140;
+  }
+  .article-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 400;
+    margin-top: 60px;
+    margin-bottom: 24px;
+    color: #1f1f1f;
+  }
+  .article-body strong {
+    font-weight: 500;
+    color: var(--ink-on-paper);
+  }
+  .article-body em {
+    font-style: italic;
+  }
+  .article-body blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-style: italic;
+    line-height: 1.3;
+    margin: 60px 0;
+    padding: 0 0 0 32px;
+    border-left: 2px solid #8a7140;
+    color: #1f1f1f;
+    font-weight: 400;
+  }
+  .article-body ul, .article-body ol {
+    margin: 0 0 28px 24px;
+    padding-left: 16px;
+  }
+  .article-body li {
+    margin-bottom: 12px;
+    line-height: 1.65;
+  }
+  .article-body a {
+    color: #8a7140;
+    text-decoration: underline;
+    text-decoration-color: rgba(138, 113, 64, 0.4);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.3s;
+  }
+  .article-body a:hover {
+    text-decoration-color: #8a7140;
+  }
+  .article-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--line-light);
+    margin: 60px 0;
+  }
+
+  /* inline figures — break out of the column for visual breathing */
+  .article-figure {
+    margin: 60px -10vw;
+  }
+  .article-figure__media {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .article-figure__media img,
+  .article-figure__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .article-figure__caption {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  @media (max-width: 880px) {
+    .article-figure { margin: 40px -6vw; }
+  }
+
+  /* pull quote */
+  .article-pull {
+    margin: 80px -10vw;
+    padding: 60px 6vw;
+    background: var(--bg);
+    color: var(--paper);
+    text-align: center;
+  }
+  .article-pull p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-style: italic;
+    line-height: 1.25;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+    color: var(--paper);
+  }
+  .article-pull p em { color: var(--gold); font-style: normal; }
+  @media (max-width: 880px) {
+    .article-pull { margin: 60px -6vw; }
+  }
+
+  /* CTA card at the end */
+  .article-cta {
+    max-width: 720px;
+    margin: 60px auto 0;
+    padding: 60px 6vw;
+    text-align: center;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-cta__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 24px;
+    display: inline-block;
+  }
+  .article-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .article-cta h2 em { font-style: italic; color: #8a7140; }
+  .article-cta__btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--ink-on-paper);
+    color: var(--paper);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .article-cta__btn:hover { background: #8a7140; }
+
+  /* related posts */
+  .article-related {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 6vw;
+    border-top: 1px solid var(--line-light);
+  }
+  .article-related__label {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a7140;
+    margin-bottom: 50px;
+    display: inline-block;
+  }
+  .article-related__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+  }
+  @media (max-width: 880px) {
+    .article-related__grid { grid-template-columns: 1fr; gap: 50px; }
+  }
+  .related-card {
+    display: block;
+    transition: opacity 0.3s;
+  }
+  .related-card:hover { opacity: 0.92; }
+  .related-card__media {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: var(--bg);
+  }
+  .related-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .related-card:hover .related-card__media img { transform: scale(1.04); }
+  .related-card__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+  .related-card__meta .sep { opacity: 0.5; }
+  .related-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 300;
+    line-height: 1.15;
+  }
+  .related-card h3 em { font-style: italic; color: #8a7140; }
+
+  /* footer (dark) */
+  .blog-footer {
+    background: var(--bg);
+    color: var(--paper);
+    padding: 100px 6vw 60px;
+  }
+  .blog-footer__inner { max-width: 1400px; margin: 0 auto; }
+  .blog-footer__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 60px;
+    max-width: 900px;
+    color: var(--paper);
+  }
+  .blog-footer__lede em { font-style: italic; color: var(--gold); }
+  .blog-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line-dark);
+  }
+  .blog-footer__col h5 {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .blog-footer__col ul { list-style: none; }
+  .blog-footer__col li { margin-bottom: 12px; }
+  .blog-footer__col a {
+    font-size: 14px;
+    color: var(--paper);
+    opacity: 0.82;
+    transition: opacity 0.3s;
+  }
+  .blog-footer__col a:hover { opacity: 1; }
+  .blog-footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--paper);
+  }
+  .blog-footer__desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(243, 236, 225, 0.6);
+    max-width: 320px;
+  }
+  .blog-footer__base {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line-dark);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(243, 236, 225, 0.6);
+  }
+  @media (max-width: 880px) {
+    .blog-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .blog-footer__base { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html" class="nav__logo"><img src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom"></a>
+  <ul class="nav__links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Capabilities</a></li>
+    <li><a href="visuals.html">Visuals</a></li>
+    <li><a href="blog.html" class="active">Journal</a></li>
+    <li><a href="about.html">Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <a href="contact.html" class="nav__cta">Start a Project</a>
+    <button class="nav__burger" id="navBurger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="services.html">Capabilities</a></li>
+    <li><a href="visuals.html">Visuals</a></li>
+    <li><a href="blog.html" class="active"><em>Journal</em></a></li>
+    <li><a href="about.html">Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ARTICLE META -->
+<section class="article-meta">
+  <span class="article-meta__category">Brand Strategy · Hospitality</span>
+  <h1>Why most resort brands<br><em>fade into the mountain.</em></h1>
+  <p class="article-meta__deck">Most luxury resorts share the same playbook — and the same look. The ones guests remember have done something different. A field guide for owners building places worth coming back to.</p>
+  <div class="article-meta__byline">
+    <span>By Virtue &amp; Wisdom</span>
+    <span class="sep">·</span>
+    <span>9 min read</span>
+  </div>
+</section>
+
+<!-- HERO BANNER -->
+<div class="article-hero">
+  <img src="images/blog/banner-resort-fade.svg" alt="Layered mountain silhouettes against a rising gold sun" />
+</div>
+
+<!-- ARTICLE BODY -->
+<article class="article-body">
+
+  <p class="lede">Walk into ten luxury mountain resorts and you'll find the same things. Slate fireplaces. Reclaimed wood. A "wellness" menu. Black and white photography of the surrounding landscape. A signature cocktail named after a local tree. The same heavy-bottom highball glasses, the same charred-wood spa, the same Aesop products in the bathroom.</p>
+
+  <p>The properties might be in different countries, run by different operators, photographed by different photographers — but the brand language has converged. There's a luxury hospitality template now, and most resorts are running it.</p>
+
+  <p>It works, in a sense. Guests get what they expect. The bookings come in. The Instagram looks fine. But it also means that on any given Sunday, a guest could be in your lobby or in a competitor's lobby three valleys over and barely notice the difference. And once that's true, you're not really competing on brand anymore — you're competing on price, location, and whoever the OTA algorithm pushes that week.</p>
+
+  <p>Here's the question worth sitting with: <strong>when a guest tells someone about their stay, can they describe what made <em>your</em> place different?</strong> Not the views. Not the food. The place itself, as a brand.</p>
+
+  <h2>The luxury hospitality template, and why it's broken</h2>
+
+  <p>The template exists because it works just well enough. A new resort opens, hires a competent agency, picks from the established palette of "luxury hospitality" cues, and ends up with a property that looks like everyone else's. The owner sees a competitor with that aesthetic doing well, assumes the aesthetic is the cause, and copies it.</p>
+
+  <p>The cause is almost never the aesthetic. The cause is usually that the well-doing competitor was the first or second to use that aesthetic in their region, when it still felt distinctive. Now it doesn't. The aesthetic has become invisible — a cost of entry, not a differentiator.</p>
+
+  <p>This is what we mean by <em>fading into the mountain.</em> The brand doesn't fail loudly. It just stops registering. Guests have a perfectly fine stay and then can't quite tell their friends what was special about it.</p>
+
+  <h2>Three places where most resorts give up on brand</h2>
+
+  <h3>1. The naming and the verbal world</h3>
+
+  <p>Most resorts are named after the place they're in: <em>The [Region] Lodge</em>, <em>[Valley] House</em>, <em>The [Local Word for Mountain].</em> The reasoning is that the name should evoke location. The result is that the name is interchangeable with twenty competitors.</p>
+
+  <p>The names that travel further are the ones that have nothing to do with the geography and everything to do with a feeling. Aman doesn't mean "mountain." Soneva doesn't mean "beach." The name is a frame for the experience, not a description of the postcode.</p>
+
+  <p>The same is true downstream — the cocktail names, the room types, the spa rituals. <em>The Birch Suite</em> says nothing. <em>The Hour Before Light</em> is a story before the guest has even seen the room.</p>
+
+  <h3>2. The materials of welcome</h3>
+
+  <p>The first ten minutes of a guest's arrival are doing more work than the next two days combined. This is when impressions calcify. Most resorts spend this window on logistics — checking in, explaining wifi, walking to the room, going through the breakfast hours.</p>
+
+  <p>The brands that build memory turn this same ten minutes into a small piece of theatre. A drink served at the threshold. A handwritten card already on the bed when you walk in. A particular smell at the door. None of these things are expensive. All of them require <em>noticing</em> that the moment exists.</p>
+
+</article>
+
+<!-- INLINE FIGURE -->
+<figure class="article-figure">
+  <div class="article-figure__media">
+    <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <rect width="1600" height="900" fill="#0a0a0a"/>
+      <!-- Three small "rituals" represented as circles with gold accent lines -->
+      <g transform="translate(400, 450)">
+        <circle r="80" fill="none" stroke="#c9b785" stroke-width="1.5" opacity="0.85"/>
+        <line x1="0" y1="-110" x2="0" y2="-85" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
+        <line x1="0" y1="85" x2="0" y2="110" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
+        <text x="0" y="180" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="20" fill="#c9b785" opacity="0.7">arrival</text>
+      </g>
+      <g transform="translate(800, 450)">
+        <circle r="100" fill="none" stroke="#c9b785" stroke-width="2" opacity="0.95"/>
+        <circle r="40" fill="#c9b785" opacity="0.4"/>
+        <text x="0" y="200" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="20" fill="#c9b785" opacity="0.7">ritual</text>
+      </g>
+      <g transform="translate(1200, 450)">
+        <circle r="80" fill="none" stroke="#c9b785" stroke-width="1.5" opacity="0.85"/>
+        <line x1="0" y1="-110" x2="0" y2="-85" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
+        <line x1="0" y1="85" x2="0" y2="110" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
+        <text x="0" y="180" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="20" fill="#c9b785" opacity="0.7">farewell</text>
+      </g>
+      <line x1="500" y1="450" x2="700" y2="450" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+      <line x1="900" y1="450" x2="1100" y2="450" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+  </div>
+  <figcaption class="article-figure__caption">Three moments where memory is made or lost.</figcaption>
+</figure>
+
+<article class="article-body">
+
+  <h3>3. The point of view</h3>
+
+  <p>A resort's brand is, ultimately, a point of view about how a few days off should be spent. Most resorts don't have one. They have amenities. They have a spa, a pool, a restaurant, an excursion menu — and a guest can mix and match these into whatever experience they want, which sounds nice but is actually a way of having no opinion at all.</p>
+
+  <p>The places that hold their own have a strong opinion. Some are about doing nothing well. Some are about being uncomfortable in nature on purpose. Some are about long, slow meals as the centre of the day. The opinion isn't right or wrong; it's the fact of having one that turns the property into a brand.</p>
+
+</article>
+
+<!-- PULL QUOTE -->
+<div class="article-pull">
+  <p>A resort's brand is a point of view about how a <em>few days off</em> should be spent. Most don't have one. They have amenities.</p>
+</div>
+
+<article class="article-body">
+
+  <h2>Building a resort brand that doesn't fade</h2>
+
+  <p>The remedy isn't to throw out the luxury hospitality template entirely. It's to use it as the floor — the things you must get right so the brand doesn't feel cheap — and then build the actual brand on top.</p>
+
+  <p>The questions we ask resort and hotel clients in the first week of a project, before any visual work begins:</p>
+
+  <ul>
+    <li><strong>What is this place an opinion about?</strong> Not what it offers. What it believes a great few days looks like. The answer should be specific enough to alienate the wrong guest and pull in the right one.</li>
+    <li><strong>What's the smallest moment we own?</strong> The thing only we do, that a returning guest would miss if it disappeared. The handwritten card. The pre-dinner walk. The honesty bar with no honesty.</li>
+    <li><strong>What's our vocabulary?</strong> Not in marketing copy — in actual operations. What do staff call the rooms, the meals, the moments? If everyone uses the same language internally, the brand becomes felt instead of pasted on.</li>
+    <li><strong>What gets photographed?</strong> Most resorts photograph the lobby, the suite, the food, the view. The brands that build memory photograph <em>the texture of a specific moment</em> — the steam coming off the morning bath, the staff laying out a tasting on the lawn, the hands of the chef.</li>
+  </ul>
+
+  <p>None of these questions can be answered by a designer or an agency in isolation. They have to come from the owners — from the actual reason the place was built. A brand agency's job is to help excavate that reason and make it legible. The reason has to already be there.</p>
+
+  <h2>The mountain doesn't differentiate you anymore</h2>
+
+  <p>Twenty years ago, having a great location was enough. The mountain, the view, the lake, the architecture — these were the brand. They were rare enough to do the work on their own.</p>
+
+  <p>That's over. Every region now has a dozen properties with the same kind of view, taken at the same kind of golden hour, posted to the same kind of audience. The view is no longer the brand. The view is the table stakes.</p>
+
+  <p>The brand is what you've decided your guests should feel when they leave. And then it's the discipline to engineer every touchpoint — naming, arrival, language, photography, opinion — to deliver that feeling reliably, in a way that's recognisably yours and no one else's.</p>
+
+  <p>The resorts that do this don't fade into the mountain. They become the mountain — the reason people travel to that valley in the first place.</p>
+
+</article>
+
+<!-- CTA -->
+<section class="article-cta">
+  <span class="article-cta__label">— Working on a resort brand?</span>
+  <h2>We help hotel and resort owners build brands<br>that <em>don't fade.</em></h2>
+  <a href="contact.html" class="article-cta__btn">Start a Conversation →</a>
+</section>
+
+<!-- RELATED -->
+<section class="article-related">
+  <span class="article-related__label">— Continue Reading</span>
+  <div class="article-related__grid">
+    <a href="blog-hospitality-playbook.html" class="related-card">
+      <div class="related-card__media">
+        <img src="images/blog/banner-hospitality-playbook.svg" alt="Hospitality brand playbook banner" />
+      </div>
+      <div class="related-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Hospitality</span>
+      </div>
+      <h3>The hospitality brand <em>playbook.</em></h3>
+    </a>
+    <a href="blog-clothing-brand.html" class="related-card">
+      <div class="related-card__media">
+        <img src="images/blog/banner-clothing-brand.svg" alt="Clothing brand banner" />
+      </div>
+      <div class="related-card__meta">
+        <span>Brand Strategy</span>
+        <span class="sep">/</span>
+        <span>Fashion</span>
+      </div>
+      <h3>Beyond the logo: building a <em>clothing brand.</em></h3>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="blog-footer">
+  <div class="blog-footer__inner">
+    <h2 class="blog-footer__lede">Like what you read? Let's make <em>yours</em> next.</h2>
+    <div class="blog-footer__grid">
+      <div class="blog-footer__col">
+        <div class="blog-footer__brand">Virtue &amp; Wisdom</div>
+        <p class="blog-footer__desc">A brand building company driven by the pursuit of excellence. We create iconic brands.</p>
+      </div>
+      <div class="blog-footer__col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="services.html">Capabilities</a></li>
+          <li><a href="visuals.html">Visuals</a></li>
+          <li><a href="blog.html">Journal</a></li>
+          <li><a href="about.html">Studio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="blog-footer__col">
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+      <div class="blog-footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:we@virtuewisdom.com">we@virtuewisdom.com</a></li>
+          <li><a href="tel:+918209921261">+91 8209921261</a></li>
+          <li><a href="tel:+918107799857">+91 8107799857</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="blog-footer__base">
+      <span>© <span data-year>2026</span> Virtue &amp; Wisdom. All rights reserved.</span>
+      <span>We create iconic brands.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+  var yearEl = document.querySelector('[data-year]');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  var burger = document.getElementById('navBurger');
+  var drawer = document.getElementById('mobileDrawer');
+  if (burger && drawer) {
+    burger.addEventListener('click', function() {
+      var open = drawer.classList.toggle('is-open');
+      burger.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+    });
+    drawer.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        drawer.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
