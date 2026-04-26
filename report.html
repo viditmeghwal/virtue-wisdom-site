@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your One-Page Strategy — Virtue &amp; Wisdom</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0E0E0C;
+    --paper: #F6F4EE;
+    --paper-warm: #EFEBE0;
+    --rule: rgba(14, 14, 12, 0.12);
+    --rule-strong: rgba(14, 14, 12, 0.28);
+    --muted: rgba(14, 14, 12, 0.62);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 80px;
+  }
+
+  em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .display { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -0.015em; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .muted { color: var(--muted); }
+
+  /* Top bar */
+  nav.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 40px; border-bottom: 0.5px solid var(--rule);
+    background: var(--paper);
+  }
+  nav.top .wordmark { font-family: var(--serif); font-size: 22px; font-style: italic; text-decoration: none; color: var(--ink); }
+  nav.top .wordmark span { font-style: normal; }
+  nav.top .actions { display: flex; gap: 16px; }
+  nav.top button {
+    background: transparent; border: 0.5px solid var(--ink);
+    padding: 10px 18px; font-size: 13px; font-family: var(--sans);
+    cursor: pointer; color: var(--ink); transition: all 0.2s;
+  }
+  nav.top button:hover { background: var(--ink); color: var(--paper); }
+  nav.top button.primary { background: var(--ink); color: var(--paper); }
+
+  /* Container */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
+
+  /* Header */
+  .doc-header {
+    display: grid; grid-template-columns: 1fr auto; gap: 40px;
+    align-items: end; padding-bottom: 40px;
+    border-bottom: 0.5px solid var(--ink);
+    margin-bottom: 60px;
+  }
+  .doc-header h1 { margin-top: 16px; font-size: clamp(48px, 6vw, 80px); }
+  .doc-header h1 em { font-style: italic; }
+  .doc-meta { text-align: right; font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--muted); }
+  .doc-meta div { margin-bottom: 4px; }
+
+  /* The grid (one-page strategy structure from your PDF page 57) */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border: 0.5px solid var(--ink);
+    background: var(--rule);
+  }
+  .col {
+    background: var(--paper);
+    padding: 32px;
+  }
+  .col-header {
+    font-family: var(--serif); font-size: 24px; font-weight: 400;
+    padding-bottom: 16px; margin-bottom: 24px;
+    border-bottom: 0.5px solid var(--ink);
+  }
+  .col-header em { font-style: italic; }
+
+  .row {
+    padding: 20px 0;
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .row:last-child { border-bottom: none; }
+  .row-label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .row-value {
+    font-family: var(--serif); font-size: 18px; line-height: 1.4;
+    color: var(--ink); min-height: 50px;
+  }
+  .row-value em { font-style: italic; }
+  .row-value.empty { font-family: var(--sans); font-style: italic; font-size: 14px; color: var(--muted); }
+
+  .row-value[contenteditable="true"]:focus {
+    outline: none;
+    background: var(--paper-warm);
+    box-shadow: 0 0 0 4px var(--paper-warm);
+  }
+
+  /* Tagline footer */
+  .tagline-block {
+    margin-top: 48px;
+    padding: 60px 40px;
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+  }
+  .tagline-block .eyebrow { color: rgba(246, 244, 238, 0.6); }
+  .tagline-block .tagline {
+    font-family: var(--serif); font-size: clamp(40px, 5vw, 72px);
+    line-height: 1.05; margin: 24px 0;
+  }
+  .tagline-block .tagline em { font-style: italic; }
+  .tagline-block .brand-name { font-family: var(--serif); font-style: italic; font-size: 18px; opacity: 0.7; }
+
+  /* Drafts section */
+  .drafts {
+    margin-top: 60px;
+    padding: 32px;
+    background: var(--paper-warm);
+  }
+  .drafts-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 16px;
+  }
+  .drafts-list { font-family: var(--serif); font-size: 18px; line-height: 1.8; white-space: pre-wrap; }
+
+  /* Awareness summary */
+  .awareness-summary { margin-top: 48px; }
+  .awareness-summary h2 { font-family: var(--serif); font-size: 32px; margin-bottom: 24px; }
+  .awareness-table { width: 100%; border-collapse: collapse; }
+  .awareness-table th, .awareness-table td {
+    text-align: left; padding: 12px 16px;
+    border-bottom: 0.5px solid var(--rule);
+    font-size: 14px;
+  }
+  .awareness-table th {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+  }
+  .awareness-table .priority { font-family: var(--serif); font-style: italic; }
+  .priority.high { color: var(--ink); font-weight: 500; }
+  .priority.medium { color: rgba(14, 14, 12, 0.7); }
+  .priority.low { color: var(--muted); }
+
+  /* Footer / actions */
+  .doc-footer {
+    margin-top: 80px; padding-top: 32px;
+    border-top: 0.5px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--muted);
+  }
+  .doc-footer em { font-family: var(--serif); }
+
+  /* Print */
+  @media print {
+    nav.top, .doc-footer, .actions, .save-status { display: none !important; }
+    body { background: white; padding: 0; }
+    .wrap { padding: 20px; max-width: 100%; }
+    .strategy-grid { border-color: black; }
+    .col { background: white; }
+    .tagline-block { background: black; }
+    .drafts, .awareness-summary { page-break-before: avoid; }
+    @page { margin: 12mm; }
+  }
+
+  /* Save indicator */
+  .save-status {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--paper); border: 0.5px solid var(--rule-strong);
+    padding: 10px 16px; font-size: 12px; color: var(--muted);
+    font-family: var(--serif); font-style: italic;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .save-status.visible { opacity: 1; }
+
+  @media (max-width: 880px) {
+    nav.top { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .wrap { padding: 32px 20px; }
+    .doc-header { grid-template-columns: 1fr; }
+    .doc-meta { text-align: left; }
+    .strategy-grid { grid-template-columns: 1fr; }
+    .col { padding: 24px; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav class="top">
+  <a href="/" class="wordmark">V<span>&amp;</span>W</a>
+  <div class="actions">
+    <button onclick="window.print()">Export PDF</button>
+    <button onclick="copyShareLink()">Copy share link</button>
+    <button class="primary" onclick="window.location.href='/tool.html'">Edit answers</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ──────────  HEADER  ────────── -->
+  <header class="doc-header">
+    <div>
+      <div class="eyebrow">A V<em>&amp;</em>W instrument · One-page strategy</div>
+      <h1 class="display"><em id="brand-name-display">Your brand</em>, in <em>one page</em>.</h1>
+    </div>
+    <div class="doc-meta">
+      <div>Strategy v.1</div>
+      <div id="strategy-date"></div>
+      <div><em>Build brand like V&amp;W</em></div>
+    </div>
+  </header>
+
+  <!-- ──────────  THE GRID  ────────── -->
+  <section class="strategy-grid">
+
+    <!-- Brand Core -->
+    <div class="col">
+      <div class="col-header">Brand <em>core</em></div>
+
+      <div class="row">
+        <div class="row-label">Purpose</div>
+        <div class="row-value" contenteditable="true" data-key="purpose">—</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Vision</div>
+        <div class="row-value" contenteditable="true" data-key="vision">—</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Values</div>
+        <div class="row-value" contenteditable="true" data-key="values">—</div>
+      </div>
+    </div>
+
+    <!-- Brand Positioning -->
+    <div class="col">
+      <div class="col-header">Brand <em>positioning</em></div>
+
+      <div class="row">
+        <div class="row-label">Audience</div>
+        <div class="row-value" contenteditable="true" data-key="audience">—</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Market position</div>
+        <div class="row-value" contenteditable="true" data-key="positioning">—</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Awareness goals</div>
+        <div class="row-value" contenteditable="true" data-key="goals">—</div>
+      </div>
+    </div>
+
+    <!-- Brand Persona -->
+    <div class="col">
+      <div class="col-header">Brand <em>persona</em></div>
+
+      <div class="row">
+        <div class="row-label">Personality</div>
+        <div class="row-value" contenteditable="true" data-key="personality">—</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Voice</div>
+        <div class="row-value" contenteditable="true" data-key="voice">—</div>
+      </div>
+      <div class="row">
+        <div class="row-label">Tagline</div>
+        <div class="row-value" contenteditable="true" data-key="tagline">—</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ──────────  TAGLINE BLOCK  ────────── -->
+  <div class="tagline-block">
+    <div class="eyebrow">The expression of it all</div>
+    <div class="tagline" id="tagline-display"><em>Your tagline appears here.</em></div>
+    <div class="brand-name" id="brand-name-tagline">— V&amp;W</div>
+  </div>
+
+  <!-- ──────────  AWARENESS PRIORITY ────────── -->
+  <section class="awareness-summary">
+    <h2>Awareness <em>priorities</em></h2>
+    <p class="muted" style="margin-bottom: 24px;">Sorted by impact-to-effort ratio. Tackle the top three first.</p>
+    <table class="awareness-table" id="awareness-table">
+      <thead>
+        <tr><th>Initiative</th><th>Impact</th><th>Ease</th><th>Priority</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- ──────────  TAGLINE DRAFTS ────────── -->
+  <section class="drafts" id="drafts-section" style="display: none;">
+    <div class="drafts-header">
+      <span class="eyebrow">Tagline drafts</span>
+      <span class="muted small"><em>For when you want to revisit</em></span>
+    </div>
+    <div class="drafts-list" id="drafts-list"></div>
+  </section>
+
+  <!-- ──────────  FOOTER  ────────── -->
+  <footer class="doc-footer">
+    <span><em>Auto-saves as you edit</em></span>
+    <span><a href="https://www.virtuewisdom.com" style="color: var(--muted);">virtuewisdom.com</a> · we@virtuewisdom.com</span>
+  </footer>
+
+</div>
+
+<div class="save-status" id="save-status">Saved</div>
+
+<script>
+  // ─── Load data from localStorage ───────────────────────────
+  function loadData() {
+    try {
+      const raw = localStorage.getItem('vw_brand_strategy');
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // ─── Synthesizers (mirror the tool's logic) ────────────────
+  function synthesize(d) {
+    if (!d) return {};
+
+    const archetypeLabels = {
+      innocent:'Innocent', sage:'Sage', explorer:'Explorer', outlaw:'Outlaw',
+      magician:'Magician', hero:'Hero', lover:'Lover', jester:'Jester',
+      everyman:'Everyman', caregiver:'Caregiver', ruler:'Ruler', creator:'Creator'
+    };
+
+    const purpose = d.purposeContribution && d.purposeImpact
+      ? `To ${d.purposeContribution.trim()}, so that ${d.purposeImpact.trim()}.`
+      : '';
+
+    const vision = d.visionAspirations && d.visionIdeal
+      ? `To be ${d.visionAspirations.trim()}, of ${d.visionIdeal.trim()}.`
+      : '';
+
+    const values = (d.values || []).filter(v => v.trim()).join(' · ');
+
+    const audience = d.audienceLabel || '';
+
+    const positioning = d.audienceLabel && d.audienceProblems && d.marketBenefit && d.marketDifference
+      ? `We help ${d.audienceLabel.trim()} who ${d.audienceProblems.trim()} to achieve ${d.marketBenefit.trim()}, unlike ${(d.marketCompetitors || '').split(',')[0]?.trim() || 'the alternatives'} our solutions ${d.marketDifference.trim()}.`
+      : '';
+
+    const goals = (d.awareness || [])
+      .filter(a => a.name && a.name.trim())
+      .sort((a, b) => (b.impact * b.ease) - (a.impact * a.ease))
+      .slice(0, 3)
+      .map(a => a.name)
+      .join(' · ');
+
+    const personality = d.archetypePrimary && d.archetypeSecondary
+      ? `70% ${archetypeLabels[d.archetypePrimary] || d.archetypePrimary} · 30% ${archetypeLabels[d.archetypeSecondary] || d.archetypeSecondary}`
+      : (d.archetypePrimary ? archetypeLabels[d.archetypePrimary] : '');
+
+    const voice = [
+      d.voiceAreA && `We are ${d.voiceAreA}, but we're not ${d.voiceNotA}.`,
+      d.voiceAreB && `We are ${d.voiceAreB}, but we're not ${d.voiceNotB}.`
+    ].filter(Boolean).join(' ');
+
+    // Tagline: take first non-empty line of drafts
+    const taglineFirst = (d.taglineDrafts || '').split('\n').map(l => l.trim()).filter(Boolean)[0] || '';
+
+    return { purpose, vision, values, audience, positioning, goals, personality, voice, tagline: taglineFirst };
+  }
+
+  // ─── Render ────────────────────────────────────────────────
+  function render() {
+    const d = loadData();
+    if (!d) {
+      document.querySelector('.wrap').innerHTML = `
+        <div style="text-align: center; padding: 120px 0;">
+          <h1 class="display" style="font-size: 48px; margin-bottom: 24px;">No <em>strategy</em> found.</h1>
+          <p class="muted" style="margin-bottom: 32px;">Looks like you haven't completed the framework yet.</p>
+          <a href="/tool.html" class="wordmark" style="text-decoration: underline;">Begin the framework →</a>
+        </div>
+      `;
+      return;
+    }
+
+    const s = synthesize(d);
+
+    // Brand name
+    const brand = d.brandName || 'Your brand';
+    document.getElementById('brand-name-display').textContent = brand;
+    document.getElementById('brand-name-tagline').textContent = '— ' + brand;
+
+    // Date
+    const today = new Date();
+    document.getElementById('strategy-date').textContent =
+      today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    // Populate cells (use saved overrides if present, else synthesized)
+    const overrides = JSON.parse(localStorage.getItem('vw_strategy_edits') || '{}');
+    const fields = ['purpose', 'vision', 'values', 'audience', 'positioning', 'goals', 'personality', 'voice', 'tagline'];
+
+    fields.forEach(key => {
+      const el = document.querySelector(`[data-key="${key}"]`);
+      const value = overrides[key] !== undefined ? overrides[key] : s[key];
+      if (value && value.trim()) {
+        el.innerHTML = wrapItalics(value);
+        el.classList.remove('empty');
+      } else {
+        el.textContent = 'Not yet defined';
+        el.classList.add('empty');
+      }
+    });
+
+    // Tagline display
+    const taglineDisplay = document.getElementById('tagline-display');
+    if (s.tagline) {
+      taglineDisplay.innerHTML = wrapItalics(s.tagline);
+    }
+
+    // Awareness table
+    const awareness = (d.awareness || []).filter(a => a.name && a.name.trim());
+    if (awareness.length > 0) {
+      const tbody = document.querySelector('#awareness-table tbody');
+      const sorted = [...awareness].sort((a, b) => (b.impact * b.ease) - (a.impact * a.ease));
+      tbody.innerHTML = sorted.map((a, i) => {
+        const score = a.impact * a.ease;
+        const priority = score > 6000 ? 'high' : score > 3000 ? 'medium' : 'low';
+        const priorityLabel = priority === 'high' ? 'High' : priority === 'medium' ? 'Medium' : 'Low';
+        return `<tr>
+          <td>${escapeHtml(a.name)}</td>
+          <td>${a.impact}</td>
+          <td>${a.ease}</td>
+          <td class="priority ${priority}"><em>${priorityLabel}</em></td>
+        </tr>`;
+      }).join('');
+    } else {
+      document.querySelector('.awareness-summary').style.display = 'none';
+    }
+
+    // Drafts
+    if (d.taglineDrafts && d.taglineDrafts.trim()) {
+      document.getElementById('drafts-section').style.display = 'block';
+      document.getElementById('drafts-list').textContent = d.taglineDrafts;
+    }
+  }
+
+  // Light italic wrapping — just escape, the user already wrote what they meant
+  function wrapItalics(text) {
+    return escapeHtml(text);
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  // ─── Auto-save edits ───────────────────────────────────────
+  let saveTimer;
+  function showSaved() {
+    const el = document.getElementById('save-status');
+    el.classList.add('visible');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => el.classList.remove('visible'), 1500);
+  }
+
+  document.querySelectorAll('[contenteditable="true"]').forEach(el => {
+    el.addEventListener('blur', () => {
+      const overrides = JSON.parse(localStorage.getItem('vw_strategy_edits') || '{}');
+      overrides[el.dataset.key] = el.textContent.trim();
+      localStorage.setItem('vw_strategy_edits', JSON.stringify(overrides));
+      showSaved();
+    });
+  });
+
+  function copyShareLink() {
+    // In production: generate a shareable URL via your backend
+    navigator.clipboard.writeText(window.location.href);
+    const btn = event.target;
+    const originalText = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(() => btn.textContent = originalText, 1500);
+  }
+
+  // Boot
+  render();
+</script>
+
+</body>
+</html>
