@@ -102,7 +102,7 @@
     right: 0;
     height: 80px;
     z-index: 4;
-    pointer-events: none;
+    pointer-events: all;
   }
   .bts__phones::before { top: 0; background: linear-gradient(to bottom, #0a0a0a 5%, transparent 100%); }
   .bts__phones::after  { bottom: 0; background: linear-gradient(to top, #0a0a0a 5%, transparent 100%); }
@@ -193,7 +193,7 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    pointer-events: none;
+    pointer-events: all;
     background:
       radial-gradient(ellipse 60% 50% at 25% 35%, #0a1f44 0%, transparent 55%),
       radial-gradient(ellipse 55% 45% at 75% 65%, #051738 0%, transparent 60%),
@@ -227,13 +227,13 @@
   .films-teaser .films__track,
   .films-teaser .film-card,
   .films-teaser .film-card * {
-    pointer-events: none !important;
+    pointer-events: all !important;
   }
   .films .films__stage,
   .films .films__track,
   .films .film-card,
   .films .film-card * {
-    pointer-events: none !important;
+    pointer-events: all !important;
   }
   /* Re-enable on category tiles (they need clicks) */
   .films__grid,
@@ -243,7 +243,7 @@
     pointer-events: auto !important;
   }
   /* BTS section — videos themselves shouldn't capture clicks/scroll */
-  .bts__media { pointer-events: none; }
+  .bts__media { pointer-events: all; }
   /* Allow BTS column hover to pause animation */
   .bts__col { pointer-events: auto; }
   </style>
@@ -320,7 +320,7 @@
     font-size: 13px;
     margin-left: 2px;
   }
-  .chat-trigger.is-hidden { transform: translateX(150%); pointer-events: none; }
+  .chat-trigger.is-hidden { transform: translateX(150%); pointer-events: all; }
 
   /* Backdrop */
   .chat-backdrop {
@@ -331,7 +331,7 @@
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     opacity: 0;
-    pointer-events: none;
+    pointer-events: all;
     transition: opacity 0.3s ease;
   }
   .chat-backdrop.is-open { opacity: 1; pointer-events: auto; }
