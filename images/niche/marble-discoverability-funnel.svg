@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Discoverability funnel diagram: search visibility, social presence, and word-of-mouth narrowing down to qualified buyer inquiries for marble brands">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Top sources line -->
+  <text x="350" y="200" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.8">SEO</text>
+  <text x="800" y="200" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.8">social</text>
+  <text x="1250" y="200" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.8">word of mouth</text>
+  <!-- Funnel lines converging -->
+  <line x1="350" y1="220" x2="800" y2="500" stroke="#c9b785" stroke-width="0.7" opacity="0.5"/>
+  <line x1="800" y1="220" x2="800" y2="500" stroke="#c9b785" stroke-width="0.7" opacity="0.5"/>
+  <line x1="1250" y1="220" x2="800" y2="500" stroke="#c9b785" stroke-width="0.7" opacity="0.5"/>
+  <!-- Filter rectangle -->
+  <rect x="640" y="500" width="320" height="80" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
+  <text x="800" y="548" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="18" fill="#c9b785">qualified inquiry</text>
+  <!-- Down to outcomes -->
+  <line x1="800" y1="580" x2="800" y2="700" stroke="#c9b785" stroke-width="0.7" opacity="0.5" stroke-dasharray="3 4"/>
+  <text x="800" y="740" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.7">SHOWROOM VISIT</text>
+  <text x="800" y="775" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.5">SAMPLE REQUEST</text>
+  <text x="800" y="810" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.4">PROJECT DISCUSSION</text>
+</svg>
