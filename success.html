@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Welcome to your strategy — Virtue &amp; Wisdom</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0E0E0C;
+    --paper: #F6F4EE;
+    --paper-warm: #EFEBE0;
+    --rule: rgba(14, 14, 12, 0.12);
+    --muted: rgba(14, 14, 12, 0.62);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+  }
+
+  em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .display { font-family: var(--serif); font-weight: 400; line-height: 1.0; letter-spacing: -0.02em; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+
+  /* Top bar */
+  nav.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 40px;
+    border-bottom: 0.5px solid var(--rule);
+  }
+  nav.top .wordmark { font-family: var(--serif); font-size: 22px; font-style: italic; text-decoration: none; color: var(--ink); }
+  nav.top .wordmark span { font-style: normal; }
+  nav.top .receipt { font-size: 12px; color: var(--muted); font-family: var(--serif); font-style: italic; }
+
+  /* Main */
+  main {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 80px 40px;
+  }
+  .container {
+    max-width: 720px; width: 100%;
+    text-align: center;
+  }
+
+  .checkmark {
+    width: 64px; height: 64px;
+    border: 0.5px solid var(--ink); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 40px;
+  }
+
+  .container .eyebrow { margin-bottom: 32px; }
+
+  h1.display {
+    font-size: clamp(56px, 7vw, 96px);
+    margin-bottom: 32px;
+  }
+
+  p.lede {
+    font-size: 19px; line-height: 1.6;
+    color: rgba(14, 14, 12, 0.78);
+    max-width: 540px; margin: 0 auto 56px;
+  }
+
+  /* What happens next */
+  .next-steps {
+    text-align: left;
+    max-width: 520px; margin: 0 auto 56px;
+    border-top: 0.5px solid var(--rule);
+  }
+  .next-step {
+    padding: 20px 0;
+    border-bottom: 0.5px solid var(--rule);
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .next-step .num { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--muted); }
+  .next-step .body strong { display: block; font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 4px; }
+  .next-step .body strong em { font-style: italic; }
+  .next-step .body p { font-size: 14px; color: rgba(14, 14, 12, 0.7); line-height: 1.6; }
+
+  /* CTA */
+  .btn-primary {
+    background: var(--ink); color: var(--paper);
+    padding: 18px 40px; font-size: 14px; font-weight: 500;
+    border: none; cursor: pointer; font-family: var(--sans);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+
+  .countdown {
+    margin-top: 24px;
+    font-size: 13px; font-family: var(--serif); font-style: italic;
+    color: var(--muted);
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 40px;
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--muted);
+    border-top: 0.5px solid var(--rule);
+  }
+  footer em { font-family: var(--serif); }
+
+  @media (max-width: 720px) {
+    nav.top, footer { padding: 20px; }
+    main { padding: 48px 20px; }
+    footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav class="top">
+  <a href="/" class="wordmark">V<span>&amp;</span>W</a>
+  <span class="receipt">Receipt sent to <em id="email-receipt">your inbox</em></span>
+</nav>
+
+<main>
+  <div class="container">
+
+    <div class="checkmark">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M5 12l5 5 9-12" />
+      </svg>
+    </div>
+
+    <div class="eyebrow">Payment received</div>
+    <h1 class="display">Now the <em>quiet</em><br>part begins.</h1>
+
+    <p class="lede">
+      The framework is yours. The remaining steps — personality, voice, tagline — are unlocked. Your one-page strategy is waiting in the dashboard, ready to live with you and move as you do.
+    </p>
+
+    <div class="next-steps">
+      <div class="next-step">
+        <div class="num"><em>01</em></div>
+        <div class="body">
+          <strong>Finish the <em>last three steps</em></strong>
+          <p>Personality, voice, and tagline. About ten more minutes. The synthesis is already drafting in the background.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="num"><em>02</em></div>
+        <div class="body">
+          <strong>Open the <em>dashboard</em></strong>
+          <p>Edit any line. Export the one-page strategy as a PDF. Share a link with your co-founders or the agency briefing you next.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div class="num"><em>03</em></div>
+        <div class="body">
+          <strong>Come back when it <em>shifts</em></strong>
+          <p>Strategy isn't static. The dashboard stays editable. We'd recommend revisiting at six months.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="/tool.html" class="btn-primary" id="continue-cta">Continue the framework →</a>
+    <div class="countdown" id="countdown"></div>
+
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Virtue &amp; Wisdom · <em>We create iconic brands.</em></span>
+  <span><a href="mailto:we@virtuewisdom.com" style="color: var(--muted);">we@virtuewisdom.com</a></span>
+</footer>
+
+<script>
+  // Set the unlock flag — this is what the tool reads to unlock steps 7–9
+  // In production: this should be set server-side after Stripe webhook confirms payment
+  // Then served as part of the user session, not from URL params (URL params can be spoofed)
+  try {
+    localStorage.setItem('vw_unlocked', 'true');
+  } catch (e) {
+    // localStorage blocked — graceful degradation; flag must be set by server in this case
+  }
+
+  // Pull email from URL params (Stripe will pass it back) and display
+  const params = new URLSearchParams(window.location.search);
+  const email = params.get('email');
+  if (email) {
+    document.getElementById('email-receipt').textContent = email;
+  }
+
+  // Soft auto-redirect — give the moment to land before nudging forward
+  let secondsLeft = 8;
+  const countdownEl = document.getElementById('countdown');
+  const tick = () => {
+    if (secondsLeft <= 0) {
+      window.location.href = '/tool.html';
+      return;
+    }
+    countdownEl.innerHTML = `Or we'll take you there in <em>${secondsLeft}</em>…`;
+    secondsLeft--;
+  };
+  tick();
+  const interval = setInterval(tick, 1000);
+
+  // Stop the countdown if they click anything
+  document.addEventListener('click', () => clearInterval(interval));
+</script>
+
+</body>
+</html>
