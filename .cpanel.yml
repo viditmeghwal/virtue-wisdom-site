@@ -6,3 +6,4 @@ deployment:
     - /bin/cp -Ru css $DEPLOYPATH
     - /bin/cp -Ru js $DEPLOYPATH
     - /bin/cp -Ru images $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp -Ru tool $DEPLOYPATH 2>/dev/null || true
