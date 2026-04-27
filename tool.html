@@ -645,12 +645,166 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* === DARK THEME OVERRIDE === */
+    /* Applies dark theme to tool.html only. Other pages unaffected. */
+
+    body {
+      background: #0a0a0a;
+      color: #F6F4EE;
+    }
+
+    /* Force nav into dark mode (it already has .is-dark variant) */
+    .nav { color: #F6F4EE; }
+    .nav .nav__logo .logo-dark { display: none; }
+    .nav .nav__logo .logo-light { display: block; }
+    .nav.scrolled {
+      background: rgba(10, 10, 10, 0.92) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+    }
+    .nav__cta {
+      border-color: #F6F4EE;
+      color: #F6F4EE;
+    }
+    .nav__cta:hover {
+      background: #F6F4EE;
+      color: #0a0a0a;
+    }
+
+    /* Hero */
+    .tool-hero h1 { color: #F6F4EE; }
+    .tool-hero__crumbs { color: rgba(246, 244, 238, 0.55); }
+    .tool-hero__lede { color: rgba(246, 244, 238, 0.78); }
+    .tool-hero__price-note { color: rgba(246, 244, 238, 0.6); }
+    .tool-hero .btn--ink {
+      background: #F6F4EE;
+      color: #0a0a0a;
+      border-color: #F6F4EE;
+    }
+    .tool-hero .btn--ink:hover {
+      background: transparent;
+      color: #F6F4EE;
+    }
+    .tool-hero .btn--ghost {
+      color: #F6F4EE;
+      border-color: rgba(246, 244, 238, 0.3);
+    }
+    .tool-hero .btn--ghost:hover {
+      border-color: #F6F4EE;
+    }
+
+    /* Transform section — keep cream/warm background as a "stage" */
+    .tool-transform {
+      background: #F6F4EE;
+      color: #0a0a0a;
+      border-top-color: rgba(255, 255, 255, 0.1);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    .tool-transform__head h2 { color: #0a0a0a; }
+    .tool-transform__caption { color: rgba(10, 10, 10, 0.6); }
+    .tool-transform__side {
+      background: #FFFFFF;
+      border-color: rgba(10, 10, 10, 0.12);
+    }
+    .tool-transform__notes { color: rgba(10, 10, 10, 0.45); }
+
+    /* Methodology — dark background, cream cards */
+    .tool-method {
+      background: #0a0a0a;
+      color: #F6F4EE;
+    }
+    .tool-method__head h2 { color: #F6F4EE; }
+    .tool-method__step {
+      background: #F6F4EE;
+      color: #0a0a0a;
+      padding: 36px;
+      border: 1px solid rgba(246, 244, 238, 0.1);
+    }
+    .tool-method__step h3 { color: #0a0a0a; }
+    .tool-method__step p { color: rgba(10, 10, 10, 0.7); }
+    .tool-method__step .num { color: rgba(10, 10, 10, 0.55); }
+    .tool-method__step .step-count { color: rgba(10, 10, 10, 0.5); }
+
+    /* Inside / 9-steps — dark background, cream cards */
+    .tool-inside {
+      background: #0a0a0a;
+      color: #F6F4EE;
+    }
+    .tool-inside__head h2 { color: #F6F4EE; }
+    .tool-inside__item {
+      background: #F6F4EE;
+      color: #0a0a0a;
+      border: 1px solid rgba(246, 244, 238, 0.1);
+    }
+    .tool-inside__item .name { color: #0a0a0a; }
+    .tool-inside__item .desc { color: rgba(10, 10, 10, 0.7); }
+    .tool-inside__item .num { color: rgba(10, 10, 10, 0.55); }
+    .tool-inside__item.is-locked {
+      background: rgba(246, 244, 238, 0.06);
+      color: rgba(246, 244, 238, 0.55);
+      border-color: rgba(246, 244, 238, 0.15);
+    }
+    .tool-inside__item.is-locked .name { color: rgba(246, 244, 238, 0.7); }
+    .tool-inside__item.is-locked .desc { color: rgba(246, 244, 238, 0.45); }
+    .tool-inside__item.is-locked .num { color: rgba(246, 244, 238, 0.4); }
+    .tool-inside__lock {
+      background: rgba(246, 244, 238, 0.04);
+      border: 1px solid rgba(246, 244, 238, 0.15);
+      color: rgba(246, 244, 238, 0.75);
+    }
+
+    /* Pricing — cream card on dark */
+    .tool-pricing {
+      background: #0a0a0a;
+      color: #F6F4EE;
+    }
+    .tool-pricing__head h2 { color: #F6F4EE; }
+    .tool-pricing__card {
+      background: #F6F4EE;
+      color: #0a0a0a;
+    }
+    .tool-pricing__card .price { color: #0a0a0a; }
+    .tool-pricing__card ul li { color: rgba(10, 10, 10, 0.78); }
+    .tool-pricing__card .fine-print { color: rgba(10, 10, 10, 0.55); }
+
+    /* Sectors — keep cream stage */
+    .tool-sectors {
+      background: #F6F4EE;
+      color: #0a0a0a;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .tool-sectors__lede { color: #0a0a0a; }
+    .tool-sectors__link {
+      background: #FFFFFF;
+      color: #0a0a0a;
+      border-color: rgba(10, 10, 10, 0.12);
+    }
+
+    /* FAQ — dark with cream text */
+    .tool-faq {
+      background: #0a0a0a;
+      color: #F6F4EE;
+    }
+    .tool-faq__head h2 { color: #F6F4EE; }
+    .tool-faq__item {
+      border-bottom-color: rgba(246, 244, 238, 0.12);
+    }
+    .tool-faq__item .q { color: #F6F4EE; }
+    .tool-faq__item .a { color: rgba(246, 244, 238, 0.72); }
+
+    /* Eyebrows — keep readable across light & dark sections */
+    .tool-method .eyebrow,
+    .tool-inside .eyebrow,
+    .tool-pricing .eyebrow,
+    .tool-faq .eyebrow {
+      color: rgba(246, 244, 238, 0.55);
+    }
 </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <header class="nav">
+  <header class="nav is-dark" data-hero-dark="true">
     <a href="index.html" class="nav__logo">
       <img class="logo-dark" src="images/brand/vw-wordmark-black.png" alt="Virtue &amp; Wisdom — brand strategy tool" />
       <img class="logo-light" src="images/brand/vw-wordmark-white.png" alt="Virtue &amp; Wisdom — brand strategy tool" />
