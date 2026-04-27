@@ -56,50 +56,50 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How long does the brand strategy tool take to complete?",
+        "name": "Will this replace hiring a brand agency?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "About twenty minutes for the full nine-step framework. Most founders complete it in one sitting."
+          "text": "No, and we would not pretend it does. What it replaces is the six weeks of confusion before you brief one. You will arrive at any agency, including ours, knowing what you actually want."
         }
       },
       {
         "@type": "Question",
-        "name": "What do I get at the end?",
+        "name": "What if I get stuck halfway?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A one-page brand strategy covering your purpose, vision, audience, positioning, personality, voice, and tagline. It is editable, exportable as a PDF, and shareable with your team."
+          "text": "Save and come back. Your inputs persist. The framework is designed to be done in one sitting, but it does not have to be."
         }
       },
       {
         "@type": "Question",
-        "name": "How much does it cost?",
+        "name": "Why two thousand rupees?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Two thousand rupees (approximately twenty-five US dollars) one-time. The first six steps are free; the synthesised one-page strategy unlocks at the end."
+          "text": "Cheap enough that a founder can decide alone. Expensive enough that we keep the tool useful instead of farming emails. The report takes us nothing to generate. The framework took us six years to refine."
         }
       },
       {
         "@type": "Question",
-        "name": "Who is this brand strategy tool for?",
+        "name": "How does payment work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Founders, small business owners, and brand teams who want to articulate their strategy without hiring an agency. Particularly suited to early-stage businesses, cafés, hotels, jewellery brands, and creative studios."
+          "text": "PhonePe Payment Gateway, secure checkout with UPI (PhonePe, Google Pay, Paytm, BHIM), credit and debit cards, or netbanking. Receipts are emailed automatically."
         }
       },
       {
         "@type": "Question",
-        "name": "Is this the same framework Virtue and Wisdom uses with clients?",
+        "name": "Can my team use it together?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The nine-step framework is the same one we use inside the studio. The tool guides you through it instead of us."
+          "text": "Yes. Many founders run the first six steps as a workshop with co-founders or early hires, then unlock the report once everyone is aligned. Disagreement before the paywall is the most useful kind."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I edit my answers after completing the tool?",
+        "name": "What if I want to edit later?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The dashboard remains editable. Brand strategy is not static — we recommend revisiting it every six months as your business evolves."
+          "text": "The dashboard stays editable. Your strategy will move; the document should move with it."
         }
       }
     ]
@@ -589,7 +589,63 @@
       .tool-pricing__card { padding: 48px 32px; }
       .tool-pricing__card .price { font-size: 72px; }
     }
-  </style>
+  
+    /* SECTOR LINKS */
+    .tool-sectors {
+      padding: 80px var(--pad);
+      background: var(--paper-warm);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .tool-sectors__inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .tool-sectors__lede {
+      font-family: var(--f-display);
+      font-size: clamp(20px, 2vw, 26px);
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 40px;
+    }
+    .tool-sectors__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .tool-sectors__link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .tool-sectors__link:hover {
+      border-color: var(--accent);
+      background: var(--paper);
+    }
+    .tool-sectors__link .arrow {
+      color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+    .tool-sectors__link:hover .arrow {
+      transform: translateX(4px);
+    }
+    @media (max-width: 720px) {
+      .tool-sectors__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+</style>
 </head>
 <body>
 
@@ -815,6 +871,22 @@
     </div>
   </section>
 
+  
+  <!-- SECTOR LINKS -->
+  <section class="tool-sectors">
+    <div class="tool-sectors__inner">
+      <p class="tool-sectors__lede">
+        Building a brand for a specific category? The framework works for all of them — but our deeper sector playbooks go further into the patterns of each.
+      </p>
+      <div class="tool-sectors__grid">
+        <a href="brand-building-for-cafes.html" class="tool-sectors__link">Cafés &amp; restaurants <span class="arrow">→</span></a>
+        <a href="brand-building-for-resorts-and-hotels.html" class="tool-sectors__link">Resorts &amp; hotels <span class="arrow">→</span></a>
+        <a href="brand-building-for-marble-companies.html" class="tool-sectors__link">Marble companies <span class="arrow">→</span></a>
+        <a href="brand-building-for-jewellery-brands.html" class="tool-sectors__link">Jewellery brands <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="tool-faq">
     <div class="tool-faq__inner">
@@ -878,7 +950,7 @@
             <li><a href="visuals.html">Visuals</a></li>
             <li><a href="blog.html">Journal</a></li>
             <li><a href="sectors.html">Sectors</a></li>
-            <li><a href="tool.html">The Tool</a></li>
+            <li><a href="tool.html">Strategy Tool</a></li>
         <li><a href="about.html">Studio</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
