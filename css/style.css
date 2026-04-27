@@ -61,7 +61,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 /* ---------- V&W Logo (image-based) ---------- */
 
 /* Nav logo — horizontal wordmark. Shows white on dark hero, black everywhere else. */
-.nav__logo { display: inline-flex; align-items: center; height: 28px; flex-shrink: 0; max-width: 70%; }
+.nav__logo { display: inline-flex; align-items: center; height: 28px; flex-shrink: 0; max-width: 240px; }
 
 .nav__logo img {
   height: 22px;
