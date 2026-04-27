@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow gated/internal-use pages
+Disallow: /report.html
+Disallow: /success.html
+Disallow: /chat-snippet.html
+
+Sitemap: https://virtuewisdom.com/sitemap.xml

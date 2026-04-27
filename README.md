@@ -1,126 +1,162 @@
-# Virtue & Wisdom — Website
+# Virtue & Wisdom — SEO Implementation
 
-Multi-page agency website built from the V&W Brand Deck. Vanilla HTML, CSS, and JavaScript — no build step required.
+**Date:** April 28, 2026
+**Scope:** On-page SEO + technical SEO + 2 new landing pages
 
-## Pages
+---
 
-- `index.html` — Home (hero, clients marquee, The Virtue Code, featured work, segments)
-- `work.html` — Portfolio grid with category filters (all 10 case studies from the deck)
-- `services.html` — Three-pillar capabilities page (Branding Acceleration, Brand Marketing, Experience Orchestration)
-- `about.html` — Studio page (leadership team, stats, industries)
-- `contact.html` — Contact form with real V&W contact details
+## Quick start
 
-## Getting started
+This package contains everything needed to deploy the SEO changes. Your existing site already had substantial SEO infrastructure (schema, OG tags, GA4, etc.) — most of the work was layering "branding agency" vocabulary on top of your existing "brand building company" identity, populating empty social arrays, and adding two new long-form landing pages.
 
-Open `index.html` in a browser, or run a local server:
+### Folder structure
 
-```bash
-cd site
-python3 -m http.server 8000
-# visit http://localhost:8000
+```
+deliverable/
+├── README.md                      ← you're here
+├── robots.txt                     ← upload to site root
+├── sitemap.xml                    ← upload to site root
+├── modified/                      ← 26 files: drop-in replacements for existing files
+│   ├── index.html
+│   ├── services.html
+│   ├── ... (24 more)
+└── new/                           ← 2 brand new pages
+    ├── branding-agency-india.html
+    └── d2c-branding-agency.html
 ```
 
-## Brand tokens
+### How to deploy
 
-All colors, fonts, and spacing live as CSS variables at the top of `css/style.css`:
+1. **Back up your current site** (or work in a new branch).
+2. **Replace the 26 files** in `modified/` with the new versions (same filenames).
+3. **Upload the 2 new files** in `new/` to your site root.
+4. **Upload `robots.txt` and `sitemap.xml`** to your site root.
+5. **Verify locally** by opening `index.html` and a sector page in a browser — confirm nothing visually broke.
+6. **Deploy** to production.
+7. **Submit** `https://virtuewisdom.com/sitemap.xml` to Google Search Console.
 
-```css
---ink: #0a0a0a;      /* deep near-black */
---paper: #ffffff;    /* white */
---accent: #b08d57;   /* champagne — used sparingly on italic accents */
---f-display: "Cormorant Garamond";  /* matches the V&W logo aesthetic */
---f-body: "Inter";
-```
+---
 
-The whole palette and type system was chosen to echo the V&W logo — elegant serif, refined, premium black & white.
+## What was changed
 
-## Swapping placeholder SVGs for real client photos
+### 1. Footer social links (20 files)
 
-Every project card on the work page currently uses an inline SVG as a placeholder. To add real photography:
+**Before:** 4 placeholder links (`href="#"`) for Instagram, LinkedIn, Behance, YouTube.
+**After:** 2 real links — Instagram (`https://www.instagram.com/brandvirtuewisdom`) and LinkedIn (`https://www.linkedin.com/company/virtue-wisdom/`). Behance and YouTube were removed (as you don't have those accounts yet — empty placeholder links hurt more than missing ones).
 
-**1. Drop your photos into `/site/images/`** — ideally 900×675 (4:3 ratio), JPEG, under 150 KB each. Recommended file names matching the data already in the HTML:
-
-- `sasstain.jpg`, `malta.jpg`, `sikarwar.jpg`, `bigha.jpg`, `tiecon.jpg`, `auric.jpg`, `uwc.jpg`, `sparsh.jpg`, `beesi.jpg`, `gooddot.jpg`, `nexus.jpg`
-
-**2. In `work.html`, replace the entire `<svg>` inside each `.project__media`** with an `<img>` tag. Example — for the Sasstain card, find this:
+When you create Behance and YouTube accounts later, search-replace this block in all 20 files:
 
 ```html
-<div class="project__media">
-  <svg class="project__canvas" viewBox="0 0 400 300" ...>
-    ...placeholder SVG...
-  </svg>
-  <span class="project__badge">Branding</span>
-</div>
+<li><a href="https://www.linkedin.com/company/virtue-wisdom/" target="_blank" rel="noopener">LinkedIn</a></li>
 ```
 
-Replace with:
+…and add new `<li>` items below it for Behance/YouTube with real URLs.
 
-```html
-<div class="project__media">
-  <img class="project__canvas" src="images/sasstain.jpg" alt="Sasstain luxury vegan branding by V&W" />
-  <span class="project__badge">Branding</span>
-</div>
-```
+### 2. `sameAs` array in Organization schema (20 files)
 
-The `.project__canvas` class handles the cover-fit and zoom-on-hover automatically for both `<svg>` and `<img>`.
+The Organization schema across all pages had `"sameAs": []` (empty array). This is now populated with the Instagram and LinkedIn URLs. Google uses the `sameAs` array to build the Knowledge Panel for your brand — populated arrays meaningfully improve brand-search recognition.
 
-Do the same for the featured cards on `index.html`.
+### 3. Title tags (7 key pages)
 
-## Swapping leadership team portraits
+Layered "Branding Agency" vocabulary alongside the existing "Brand Building" identity:
 
-On `about.html`, each team member has a placeholder SVG portrait. Replace with real photos the same way — drop headshots (ideally 400×500 JPEG) into `/site/images/` and swap the `<svg>` inside `.member__portrait` with an `<img>`:
+| Page | Before | After |
+|------|--------|-------|
+| index.html | Brand Building Company in Udaipur, India | Branding & Marketing Agency in India |
+| services.html | Capabilities — Strategy, Branding, Marketing, Events | Branding & Marketing Services in India |
+| sectors.html | Sectors We Specialise In — Brand Building Across Industries | Industry-Specific Branding Agency in India |
+| about.html | Studio — The Team Behind Virtue & Wisdom | About — Branding & Marketing Agency in Udaipur |
+| contact.html | Contact — Start a Brand Building Project | Contact a Branding Agency in India |
+| blog.html | Journal — Notes on Building Iconic Brands | Brand Strategy Journal | Virtue & Wisdom Branding Agency |
+| work.html | Brand Building Portfolio — Hospitality, Marble, Jewellery | Branding Agency Portfolio in India |
 
-```html
-<div class="member__portrait">
-  <img src="images/vidit.jpg" alt="Vidit Meghwal, Founder" style="width:100%;height:100%;object-fit:cover;" />
-</div>
-```
+**Why this matters:** "Brand Building Company" has very low monthly search volume in India. "Branding Agency" has 10–100x more. Updated titles now capture both vocabularies.
 
-## Adding a new case study
+### 4. SEO H2 subheads added (6 pages)
 
-Copy any existing `<a class="project" data-category="...">` block in `work.html`, change the name, tag, category, and artwork. To filter correctly, match `data-category` to one of: `luxury`, `food`, `healthcare`, `realestate`, `entertainment`, `retail`, `tech`. A project can have multiple: `data-category="luxury,food"`. If you add a new category, also add a new `<button class="filter-btn" data-filter="...">` to the filters section and update the counts.
+Added keyword-rich H2 subheads beneath the existing H1s. On the homepage, the H2 is hidden visually (positioned off-screen) so the cinematic "We create iconic brands." hero stays untouched. On sector pages, the H2 is visible with subtle italic styling underneath the existing H1.
 
-## Wiring up the contact form
+| Page | New H2 |
+|------|--------|
+| index.html (hidden) | Virtue & Wisdom — a branding and marketing agency in India, building iconic brands across hospitality, marble, jewellery and lifestyle. |
+| sectors.html (visible) | An industry-specific branding agency for marble, hospitality, cafés and jewellery brands across India. |
+| brand-building-for-marble-companies.html | A branding agency playbook for marble companies in India. |
+| brand-building-for-resorts-and-hotels.html | A branding agency playbook for hotels and resorts in India. |
+| brand-building-for-cafes.html | A branding agency playbook for cafés and restaurants in India. |
+| brand-building-for-jewellery-brands.html | A branding agency playbook for jewellery brands in India. |
 
-The form currently shows a "Sent ✓" confirmation client-side only. To actually receive submissions:
+A `<!-- vw-seo-subhead -->` marker comment is left right above each insert so future re-runs of the script are idempotent (won't double-insert).
 
-- **Formspree** — simplest option. Sign up, get a form ID, change the `<form>` tag to `<form action="https://formspree.io/f/YOUR_ID" method="POST" class="contact__form">` and the default handler will take over.
-- **Netlify Forms** — if hosting on Netlify, just add `netlify` attribute to the form tag.
-- **Custom backend** — the form submit handler is in `js/main.js`; swap the demo logic for a `fetch()` POST to your endpoint.
+### 5. New pages: `branding-agency-india.html` and `d2c-branding-agency.html`
 
-## What's real vs. placeholder
+Two new long-form landing pages built using your marble sector page as the structural template — same head, same nav, same footer, same chat panel. Each page includes:
 
-Real (from the V&W deck):
-- All company copy, services, methodology (The Virtue Code), industries
-- All 10 case study names and categories
-- All leadership team names and roles
-- Real contact details (email, phones, website)
-- All client names in the marquee strip
+- Full meta tags (title, description, OG, Twitter)
+- 4 JSON-LD schemas (Service, Article, FAQPage, BreadcrumbList)
+- Hero with H1 + SEO H2 subhead
+- ~5 paragraphs of original long-form copy targeting the keyword
+- 6 FAQ entries with FAQPage schema
+- Custom "Read on" cross-link cards
+- Custom CTA band
 
-Placeholder (for you to replace):
-- All SVG project covers on `work.html` and `index.html`
-- All SVG team portraits on `about.html`
-- Social media links in the footer (all `href="#"` — add your real URLs)
+Both pages are added to the sitemap.
 
-## File structure
+### 6. `robots.txt` and `sitemap.xml`
 
-```
-site/
-├── index.html
-├── work.html
-├── services.html
-├── about.html
-├── contact.html
-├── README.md
-├── css/
-│   ├── style.css     (tokens, nav, footer, logo, shared)
-│   └── pages.css     (page-specific layouts)
-├── js/
-│   └── main.js       (nav scroll, reveals, filters, form)
-└── images/           (empty — drop your photos here)
-```
+Created from scratch. The sitemap includes 28 URLs (all main pages + sector pages + case studies + blog posts + the 2 new pages). Pages excluded from the sitemap: `report.html`, `success.html`, `chat-snippet.html` (internal/funnel-only).
 
-## Credits
+---
 
-- Fonts: [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond) + [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts
-- Content sourced from the V&W Brand Deck (Oct 2024) and Visuals by V&W
+## What was NOT changed (and why)
+
+- **Sector page schemas** — already had Service, Article, BreadcrumbList, FAQPage. Already excellent.
+- **Sector page FAQ HTML** — already exists on all 4 sector pages. Excellent.
+- **Open Graph tags on existing pages** — already present and well-configured.
+- **Google Analytics / Search Console verification** — already in place.
+- **Geo meta tags on sector pages** — already present.
+- **Meta descriptions on existing pages** — already good. Layering keywords here would have diminishing returns.
+- **Case study pages, blog posts, tool/visuals/report/success pages** — only footer + sameAs were updated. Their existing meta is fine.
+- **Sitemap of new pages includes them with `lastmod` of today** — Search Console will pick them up on next crawl.
+
+---
+
+## Recommended next steps after deploy
+
+1. **Submit sitemap** to Google Search Console (Settings → Sitemaps → Add `sitemap.xml`).
+2. **Request indexing** for the 2 new pages individually in Search Console (URL Inspection → Request Indexing).
+3. **Internal linking**: add a link from your homepage and capabilities page to `branding-agency-india.html` and `d2c-branding-agency.html`. These pages are currently only reachable through the sitemap — internal links from high-authority pages will accelerate ranking.
+4. **Run pagespeed test** on the 2 new pages (https://pagespeed.web.dev/) — they share the marble template's CSS, so they should perform identically.
+5. **Set up Behance/YouTube accounts** when ready, then add the URLs back to footer + sameAs arrays.
+6. **Monitor rankings** for the 11 target keywords from the SEO plan over the next 90 days. Sector keywords ("branding for marble companies India") should move first, within 30–60 days.
+
+---
+
+## Files in this package
+
+### Root
+- `README.md` — this file
+- `robots.txt`
+- `sitemap.xml`
+
+### `modified/` (26 files — replace existing)
+
+`about.html`, `blog-cafe-instagram.html`, `blog-cafe-reels.html`, `blog-clothing-brand.html`, `blog-fnb-shoot.html`, `blog-hospitality-playbook.html`, `blog-marble-brand.html`, `blog-resort-fade.html`, `blog.html`, `brand-building-for-cafes.html`, `brand-building-for-jewellery-brands.html`, `brand-building-for-marble-companies.html`, `brand-building-for-resorts-and-hotels.html`, `case-ameyaa.html`, `case-auric.html`, `case-dune.html`, `case-greenlab.html`, `case-nira.html`, `case-sasstain.html`, `contact.html`, `index.html`, `sectors.html`, `services.html`, `tool.html`, `visuals.html`, `work.html`
+
+### `new/` (2 files — add to site root)
+
+- `branding-agency-india.html`
+- `d2c-branding-agency.html`
+
+---
+
+## Validation summary
+
+- ✅ HTML structure validated on all 13 critical pages
+- ✅ JSON-LD schemas validated across all 31 site pages
+- ✅ All target keywords covered: 11 from main plan + 4 sector keywords (already won via existing sector pages)
+- ✅ Idempotent — `<!-- vw-seo-subhead -->` markers prevent double-inserts on re-run
+- ✅ No marble/Kishangarh/Makrana leakage in the new generic pages
+
+---
+
+*Implementation by Claude. Questions or revisions: just ask.*
