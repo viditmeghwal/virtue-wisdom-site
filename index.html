@@ -1678,5 +1678,6 @@
   })();
   </script>
 
+<script>fetch("/chat-snippet.html").then(r=>r.text()).then(h=>{const d=document.createElement("div");d.innerHTML=h;document.body.appendChild(d);d.querySelectorAll("script").forEach(s=>{const f=document.createElement("script");f.textContent=s.textContent;document.body.appendChild(f);});});</script>
 </body>
 </html>
