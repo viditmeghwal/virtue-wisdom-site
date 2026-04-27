@@ -3,6 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home2/bhdsehrg/public_html/
     - /bin/cp -f *.html $DEPLOYPATH
+    - /bin/cp -f *.xml $DEPLOYPATH 2>/dev/null || true
     - /bin/cp -Ru css $DEPLOYPATH
     - /bin/cp -Ru js $DEPLOYPATH
     - /bin/cp -Ru images $DEPLOYPATH 2>/dev/null || true
