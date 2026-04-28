@@ -1180,9 +1180,7 @@
     0 0 0 1px rgba(255,255,255,0.06) inset;
   transform-style: preserve-3d;
   transition: transform 0.6s var(--ease);
-  /* filmFloat removed — was causing GPU layer thrash on trackpad scroll.
-     30+ cards each running their own animation forced Chrome to recomposite
-     every card every frame, drowning the main thread during scroll events. */
+  animation: filmFloat 7s ease-in-out infinite;
 }
 
 /* Aspect-ratio variants — keeps height constant so cards visually stay aligned in the marquee */
@@ -1194,11 +1192,11 @@
 .film-card[data-ratio="3:4"]  { width: 340px; height: 453px; border-radius: 24px; }
 
 /* Each card tilts slightly in 3D, alternating for visual rhythm */
-.film-card:nth-child(5n+1) { transform: rotateY(-8deg) rotateX(2deg) translateZ(10px); }
-.film-card:nth-child(5n+2) { transform: rotateY(5deg) rotateX(-1deg) translateZ(-20px) translateY(-20px); }
-.film-card:nth-child(5n+3) { transform: rotateY(-4deg) rotateX(3deg) translateZ(30px) translateY(15px); }
-.film-card:nth-child(5n+4) { transform: rotateY(7deg) rotateX(-2deg) translateZ(-10px); }
-.film-card:nth-child(5n+5) { transform: rotateY(-6deg) rotateX(1deg) translateZ(20px) translateY(-10px); }
+.film-card:nth-child(5n+1) { transform: rotateY(-8deg) rotateX(2deg) translateZ(10px); animation-delay: -0.8s; }
+.film-card:nth-child(5n+2) { transform: rotateY(5deg) rotateX(-1deg) translateZ(-20px) translateY(-20px); animation-delay: -2.1s; }
+.film-card:nth-child(5n+3) { transform: rotateY(-4deg) rotateX(3deg) translateZ(30px) translateY(15px); animation-delay: -3.4s; }
+.film-card:nth-child(5n+4) { transform: rotateY(7deg) rotateX(-2deg) translateZ(-10px); animation-delay: -4.7s; }
+.film-card:nth-child(5n+5) { transform: rotateY(-6deg) rotateX(1deg) translateZ(20px) translateY(-10px); animation-delay: -6s; }
 
 @keyframes filmFloat {
   0%, 100% { translate: 0 0; }
@@ -1274,7 +1272,7 @@
     #1a1a1a 100%
   );
   background-size: 200% 200%;
-  animation: filmShimmer 6s ease-in-out infinite;
+  animation: filmFloat 7s ease-in-out infinite, filmShimmer 6s ease-in-out infinite;
 }
 
 @keyframes filmShimmer {
@@ -2763,4 +2761,60 @@
   .cs-meta { grid-template-columns: 1fr; }
   .cs-palette__grid,
   .cs-palette__grid--3 { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+
+
+/* ============================================================
+   FILMS SECTION — emergency flat mode (test only)
+   Strip GPU-expensive features to diagnose trackpad jerky-scroll.
+   Mask gradient kept (it's cheap, doesn't force per-frame work).
+   ============================================================ */
+
+/* Remove the 3D rendering context */
+.films__stage {
+  perspective: none !important;
+  -webkit-perspective: none !important;
+}
+
+/* Remove preserve-3d on the track */
+.films__track {
+  transform-style: flat !important;
+  -webkit-transform-style: flat !important;
+  will-change: auto !important;
+}
+
+/* Flatten every film card — no 3D rotations, no translateZ, no per-card animation */
+.films .film-card,
+.films .film-card:nth-child(5n+1),
+.films .film-card:nth-child(5n+2),
+.films .film-card:nth-child(5n+3),
+.films .film-card:nth-child(5n+4),
+.films .film-card:nth-child(5n+5) {
+  transform: none !important;
+  transform-style: flat !important;
+  animation: none !important;
+  will-change: auto !important;
+  backface-visibility: visible !important;
+}
+
+.films .film-card {
+  filter: none !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset !important;
+  contain: layout style !important;
+}
+
+/* Pointer-events off for hit-test bypass during scroll */
+.films,
+.films *,
+.films-teaser,
+.films-teaser * {
+  pointer-events: none !important;
+}
+
+/* But re-enable on links and buttons inside */
+.films a,
+.films button,
+.films-teaser a,
+.films-teaser button {
+  pointer-events: auto !important;
 }
