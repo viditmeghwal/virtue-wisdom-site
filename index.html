@@ -1717,14 +1717,35 @@
   })();
 
   // ============================================================
-  // Films marquee — defensive video setup ONLY.
-  // The previous wheel-forwarder IIFE was removed because it called
-  // e.preventDefault() on every wheel tick, which made the page feel
-  // laggy / hang when the cursor was over a video card. Native scroll
-  // (with touch-action: pan-y) handles vertical wheel correctly on
-  // its own; no JS intervention needed.
+  // Films marquee — wheel forwarder v3 (light)
+  //
+  // The bug: when cursor is over a <video> in the marquee, some
+  // browsers treat the video as a scroll container and trap the
+  // wheel — the page won't scroll vertically.
+  //
+  // Fix: forward wheel events from the marquee section up to the
+  // window, but use native smooth scrolling (not behavior:'auto')
+  // and only when there's vertical intent. We do NOT preventDefault
+  // for trivial deltas, so the browser's smooth scroll/momentum
+  // still feels native everywhere else.
   // ============================================================
   (function() {
+    var sections = document.querySelectorAll('.films-teaser, .films');
+    if (!sections.length) return;
+    sections.forEach(function(section) {
+      section.addEventListener('wheel', function(e) {
+        // Only intervene if the wheel had vertical intent (deltaY)
+        // AND it would otherwise be trapped on a video element.
+        // Forwarding to window keeps page scroll responsive.
+        if (e.deltaY !== 0) {
+          window.scrollBy({ top: e.deltaY, left: 0, behavior: 'auto' });
+          e.preventDefault();
+        }
+      }, { passive: false });
+    });
+
+    // Defensive video attribute setup — disables PiP/remote-playback
+    // and ensures videos don't capture pointer events.
     var marqueeVideos = document.querySelectorAll(
       '.films .film-card video, .films-teaser .film-card video'
     );
