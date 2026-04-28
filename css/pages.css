@@ -1156,13 +1156,9 @@
   will-change: transform;
 }
 
-/* HOVER-PAUSE REMOVED — was causing main-thread hang on hover.
-   With 30+ film cards + 3D transforms + perspective + videos, pausing
-   the animation on hover triggered a full GPU recomposite that froze
-   the page scroll. Marquee now keeps cruising regardless of cursor. */
-/* .films__stage:hover .films__track {
+.films__stage:hover .films__track {
   animation-play-state: paused;
-} */
+}
 
 @keyframes filmsSlide {
   from { transform: translateX(0); }
@@ -1184,7 +1180,9 @@
     0 0 0 1px rgba(255,255,255,0.06) inset;
   transform-style: preserve-3d;
   transition: transform 0.6s var(--ease);
-  animation: filmFloat 7s ease-in-out infinite;
+  /* filmFloat removed — was causing GPU layer thrash on trackpad scroll.
+     30+ cards each running their own animation forced Chrome to recomposite
+     every card every frame, drowning the main thread during scroll events. */
 }
 
 /* Aspect-ratio variants — keeps height constant so cards visually stay aligned in the marquee */
@@ -1196,11 +1194,11 @@
 .film-card[data-ratio="3:4"]  { width: 340px; height: 453px; border-radius: 24px; }
 
 /* Each card tilts slightly in 3D, alternating for visual rhythm */
-.film-card:nth-child(5n+1) { transform: rotateY(-8deg) rotateX(2deg) translateZ(10px); animation-delay: -0.8s; }
-.film-card:nth-child(5n+2) { transform: rotateY(5deg) rotateX(-1deg) translateZ(-20px) translateY(-20px); animation-delay: -2.1s; }
-.film-card:nth-child(5n+3) { transform: rotateY(-4deg) rotateX(3deg) translateZ(30px) translateY(15px); animation-delay: -3.4s; }
-.film-card:nth-child(5n+4) { transform: rotateY(7deg) rotateX(-2deg) translateZ(-10px); animation-delay: -4.7s; }
-.film-card:nth-child(5n+5) { transform: rotateY(-6deg) rotateX(1deg) translateZ(20px) translateY(-10px); animation-delay: -6s; }
+.film-card:nth-child(5n+1) { transform: rotateY(-8deg) rotateX(2deg) translateZ(10px); }
+.film-card:nth-child(5n+2) { transform: rotateY(5deg) rotateX(-1deg) translateZ(-20px) translateY(-20px); }
+.film-card:nth-child(5n+3) { transform: rotateY(-4deg) rotateX(3deg) translateZ(30px) translateY(15px); }
+.film-card:nth-child(5n+4) { transform: rotateY(7deg) rotateX(-2deg) translateZ(-10px); }
+.film-card:nth-child(5n+5) { transform: rotateY(-6deg) rotateX(1deg) translateZ(20px) translateY(-10px); }
 
 @keyframes filmFloat {
   0%, 100% { translate: 0 0; }
@@ -1276,7 +1274,7 @@
     #1a1a1a 100%
   );
   background-size: 200% 200%;
-  animation: filmFloat 7s ease-in-out infinite, filmShimmer 6s ease-in-out infinite;
+  animation: filmShimmer 6s ease-in-out infinite;
 }
 
 @keyframes filmShimmer {
