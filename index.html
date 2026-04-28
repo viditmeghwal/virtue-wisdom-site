@@ -563,43 +563,6 @@
   /* Belt-and-suspenders: even if .is-dragging is set, don't show grab cursor
      and don't trap pointer events */
   .films__stage.is-interactive.is-dragging { cursor: default !important; }
-
-  /* ============================================================
-     ROOT CAUSE FIX — kill the hover-pause rule on the films marquee.
-
-     pages.css line 1159 has:
-       .films__stage:hover .films__track { animation-play-state: paused; }
-
-     When the cursor is over a card, this rule pauses the running CSS
-     animation. The browser then has to recompute layout for a track
-     that is several thousand pixels wide. With many <video> elements
-     inside, that layout pass is heavy enough to monopolize the main
-     thread — which is exactly why the page feels like it "hangs"
-     when you hover over a video while trying to scroll.
-
-     Override: keep the animation running regardless of hover. The
-     marquee never freezes mid-frame, no layout reflow, no main-thread
-     thrashing, page scroll stays buttery.
-     ============================================================ */
-  .films__stage:hover .films__track,
-  .films__stage:hover .films__track *,
-  .films:hover .films__track,
-  .films-teaser:hover .films__track {
-    animation-play-state: running !important;
-  }
-  /* Also forbid each card from establishing its own scroll context.
-     Some browsers create one for <video> on hover, which is the
-     other half of the wheel-trap. */
-  .films .film-card,
-  .films-teaser .film-card {
-    overflow: visible !important;
-    touch-action: pan-y !important;
-  }
-  .films .film-card *,
-  .films-teaser .film-card * {
-    pointer-events: none !important;
-    touch-action: pan-y !important;
-  }
   </style>
 
 
@@ -1754,14 +1717,40 @@
   })();
 
   // ============================================================
-  // Films marquee — defensive video setup ONLY.
-  // No wheel handler anymore. The real cause of the hover-hang was
-  // the CSS rule `.films__stage:hover .films__track { animation-play-state:
-  // paused }` in pages.css — pausing the marquee animation forced layout
-  // recalculation on a very wide track, which monopolized the main thread.
-  // We override that rule below in <style> so the animation never pauses.
+  // Films marquee wheel forwarder v2 — fixes macOS trackpad scroll trap
+  //
+  // The bug: on macOS trackpad, when cursor is over a <video> in the
+  // marquee, even tiny horizontal wheel deltas cause the browser to
+  // commit the gesture as "horizontal navigation" and eat vertical scroll.
+  //
+  // Fix: capture ALL wheel events on the marquee in capture phase,
+  // suppress them entirely, then manually forward only the vertical
+  // component to window scroll. Also defensively neutralize all marquee
+  // <video> elements at the JS property level.
   // ============================================================
   (function() {
+    var sections = document.querySelectorAll('.films-teaser, .films');
+    if (!sections.length) return;
+    sections.forEach(function(section) {
+      section.addEventListener('wheel', function(e) {
+        // Always cancel native wheel on the marquee — prevents both
+        // horizontal navigation AND any internal video scroll capture
+        e.preventDefault();
+        e.stopPropagation();
+        // Forward vertical intent to window
+        if (e.deltaY !== 0) {
+          window.scrollBy({
+            top: e.deltaY,
+            left: 0,
+            behavior: 'auto'
+          });
+        }
+      }, { passive: false, capture: true });
+    });
+
+    // Defensive: explicitly disable pointer events on every marquee video
+    // at the JS property level (Webkit can ignore CSS pointer-events on
+    // native <video> elements during gesture detection).
     var marqueeVideos = document.querySelectorAll(
       '.films .film-card video, .films-teaser .film-card video'
     );
