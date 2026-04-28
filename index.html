@@ -1414,77 +1414,6 @@
       </div>
     </div>
 
-    <!-- CATEGORY GRID -->
-    <div class="films__grid-wrap">
-      <div class="films__grid-head">
-        <h3>Browse by <em>category</em></h3>
-        <p>Click any category to play its featured film</p>
-      </div>
-
-      <div class="films__grid">
-
-        <div class="film-tile film-tile--placeholder" data-video="fb-1.mp4" data-count="3" data-category="fb">
-          <img class="film-tile__poster" src="images/videos/posters/fb-1.jpg" alt="Food &amp; Beverage brand films and photography by Virtue &amp; Wisdom" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop playsinline preload="none">
-            <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
-          </video>
-          <span class="film-tile__play"></span>
-          <div class="film-tile__label">
-            <span class="name">Food &amp; <em>Bev</em></span>
-            <span class="count">01 / 05</span>
-          </div>
-        </div>
-
-        <div class="film-tile film-tile--placeholder" data-video="hospitality-1.mp4" data-count="7" data-category="hospitality">
-          <img class="film-tile__poster" src="images/videos/posters/hospitality-1.jpg" alt="Hospitality brand films — resorts, hotels, palaces in India" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop playsinline preload="none">
-            <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
-          </video>
-          <span class="film-tile__play"></span>
-          <div class="film-tile__label">
-            <span class="name"><em>Hospitality</em></span>
-            <span class="count">02 / 05</span>
-          </div>
-        </div>
-
-        <div class="film-tile film-tile--placeholder" data-video="industrial-1.mp4" data-count="6" data-category="industrial">
-          <img class="film-tile__poster" src="images/videos/posters/industrial-1.jpg" alt="Industrial brand films and corporate storytelling" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop playsinline preload="none">
-            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
-          </video>
-          <span class="film-tile__play"></span>
-          <div class="film-tile__label">
-            <span class="name">Industrial</span>
-            <span class="count">03 / 05</span>
-          </div>
-        </div>
-
-        <div class="film-tile film-tile--placeholder" data-video="clothing-1.mp4" data-count="5" data-category="clothing">
-          <img class="film-tile__poster" src="images/videos/posters/clothing-1.jpg" alt="Clothing and fashion brand films" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop playsinline preload="none">
-            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
-          </video>
-          <span class="film-tile__play"></span>
-          <div class="film-tile__label">
-            <span class="name"><em>Clothing</em></span>
-            <span class="count">04 / 05</span>
-          </div>
-        </div>
-
-        <div class="film-tile film-tile--placeholder" data-video="jewellery-1.mp4" data-count="3" data-category="jewellery">
-          <img class="film-tile__poster" src="images/videos/posters/jewellery-1.jpg" alt="Jewellery brand films — heritage and contemporary" onerror="this.style.display='none'" />
-          <video class="film-tile__media" muted loop playsinline preload="none">
-            <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
-          </video>
-          <span class="film-tile__play"></span>
-          <div class="film-tile__label">
-            <span class="name">Jewellery</span>
-            <span class="count">05 / 05</span>
-          </div>
-        </div>
-
-            </div>
-    </div>
   </section>
 
   <!-- FEATURED WORK — 2-per-row image cards -->
@@ -1788,40 +1717,14 @@
   })();
 
   // ============================================================
-  // Films marquee wheel forwarder v2 — fixes macOS trackpad scroll trap
-  //
-  // The bug: on macOS trackpad, when cursor is over a <video> in the
-  // marquee, even tiny horizontal wheel deltas cause the browser to
-  // commit the gesture as "horizontal navigation" and eat vertical scroll.
-  //
-  // Fix: capture ALL wheel events on the marquee in capture phase,
-  // suppress them entirely, then manually forward only the vertical
-  // component to window scroll. Also defensively neutralize all marquee
-  // <video> elements at the JS property level.
+  // Films marquee — defensive video setup ONLY.
+  // The previous wheel-forwarder IIFE was removed because it called
+  // e.preventDefault() on every wheel tick, which made the page feel
+  // laggy / hang when the cursor was over a video card. Native scroll
+  // (with touch-action: pan-y) handles vertical wheel correctly on
+  // its own; no JS intervention needed.
   // ============================================================
   (function() {
-    var sections = document.querySelectorAll('.films-teaser, .films');
-    if (!sections.length) return;
-    sections.forEach(function(section) {
-      section.addEventListener('wheel', function(e) {
-        // Always cancel native wheel on the marquee — prevents both
-        // horizontal navigation AND any internal video scroll capture
-        e.preventDefault();
-        e.stopPropagation();
-        // Forward vertical intent to window
-        if (e.deltaY !== 0) {
-          window.scrollBy({
-            top: e.deltaY,
-            left: 0,
-            behavior: 'auto'
-          });
-        }
-      }, { passive: false, capture: true });
-    });
-
-    // Defensive: explicitly disable pointer events on every marquee video
-    // at the JS property level (Webkit can ignore CSS pointer-events on
-    // native <video> elements during gesture detection).
     var marqueeVideos = document.querySelectorAll(
       '.films .film-card video, .films-teaser .film-card video'
     );
