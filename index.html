@@ -290,9 +290,6 @@
     object-fit: cover;
     filter: grayscale(100%) contrast(1.05);
     pointer-events: none;
-    contain: layout paint;
-    transform: translateZ(0);
-    backface-visibility: hidden;
   }
   .bts__col:hover .bts__strip { animation-play-state: paused; }
   @media (max-width: 980px) {
@@ -355,18 +352,6 @@
     filter: blur(60px);
     opacity: 0.9;
     animation: hero-gradient-drift 14s ease-in-out infinite alternate;
-    will-change: transform;
-    contain: layout paint;
-    transform: translateZ(0);
-  }
-  @media (max-width: 900px) {
-    .hero-cine::before {
-      filter: blur(28px);
-      animation-duration: 24s;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-cine::before { animation: none; }
   }
   @keyframes hero-gradient-drift {
     0%   { transform: translate(0, 0) scale(1); }
@@ -478,18 +463,6 @@
   .bts__media { pointer-events: none; }
   /* Allow BTS column hover to pause animation */
   .bts__col { pointer-events: auto; }
-
-  /* SCROLL FIX — let touch/wheel always pan the page vertically */
-  .bts, .bts__phones, .bts__col, .bts__strip, .bts__clip,
-  .films, .films-teaser, .films__stage, .films__track,
-  .film-card, .film-tile, .film-tile__media, .film-card__media {
-    touch-action: pan-y;
-  }
-  .bts__clip video, .film-tile video, .film-card video,
-  .bts__media, .film-tile__media, .film-card__media {
-    touch-action: pan-y;
-    pointer-events: none;
-  }
   </style>
 
   <style>
@@ -512,6 +485,38 @@
     .films .films__track,
     .films-teaser .films__track {
       animation-duration: 60s !important;
+    }
+
+    /* ============================================================
+       LOGO MARQUEE MOBILE FIX
+       Bug: on mobile, the hover-pause rule (`.logo-marquee__rows:hover
+       .logo-row__track { animation-play-state: paused }`) fires whenever
+       a finger touches the strip while scrolling the page. The animation
+       pauses mid-frame, then resumes as the finger leaves — making logos
+       look like they cut, hide, and come back.
+       Fix: kill the hover-pause behavior on touch-capable devices. Also
+       lock the animation onto its own GPU layer so the moving track
+       doesn't stutter when the page is being scrolled.
+       ============================================================ */
+    .logo-marquee__rows:hover .logo-row__track,
+    .logo-row:hover .logo-row__track,
+    .logo-row__track:hover {
+      animation-play-state: running !important;
+    }
+    .logo-row__track {
+      will-change: transform;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+  }
+  /* Touch-device override (no hover capability) — applied at any width.
+     Disables hover-pause on the logo marquee, so a finger touching the
+     strip while scrolling the page never freezes the animation. */
+  @media (hover: none) {
+    .logo-marquee__rows:hover .logo-row__track,
+    .logo-row:hover .logo-row__track,
+    .logo-row__track:hover {
+      animation-play-state: running !important;
     }
   }
   </style>
@@ -1485,17 +1490,13 @@
       var p = v.play();
       if (p && p.catch) p.catch(function(){});
     };
-    // 1) BTS section: lazy-load via IntersectionObserver. Only visible
-    //    columns decode; offscreen ones pause. Prevents scroll stutter.
-    var btsVideos = document.querySelectorAll('.bts__media');
-    var btsIO = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        var v = entry.target;
-        if (entry.isIntersecting) { setSrc(v); safePlay(v); }
-        else if (!v.paused) v.pause();
-      });
-    }, { rootMargin: '200px 0px', threshold: 0.01 });
-    btsVideos.forEach(function(v) { btsIO.observe(v); });
+    // 1) BTS section + hero mosaic: eager load
+    var eager = document.querySelectorAll('.bts__media');
+    eager.forEach(function(v) {
+      setSrc(v);
+      safePlay(v);
+      v.addEventListener('loadeddata', function() { safePlay(v); });
+    });
     // 2) Films marquee: lazy load
     var marqueeVideos = document.querySelectorAll('.film-card__media');
     var io = new IntersectionObserver(function(entries) {
@@ -1586,22 +1587,40 @@
   })();
 
   // ============================================================
-  // Films marquee wheel forwarder v3 — surgical, not aggressive.
-  // Only intervenes when gesture is genuinely horizontal; vertical
-  // scrolling passes through to native smooth/inertial scroll.
+  // Films marquee wheel forwarder v2 — fixes macOS trackpad scroll trap
+  //
+  // The bug: on macOS trackpad, when cursor is over a <video> in the
+  // marquee, even tiny horizontal wheel deltas cause the browser to
+  // commit the gesture as "horizontal navigation" and eat vertical scroll.
+  //
+  // Fix: capture ALL wheel events on the marquee in capture phase,
+  // suppress them entirely, then manually forward only the vertical
+  // component to window scroll. Also defensively neutralize all marquee
+  // <video> elements at the JS property level.
   // ============================================================
   (function() {
     var sections = document.querySelectorAll('.films-teaser, .films');
     if (!sections.length) return;
     sections.forEach(function(section) {
       section.addEventListener('wheel', function(e) {
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-          e.preventDefault();
-          e.stopPropagation();
+        // Always cancel native wheel on the marquee — prevents both
+        // horizontal navigation AND any internal video scroll capture
+        e.preventDefault();
+        e.stopPropagation();
+        // Forward vertical intent to window
+        if (e.deltaY !== 0) {
+          window.scrollBy({
+            top: e.deltaY,
+            left: 0,
+            behavior: 'auto'
+          });
         }
       }, { passive: false, capture: true });
     });
 
+    // Defensive: explicitly disable pointer events on every marquee video
+    // at the JS property level (Webkit can ignore CSS pointer-events on
+    // native <video> elements during gesture detection).
     var marqueeVideos = document.querySelectorAll(
       '.films .film-card video, .films-teaser .film-card video'
     );
