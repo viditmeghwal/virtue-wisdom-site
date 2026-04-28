@@ -527,6 +527,62 @@
 
   <style>
   /* ============================================================
+     FILMS MARQUEE NAV BUTTONS — left/right arrows below the marquee
+     These nudge the marquee one card width on click. They do NOT
+     touch wheel events, do NOT enable interactive scroll mode, and
+     do NOT switch the stage's overflow — so they cannot bring back
+     the page-scroll trap that haunted earlier versions.
+     ============================================================ */
+  .films__nav-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 0 var(--pad, 32px);
+  }
+  .films-nav-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, border-color 0.25s ease,
+                transform 0.25s ease, color 0.25s ease;
+    padding: 0;
+  }
+  .films-nav-btn svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+  .films-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #fff;
+    transform: scale(1.06);
+  }
+  .films-nav-btn:active {
+    transform: scale(0.98);
+  }
+  .films-nav-btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 3px;
+  }
+  @media (max-width: 700px) {
+    .films-nav-btn { width: 46px; height: 46px; }
+    .films-nav-btn svg { width: 18px; height: 18px; }
+    .films__nav-wrap { gap: 12px; margin-top: 18px; }
+  }
+  </style>
+
+
+  <style>
+  /* ============================================================
      DRAG/SWIPE REMOVAL & FILMS HOVER-HANG FIX
      The films section is enhanced by main.js with:
        - DRAG·SWIPE hint label (.films__hint)
@@ -1414,6 +1470,87 @@
       </div>
     </div>
 
+    <!-- MARQUEE NAV — left/right buttons that nudge the marquee one card -->
+    <div class="films__nav-wrap" aria-label="Films marquee navigation">
+      <button class="films-nav-btn films-nav-btn--prev" aria-label="Previous films" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="films-nav-btn films-nav-btn--next" aria-label="Next films" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- CATEGORY GRID -->
+    <div class="films__grid-wrap">
+      <div class="films__grid-head">
+        <h3>Browse by <em>category</em></h3>
+        <p>Click any category to play its featured film</p>
+      </div>
+
+      <div class="films__grid">
+
+        <div class="film-tile film-tile--placeholder" data-video="fb-1.mp4" data-count="3" data-category="fb">
+          <img class="film-tile__poster" src="images/videos/posters/fb-1.jpg" alt="Food &amp; Beverage brand films and photography by Virtue &amp; Wisdom" onerror="this.style.display='none'" />
+          <video class="film-tile__media" muted loop playsinline preload="none">
+            <source data-src="images/videos/fb-1.mp4" type="video/mp4" />
+          </video>
+          <span class="film-tile__play"></span>
+          <div class="film-tile__label">
+            <span class="name">Food &amp; <em>Bev</em></span>
+            <span class="count">01 / 05</span>
+          </div>
+        </div>
+
+        <div class="film-tile film-tile--placeholder" data-video="hospitality-1.mp4" data-count="7" data-category="hospitality">
+          <img class="film-tile__poster" src="images/videos/posters/hospitality-1.jpg" alt="Hospitality brand films — resorts, hotels, palaces in India" onerror="this.style.display='none'" />
+          <video class="film-tile__media" muted loop playsinline preload="none">
+            <source data-src="images/videos/hospitality-1.mp4" type="video/mp4" />
+          </video>
+          <span class="film-tile__play"></span>
+          <div class="film-tile__label">
+            <span class="name"><em>Hospitality</em></span>
+            <span class="count">02 / 05</span>
+          </div>
+        </div>
+
+        <div class="film-tile film-tile--placeholder" data-video="industrial-1.mp4" data-count="6" data-category="industrial">
+          <img class="film-tile__poster" src="images/videos/posters/industrial-1.jpg" alt="Industrial brand films and corporate storytelling" onerror="this.style.display='none'" />
+          <video class="film-tile__media" muted loop playsinline preload="none">
+            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
+          </video>
+          <span class="film-tile__play"></span>
+          <div class="film-tile__label">
+            <span class="name">Industrial</span>
+            <span class="count">03 / 05</span>
+          </div>
+        </div>
+
+        <div class="film-tile film-tile--placeholder" data-video="clothing-1.mp4" data-count="5" data-category="clothing">
+          <img class="film-tile__poster" src="images/videos/posters/clothing-1.jpg" alt="Clothing and fashion brand films" onerror="this.style.display='none'" />
+          <video class="film-tile__media" muted loop playsinline preload="none">
+            <source data-src="images/videos/clothing-1.mp4" type="video/mp4" />
+          </video>
+          <span class="film-tile__play"></span>
+          <div class="film-tile__label">
+            <span class="name"><em>Clothing</em></span>
+            <span class="count">04 / 05</span>
+          </div>
+        </div>
+
+        <div class="film-tile film-tile--placeholder" data-video="jewellery-1.mp4" data-count="3" data-category="jewellery">
+          <img class="film-tile__poster" src="images/videos/posters/jewellery-1.jpg" alt="Jewellery brand films — heritage and contemporary" onerror="this.style.display='none'" />
+          <video class="film-tile__media" muted loop playsinline preload="none">
+            <source data-src="images/videos/jewellery-1.mp4" type="video/mp4" />
+          </video>
+          <span class="film-tile__play"></span>
+          <div class="film-tile__label">
+            <span class="name">Jewellery</span>
+            <span class="count">05 / 05</span>
+          </div>
+        </div>
+
+            </div>
+    </div>
   </section>
 
   <!-- FEATURED WORK — 2-per-row image cards -->
@@ -1760,6 +1897,94 @@
       v.controls = false;
       v.style.pointerEvents = 'none';
     });
+  })();
+
+  // ============================================================
+  // Films marquee nav buttons — nudge the marquee ±1 card on click.
+  //
+  // Implementation: take over animation control on first click —
+  // pause the CSS animation, then use a JS rAF loop to keep the
+  // marquee scrolling at the same constant speed. Clicks add a
+  // ±card-width offset to the JS-driven position, which the rAF
+  // loop interpolates smoothly. After a few seconds of no clicks,
+  // we hand control back to the CSS animation (resyncing position
+  // so there's no jump).
+  // ============================================================
+  (function() {
+    var prev = document.querySelector('.films-nav-btn--prev');
+    var next = document.querySelector('.films-nav-btn--next');
+    var track = document.querySelector('.films .films__track');
+    if (!track || (!prev && !next)) return;
+
+    var ANIM_DURATION_MS = 120000; // must match CSS filmsSlide duration
+    var halfTrack = function() { return track.scrollWidth / 2; };
+
+    var jsControlled = false;
+    var rafId = null;
+    var jsX = 0;          // current x-position, negative
+    var lastTs = 0;
+    var releaseTimer = null;
+
+    function readCurrentX() {
+      try {
+        var m = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+        return m.m41 || 0;
+      } catch (e) { return 0; }
+    }
+
+    function tick(ts) {
+      if (!jsControlled) return;
+      if (!lastTs) lastTs = ts;
+      var dt = ts - lastTs;
+      lastTs = ts;
+      // Constant speed matching CSS animation (track moves halfTrack
+      // pixels in ANIM_DURATION_MS milliseconds)
+      var speedPxPerMs = halfTrack() / ANIM_DURATION_MS;
+      jsX -= speedPxPerMs * dt;
+      // Wrap around when we've moved one full half-track
+      if (jsX <= -halfTrack()) jsX += halfTrack();
+      track.style.transform = 'translateX(' + jsX + 'px)';
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function takeControl() {
+      if (jsControlled) return;
+      jsControlled = true;
+      jsX = readCurrentX();
+      track.style.animation = 'none';
+      track.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)';
+      track.style.transform = 'translateX(' + jsX + 'px)';
+      lastTs = 0;
+      // Start rAF loop AFTER the click-jump transition finishes,
+      // so the jump animates smoothly first.
+    }
+
+    function nudge(direction) {
+      takeControl();
+      var card = track.querySelector('.film-card');
+      var step = card ? (card.offsetWidth + 32) : 320;
+      jsX -= direction * step;
+      // Wrap if needed so we never go below -halfTrack
+      var h = halfTrack();
+      while (jsX <= -h) jsX += h;
+      while (jsX > 0) jsX -= h;
+      track.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.7, 0.1, 1)';
+      track.style.transform = 'translateX(' + jsX + 'px)';
+
+      // After the click-jump transition, hand off to the rAF loop
+      // so the marquee keeps cruising at constant speed.
+      window.clearTimeout(releaseTimer);
+      releaseTimer = setTimeout(function() {
+        track.style.transition = '';
+        if (!rafId) {
+          lastTs = 0;
+          rafId = requestAnimationFrame(tick);
+        }
+      }, 520);
+    }
+
+    if (prev) prev.addEventListener('click', function() { nudge(-1); });
+    if (next) next.addEventListener('click', function() { nudge(1); });
   })();
   </script>
 
