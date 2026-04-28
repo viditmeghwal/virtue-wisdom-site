@@ -111,24 +111,6 @@
   .bts__media { pointer-events: none; }
   /* Allow BTS column hover to pause animation */
   .bts__col { pointer-events: auto; }
-
-  /* ============================================================
-     SCROLL FIX — let touch/wheel always pan the page vertically,
-     even when the cursor/finger is over the BTS columns, the films
-     marquee, or any video tile. `touch-action: pan-y` tells the
-     browser to reserve vertical scroll for the page; `pointer-events`
-     stays as-is so hover-pause and click-to-play keep working.
-     ============================================================ */
-  .bts, .bts__phones, .bts__col, .bts__strip, .bts__clip,
-  .films, .films-teaser, .films__stage, .films__track,
-  .film-card, .film-tile, .film-tile__media, .film-card__media {
-    touch-action: pan-y;
-  }
-  .bts__clip video, .film-tile video, .film-card video,
-  .bts__media, .film-tile__media, .film-card__media {
-    touch-action: pan-y;
-    pointer-events: none;
-  }
   </style>
 
 
@@ -140,6 +122,7 @@
     transform: translateY(-4px);
   }
   .film-tile--active .film-tile__play { opacity: 0; }
+  .film-tile--active .film-tile__poster { opacity: 0; transition: opacity 0.3s ease; }
   </style>
 
   <style>
@@ -541,14 +524,6 @@
           <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-1.mp4" data-poster="industrial-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-1.jpg">
-            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-2.mp4" data-poster="clothing-2.jpg">
           <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-2.jpg">
@@ -734,14 +709,6 @@
           <div class="film-card__label"><em>04</em> Clothing</div>
         </div>
 
-        <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="industrial-1.mp4" data-poster="industrial-1.jpg">
-          <span class="placeholder-icon"></span>
-          <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/industrial-1.jpg">
-            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
-          </video>
-          <div class="film-card__label"><em>03</em> Industrial</div>
-        </div>
-
         <div data-ratio="9:16" class="film-card film-card--placeholder" data-video="clothing-2.mp4" data-poster="clothing-2.jpg">
           <span class="placeholder-icon"></span>
           <video class="film-card__media" muted loop playsinline preload="none" poster="images/videos/posters/clothing-2.jpg">
@@ -921,10 +888,10 @@
           </div>
         </div>
 
-        <div class="film-tile film-tile--placeholder" data-video="industrial-1.mp4" data-count="6" data-category="industrial">
-          <img class="film-tile__poster" src="images/videos/posters/industrial-1.jpg" alt="Industrial brand films and corporate storytelling" onerror="this.style.display='none'" />
+        <div class="film-tile film-tile--placeholder" data-video="industrial-2.mp4" data-count="5" data-category="industrial">
+          <img class="film-tile__poster" src="images/videos/posters/industrial-2.jpg" alt="Industrial brand films and corporate storytelling" onerror="this.style.display='none'" />
           <video class="film-tile__media" muted loop playsinline preload="none">
-            <source data-src="images/videos/industrial-1.mp4" type="video/mp4" />
+            <source data-src="images/videos/industrial-2.mp4" type="video/mp4" />
           </video>
           <span class="film-tile__play"></span>
           <div class="film-tile__label">
@@ -1149,7 +1116,7 @@
     var categoryClips = {
       'fb':          ['fb-1.mp4', 'fb-2.mp4', 'fb-3.mp4'],
       'hospitality': ['hospitality-1.mp4', 'hospitality-2.mp4', 'hospitality-3.mp4', 'hospitality-4.mp4', 'hospitality-5.mp4', 'hospitality-6.mp4', 'hospitality-7.mp4'],
-      'industrial':  ['industrial-1.mp4', 'industrial-2.mp4', 'industrial-3.mp4', 'industrial-4.mp4', 'industrial-5.mp4', 'industrial-6.mp4'],
+      'industrial':  ['industrial-2.mp4', 'industrial-3.mp4', 'industrial-4.mp4', 'industrial-5.mp4', 'industrial-6.mp4'],
       'clothing':    ['clothing-1.mp4', 'clothing-2.mp4', 'clothing-3.mp4', 'clothing-4.mp4', 'clothing-5.mp4'],
       'jewellery':   ['jewellery-1.mp4', 'jewellery-2.mp4', 'jewellery-3.mp4']
     };
