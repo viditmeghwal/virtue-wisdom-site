@@ -1573,33 +1573,30 @@
   })();
 
   // ============================================================
-  // Films marquee wheel forwarder v2 — fixes macOS trackpad scroll trap
+  // Films marquee wheel forwarder v3 — surgical, not aggressive
   //
-  // The bug: on macOS trackpad, when cursor is over a <video> in the
-  // marquee, even tiny horizontal wheel deltas cause the browser to
-  // commit the gesture as "horizontal navigation" and eat vertical scroll.
+  // The original bug this solves: on macOS trackpad, when cursor is
+  // over a <video> in the marquee, horizontal trackpad deltas get
+  // interpreted as horizontal navigation and eat vertical scroll.
   //
-  // Fix: capture ALL wheel events on the marquee in capture phase,
-  // suppress them entirely, then manually forward only the vertical
-  // component to window scroll. Also defensively neutralize all marquee
-  // <video> elements at the JS property level.
+  // v2 solved that by canceling ALL wheel events and manually
+  // re-forwarding vertical scroll — which killed native smooth/
+  // inertial scrolling and made the page feel janky.
+  //
+  // v3 only intervenes when the gesture is genuinely horizontal
+  // (|deltaX| > |deltaY|). For normal vertical scrolling, the browser
+  // handles it natively, preserving smooth scroll and momentum.
   // ============================================================
   (function() {
     var sections = document.querySelectorAll('.films-teaser, .films');
     if (!sections.length) return;
     sections.forEach(function(section) {
       section.addEventListener('wheel', function(e) {
-        // Always cancel native wheel on the marquee — prevents both
-        // horizontal navigation AND any internal video scroll capture
-        e.preventDefault();
-        e.stopPropagation();
-        // Forward vertical intent to window
-        if (e.deltaY !== 0) {
-          window.scrollBy({
-            top: e.deltaY,
-            left: 0,
-            behavior: 'auto'
-          });
+        // Only cancel when horizontal intent dominates — that's the
+        // bug we're fixing. Vertical scrolls pass through untouched.
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+          e.preventDefault();
+          e.stopPropagation();
         }
       }, { passive: false, capture: true });
     });
