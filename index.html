@@ -563,6 +563,43 @@
   /* Belt-and-suspenders: even if .is-dragging is set, don't show grab cursor
      and don't trap pointer events */
   .films__stage.is-interactive.is-dragging { cursor: default !important; }
+
+  /* ============================================================
+     ROOT CAUSE FIX — kill the hover-pause rule on the films marquee.
+
+     pages.css line 1159 has:
+       .films__stage:hover .films__track { animation-play-state: paused; }
+
+     When the cursor is over a card, this rule pauses the running CSS
+     animation. The browser then has to recompute layout for a track
+     that is several thousand pixels wide. With many <video> elements
+     inside, that layout pass is heavy enough to monopolize the main
+     thread — which is exactly why the page feels like it "hangs"
+     when you hover over a video while trying to scroll.
+
+     Override: keep the animation running regardless of hover. The
+     marquee never freezes mid-frame, no layout reflow, no main-thread
+     thrashing, page scroll stays buttery.
+     ============================================================ */
+  .films__stage:hover .films__track,
+  .films__stage:hover .films__track *,
+  .films:hover .films__track,
+  .films-teaser:hover .films__track {
+    animation-play-state: running !important;
+  }
+  /* Also forbid each card from establishing its own scroll context.
+     Some browsers create one for <video> on hover, which is the
+     other half of the wheel-trap. */
+  .films .film-card,
+  .films-teaser .film-card {
+    overflow: visible !important;
+    touch-action: pan-y !important;
+  }
+  .films .film-card *,
+  .films-teaser .film-card * {
+    pointer-events: none !important;
+    touch-action: pan-y !important;
+  }
   </style>
 
 
@@ -1717,35 +1754,14 @@
   })();
 
   // ============================================================
-  // Films marquee — wheel forwarder v3 (light)
-  //
-  // The bug: when cursor is over a <video> in the marquee, some
-  // browsers treat the video as a scroll container and trap the
-  // wheel — the page won't scroll vertically.
-  //
-  // Fix: forward wheel events from the marquee section up to the
-  // window, but use native smooth scrolling (not behavior:'auto')
-  // and only when there's vertical intent. We do NOT preventDefault
-  // for trivial deltas, so the browser's smooth scroll/momentum
-  // still feels native everywhere else.
+  // Films marquee — defensive video setup ONLY.
+  // No wheel handler anymore. The real cause of the hover-hang was
+  // the CSS rule `.films__stage:hover .films__track { animation-play-state:
+  // paused }` in pages.css — pausing the marquee animation forced layout
+  // recalculation on a very wide track, which monopolized the main thread.
+  // We override that rule below in <style> so the animation never pauses.
   // ============================================================
   (function() {
-    var sections = document.querySelectorAll('.films-teaser, .films');
-    if (!sections.length) return;
-    sections.forEach(function(section) {
-      section.addEventListener('wheel', function(e) {
-        // Only intervene if the wheel had vertical intent (deltaY)
-        // AND it would otherwise be trapped on a video element.
-        // Forwarding to window keeps page scroll responsive.
-        if (e.deltaY !== 0) {
-          window.scrollBy({ top: e.deltaY, left: 0, behavior: 'auto' });
-          e.preventDefault();
-        }
-      }, { passive: false });
-    });
-
-    // Defensive video attribute setup — disables PiP/remote-playback
-    // and ensures videos don't capture pointer events.
     var marqueeVideos = document.querySelectorAll(
       '.films .film-card video, .films-teaser .film-card video'
     );
