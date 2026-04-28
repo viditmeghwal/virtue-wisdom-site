@@ -1156,9 +1156,13 @@
   will-change: transform;
 }
 
-.films__stage:hover .films__track {
+/* HOVER-PAUSE REMOVED — was causing main-thread hang on hover.
+   With 30+ film cards + 3D transforms + perspective + videos, pausing
+   the animation on hover triggered a full GPU recomposite that froze
+   the page scroll. Marquee now keeps cruising regardless of cursor. */
+/* .films__stage:hover .films__track {
   animation-play-state: paused;
-}
+} */
 
 @keyframes filmsSlide {
   from { transform: translateX(0); }
