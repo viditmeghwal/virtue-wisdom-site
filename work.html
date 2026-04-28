@@ -111,6 +111,24 @@
   .bts__media { pointer-events: none; }
   /* Allow BTS column hover to pause animation */
   .bts__col { pointer-events: auto; }
+
+  /* ============================================================
+     SCROLL FIX — let touch/wheel always pan the page vertically,
+     even when the cursor/finger is over the BTS columns, the films
+     marquee, or any video tile. `touch-action: pan-y` tells the
+     browser to reserve vertical scroll for the page; `pointer-events`
+     stays as-is so hover-pause and click-to-play keep working.
+     ============================================================ */
+  .bts, .bts__phones, .bts__col, .bts__strip, .bts__clip,
+  .films, .films-teaser, .films__stage, .films__track,
+  .film-card, .film-tile, .film-tile__media, .film-card__media {
+    touch-action: pan-y;
+  }
+  .bts__clip video, .film-tile video, .film-card video,
+  .bts__media, .film-tile__media, .film-card__media {
+    touch-action: pan-y;
+    pointer-events: none;
+  }
   </style>
 
 
