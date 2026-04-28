@@ -486,17 +486,15 @@
     .films-teaser .films__track {
       animation-duration: 60s !important;
     }
-
     /* ============================================================
        LOGO MARQUEE MOBILE FIX
-       Bug: on mobile, the hover-pause rule (`.logo-marquee__rows:hover
-       .logo-row__track { animation-play-state: paused }`) fires whenever
-       a finger touches the strip while scrolling the page. The animation
-       pauses mid-frame, then resumes as the finger leaves — making logos
-       look like they cut, hide, and come back.
-       Fix: kill the hover-pause behavior on touch-capable devices. Also
-       lock the animation onto its own GPU layer so the moving track
-       doesn't stutter when the page is being scrolled.
+       Bug 1: `loading="lazy"` on every logo <img> meant the browser
+       never fetched logos far outside the viewport. Because the strip
+       moves via CSS transform (not scroll), the lazy-load policy never
+       reconsidered them — leaving permanent empty gaps on mobile.
+       Removed `loading="lazy"` from all .logo-item images.
+
+       Bug 2: hover-pause sticks on touch devices. Disabled below.
        ============================================================ */
     .logo-marquee__rows:hover .logo-row__track,
     .logo-row:hover .logo-row__track,
@@ -508,6 +506,11 @@
       transform: translateZ(0);
       backface-visibility: hidden;
     }
+    /* Guarantee logo imgs render at their row's height even if intrinsic
+       dimensions report oddly on mobile (some PNGs may have unusual
+       aspect ratios that confuse mobile layout otherwise). */
+    .logo-item { display: inline-flex; align-items: center; flex: 0 0 auto; }
+    .logo-item img { height: 100%; width: auto; max-width: 140px; object-fit: contain; }
   }
   /* Touch-device override (no hover capability) — applied at any width.
      Disables hover-pause on the logo marquee, so a finger touching the
@@ -1015,76 +1018,76 @@
     <div class="logo-marquee__rows">
     <div class="logo-row logo-row--left">
       <div class="logo-row__track">
-        <div class="logo-item"><img src="images/logos/20.png" alt="Client brand 1 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/15.png" alt="Client brand 2 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/11.png" alt="Client brand 3 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/25.png" alt="Client brand 4 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/28.png" alt="Client brand 5 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/7.png" alt="Client brand 6 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/6.png" alt="Client brand 7 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/13.png" alt="Client brand 8 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/12.png" alt="Client brand 9 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/16.png" alt="Client brand 10 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/10.png" alt="Client brand 11 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/20.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/15.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/11.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/25.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/28.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/7.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/6.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/13.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/12.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/16.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/10.png" alt="" loading="lazy" /></div>
+        <div class="logo-item"><img src="images/logos/20.png" alt="Client brand 1 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/15.png" alt="Client brand 2 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/11.png" alt="Client brand 3 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/25.png" alt="Client brand 4 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/28.png" alt="Client brand 5 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/7.png" alt="Client brand 6 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/6.png" alt="Client brand 7 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/13.png" alt="Client brand 8 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/12.png" alt="Client brand 9 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/16.png" alt="Client brand 10 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/10.png" alt="Client brand 11 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/20.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/15.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/11.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/25.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/28.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/7.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/6.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/13.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/12.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/16.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/10.png" alt="" /></div>
       </div>
     </div>
     <div class="logo-row logo-row--right">
       <div class="logo-row__track">
-        <div class="logo-item"><img src="images/logos/27.png" alt="Client brand 12 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/31.png" alt="Client brand 13 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/23.png" alt="Client brand 14 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/17.png" alt="Client brand 15 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/29.png" alt="Client brand 16 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/2.png" alt="Client brand 17 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/14.png" alt="Client brand 18 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/19.png" alt="Client brand 19 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/3.png" alt="Client brand 20 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/18.png" alt="Client brand 21 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/27.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/31.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/23.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/17.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/29.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/2.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/14.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/19.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/3.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/18.png" alt="" loading="lazy" /></div>
+        <div class="logo-item"><img src="images/logos/27.png" alt="Client brand 12 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/31.png" alt="Client brand 13 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/23.png" alt="Client brand 14 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/17.png" alt="Client brand 15 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/29.png" alt="Client brand 16 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/2.png" alt="Client brand 17 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/14.png" alt="Client brand 18 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/19.png" alt="Client brand 19 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/3.png" alt="Client brand 20 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/18.png" alt="Client brand 21 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/27.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/31.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/23.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/17.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/29.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/2.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/14.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/19.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/3.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/18.png" alt="" /></div>
       </div>
     </div>
     <div class="logo-row logo-row--left-slow">
       <div class="logo-row__track">
-        <div class="logo-item"><img src="images/logos/22.png" alt="Client brand 22 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/30.png" alt="Client brand 23 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/5.png" alt="Client brand 24 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/26.png" alt="Client brand 25 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/8.png" alt="Client brand 26 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/9.png" alt="Client brand 27 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/24.png" alt="Client brand 28 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/1.png" alt="Client brand 29 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/4.png" alt="Client brand 30 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item"><img src="images/logos/21.png" alt="Client brand 31 — built by Virtue and Wisdom brand building company" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/22.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/30.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/5.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/26.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/8.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/9.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/24.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/1.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/4.png" alt="" loading="lazy" /></div>
-        <div class="logo-item" aria-hidden="true"><img src="images/logos/21.png" alt="" loading="lazy" /></div>
+        <div class="logo-item"><img src="images/logos/22.png" alt="Client brand 22 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/30.png" alt="Client brand 23 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/5.png" alt="Client brand 24 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/26.png" alt="Client brand 25 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/8.png" alt="Client brand 26 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/9.png" alt="Client brand 27 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/24.png" alt="Client brand 28 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/1.png" alt="Client brand 29 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/4.png" alt="Client brand 30 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item"><img src="images/logos/21.png" alt="Client brand 31 — built by Virtue and Wisdom brand building company" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/22.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/30.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/5.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/26.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/8.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/9.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/24.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/1.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/4.png" alt="" /></div>
+        <div class="logo-item" aria-hidden="true"><img src="images/logos/21.png" alt="" /></div>
       </div>
     </div>
     </div>
