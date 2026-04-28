@@ -527,6 +527,47 @@
 
   <style>
   /* ============================================================
+     DRAG/SWIPE REMOVAL & FILMS HOVER-HANG FIX
+     The films section is enhanced by main.js with:
+       - DRAG·SWIPE hint label (.films__hint)
+       - left/right circular nav buttons (.films__nav)
+       - "interactive scroll" mode that flips the stage to
+         overflow-x: auto when active (.films__stage.is-interactive)
+     The interactive mode causes the page-scroll trap when cursor
+     is over a video (the browser hijacks the wheel for horizontal
+     scroll on the stage). Below we hide the UI and force-revert
+     the interactive scroll behavior so vertical page scroll always
+     wins, no matter where the cursor sits.
+     ============================================================ */
+  .films__nav,
+  .films__hint {
+    display: none !important;
+  }
+  .films__stage,
+  .films__stage.is-interactive {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    overscroll-behavior: auto !important;
+    scroll-snap-type: none !important;
+    cursor: default !important;
+    touch-action: pan-y !important;
+  }
+  /* If main.js added .is-interactive (which kills the marquee animation),
+     keep the marquee running anyway by un-killing it. */
+  .films__stage.is-interactive .films__track {
+    animation: marquee 60s linear infinite !important;
+    width: max-content !important;
+  }
+  /* Remove the bottom space the nav arrows used to occupy */
+  .films__viewport { padding-bottom: 0 !important; }
+  /* Belt-and-suspenders: even if .is-dragging is set, don't show grab cursor
+     and don't trap pointer events */
+  .films__stage.is-interactive.is-dragging { cursor: default !important; }
+  </style>
+
+
+  <style>
+  /* ============================================================
      CHAT PANEL — WhatsApp quick-pick, sharp-edged, premium
      ============================================================ */
   /* Trigger pill */
