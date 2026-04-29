@@ -82,37 +82,6 @@
 
   <link rel="stylesheet" href="css/style.css?v=films3" />
   <link rel="stylesheet" href="css/pages.css?v=films3" />
-
-  <!-- ===== Contact form: chip + status styles ===== -->
-  <style>
-    .contact__form .chip {
-      cursor: pointer;
-      user-select: none;
-      transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
-    }
-    .contact__form .chip:hover { transform: translateY(-1px); }
-    .contact__form .chip.is-selected {
-      background: var(--ink, #0a0a0a);
-      color: #f3ece1;
-      border-color: var(--ink, #0a0a0a);
-    }
-    .contact__form .form-status {
-      margin-top: 14px;
-      font-size: 14px;
-      line-height: 1.5;
-      min-height: 20px;
-    }
-    .contact__form .form-status.is-loading { color: #666; }
-    .contact__form .form-status.is-ok      { color: #1a7a3e; }
-    .contact__form .form-status.is-err     { color: #b03030; }
-    .contact__form button[disabled] { opacity: .55; cursor: not-allowed; }
-    .vw-honeypot {
-      position: absolute !important;
-      left: -10000px !important;
-      width: 1px; height: 1px;
-      overflow: hidden;
-    }
-  </style>
 </head>
 <body>
 
@@ -147,12 +116,13 @@
 
     <div class="contact__grid">
 
-      <form class="contact__form" id="contactForm" action="send-mail.php" method="POST" novalidate>
-
-        <!-- Honeypot: hidden from humans; bots fill it and get silently dropped -->
-        <div class="vw-honeypot" aria-hidden="true">
-          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-        </div>
+      <form class="contact__form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms hidden config -->
+        <input type="hidden" name="access_key" value="5a73b34b-167d-4e9f-8e34-a53bbeecd289" />
+        <input type="hidden" name="subject" value="New project enquiry from virtuewisdom.com" />
+        <input type="hidden" name="from_name" value="Virtue & Wisdom Website" />
+        <!-- Honeypot for spam bots; real users leave it empty -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
         <div class="field">
           <label for="name">Your name</label>
@@ -177,42 +147,52 @@
         <div class="field">
           <label>What do you need?</label>
           <div class="chips" data-chip-group="services">
-            <span class="chip" data-value="Brand Strategy" role="button" tabindex="0">Brand Strategy</span>
-            <span class="chip" data-value="Visual Identity" role="button" tabindex="0">Visual Identity</span>
-            <span class="chip" data-value="Naming" role="button" tabindex="0">Naming</span>
-            <span class="chip" data-value="Website" role="button" tabindex="0">Website</span>
-            <span class="chip" data-value="Social Media" role="button" tabindex="0">Social Media</span>
-            <span class="chip" data-value="Ads &amp; Campaigns" role="button" tabindex="0">Ads &amp; Campaigns</span>
-            <span class="chip" data-value="Event Management" role="button" tabindex="0">Event Management</span>
-            <span class="chip" data-value="Full Rebrand" role="button" tabindex="0">Full Rebrand</span>
-            <span class="chip" data-value="Not sure yet" role="button" tabindex="0">Not sure yet</span>
+            <span class="chip" data-value="Brand Strategy">Brand Strategy</span>
+            <span class="chip" data-value="Visual Identity">Visual Identity</span>
+            <span class="chip" data-value="Naming">Naming</span>
+            <span class="chip" data-value="Website">Website</span>
+            <span class="chip" data-value="Social Media">Social Media</span>
+            <span class="chip" data-value="Ads &amp; Campaigns">Ads &amp; Campaigns</span>
+            <span class="chip" data-value="Event Management">Event Management</span>
+            <span class="chip" data-value="Full Rebrand">Full Rebrand</span>
+            <span class="chip" data-value="Not sure yet">Not sure yet</span>
           </div>
+          <input type="hidden" name="services" id="servicesInput" value="" />
         </div>
 
         <div class="field">
           <label>Industry</label>
-          <div class="chips" data-chip-group="industry" data-single="true">
-            <span class="chip" data-value="Food &amp; Bev" role="button" tabindex="0">Food &amp; Bev</span>
-            <span class="chip" data-value="Fashion" role="button" tabindex="0">Fashion</span>
-            <span class="chip" data-value="Healthcare" role="button" tabindex="0">Healthcare</span>
-            <span class="chip" data-value="Real Estate" role="button" tabindex="0">Real Estate</span>
-            <span class="chip" data-value="Fintech" role="button" tabindex="0">Fintech</span>
-            <span class="chip" data-value="Luxury" role="button" tabindex="0">Luxury</span>
-            <span class="chip" data-value="Entertainment" role="button" tabindex="0">Entertainment</span>
-            <span class="chip" data-value="Other" role="button" tabindex="0">Other</span>
+          <div class="chips" data-chip-group="industry">
+            <span class="chip" data-value="Food &amp; Bev">Food &amp; Bev</span>
+            <span class="chip" data-value="Fashion">Fashion</span>
+            <span class="chip" data-value="Healthcare">Healthcare</span>
+            <span class="chip" data-value="Real Estate">Real Estate</span>
+            <span class="chip" data-value="Fintech">Fintech</span>
+            <span class="chip" data-value="Luxury">Luxury</span>
+            <span class="chip" data-value="Entertainment">Entertainment</span>
+            <span class="chip" data-value="Other">Other</span>
           </div>
+          <input type="hidden" name="industry" id="industryInput" value="" />
         </div>
 
         <div class="field">
           <label for="note">Tell us about the project</label>
-          <textarea id="note" name="note" placeholder="What are you building? What's the ambition? What's in the way?"></textarea>
+          <textarea id="note" name="message" placeholder="What are you building? What's the ambition? What's in the way?"></textarea>
         </div>
 
-        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-
-        <button type="submit" class="btn btn--ink" id="submitBtn" style="align-self: flex-start; margin-top: 10px;">
+        <button type="submit" class="btn btn--ink" id="contactSubmit" style="align-self: flex-start; margin-top: 10px;">
           Send message <span class="btn__arrow">→</span>
         </button>
+
+        <!-- Status messages — hidden until JS toggles them -->
+        <div class="form-status form-status--success" id="formSuccess" hidden role="status" aria-live="polite">
+          <strong>Thanks — we've got it.</strong>
+          <span>We'll get back to you within 24 hours.</span>
+        </div>
+        <div class="form-status form-status--error" id="formError" hidden role="alert">
+          <strong>Hmm, something went wrong.</strong>
+          <span>Please email us at <a href="mailto:we@virtuewisdom.com">we@virtuewisdom.com</a>.</span>
+        </div>
       </form>
 
       <aside class="contact__aside">
@@ -328,90 +308,53 @@
 
   <script src="js/main.js?v=films3"></script>
 
-  <!-- ===== Contact form behaviour: chip selection + AJAX submit ===== -->
-  <script>
-  (function(){
-    var form = document.getElementById('contactForm');
-    if (!form) return;
-
-    var status    = document.getElementById('formStatus');
-    var submitBtn = document.getElementById('submitBtn');
-    var groups    = form.querySelectorAll('[data-chip-group]');
-
-    // Make chips selectable
-    groups.forEach(function(group){
-      var single = group.dataset.single === 'true';
-      group.querySelectorAll('.chip').forEach(function(chip){
-        function toggle() {
-          if (single) {
-            group.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('is-selected'); });
-            chip.classList.add('is-selected');
-          } else {
-            chip.classList.toggle('is-selected');
-          }
-        }
-        chip.addEventListener('click', toggle);
-        chip.addEventListener('keydown', function(e){
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-        });
-      });
-    });
-
-    function setStatus(msg, type){
-      status.textContent = msg;
-      status.className = 'form-status' + (type ? ' is-' + type : '');
-    }
-
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-
-      var data = new FormData(form);
-
-      // Append chip selections to the FormData
-      groups.forEach(function(group){
-        var key      = group.dataset.chipGroup;
-        var single   = group.dataset.single === 'true';
-        var selected = group.querySelectorAll('.chip.is-selected');
-
-        if (single) {
-          if (selected.length) data.append(key, selected[0].dataset.value);
-        } else {
-          selected.forEach(function(c){ data.append(key + '[]', c.dataset.value); });
-        }
-      });
-
-      submitBtn.disabled = true;
-      setStatus('Sending…', 'loading');
-
-      fetch('send-mail.php', { method: 'POST', body: data })
-        .then(function(r){
-          return r.json().then(function(j){ return { httpOk: r.ok, body: j }; })
-                         .catch(function(){ return { httpOk: r.ok, body: null }; });
-        })
-        .then(function(res){
-          if (res.httpOk && res.body && res.body.ok) {
-            form.reset();
-            form.querySelectorAll('.chip.is-selected').forEach(function(c){ c.classList.remove('is-selected'); });
-            setStatus("Thank you. We'll be in touch within two business days.", 'ok');
-          } else {
-            var msg = (res.body && res.body.error)
-                       || 'Something went wrong. Please email we@virtuewisdom.com.';
-            setStatus(msg, 'err');
-          }
-        })
-        .catch(function(){
-          setStatus('Network issue. Please email we@virtuewisdom.com.', 'err');
-        })
-        .then(function(){ submitBtn.disabled = false; });
-    });
-  })();
-  </script>
-
 
   <!-- ============================================================
        V&W WhatsApp Chat Panel — drop-in include
        ============================================================ -->
   <style>
+
+  /* ============================================================
+     CONTACT FORM — submit status messages
+     ============================================================ */
+  .form-status {
+    margin-top: 18px;
+    padding: 16px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .form-status[hidden] { display: none; }
+  .form-status strong {
+    font-family: var(--f-display, "Cormorant Garamond", serif);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.005em;
+  }
+  .form-status--success {
+    background: rgba(176, 141, 87, 0.1);
+    border-left: 3px solid var(--accent, #b08d57);
+    color: var(--ink, #0a0a0a);
+  }
+  .form-status--success strong { color: var(--accent, #b08d57); }
+  .form-status--error {
+    background: rgba(180, 30, 30, 0.06);
+    border-left: 3px solid #b41e1e;
+    color: var(--ink, #0a0a0a);
+  }
+  .form-status--error strong { color: #b41e1e; }
+  .form-status--error a { text-decoration: underline; color: inherit; }
+  /* Submit button while sending */
+  .btn[disabled], .btn[aria-busy="true"] {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: wait;
+  }
 
   /* ============================================================
      CHAT PANEL — WhatsApp quick-pick, sharp-edged, premium
@@ -480,60 +423,60 @@
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
-    width: 380px;
-    max-width: 100vw;
+    bottom: 0;
+    width: 360px;
+    max-width: 90vw;
     z-index: 9999;
     background: #0a0a0a;
     color: #f3ece1;
-    border-left: 1px solid rgba(201, 183, 133, 0.2);
+    border-left: 1px solid rgba(201, 183, 133, 0.25);
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: -20px 0 60px -10px rgba(0,0,0,0.6);
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: -20px 0 60px -20px rgba(0, 0, 0, 0.7);
   }
   .chat-panel.is-open { transform: translateX(0); }
 
-  /* Header */
+  /* Top bar */
   .chat-panel__top {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 18px 24px;
-    border-bottom: 1px solid rgba(201, 183, 133, 0.15);
-    flex-shrink: 0;
+    padding: 22px 24px;
+    border-bottom: 1px solid rgba(201, 183, 133, 0.18);
   }
   .chat-panel__avatar {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     background: #c9b785;
     color: #0a0a0a;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Times New Roman', Georgia, serif;
-    font-size: 18px;
-    font-weight: 600;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.02em;
     flex-shrink: 0;
   }
-  .chat-panel__heading {
-    flex: 1;
-    min-width: 0;
-  }
+  .chat-panel__heading { flex: 1; min-width: 0; }
   .chat-panel__name {
-    font-size: 14px;
-    margin: 0 0 2px;
-    letter-spacing: 0.04em;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f3ece1;
+    margin: 0;
   }
   .chat-panel__status {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 6px;
+    margin-top: 4px;
     font-size: 11px;
-    letter-spacing: 0.18em;
+    color: rgba(243, 236, 225, 0.55);
     text-transform: uppercase;
-    color: rgba(243, 236, 225, 0.5);
+    letter-spacing: 0.14em;
   }
   .chat-panel__status::before {
     content: '';
@@ -739,6 +682,107 @@
     back.addEventListener('click', shut);
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') shut();
+    });
+  })();
+  </script>
+
+  <script>
+  /* ============================================================
+     Contact form — Web3Forms submission handler
+     ============================================================
+     This runs AFTER main.js so it overrides the demo "Sent ✓"
+     handler with a real fetch() call to api.web3forms.com.
+     On success: shows the thank-you message + resets the form.
+     On error:   shows the error with a fallback email link.
+     ============================================================ */
+  (function() {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+
+    var submitBtn   = document.getElementById('contactSubmit');
+    var successBox  = document.getElementById('formSuccess');
+    var errorBox    = document.getElementById('formError');
+    var servicesIn  = document.getElementById('servicesInput');
+    var industryIn  = document.getElementById('industryInput');
+    var origBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+
+    // Collect selected chips into hidden inputs before submit
+    function syncChips() {
+      var serviceChips = form.querySelectorAll('[data-chip-group="services"] .chip.selected');
+      var industryChips = form.querySelectorAll('[data-chip-group="industry"] .chip.selected');
+      servicesIn.value = Array.from(serviceChips)
+        .map(function(c) { return c.getAttribute('data-value') || c.textContent.trim(); })
+        .join(', ');
+      industryIn.value = Array.from(industryChips)
+        .map(function(c) { return c.getAttribute('data-value') || c.textContent.trim(); })
+        .join(', ');
+    }
+
+    // Override main.js's demo handler — clone the form to drop its old listeners
+    var freshForm = form.cloneNode(true);
+    form.parentNode.replaceChild(freshForm, form);
+    form = freshForm;
+    submitBtn  = document.getElementById('contactSubmit');
+    successBox = document.getElementById('formSuccess');
+    errorBox   = document.getElementById('formError');
+    servicesIn = document.getElementById('servicesInput');
+    industryIn = document.getElementById('industryInput');
+
+    // Re-attach chip toggling (since we cloned the form)
+    form.querySelectorAll('.chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        chip.classList.toggle('selected');
+      });
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Hide any previous status messages
+      successBox.hidden = true;
+      errorBox.hidden = true;
+
+      // Bundle the chip selections into hidden inputs
+      syncChips();
+
+      // Lock the button
+      submitBtn.setAttribute('aria-busy', 'true');
+      submitBtn.innerHTML = 'Sending...';
+
+      var formData = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(response) { return response.json(); })
+      .then(function(json) {
+        if (json && json.success) {
+          // Show thank-you message, reset the form
+          successBox.hidden = false;
+          form.reset();
+          form.querySelectorAll('.chip.selected').forEach(function(c) {
+            c.classList.remove('selected');
+          });
+          submitBtn.innerHTML = 'Sent ✓';
+          // Restore button label after a moment
+          setTimeout(function() {
+            submitBtn.removeAttribute('aria-busy');
+            submitBtn.innerHTML = origBtnHTML;
+          }, 2400);
+          // Scroll the success message into view if needed
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          throw new Error(json && json.message ? json.message : 'Submission failed');
+        }
+      })
+      .catch(function(err) {
+        errorBox.hidden = false;
+        submitBtn.removeAttribute('aria-busy');
+        submitBtn.innerHTML = origBtnHTML;
+        errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
     });
   })();
   </script>
