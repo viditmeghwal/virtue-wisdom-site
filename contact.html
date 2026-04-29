@@ -82,6 +82,37 @@
 
   <link rel="stylesheet" href="css/style.css?v=films3" />
   <link rel="stylesheet" href="css/pages.css?v=films3" />
+
+  <!-- ===== Contact form: chip + status styles ===== -->
+  <style>
+    .contact__form .chip {
+      cursor: pointer;
+      user-select: none;
+      transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .contact__form .chip:hover { transform: translateY(-1px); }
+    .contact__form .chip.is-selected {
+      background: var(--ink, #0a0a0a);
+      color: #f3ece1;
+      border-color: var(--ink, #0a0a0a);
+    }
+    .contact__form .form-status {
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 20px;
+    }
+    .contact__form .form-status.is-loading { color: #666; }
+    .contact__form .form-status.is-ok      { color: #1a7a3e; }
+    .contact__form .form-status.is-err     { color: #b03030; }
+    .contact__form button[disabled] { opacity: .55; cursor: not-allowed; }
+    .vw-honeypot {
+      position: absolute !important;
+      left: -10000px !important;
+      width: 1px; height: 1px;
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
 
@@ -116,62 +147,70 @@
 
     <div class="contact__grid">
 
-      <form class="contact__form">
+      <form class="contact__form" id="contactForm" action="send-mail.php" method="POST" novalidate>
+
+        <!-- Honeypot: hidden from humans; bots fill it and get silently dropped -->
+        <div class="vw-honeypot" aria-hidden="true">
+          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
         <div class="field">
           <label for="name">Your name</label>
-          <input id="name" type="text" placeholder="Jane Doe" required />
+          <input id="name" name="name" type="text" placeholder="Jane Doe" required />
         </div>
 
         <div class="field">
           <label for="company">Company / Brand</label>
-          <input id="company" type="text" placeholder="Your company" required />
+          <input id="company" name="company" type="text" placeholder="Your company" required />
         </div>
 
         <div class="field">
           <label for="email">Email</label>
-          <input id="email" type="email" placeholder="you@brand.com" required />
+          <input id="email" name="email" type="email" placeholder="you@brand.com" required />
         </div>
 
         <div class="field">
           <label for="phone">Phone (optional)</label>
-          <input id="phone" type="tel" placeholder="+91 ..." />
+          <input id="phone" name="phone" type="tel" placeholder="+91 ..." />
         </div>
 
         <div class="field">
           <label>What do you need?</label>
-          <div class="chips">
-            <span class="chip">Brand Strategy</span>
-            <span class="chip">Visual Identity</span>
-            <span class="chip">Naming</span>
-            <span class="chip">Website</span>
-            <span class="chip">Social Media</span>
-            <span class="chip">Ads &amp; Campaigns</span>
-            <span class="chip">Event Management</span>
-            <span class="chip">Full Rebrand</span>
-            <span class="chip">Not sure yet</span>
+          <div class="chips" data-chip-group="services">
+            <span class="chip" data-value="Brand Strategy" role="button" tabindex="0">Brand Strategy</span>
+            <span class="chip" data-value="Visual Identity" role="button" tabindex="0">Visual Identity</span>
+            <span class="chip" data-value="Naming" role="button" tabindex="0">Naming</span>
+            <span class="chip" data-value="Website" role="button" tabindex="0">Website</span>
+            <span class="chip" data-value="Social Media" role="button" tabindex="0">Social Media</span>
+            <span class="chip" data-value="Ads &amp; Campaigns" role="button" tabindex="0">Ads &amp; Campaigns</span>
+            <span class="chip" data-value="Event Management" role="button" tabindex="0">Event Management</span>
+            <span class="chip" data-value="Full Rebrand" role="button" tabindex="0">Full Rebrand</span>
+            <span class="chip" data-value="Not sure yet" role="button" tabindex="0">Not sure yet</span>
           </div>
         </div>
 
         <div class="field">
           <label>Industry</label>
-          <div class="chips">
-            <span class="chip">Food &amp; Bev</span>
-            <span class="chip">Fashion</span>
-            <span class="chip">Healthcare</span>
-            <span class="chip">Real Estate</span>
-            <span class="chip">Fintech</span>
-            <span class="chip">Luxury</span>
-            <span class="chip">Entertainment</span>
-            <span class="chip">Other</span>
+          <div class="chips" data-chip-group="industry" data-single="true">
+            <span class="chip" data-value="Food &amp; Bev" role="button" tabindex="0">Food &amp; Bev</span>
+            <span class="chip" data-value="Fashion" role="button" tabindex="0">Fashion</span>
+            <span class="chip" data-value="Healthcare" role="button" tabindex="0">Healthcare</span>
+            <span class="chip" data-value="Real Estate" role="button" tabindex="0">Real Estate</span>
+            <span class="chip" data-value="Fintech" role="button" tabindex="0">Fintech</span>
+            <span class="chip" data-value="Luxury" role="button" tabindex="0">Luxury</span>
+            <span class="chip" data-value="Entertainment" role="button" tabindex="0">Entertainment</span>
+            <span class="chip" data-value="Other" role="button" tabindex="0">Other</span>
           </div>
         </div>
 
         <div class="field">
           <label for="note">Tell us about the project</label>
-          <textarea id="note" placeholder="What are you building? What's the ambition? What's in the way?"></textarea>
+          <textarea id="note" name="note" placeholder="What are you building? What's the ambition? What's in the way?"></textarea>
         </div>
 
-        <button type="submit" class="btn btn--ink" style="align-self: flex-start; margin-top: 10px;">
+        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+
+        <button type="submit" class="btn btn--ink" id="submitBtn" style="align-self: flex-start; margin-top: 10px;">
           Send message <span class="btn__arrow">→</span>
         </button>
       </form>
@@ -289,6 +328,85 @@
 
   <script src="js/main.js?v=films3"></script>
 
+  <!-- ===== Contact form behaviour: chip selection + AJAX submit ===== -->
+  <script>
+  (function(){
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+
+    var status    = document.getElementById('formStatus');
+    var submitBtn = document.getElementById('submitBtn');
+    var groups    = form.querySelectorAll('[data-chip-group]');
+
+    // Make chips selectable
+    groups.forEach(function(group){
+      var single = group.dataset.single === 'true';
+      group.querySelectorAll('.chip').forEach(function(chip){
+        function toggle() {
+          if (single) {
+            group.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('is-selected'); });
+            chip.classList.add('is-selected');
+          } else {
+            chip.classList.toggle('is-selected');
+          }
+        }
+        chip.addEventListener('click', toggle);
+        chip.addEventListener('keydown', function(e){
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+    });
+
+    function setStatus(msg, type){
+      status.textContent = msg;
+      status.className = 'form-status' + (type ? ' is-' + type : '');
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var data = new FormData(form);
+
+      // Append chip selections to the FormData
+      groups.forEach(function(group){
+        var key      = group.dataset.chipGroup;
+        var single   = group.dataset.single === 'true';
+        var selected = group.querySelectorAll('.chip.is-selected');
+
+        if (single) {
+          if (selected.length) data.append(key, selected[0].dataset.value);
+        } else {
+          selected.forEach(function(c){ data.append(key + '[]', c.dataset.value); });
+        }
+      });
+
+      submitBtn.disabled = true;
+      setStatus('Sending…', 'loading');
+
+      fetch('send-mail.php', { method: 'POST', body: data })
+        .then(function(r){
+          return r.json().then(function(j){ return { httpOk: r.ok, body: j }; })
+                         .catch(function(){ return { httpOk: r.ok, body: null }; });
+        })
+        .then(function(res){
+          if (res.httpOk && res.body && res.body.ok) {
+            form.reset();
+            form.querySelectorAll('.chip.is-selected').forEach(function(c){ c.classList.remove('is-selected'); });
+            setStatus("Thank you. We'll be in touch within two business days.", 'ok');
+          } else {
+            var msg = (res.body && res.body.error)
+                       || 'Something went wrong. Please email we@virtuewisdom.com.';
+            setStatus(msg, 'err');
+          }
+        })
+        .catch(function(){
+          setStatus('Network issue. Please email we@virtuewisdom.com.', 'err');
+        })
+        .then(function(){ submitBtn.disabled = false; });
+    });
+  })();
+  </script>
+
 
   <!-- ============================================================
        V&W WhatsApp Chat Panel — drop-in include
@@ -362,60 +480,60 @@
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
-    width: 360px;
-    max-width: 90vw;
+    height: 100vh;
+    width: 380px;
+    max-width: 100vw;
     z-index: 9999;
     background: #0a0a0a;
     color: #f3ece1;
-    border-left: 1px solid rgba(201, 183, 133, 0.25);
+    border-left: 1px solid rgba(201, 183, 133, 0.2);
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: -20px 0 60px -20px rgba(0, 0, 0, 0.7);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: -20px 0 60px -10px rgba(0,0,0,0.6);
   }
   .chat-panel.is-open { transform: translateX(0); }
 
-  /* Top bar */
+  /* Header */
   .chat-panel__top {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 22px 24px;
-    border-bottom: 1px solid rgba(201, 183, 133, 0.18);
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(201, 183, 133, 0.15);
+    flex-shrink: 0;
   }
   .chat-panel__avatar {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     background: #c9b785;
     color: #0a0a0a;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Times New Roman', Georgia, serif;
-    font-style: italic;
-    font-size: 16px;
-    letter-spacing: 0.02em;
+    font-size: 18px;
+    font-weight: 600;
     flex-shrink: 0;
   }
-  .chat-panel__heading { flex: 1; min-width: 0; }
+  .chat-panel__heading {
+    flex: 1;
+    min-width: 0;
+  }
   .chat-panel__name {
-    font-size: 13px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #f3ece1;
-    margin: 0;
+    font-size: 14px;
+    margin: 0 0 2px;
+    letter-spacing: 0.04em;
   }
   .chat-panel__status {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 4px;
     font-size: 11px;
-    color: rgba(243, 236, 225, 0.55);
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    color: rgba(243, 236, 225, 0.5);
   }
   .chat-panel__status::before {
     content: '';
