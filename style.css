@@ -293,10 +293,23 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.1fr;
-  gap: 24px;
+  /* 5 columns: Studio (wider, has logo+desc) + Navigate + Sectors + Elsewhere + Contact */
+  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.1fr;
+  gap: 28px;
   padding-top: 60px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Mid-size laptops: 5 columns get tight; let Studio span full width
+   above the 4 link columns, which then sit in one row. */
+@media (max-width: 1280px) and (min-width: 1101px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .footer__grid > .footer__col:first-child {
+    grid-column: 1 / -1;
+    margin-bottom: 12px;
+  }
 }
 
 .footer__col h4 {
