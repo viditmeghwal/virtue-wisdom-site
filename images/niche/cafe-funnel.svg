@@ -1,0 +1,50 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cafe customer journey funnel — from Instagram discovery to Google search to first visit to repeat visit to local recommendation, illustrating the cafe brand customer flow">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  
+  <!-- Header -->
+  <text x="800" y="120" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="28" fill="#c9b785">From scroll to regular</text>
+
+  <!-- 5 stages flowing left to right -->
+  <g font-family="Times New Roman, serif" fill="#c9b785">
+    <!-- Stage 1: discovery -->
+    <circle cx="200" cy="450" r="80" fill="none" stroke="#c9b785" stroke-width="1.5" opacity="0.85"/>
+    <text x="200" y="446" text-anchor="middle" font-style="italic" font-size="18">discovery</text>
+    <text x="200" y="468" text-anchor="middle" font-size="11" letter-spacing="2" opacity="0.6">REELS / SCROLL</text>
+    <text x="200" y="580" text-anchor="middle" font-size="11" letter-spacing="3" opacity="0.5">FIRST SEES YOU</text>
+
+    <!-- arrow -->
+    <line x1="285" y1="450" x2="395" y2="450" stroke="#c9b785" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 4"/>
+
+    <!-- Stage 2: search -->
+    <circle cx="480" cy="450" r="80" fill="none" stroke="#c9b785" stroke-width="1.3" opacity="0.75"/>
+    <text x="480" y="446" text-anchor="middle" font-style="italic" font-size="18">search</text>
+    <text x="480" y="468" text-anchor="middle" font-size="11" letter-spacing="2" opacity="0.6">GOOGLE / MAP</text>
+    <text x="480" y="580" text-anchor="middle" font-size="11" letter-spacing="3" opacity="0.5">CHECKS YOU OUT</text>
+
+    <line x1="565" y1="450" x2="675" y2="450" stroke="#c9b785" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 4"/>
+
+    <!-- Stage 3: first visit -->
+    <circle cx="760" cy="450" r="80" fill="none" stroke="#c9b785" stroke-width="1.2" opacity="0.7"/>
+    <text x="760" y="446" text-anchor="middle" font-style="italic" font-size="18">first visit</text>
+    <text x="760" y="468" text-anchor="middle" font-size="11" letter-spacing="2" opacity="0.6">WALKS IN</text>
+    <text x="760" y="580" text-anchor="middle" font-size="11" letter-spacing="3" opacity="0.5">EXPERIENCE TEST</text>
+
+    <line x1="845" y1="450" x2="955" y2="450" stroke="#c9b785" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 4"/>
+
+    <!-- Stage 4: repeat -->
+    <circle cx="1040" cy="450" r="80" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.65"/>
+    <text x="1040" y="446" text-anchor="middle" font-style="italic" font-size="18">repeat</text>
+    <text x="1040" y="468" text-anchor="middle" font-size="11" letter-spacing="2" opacity="0.6">COMES BACK</text>
+    <text x="1040" y="580" text-anchor="middle" font-size="11" letter-spacing="3" opacity="0.5">RITUAL FORMING</text>
+
+    <line x1="1125" y1="450" x2="1235" y2="450" stroke="#c9b785" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 4"/>
+
+    <!-- Stage 5: advocate -->
+    <circle cx="1320" cy="450" r="80" fill="none" stroke="#c9b785" stroke-width="0.8" opacity="0.55"/>
+    <text x="1320" y="446" text-anchor="middle" font-style="italic" font-size="18">advocate</text>
+    <text x="1320" y="468" text-anchor="middle" font-size="11" letter-spacing="2" opacity="0.6">TELLS FRIENDS</text>
+    <text x="1320" y="580" text-anchor="middle" font-size="11" letter-spacing="3" opacity="0.5">YOUR BEST AD</text>
+  </g>
+
+  <text x="800" y="780" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="15" fill="#c9b785" opacity="0.5">Most cafés build for stage 1. The brand wins at stage 5.</text>
+</svg>

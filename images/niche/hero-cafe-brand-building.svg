@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cafe brand building hero illustration — abstract steam swirls and cup outline with gold accent, representing brand strategy for cafes and restaurants">
+  <defs>
+    <linearGradient id="cafeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#16110b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#cafeBg)"/>
+  <!-- Cup silhouette on right -->
+  <g fill="none" stroke="#c9b785" stroke-width="0.8" opacity="0.5">
+    <ellipse cx="1180" cy="540" rx="180" ry="32"/>
+    <path d="M 1000 540 Q 1000 720 1180 720 Q 1360 720 1360 540"/>
+    <!-- Handle -->
+    <path d="M 1360 580 Q 1430 580 1430 630 Q 1430 680 1360 680"/>
+    <!-- Saucer -->
+    <ellipse cx="1180" cy="740" rx="240" ry="16"/>
+  </g>
+  <!-- Steam swirls -->
+  <g fill="none" stroke="#c9b785" stroke-width="1" opacity="0.45">
+    <path d="M 1100 480 Q 1080 420 1110 380 Q 1140 340 1115 290 Q 1090 250 1120 200"/>
+    <path d="M 1180 470 Q 1200 410 1170 370 Q 1140 320 1180 270 Q 1220 230 1190 170"/>
+    <path d="M 1260 480 Q 1280 430 1255 380 Q 1230 330 1260 280 Q 1290 240 1260 180"/>
+  </g>
+  <!-- Subtle beans/dots scattered -->
+  <g fill="#c9b785" opacity="0.3">
+    <ellipse cx="200" cy="400" rx="6" ry="3"/>
+    <ellipse cx="350" cy="540" rx="6" ry="3" transform="rotate(20 350 540)"/>
+    <ellipse cx="500" cy="380" rx="6" ry="3" transform="rotate(-15 500 380)"/>
+    <ellipse cx="280" cy="650" rx="6" ry="3"/>
+    <ellipse cx="650" cy="500" rx="6" ry="3" transform="rotate(30 650 500)"/>
+  </g>
+  <!-- Underlines suggesting menu/text -->
+  <line x1="100" y1="780" x2="280" y2="780" stroke="#c9b785" stroke-width="0.5" opacity="0.3"/>
+  <line x1="100" y1="800" x2="220" y2="800" stroke="#c9b785" stroke-width="0.4" opacity="0.25"/>
+  <line x1="100" y1="820" x2="320" y2="820" stroke="#c9b785" stroke-width="0.3" opacity="0.2"/>
+</svg>

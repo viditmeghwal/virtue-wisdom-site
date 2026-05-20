@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Jewellery brand building hero illustration — abstract diamond facets and chain links with gold accents, representing brand strategy for jewellery brands">
+  <defs>
+    <linearGradient id="jewBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#15110b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#jewBg)"/>
+  <!-- Faceted diamond shape on right -->
+  <g fill="none" stroke="#c9b785" stroke-width="0.8" opacity="0.55">
+    <path d="M 1200 280 L 1340 380 L 1280 600 L 1200 660 L 1120 600 L 1060 380 Z"/>
+    <line x1="1200" y1="280" x2="1280" y2="600"/>
+    <line x1="1200" y1="280" x2="1120" y2="600"/>
+    <line x1="1200" y1="280" x2="1200" y2="660"/>
+    <line x1="1060" y1="380" x2="1340" y2="380"/>
+    <line x1="1060" y1="380" x2="1280" y2="600"/>
+    <line x1="1340" y1="380" x2="1120" y2="600"/>
+  </g>
+  <!-- Chain links across left -->
+  <g fill="none" stroke="#c9b785" stroke-width="1" opacity="0.4">
+    <ellipse cx="200" cy="400" rx="40" ry="22" transform="rotate(-25 200 400)"/>
+    <ellipse cx="270" cy="450" rx="40" ry="22" transform="rotate(25 270 450)"/>
+    <ellipse cx="340" cy="400" rx="40" ry="22" transform="rotate(-25 340 400)"/>
+    <ellipse cx="410" cy="450" rx="40" ry="22" transform="rotate(25 410 450)"/>
+    <ellipse cx="480" cy="400" rx="40" ry="22" transform="rotate(-25 480 400)"/>
+  </g>
+  <!-- Subtle starbursts -->
+  <g fill="#c9b785" opacity="0.35">
+    <circle cx="700" cy="200" r="2"/>
+    <circle cx="850" cy="700" r="1.5"/>
+    <circle cx="950" cy="180" r="2.5"/>
+    <circle cx="600" cy="780" r="1.5"/>
+  </g>
+  <!-- Decorative line at bottom -->
+  <line x1="100" y1="800" x2="500" y2="800" stroke="#c9b785" stroke-width="0.4" opacity="0.3"/>
+</svg>

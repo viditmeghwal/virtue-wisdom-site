@@ -1,0 +1,52 @@
+# ==================================================
+# Virtue & Wisdom — Apache rewrite & redirect rules
+# ==================================================
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Force non-www → www (or remove this block if you prefer non-www)
+# Uncomment ONE of the two blocks below depending on your preferred canonical
+
+# Block A: prefer non-www (https://virtuewisdom.com)
+RewriteCond %{HTTP_HOST} ^www\.virtuewisdom\.com$ [NC]
+RewriteRule ^(.*)$ https://virtuewisdom.com/$1 [L,R=301]
+
+# ==================================================
+# 410 Gone — legacy WordPress URLs from previous site
+# These tell Google to drop them from the index permanently.
+# ==================================================
+RedirectMatch 410 ^/wp-content/.*$
+RedirectMatch 410 ^/wp-includes/.*$
+RedirectMatch 410 ^/wp-admin/.*$
+RedirectMatch 410 ^/wp-json/.*$
+RedirectMatch 410 ^/wp-.*\.php$
+RedirectMatch 410 ^/xmlrpc\.php$
+RedirectMatch 410 ^/checkout/?.*$
+RedirectMatch 410 ^/cart/?.*$
+RedirectMatch 410 ^/my-account/?.*$
+RedirectMatch 410 ^/shop/?.*$
+RedirectMatch 410 ^/product/?.*$
+RedirectMatch 410 ^/product-category/?.*$
+
+# ==================================================
+# Performance & caching headers
+# ==================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>

@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- 4 vertical bars representing the 4 beats -->
+  <g transform="translate(400, 250)">
+    <rect x="0" y="280" width="120" height="120" fill="#c9b785" opacity="0.3"/>
+    <text x="60" y="450" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" font-style="italic" fill="#c9b785" opacity="0.55">hook</text>
+
+    <rect x="180" y="200" width="120" height="200" fill="#c9b785" opacity="0.5"/>
+    <text x="240" y="450" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" font-style="italic" fill="#c9b785" opacity="0.55">build</text>
+
+    <rect x="360" y="100" width="120" height="300" fill="#c9b785" opacity="0.7"/>
+    <text x="420" y="450" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" font-style="italic" fill="#c9b785" opacity="0.55">payoff</text>
+
+    <rect x="540" y="40" width="120" height="360" fill="#c9b785" opacity="0.95"/>
+    <text x="600" y="450" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" font-style="italic" fill="#c9b785" opacity="0.55">cta</text>
+  </g>
+  <!-- Connector line at top -->
+  <line x1="200" y1="200" x2="1400" y2="200" stroke="#c9b785" stroke-width="0.5" opacity="0.3"/>
+</svg>

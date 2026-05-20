@@ -1,0 +1,30 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Three acts of a hospitality brand experience — arrival, the stay, and the story guests tell after — diagrammed as a guest journey for resort brand strategy">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Three vertical lanes -->
+  <text x="266" y="180" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="30" fill="#c9b785">Arrival</text>
+  <text x="800" y="180" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="30" fill="#c9b785">The Stay</text>
+  <text x="1334" y="180" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="30" fill="#c9b785">After</text>
+
+  <!-- Arc connecting them -->
+  <path d="M 266 280 Q 533 240 800 280 Q 1067 320 1334 280" fill="none" stroke="#c9b785" stroke-width="0.7" opacity="0.5"/>
+
+  <!-- Three vertical caption blocks -->
+  <g font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.65" text-anchor="middle">
+    <text x="266" y="380">FIRST 10 MINUTES</text>
+    <text x="266" y="410">SET THE BRAND</text>
+    
+    <text x="800" y="380">DAILY RITUALS</text>
+    <text x="800" y="410">CARRY IT</text>
+    
+    <text x="1334" y="380">THE STORY THEY TELL</text>
+    <text x="1334" y="410">DEFINES THE PREMIUM</text>
+  </g>
+
+  <!-- Connectors -->
+  <line x1="266" y1="500" x2="266" y2="700" stroke="#c9b785" stroke-width="0.5" opacity="0.3" stroke-dasharray="2 4"/>
+  <line x1="800" y1="500" x2="800" y2="700" stroke="#c9b785" stroke-width="0.5" opacity="0.3" stroke-dasharray="2 4"/>
+  <line x1="1334" y1="500" x2="1334" y2="700" stroke="#c9b785" stroke-width="0.5" opacity="0.3" stroke-dasharray="2 4"/>
+
+  <!-- Bottom note -->
+  <text x="800" y="800" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="16" fill="#c9b785" opacity="0.55">Three acts. One brand felt across all of them.</text>
+</svg>

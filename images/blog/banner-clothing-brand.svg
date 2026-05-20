@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Hangtag -->
+  <g transform="translate(800, 450)">
+    <!-- String -->
+    <line x1="0" y1="-380" x2="0" y2="-180" stroke="#c9b785" stroke-width="0.8" opacity="0.7"/>
+    <!-- Hole -->
+    <circle cx="0" cy="-160" r="8" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.7"/>
+    <!-- Tag body -->
+    <rect x="-180" y="-130" width="360" height="280" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.85"/>
+    <!-- Inner detail lines -->
+    <line x1="-140" y1="-80" x2="140" y2="-80" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+    <line x1="-140" y1="-40" x2="60" y2="-40" stroke="#c9b785" stroke-width="0.5" opacity="0.3"/>
+    <line x1="-140" y1="0" x2="100" y2="0" stroke="#c9b785" stroke-width="0.5" opacity="0.3"/>
+    <line x1="-140" y1="40" x2="80" y2="40" stroke="#c9b785" stroke-width="0.5" opacity="0.3"/>
+    <!-- VW mark / signature spot -->
+    <text x="0" y="115" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.6">v&amp;w</text>
+  </g>
+</svg>

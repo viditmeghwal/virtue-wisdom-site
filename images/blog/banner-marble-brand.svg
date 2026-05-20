@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Marble veins — flowing curves -->
+  <path d="M 0 200 Q 300 100 600 220 T 1100 180 T 1600 240"
+        fill="none" stroke="#c9b785" stroke-width="1" opacity="0.6"/>
+  <path d="M 0 260 Q 250 350 500 280 T 1000 320 T 1600 290"
+        fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.4"/>
+  <path d="M 0 450 Q 400 380 800 460 T 1400 440 T 1600 470"
+        fill="none" stroke="#c9b785" stroke-width="1.2" opacity="0.7"/>
+  <path d="M 0 520 Q 350 600 700 510 T 1300 540 T 1600 510"
+        fill="none" stroke="#c9b785" stroke-width="0.5" opacity="0.35"/>
+  <path d="M 0 700 Q 300 620 600 720 T 1200 680 T 1600 730"
+        fill="none" stroke="#c9b785" stroke-width="0.8" opacity="0.5"/>
+  <path d="M 0 760 Q 400 820 800 760 T 1400 800 T 1600 770"
+        fill="none" stroke="#c9b785" stroke-width="0.4" opacity="0.3"/>
+  <!-- Vertical crack -->
+  <path d="M 800 0 L 790 200 L 810 350 L 800 450 L 815 600 L 805 800 L 800 900"
+        fill="none" stroke="#c9b785" stroke-width="0.6" opacity="0.55"/>
+</svg>

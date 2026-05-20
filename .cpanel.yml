@@ -1,0 +1,14 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/bhdsehrg/public_html/
+    - /bin/cp -f *.html $DEPLOYPATH
+    - /bin/cp -f *.php $DEPLOYPATH
+    - /bin/cp -f *.xml $DEPLOYPATH
+    - /bin/cp -f robots.txt $DEPLOYPATH
+    - /bin/cp -f favicon.ico $DEPLOYPATH
+    - /bin/cp -f .htaccess $DEPLOYPATH
+    - /bin/cp -Rf css $DEPLOYPATH
+    - /bin/cp -Rf js $DEPLOYPATH
+    - /bin/cp -Rf images $DEPLOYPATH
+    - /bin/cp -Rf tool $DEPLOYPATH

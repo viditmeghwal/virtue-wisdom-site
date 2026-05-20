@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cafe content pyramid diagram — three layers showing dish photography, atmosphere content, and brand story content for cafe Instagram strategy">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Pyramid layers -->
+  <g stroke="#c9b785" fill="none">
+    <!-- Bottom: dishes (widest) -->
+    <polygon points="380,650 1220,650 1140,520 460,520" stroke-width="1" opacity="0.4"/>
+    <!-- Middle: atmosphere -->
+    <polygon points="460,520 1140,520 1080,400 520,400" stroke-width="1.2" opacity="0.6"/>
+    <!-- Top: brand story -->
+    <polygon points="520,400 1080,400 1020,290 580,290" stroke-width="1.5" opacity="0.85"/>
+  </g>
+  <!-- Labels -->
+  <text x="800" y="600" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.7">dishes — what's on the menu today</text>
+  <text x="800" y="475" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785" opacity="0.85">atmosphere — light, table, hands</text>
+  <text x="800" y="355" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="22" fill="#c9b785">brand story — why you exist</text>
+
+  <!-- Header -->
+  <text x="800" y="180" text-anchor="middle" font-family="Times New Roman, serif" font-style="italic" font-size="28" fill="#c9b785">The 3-post rule for café Instagrams</text>
+
+  <!-- Footer -->
+  <text x="800" y="780" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" letter-spacing="3" fill="#c9b785" opacity="0.5">ALL THREE LAYERS, ALWAYS. NOT JUST THE BOTTOM.</text>
+</svg>

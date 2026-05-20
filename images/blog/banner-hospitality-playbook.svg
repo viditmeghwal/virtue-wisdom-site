@@ -1,0 +1,23 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Vertical paper / spine layers -->
+  <rect x="200" y="100" width="2" height="700" fill="#c9b785" opacity="0.4"/>
+  <rect x="350" y="180" width="2" height="540" fill="#c9b785" opacity="0.3"/>
+  <rect x="500" y="120" width="2" height="660" fill="#c9b785" opacity="0.5"/>
+  <rect x="650" y="200" width="2" height="500" fill="#c9b785" opacity="0.3"/>
+  <rect x="800" y="100" width="2" height="700" fill="#c9b785" opacity="0.6"/>
+  <rect x="950" y="200" width="2" height="500" fill="#c9b785" opacity="0.3"/>
+  <rect x="1100" y="120" width="2" height="660" fill="#c9b785" opacity="0.5"/>
+  <rect x="1250" y="180" width="2" height="540" fill="#c9b785" opacity="0.3"/>
+  <rect x="1400" y="100" width="2" height="700" fill="#c9b785" opacity="0.4"/>
+
+  <!-- Horizontal weaving "thread" -->
+  <path d="M 100 450 Q 400 350 700 450 T 1300 450 T 1500 450"
+        fill="none" stroke="#c9b785" stroke-width="1.5" opacity="0.85"/>
+  <path d="M 100 470 Q 400 570 700 470 T 1300 470 T 1500 470"
+        fill="none" stroke="#c9b785" stroke-width="1" opacity="0.4"/>
+  <!-- Subtle dot accents -->
+  <circle cx="500" cy="430" r="3" fill="#c9b785"/>
+  <circle cx="800" cy="450" r="4" fill="#c9b785"/>
+  <circle cx="1100" cy="470" r="3" fill="#c9b785"/>
+</svg>

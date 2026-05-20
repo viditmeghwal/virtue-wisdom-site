@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="#0a0a0a"/>
+  <!-- Gold sun -->
+  <circle cx="800" cy="540" r="220" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.6"/>
+  <circle cx="800" cy="540" r="160" fill="none" stroke="#c9b785" stroke-width="1" opacity="0.45"/>
+  <circle cx="800" cy="540" r="100" fill="#c9b785" opacity="0.18"/>
+  <circle cx="800" cy="540" r="50" fill="#c9b785" opacity="0.4"/>
+  <!-- Mountain silhouettes — back layer -->
+  <path d="M 0 700 L 200 480 L 400 600 L 600 420 L 800 560 L 1000 460 L 1200 580 L 1400 480 L 1600 620 L 1600 900 L 0 900 Z" fill="#0f0f0f"/>
+  <!-- Mid layer -->
+  <path d="M 0 760 L 250 580 L 500 700 L 750 520 L 1000 660 L 1250 580 L 1600 720 L 1600 900 L 0 900 Z" fill="#141414"/>
+  <!-- Front layer -->
+  <path d="M 0 820 L 180 720 L 360 800 L 540 700 L 720 780 L 900 720 L 1080 800 L 1280 740 L 1600 800 L 1600 900 L 0 900 Z" fill="#1a1a1a"/>
+  <!-- Subtle grain -->
+  <rect width="1600" height="900" fill="url(#grain)" opacity="0.03"/>
+  <defs>
+    <pattern id="grain" patternUnits="userSpaceOnUse" width="3" height="3">
+      <rect width="3" height="3" fill="#fff"/>
+      <circle cx="1.5" cy="1.5" r="0.4" fill="#000"/>
+    </pattern>
+  </defs>
+</svg>
