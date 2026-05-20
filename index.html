@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+  /* Arm the hero entrance before first paint. Skipped for reduced-motion
+     and no-JS visitors, who then see the hero fully rendered. */
+  (function () {
+    try {
+      if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+        document.documentElement.className += ' hero-pre';
+      }
+    } catch (e) {}
+  })();
+  </script>
   <title>Branding &amp; Marketing Agency in Udaipur, India | Virtue &amp; Wisdom</title>
 <!-- ===== SEO META ===== -->
 <meta name="description" content="Branding agency and marketing agency in Udaipur, India — strategy, identity and campaigns for brands across hospitality, marble, jewellery and lifestyle.">
@@ -167,8 +178,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=films3" />
-  <link rel="stylesheet" href="css/pages.css?v=films3" />  <style>
+  <link rel="stylesheet" href="css/style.css?v=v7" />
+  <link rel="stylesheet" href="css/pages.css?v=v7" />  <style>
   /* ============================================================
      OFF-CAMERA / Inside V&W — Behind the Scenes (3 phone columns)
      ============================================================ */
@@ -942,6 +953,61 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-cine__video { transition: none; }
     }
+
+    /* ============================================================
+       HERO — Cinematic entrance
+       Hidden states apply ONLY under html.hero-pre, which a <head>
+       script adds before first paint (skipped for reduced-motion and
+       no-JS, so those visitors always see the full hero). Adding
+       .is-revealed to .hero-bb fires the timeline.
+       Refined expo-out easing + dramatic distance/scale.
+       ============================================================ */
+    .bb-line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+    .bb-line__in { display: block; will-change: transform; }
+
+    /* Initial hidden states */
+    .hero-pre .hero-bb__mark { opacity: 0; filter: blur(8px); }
+    .hero-pre .bb-line__in { transform: translateY(115%); }
+    .hero-pre .hero-bb__sub,
+    .hero-pre .hero-bb__cta,
+    .hero-pre .bb-trust,
+    .hero-pre .bb-card { opacity: 0; }
+    .hero-pre .hero-bb__sub,
+    .hero-pre .hero-bb__cta { transform: translateY(26px); }
+    .hero-pre .bb-trust { transform: translateY(30px); }
+    .hero-pre .bb-card { transform: translateY(54px) scale(0.94); }
+
+    /* Transitions — premium expo-out curve */
+    .hero-pre .hero-bb__mark { transition: opacity 1.25s ease, filter 1.25s ease; transition-delay: 0.15s; }
+    .hero-pre .bb-line__in { transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1); }
+    .hero-pre .bb-line:nth-child(1) .bb-line__in { transition-delay: 0.28s; }
+    .hero-pre .bb-line:nth-child(2) .bb-line__in { transition-delay: 0.44s; }
+    .hero-pre .hero-bb__sub { transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1); transition-delay: 0.72s; }
+    .hero-pre .hero-bb__cta { transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1); transition-delay: 0.86s; }
+    .hero-pre .bb-trust { transition: opacity 0.8s ease, transform 0.95s cubic-bezier(0.16,1,0.3,1); transition-delay: 0.58s; }
+    .hero-pre .bb-card { transition: opacity 0.85s ease, transform 1.0s cubic-bezier(0.16,1,0.3,1); }
+    .hero-pre .bb-card:nth-child(1) { transition-delay: 0.74s; }
+    .hero-pre .bb-card:nth-child(2) { transition-delay: 0.9s; }
+    .hero-pre .bb-card:nth-child(3) { transition-delay: 1.06s; }
+
+    /* Revealed end-state */
+    .hero-pre .hero-bb.is-revealed .hero-bb__mark { opacity: 0.12; filter: blur(0); }
+    .hero-pre .hero-bb.is-revealed .bb-line__in { transform: translateY(0); }
+    .hero-pre .hero-bb.is-revealed .hero-bb__sub,
+    .hero-pre .hero-bb.is-revealed .hero-bb__cta,
+    .hero-pre .hero-bb.is-revealed .bb-trust,
+    .hero-pre .hero-bb.is-revealed .bb-card { opacity: 1; transform: translateY(0) scale(1); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-pre .hero-bb__mark,
+      .hero-pre .bb-line__in,
+      .hero-pre .hero-bb__sub,
+      .hero-pre .hero-bb__cta,
+      .hero-pre .bb-trust,
+      .hero-pre .bb-card {
+        opacity: 1 !important; filter: none !important; transform: none !important; transition: none !important;
+      }
+    }
   </style>
 
   <section class="hero-bb">
@@ -951,7 +1017,7 @@
 
     <!-- Bottom-left: headline + sub + CTAs -->
     <div class="hero-bb__lead">
-      <h1 class="hero-bb__title">Brands<br><span class="amp">&amp;</span> Stories</h1>
+      <h1 class="hero-bb__title"><span class="bb-line"><span class="bb-line__in">Brands</span></span><span class="bb-line"><span class="bb-line__in"><span class="amp">&amp;</span> Stories</span></span></h1>
       <!-- vw-seo-subhead -->
       <h2 class="hero-bb__seo" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">Virtue &amp; Wisdom — a branding agency and marketing agency in Udaipur, India, building iconic brands across hospitality, marble, jewellery and lifestyle.</h2>
       <p class="hero-bb__sub">A branding &amp; marketing studio building iconic brands &mdash; strategy, design and film under one roof.</p>
@@ -1004,6 +1070,24 @@
     </div>
 
   </section>
+
+  <script>
+  // Hero cinematic entrance — html.hero-pre (set in <head>) holds the hidden
+  // states; adding .is-revealed on first paint plays the timeline.
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('hero-pre')) return;
+    var hero = document.querySelector('.hero-bb');
+    if (!hero) { root.classList.remove('hero-pre'); return; }
+    function reveal() { hero.classList.add('is-revealed'); }
+    requestAnimationFrame(function () { requestAnimationFrame(reveal); });
+    setTimeout(reveal, 1400); // safety net if a frame stalls
+    // After the timeline finishes, drop hero-pre so the entrance rules stop
+    // applying and normal interaction (e.g. card hover) is restored. Final
+    // state already equals the natural state, so this causes no visual jump.
+    setTimeout(function () { root.classList.remove('hero-pre'); }, 2400);
+  })();
+  </script>
 
   <script>
   // ============================================================
@@ -1858,12 +1942,15 @@
     @keyframes glanceShimmer { to { left: 140%; } }
     .vw-glance__num {
       display: block;
+      max-width: 100%;
       font-family: 'Host Grotesk', system-ui, sans-serif;
       font-weight: 600;
-      font-size: clamp(40px, 5vw, 72px);
-      line-height: 1;
+      font-size: clamp(34px, 4.4vw, 58px);
+      line-height: 1.04;
       letter-spacing: -0.02em;
       margin-bottom: 14px;
+      padding: 0 0.04em;
+      white-space: nowrap;
       background: linear-gradient(180deg, #ffffff 0%, #9cc6f5 100%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -2405,7 +2492,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=films3"></script>
+  <script src="js/main.js?v=v7"></script>
   <script>
   // ============================================================
   // Combined JS: lazy-play + BTS eager + category cycler + wheel fix
