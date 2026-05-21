@@ -1166,11 +1166,17 @@
   @keyframes vcine-fade{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
   .vcine__meta,.vcine__meta-right{animation:vcine-fade 1s ease both;animation-delay:1.1s;}
   @media (max-width:760px){
-    .vcine{align-items:flex-start;}
-    .vcine__inner{padding-top:20vh;}
-    .vcine__meta{position:static;max-width:none;margin-top:26px;}
-    .vcine__meta-right{display:none;}
-    .vcine__title{font-size:14vw;}
+    /* stack everything in one centered column so the title can't get squeezed */
+    .vcine{flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:96px 22px 64px;}
+    .vcine__inner{max-width:100%;padding:0;display:flex;flex-direction:column;align-items:center;}
+    .vcine__title{font-size:clamp(32px,9.5vw,58px);}      /* ~30% smaller, centred */
+    .vcine__line{text-align:center;}
+    .vcine__stroke{margin:22px auto 0;}
+    /* description + 200+ brands sit UNDER the title, centred and smaller */
+    .vcine__meta{position:static;max-width:340px;margin:24px auto 0;text-align:center;font-size:13px;}
+    .vcine__meta-right{position:static;display:block;text-align:center;margin:18px auto 0;}
+    .vcine__meta-right strong{font-size:20px;}
+    .vcine__scroll{display:none;}
   }
   @media (prefers-reduced-motion:reduce){
     .vcine__video{animation:none;transform:none;}
