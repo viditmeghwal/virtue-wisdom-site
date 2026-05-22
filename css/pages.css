@@ -821,6 +821,15 @@
     width: 100%;
     justify-content: center;
   }
+  .vw-team .team-banner__figure {
+    margin-left: calc(var(--pad) * -1);
+    margin-right: calc(var(--pad) * -1);
+    border: none;
+  }
+  .vw-team .team-banner__img {
+    height: clamp(190px, 52vw, 280px);
+    object-position: center;
+  }
   .team-banner__caption {
     padding: 16px var(--pad);
     font-size: 10px;
