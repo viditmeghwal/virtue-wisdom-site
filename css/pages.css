@@ -794,6 +794,19 @@
   font-weight: 300;
 }
 
+/* Full-bleed, trimmed team band (edge-to-edge of the viewport) */
+.vw-team .team-banner__figure {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  border: none;
+}
+
+.vw-team .team-banner__img {
+  height: clamp(400px, 40vw, 540px);
+  object-position: center 40%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .studio-hero h1 .word {
     animation: none;
@@ -820,11 +833,6 @@
   .vw-team__head .btn {
     width: 100%;
     justify-content: center;
-  }
-  .vw-team .team-banner__figure {
-    margin-left: calc(var(--pad) * -1);
-    margin-right: calc(var(--pad) * -1);
-    border: none;
   }
   .vw-team .team-banner__img {
     height: clamp(190px, 52vw, 280px);
