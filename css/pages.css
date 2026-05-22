@@ -805,8 +805,27 @@
 }
 
 @media (max-width: 760px) {
-  .vw-team { padding: 80px var(--pad); }
-  .vw-team__head { margin-bottom: 32px; gap: 18px; }
+  .vw-team {
+    padding: 60px var(--pad) 70px;
+  }
+  .vw-team__head {
+    margin-bottom: 30px;
+    gap: 22px;
+  }
+  .vw-team__head h2 {
+    font-size: clamp(28px, 7.5vw, 46px);
+    line-height: 1.06;
+    flex-basis: 100%;
+  }
+  .vw-team__head .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .team-banner__caption {
+    padding: 16px var(--pad);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
 }
 
 /* Stats */
