@@ -367,8 +367,7 @@ filmTiles.forEach(tile => {
     <a href="visuals.html">Visuals</a>
     <a href="blog.html">Journal</a>
     <a href="sectors.html">Sectors</a>
-    <a href="tool.html">Strategy Tool</a>
-    <a href="about.html">Studio</a>
+    <a href="about.html">Team</a>
     <a href="contact.html">Contact</a>
     <div class="nav__drawer-cta"><a href="tool.html">Strategy Tool &nbsp;→</a></div>
   `;

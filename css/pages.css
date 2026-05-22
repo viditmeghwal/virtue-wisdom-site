@@ -620,6 +620,50 @@
   max-width: 520px;
 }
 
+/* Team banner */
+
+.team-banner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad) 100px;
+}
+
+.team-banner__figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+}
+
+.team-banner__img {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 52vw, 680px);
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%) contrast(1.04);
+  transition: filter 0.9s ease, transform 1.4s ease;
+}
+
+.team-banner__figure:hover .team-banner__img {
+  filter: grayscale(100%) contrast(1.08) brightness(1.03);
+  transform: scale(1.015);
+}
+
+.team-banner__caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 28px var(--pad);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+}
+
 /* Stats */
 
 .stats {
